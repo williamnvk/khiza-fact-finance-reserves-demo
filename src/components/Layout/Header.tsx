@@ -1,44 +1,46 @@
-import { Box, Button, HStack, IconButton, useDisclosure } from '@chakra-ui/react';
-import { FC, useEffect, useState } from 'react';
+import { Box, Button, HStack, IconButton, useDisclosure, Heading } from '@chakra-ui/react';
+import { FC } from 'react';
 import { MenuIcon, XIcon } from 'lucide-react';
 import LogoIcon from '../Icons/LogoIcon';
 
 export interface HeaderProps {}
 
 export const Header: FC<HeaderProps> = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const { open, onToggle } = useDisclosure();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 72);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
 
   return (
     <>
       <Box position="fixed" top={0} zIndex={5} w="100vw" h="72px">
         <Box w="full" position="relative">
+          <Box
+            position="absolute"
+            top={-4}
+            left={0}
+            right={0}
+            bottom={0}
+            h="100px"
+            bg="blackAlpha.500"
+            filter="blur(20px)"
+          />
           <HStack
             justify="space-between"
             align="center"
             py={4}
             gap={8}
             px={4}
+            w="full"
+            bg="blue.500"
+            bg="transparent"
             position="relative"
             backdropFilter="blur(8px)"
-            bg={open ? 'white' : 'rgba(255, 255, 255, 0.5)'}
-            _dark={{ bg: open ? 'gray.950' : 'rgba(0, 0, 0, 0.1)' }}
             transition="all 0.5s ease-in-out"
-            boxShadow={isScrolled ? '0 0 25px rgba(0, 0, 0, 0.1)' : 'none'}
           >
-            <HStack align="center" justify="center">
-              <LogoIcon />
+            <HStack align="center" justify="center" color="white" gap={0}>
+              <Heading size="md">FACT</Heading>
+              <LogoIcon width="12px" height="auto" />
+              <Heading size="md" fontWeight="light">
+                FINANCE
+              </Heading>
             </HStack>
 
             <HStack display={{ base: 'none', md: 'flex' }} justify="flex-start" align="center" flex={1}>
@@ -50,10 +52,7 @@ export const Header: FC<HeaderProps> = () => {
               <Button variant="plain">Team</Button>
             </HStack>
 
-            <HStack display={{ base: 'none', md: 'flex' }} justify="flex-start" align="center">
-              <Button variant="primary">Entrar</Button>
-              <Button variant="ghost">Criar conta</Button>
-            </HStack>
+            <Button variant="primary">Docs</Button>
 
             <IconButton
               display={{ base: 'flex', md: 'none' }}

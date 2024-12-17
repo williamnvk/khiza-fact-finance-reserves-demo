@@ -1,49 +1,47 @@
-"use client"
+'use client';
 
-import type { IconButtonProps } from "@chakra-ui/react"
-import { ClientOnly, IconButton, Skeleton } from "@chakra-ui/react"
-import { MoonIcon, SunIcon } from "lucide-react"
-import { ThemeProvider, useTheme } from "next-themes"
-import type { ThemeProviderProps } from "next-themes"
-import * as React from "react"
+import type { IconButtonProps } from '@chakra-ui/react';
+import { ClientOnly, IconButton, Skeleton } from '@chakra-ui/react';
+import { MoonIcon, SunIcon } from 'lucide-react';
+import { ThemeProvider, useTheme } from 'next-themes';
+import type { ThemeProviderProps } from 'next-themes';
+import * as React from 'react';
 
 export interface ColorModeProviderProps extends ThemeProviderProps {}
 
 export function ColorModeProvider(props: ColorModeProviderProps) {
-  return (
-    <ThemeProvider attribute="class" forcedTheme="dark" disableTransitionOnChange {...props} />
-  )
+  return <ThemeProvider attribute="class" forcedTheme="dark" disableTransitionOnChange {...props} />;
 }
 
 export function useColorMode() {
-  const { resolvedTheme, setTheme } = useTheme()
+  const { resolvedTheme, setTheme } = useTheme();
   const toggleColorMode = () => {
-    setTheme(resolvedTheme === "light" ? "dark" : "light")
-  }
+    setTheme(resolvedTheme === 'light' ? 'dark' : 'light');
+  };
   return {
     colorMode: resolvedTheme,
     setColorMode: setTheme,
     toggleColorMode,
-  }
+  };
 }
 
 export function useColorModeValue<T>(light: T, dark: T) {
-  const { colorMode } = useColorMode()
-  return colorMode === "light" ? light : dark
+  const { colorMode } = useColorMode();
+  return colorMode === 'light' ? light : dark;
 }
 
 export function ColorModeIcon() {
-  const { colorMode } = useColorMode()
-  return colorMode === "light" ? <SunIcon /> : <MoonIcon />
+  const { colorMode } = useColorMode();
+  return colorMode === 'light' ? <SunIcon /> : <MoonIcon />;
 }
 
-interface ColorModeButtonProps extends Omit<IconButtonProps, "aria-label"> {}
+interface ColorModeButtonProps extends Omit<IconButtonProps, 'aria-label'> {}
 
-export const ColorModeButton = React.forwardRef<
-  HTMLButtonElement,
-  ColorModeButtonProps
->(function ColorModeButton(props, ref) {
-  const { toggleColorMode } = useColorMode()
+export const ColorModeButton = React.forwardRef<HTMLButtonElement, ColorModeButtonProps>(function ColorModeButton(
+  props,
+  ref,
+) {
+  const { toggleColorMode } = useColorMode();
   return (
     <ClientOnly fallback={<Skeleton boxSize="8" />}>
       <IconButton
@@ -55,13 +53,13 @@ export const ColorModeButton = React.forwardRef<
         {...props}
         css={{
           _icon: {
-            width: "5",
-            height: "5",
+            width: '5',
+            height: '5',
           },
         }}
       >
         <ColorModeIcon />
       </IconButton>
     </ClientOnly>
-  )
-})
+  );
+});

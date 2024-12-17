@@ -1,5 +1,7 @@
 import { defineGlobalStyles } from '@chakra-ui/react';
 
+const cubes = Array.from({ length: 24 }, (_, i) => i + 1);
+
 export const globalCss = defineGlobalStyles({
   '*': {
     fontFeatureSettings: '"cv11"',
@@ -47,5 +49,73 @@ export const globalCss = defineGlobalStyles({
   '.swiper-slide': {
     borderRadius: '2xl',
     border: 'none',
+  },
+  '.cube': {
+    width: '48px',
+    height: '48px',
+    transformStyle: 'preserve-3d',
+    position: 'absolute',
+    animation: 'rotation 2s infinite ease',
+  },
+  '.cube div': {
+    margin: 0,
+    width: '100%',
+    height: '100%',
+    display: 'block',
+    position: 'absolute',
+    border: '2px solid {colors.brand.500}',
+    bg: '{colors.brand.950}',
+  },
+  '.cube .front': {
+    transform: 'rotateY(0deg) translateZ(24px)',
+  },
+  '.cube .back': {
+    transform: 'rotateX(180deg) translateZ(24px)',
+  },
+  '.cube .right': {
+    transform: 'rotateY(90deg) translateZ(24px)',
+  },
+  '.cube .left': {
+    transform: 'rotateY(-90deg) translateZ(24px)',
+  },
+  '.cube .top': {
+    transform: 'rotateX(90deg) translateZ(24px)',
+  },
+  '.cube .bottom': {
+    transform: 'rotateX(-90deg) translateZ(24px)',
+  },
+  '@keyframes rotation': {
+    '0%': {
+      transform: 'rotateX(0) rotateY(0)',
+    },
+    '100%': {
+      transform: 'rotateX(-90deg) rotateY(90deg)',
+    },
+  },
+  ...Object.fromEntries(
+    cubes.map((i) => [
+      `#cube-${i}`,
+      {
+        left: `${((i - 1) % 4) * 80}px`,
+        top: `${Math.floor((i - 1) / 4) * 80}px`,
+        animationDelay: `${0.25 + ((i - 1) % 4) * 0.25 + Math.floor((i - 1) / 4) * 0.25}s`,
+      },
+    ]),
+  ),
+  '@keyframes moveCube': {
+    '0%': {
+      transform: 'rotateX(-30deg) rotateY(45deg) translate(0, 0)',
+    },
+    '100%': {
+      transform: 'rotateX(-30deg) rotateY(45deg) translate(calc(100vw - 100px), -100vh)',
+    },
+  },
+  '@keyframes moveCubeHorizontal': {
+    '0%': {
+      transform: 'rotateX(-30deg) rotateY(45deg) translateX(-100px)',
+    },
+    '100%': {
+      transform: 'rotateX(-30deg) rotateY(45deg) translateX(calc(100vw + 100px))',
+    },
   },
 });

@@ -120,15 +120,24 @@ export const globalCss = defineGlobalStyles({
   },
   '@keyframes moveCubeForward': {
     '0%': {
-      transform: 'translateZ(-1000px)',
+      transform: 'translate(-50px, -50px) translateZ(-1000px)',
       opacity: 0,
     },
     '50%': {
       opacity: 1,
+      transform: 'translate(100px, 100px) translateZ(-200px)',
     },
     '100%': {
-      transform: 'translateZ(500px)',
+      transform: 'translate(200px, 200px) translateZ(500px)',
       opacity: 0,
+    },
+  },
+  '@keyframes moveCubeDiagonal': {
+    '0%': {
+      transform: 'rotateX(-30deg) rotateY(45deg) translate(-100px, -100vh)',
+    },
+    '100%': {
+      transform: 'rotateX(-30deg) rotateY(45deg) translate(calc(100vw - 100px), 100vh)',
     },
   },
 });

@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 
 const HeroBackground = () => {
-  const NUMBER_OF_CUBES = 16; // Main cubes
+  const NUMBER_OF_CUBES = 32; // Main cubes
   const NUMBER_OF_BACKGROUND_CUBES = 24; // Additional background cubes
 
   const cubeStyles = {
@@ -86,9 +86,13 @@ const HeroBackground = () => {
     <Box
       position="absolute"
       width="50vw"
+      bg="gray.800"
+      borderLeft="1px solid {colors.brand.500}"
+      left="0"
+      opacity={0.5}
       height="calc(100vh - 72px)"
       transformStyle="preserve-3d"
-      perspective="1000px"
+      perspective="4000px"
       overflow="hidden"
     >
       {[...backgroundCubes, ...mainCubes].map((cube, index) => {

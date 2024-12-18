@@ -1,26 +1,14 @@
 import { Box } from '@chakra-ui/react';
-import {
-  Barcode,
-  CircleDollarSignIcon,
-  CoinsIcon,
-  FuelIcon,
-  HomeIcon,
-  LandmarkIcon,
-  LeafIcon,
-  PlaneIcon,
-  UserIcon,
-  WheatIcon,
-} from 'lucide-react';
+import { BitcoinIcon, BlocksIcon } from 'lucide-react';
 
-const HeroPortal = () => {
-  const NUMBER_OF_CUBES = 16; // Main cubes
+const HeroBackground = () => {
+  const NUMBER_OF_CUBES = 8; // Main cubes
   const NUMBER_OF_BACKGROUND_CUBES = 24; // Additional background cubes
 
   const cubeStyles = {
     position: 'absolute',
-    bottom: 0,
     transformStyle: 'preserve-3d',
-    animation: `moveCubeForward 10s infinite linear`,
+    animation: `moveCubeHorizontal 10s infinite linear`,
   };
 
   const getFaceStyles = (opacity: number) => ({
@@ -46,20 +34,20 @@ const HeroPortal = () => {
   const generateCubes = (count: number, sizeRange: [number, number], opacityRange: [number, number]) => {
     const cubes = [];
     const sections = 6;
-    const sectionWidth = 50 / sections; // Using 50vw width
+    const sectionHeight = 100 / sections;
 
     for (let i = 0; i < count; i++) {
       const size = Math.random() * (sizeRange[1] - sizeRange[0]) + sizeRange[0];
       const sectionIndex = i % sections;
-      const left = sectionIndex * sectionWidth + Math.random() * (sectionWidth / 2);
+      const bottom = sectionIndex * sectionHeight + Math.random() * (sectionHeight / 2);
       const delay = -Math.random() * 12;
       const opacity = Math.random() * (opacityRange[1] - opacityRange[0]) + opacityRange[0];
 
       cubes.push({
         size,
         delay,
-        left: `${left}vw`,
-        bottom: `${Math.random() * 80}%`,
+        left: '-10%',
+        bottom: `${bottom}%`,
         opacity,
       });
     }
@@ -69,27 +57,16 @@ const HeroPortal = () => {
   const mainCubes = generateCubes(NUMBER_OF_CUBES, [60, 120], [0.08, 0.1]);
   const backgroundCubes = generateCubes(NUMBER_OF_BACKGROUND_CUBES, [20, 50], [0.02, 0.05]);
 
-  const randomIcons = [
-    HomeIcon,
-    LeafIcon,
-    PlaneIcon,
-    FuelIcon,
-    WheatIcon,
-    Barcode,
-    UserIcon,
-    LandmarkIcon,
-    CoinsIcon,
-    CircleDollarSignIcon,
-  ];
+  const randomIcons = [BitcoinIcon, BlocksIcon];
 
   return (
     <Box
       position="absolute"
       width="50vw"
-      height="calc(100vh - 72px)"
       right="0"
+      height="calc(100vh - 72px)"
       transformStyle="preserve-3d"
-      perspective="1000px"
+      perspective="5000px"
       overflow="hidden"
     >
       {[...backgroundCubes, ...mainCubes].map((cube, index) => {
@@ -102,7 +79,7 @@ const HeroPortal = () => {
             height={`${cube.size}px`}
             left={cube.left}
             bottom={cube.bottom}
-            animation={`moveCubeForward 15s infinite linear ${cube.delay}s`}
+            animation={`moveCubeHorizontal 20s infinite linear ${cube.delay}s`}
           >
             {/* Icon positioned in the center of the cube */}
             <Box
@@ -129,4 +106,4 @@ const HeroPortal = () => {
   );
 };
 
-export default HeroPortal;
+export default HeroBackground;

@@ -1,4 +1,4 @@
-import { Box, Image } from '@chakra-ui/react';
+import { Box, HStack, Image, Text } from '@chakra-ui/react';
 import { chains } from '@/data/chains';
 import Slider from '@/components/Shared/Slider';
 import { useMemo } from 'react';
@@ -9,18 +9,30 @@ export default function HomePage() {
     () =>
       chains.map((chain) => (
         <Slider.Slide key={chain.value}>
-          <Box p={4} _hover={{ transform: 'scale(1.1)' }} transition="all 0.3s ease-in-out">
+          <HStack
+            p={4}
+            _hover={{ transform: 'scale(1.1)' }}
+            transition="all 0.3s ease-in-out"
+            borderRadius="full"
+            bg="whiteAlpha.50"
+            gap={4}
+            align="center"
+            justify="center"
+            h="80px"
+          >
             {chain.icon ? (
               <Image
                 filter="grayscale(1)"
                 _hover={{ filter: 'grayscale(0)' }}
                 alt={`${chain.value} logo`}
                 src={chain.icon}
-                width={{ base: '64px', md: '64px' }}
+                width={{ base: '48px', md: '48px' }}
+                height={{ base: '48px', md: 'auto' }}
                 loading="lazy"
               />
             ) : null}
-          </Box>
+            <Text flex={1}>{chain.value}</Text>
+          </HStack>
         </Slider.Slide>
       )),
     [chains],
@@ -28,9 +40,6 @@ export default function HomePage() {
 
   return (
     <Box
-      data-aos="fade-up"
-      data-aos-anchor-placement="top-bottom"
-      data-aos-delay="200"
       w="full"
       mb={{ base: 0, md: 12 }}
       role="region"
@@ -40,58 +49,27 @@ export default function HomePage() {
     >
       <Box
         bgGradient="to-r"
-        gradientFrom="black"
+        gradientFrom="bg"
         gradientTo="transparent"
         pos="absolute"
         top="0"
         left="0"
         w="25vw"
-        h="100px"
+        h="120px"
         zIndex={1}
       ></Box>
-      <Box
-        bgGradient="to-r"
-        gradientFrom="black"
-        gradientTo="transparent"
-        pos="absolute"
-        top="0"
-        left="0"
-        w="25vw"
-        h="100px"
-        zIndex={1}
-      ></Box>
-      <Box
-        bgGradient="to-r"
-        gradientFrom="black"
-        gradientTo="transparent"
-        pos="absolute"
-        top="0"
-        left="0"
-        w="25vw"
-        h="100px"
-        zIndex={1}
-      ></Box>
-      <Box
-        bgGradient="to-r"
-        gradientFrom="black"
-        gradientTo="transparent"
-        pos="absolute"
-        top="0"
-        left="0"
-        w="25vw"
-        h="100px"
-        zIndex={1}
-      ></Box>
+
       <Slider alias="first">{chainSlides}</Slider>
+
       <Box
         bgGradient="to-l"
-        gradientFrom="black"
+        gradientFrom="bg"
         gradientTo="transparent"
         pos="absolute"
-        top="0"
-        right="0"
+        top={0}
+        right={0}
         w="25vw"
-        h="100px"
+        h="120px"
         zIndex={1}
       ></Box>
     </Box>

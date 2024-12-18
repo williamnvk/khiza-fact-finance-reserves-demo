@@ -157,12 +157,12 @@ export const Home = () => {
         </Container>
       </Box>
 
-      <Box my={16}>
+      <Container my={16}>
         <Text textAlign="center" mb={4} color="whiteAlpha.500">
           Supported chains
         </Text>
         <Chains />
-      </Box>
+      </Container>
 
       <Box my={16}>
         <Container>
@@ -236,27 +236,44 @@ export const Home = () => {
               </HStack>
             </VStack>
 
-            <VStack>
-              <Box
-                bg="gray.800"
-                p={6}
-                borderRadius="md"
-                fontFamily="mono"
-                fontSize="sm"
-                color="gray.300"
-                whiteSpace="pre"
-              >
-                {`/// @title Data Feed Struct
-/// @notice This struct represents the data feed with a value and confidence level
-/// @dev Used to store oracle data with an associated confidence score
-struct DataFeed {    
-    int256 value;        /// @dev Integer value of the data feed
-    uint256 updatedat;   /// @dev Timestamp of backend data update
-    uint8 decimal;       /// @dev Number of decimal places for the data value
-    uint8 confidence;    /// @dev Confidence level of the data feed
-                         /// @dev 1: outlier, 2: acceptable, 3: reliable
-}`}
-              </Box>
+            <VStack
+              bg="gray.900"
+              flex={1}
+              p={6}
+              borderRadius="md"
+              fontFamily="mono"
+              fontSize="sm"
+              color="blue.300"
+              whiteSpace="pre"
+            >
+              <code className="language-solidity">
+                <Text color="brand.200">/// @title Data Feed Struct</Text>
+                <br />
+                <Text color="brand.200">
+                  /// @notice This struct represents the data feed with a value and confidence level
+                </Text>
+                <br />
+                <Text color="brand.200">
+                  /// @dev Used to store oracle data with an associated confidence score
+                </Text>
+                <br />
+                <span className="token keyword keyword-struct">struct</span>{' '}
+                <span className="token class-name">DataFeed</span> <span className="token punctuation">{`{`}</span><br />
+                <span className="token builtin">int256</span> value<span className="token punctuation">;</span>{' '}
+                <Text color="brand.200">/// @dev Integer value of the data feed</Text>
+                <br />
+                <span className="token builtin">uint256</span> updatedat<span className="token punctuation">;</span>{' '}
+                <Text color="brand.200">/// @dev Timestamp of backend data update</Text>
+                <br />
+                <span className="token builtin">uint8</span> decimal<span className="token punctuation">;</span>{' '}
+                <Text color="brand.200">/// @dev Number of decimal places for the data value</Text>
+                <br />
+                <span className="token builtin">uint8</span> confidence<span className="token punctuation">;</span>{' '}
+                <Text color="brand.200">/// @dev Confidence level of the data feed</Text>
+                <br />
+                <Text color="brand.200">/// @dev 1: outlier, 2: acceptable, 3: reliable</Text>
+                <span className="token punctuation">{`}`}</span>
+              </code>
             </VStack>
           </HStack>
         </Container>
@@ -293,25 +310,36 @@ struct DataFeed {
         </Center>
       </Container>
 
-      <Box>
-        <Container maxW="5xl">
-          <VStack gap={4} align="center" bg="whiteAlpha.50" borderRadius="2xl" p={16}>
-            <TitleSection>
-              <Heading textAlign="center" textStyle="title">
-                Unlock the value of your tokenized asset with official data
-              </Heading>
+      <Box p={32} pos="relative">
+        <Box
+          position="absolute"
+          bottom="-250px"
+          left="50%"
+          transform="translate(-50%, -50%)"
+          w="600px"
+          h="600px"
+          bg="radial-gradient(circle, white 80%, transparent 100%)"
+          filter="blur(100px)"
+          zIndex={0}
+        />
+        <Container gap={4} maxW="5xl">
+          <TitleSection>
+            <Heading textAlign="center" textStyle="title" color="brand.950">
+              Unlock the value of your
+              <br />
+              tokenized asset with official data
+            </Heading>
 
-              <Text textAlign="center" maxW="2xl" textStyle="subtitle">
-                Our data layer connects trusted, official data sources to tokenized assets, unlocking new financial
-                solutions
-              </Text>
-            </TitleSection>
+            <Text textAlign="center" maxW="2xl" textStyle="subtitle" color="brand.950">
+              Our data layer connects trusted, official data sources to tokenized assets, unlocking new financial
+              solutions
+            </Text>
+          </TitleSection>
 
-            <HStack w="full" justify="center" gap={4}>
-              <Button>Talk to an expert</Button>
-              <Button variant="outline">Data hub</Button>
-            </HStack>
-          </VStack>
+          <HStack w="full" justify="center" gap={4}>
+            <Button>Talk to an expert</Button>
+            <Button variant="ghost">Data hub</Button>
+          </HStack>
         </Container>
       </Box>
     </>

@@ -1,5 +1,5 @@
 import { Box, Flex } from '@chakra-ui/react';
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 
 export interface SlideProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -11,56 +11,83 @@ export interface SliderProps extends React.HTMLAttributes<HTMLDivElement> {
   alias: string;
 }
 
-const Slider = ({ alias, children, width = '200px', duration = 40, toRight = false }: SliderProps) => {
+const Slider = ({ alias, children, width = '200px', duration = 10, toRight = false }: SliderProps) => {
+  const [items, setItems] = useState<ReactElement[]>([]);
+
+  useEffect(() => {
+    // Duplica os itens para criar um loop infinito
+    const repeatedItems = Array(3).fill(children).flat(); // Aumentado para 3x para transição mais suave
+    setItems(repeatedItems);
+  }, [children]);
+
   useEffect(() => {
     const style = document.createElement('style');
 
-    const keyFrames =
-      '\
-        @-webkit-keyframes slider_logo_slider_ALIAS {\
-            0% {\
-                transform: translateX(0);\
-            }\
-            100% {\
-                transform: translateX(A_DYNAMIC_VALUE);\
-            }\
-        }\
-        @-moz-keyframes slider_logo_slider_ALIAS {\
-            0% {\
-                transform: translateX(0);\
-            }\
-            100% {\
-                transform: translateX(A_DYNAMIC_VALUE);\
-            }\
-        }';
-    style.innerHTML = keyFrames
-      .replace(/A_DYNAMIC_VALUE/g, `calc(${toRight ? '' : '-'}${width} * ${children!.length})`)
-      .replace('ALIAS', alias);
+    const keyFrames = `
+      @keyframes trusted_by_slider_${alias} {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(${toRight ? '' : '-'}${width});
+        }
+      }
+    `;
 
-    document.getElementsByTagName('head')[0].appendChild(style);
-  }, [toRight, width, children, alias]);
+    style.innerHTML = keyFrames;
+    document.head.appendChild(style);
+
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, [toRight, width, alias]);
 
   return (
-    <Box pos="relative">
-      <Box w="full" h="full" margin="auto" top={0} overflow="hidden">
-        <Flex
-          gap={4}
-          top={0}
-          style={{
-            animation: `slider_logo_slider_${alias} ${duration}s linear infinite`,
-          }}
-        >
-          {children?.map((child, i) => (
-            <React.Fragment key={i}>{React.cloneElement(child, { width })}</React.Fragment>
-          ))}
-          {children?.map((child, i) => (
-            <React.Fragment key={i}>{React.cloneElement(child, { width })}</React.Fragment>
-          ))}
-          {children?.map((child, i) => (
-            <React.Fragment key={i}>{React.cloneElement(child, { width })}</React.Fragment>
-          ))}
-        </Flex>
-      </Box>
+    <Box 
+      pos="relative"
+      w="full"
+      overflow="hidden"
+      _before={{
+        content: '""',
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        height: '100%',
+        background: 'linear-gradient(to right, black, transparent)',
+        zIndex: 2
+      }}
+      _after={{
+        content: '""',
+        position: 'absolute',
+        right: 0,
+        top: 0,
+        height: '100%',
+        background: 'linear-gradient(to left, black, transparent)',
+        zIndex: 2
+      }}
+    >
+      <Flex
+        gap={8}
+        py={4}
+        style={{
+          animation: `trusted_by_slider_${alias} ${duration}s linear infinite`,
+        }}
+      >
+        {items.map((child, i) => (
+          <Box 
+            key={i}
+            opacity={0.7}
+            _hover={{opacity: 1}}
+            transition="opacity 0.3s"
+            data-aos="fade-right"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="500"
+            data-aos-delay={i * 100}
+          >
+            {React.cloneElement(child, { width })}
+          </Box>
+        ))}
+      </Flex>
     </Box>
   );
 };

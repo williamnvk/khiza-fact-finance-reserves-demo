@@ -1,5 +1,5 @@
 // import arbitrumIcon from '@/assets/chains/arbitrum.svg';
-import baseIcon from '@/assets/chains/base.svg';
+// import baseIcon from '@/assets/chains/base.svg';
 // import auroraIcon from '@/assets/chains/aurora.svg';
 // import avalancheIcon from '@/assets/chains/avalanche.svg';
 // import cronosIcon from '@/assets/chains/cronos.svg';
@@ -19,17 +19,17 @@ export type ChainDef = {
 };
 
 export const chains: ChainDef[] = [
-  { name: 'Base', value: 'baseSepolia', icon: baseIcon },
-  { name: 'XDC Network', value: 'xdc', icon: xdcIcon },
-  { name: 'Ethereum', value: 'sepolia', icon: ethereumIcon },
+  // { name: 'Base', value: 'Base', icon: baseIcon },
+  { name: 'XDC Network', value: 'XDC Network', icon: xdcIcon },
+  { name: 'Ethereum', value: 'Ethereum', icon: ethereumIcon },
   // { name: 'BSC', value: 'bscTestnet', icon: bscIcon },
-  { name: 'Solana', value: 'solana', icon: solanaIcon },
-  { name: 'Polygon', value: 'polygonAmoy', icon: polygonIcon },
+  { name: 'Solana', value: 'Solana', icon: solanaIcon },
+  { name: 'Polygon', value: 'Polygon', icon: polygonIcon },
   // { name: 'Avalanche', value: 'avalancheFuji', icon: avalancheIcon },
   // { name: 'Arbitrum', value: 'arbitrumSepolia', icon: arbitrumIcon },
   // { name: 'Fantom', value: 'fantomTestnet', icon: fantomIcon },
   // { name: 'Optimism', value: 'optimismSepolia', icon: optimismIcon },
-  { name: 'Gnosis', value: 'gnosisChiado', icon: gnosisIcon },
+  { name: 'Gnosis', value: 'Gnosis', icon: gnosisIcon },
   // { name: 'Aurora', value: 'auroraTestnet', icon: auroraIcon },
   // { name: "ZkSync", value: "zkSyncSepoliaTestnet", icon: "" },
   // { name: 'Cronos', value: 'cronosTestnet', icon: cronosIcon },

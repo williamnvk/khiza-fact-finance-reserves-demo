@@ -7,6 +7,7 @@ import Chains from '@/components/Shared/Chains';
 import CubesGrid from '@/components/Shared/CubesGrid';
 import { TitleSection } from '@/components/ui/title-sectiont';
 import HeroBackground from '@/components/Shared/HeroBackground';
+import HeroPortal from '@/components/Shared/HeroPortal';
 
 export const Home = () => {
   return (
@@ -14,8 +15,11 @@ export const Home = () => {
       <SEO />
 
       <Box mt="72px" minH="calc(100vh - 72px)" pos="relative">
-        <HeroBackground />
-        <Container>
+        <HStack w="full" minH="calc(100vh - 72px)" pos="relative">
+          <HeroBackground />
+          <HeroPortal />
+        </HStack>
+        <Container pos="absolute" top="50%" left="50%" transform="translate(-50%, -50%)" w="full" h="full" zIndex={1}>
           <VStack minH="calc(100vh - 72px)" justify="center">
             <Heading textStyle="title">Reliable data for the tokenized economy</Heading>
             <Text textStyle="subtitle">

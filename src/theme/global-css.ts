@@ -118,4 +118,17 @@ export const globalCss = defineGlobalStyles({
       transform: 'rotateX(-30deg) rotateY(45deg) translateX(calc(100vw + 100px))',
     },
   },
+  '@keyframes moveCubeForward': {
+    '0%': {
+      transform: 'translateZ(-1000px)',
+      opacity: 0,
+    },
+    '50%': {
+      opacity: 1,
+    },
+    '100%': {
+      transform: 'translateZ(500px)',
+      opacity: 0,
+    },
+  },
 });

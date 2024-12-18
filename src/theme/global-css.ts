@@ -134,7 +134,7 @@ export const globalCss = defineGlobalStyles({
   },
   '@keyframes moveCubeDiagonal': {
     '0%': {
-      transform: 'rotateX(-30deg) rotateY(45deg) translate(-100px, -100vh)',
+      transform: 'rotateX(-15deg) rotateY(45deg) translate(-50px, -100vh)',
     },
     '100%': {
       transform: 'rotateX(-30deg) rotateY(45deg) translate(calc(100vw - 100px), 100vh)',

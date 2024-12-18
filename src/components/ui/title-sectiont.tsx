@@ -1,10 +1,9 @@
-import { chakra } from '@chakra-ui/react';
+import { chakra, VStack } from '@chakra-ui/react';
 
-export const TitleSection = chakra('div', {
+export const TitleSection = chakra(VStack, {
   base: {
+    w: "full",
     my: { base: 6, md: 12 },
-    display: 'flex',
-    flexDirection: 'column',
     gap: { base: 2, md: 4 },
   },
 });

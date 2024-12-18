@@ -1,9 +1,12 @@
 import { Box } from '@chakra-ui/react';
-import { BitcoinIcon, BlocksIcon } from 'lucide-react';
+import ArbitrumIcon from '../Icons/ArbitrumIcon';
+import EthereumIcon from '../Icons/EthereumIcon';
+import BaseIcon from '../Icons/BaseIcon';
+import PolygonIcon from '../Icons/PolygonIcon';
 
 const HeroBackground = () => {
-  const NUMBER_OF_CUBES = 8; // Main cubes
-  const NUMBER_OF_BACKGROUND_CUBES = 24; // Additional background cubes
+  const NUMBER_OF_CUBES = 6; // Main cubes
+  const NUMBER_OF_BACKGROUND_CUBES = 16; // Additional background cubes
 
   const cubeStyles = {
     position: 'absolute',
@@ -15,8 +18,8 @@ const HeroBackground = () => {
     position: 'absolute',
     width: '100%',
     height: '100%',
-    border: '1px solid black',
-    background: `rgba(255, 255, 255, ${opacity})`,
+    border: '1px solid {colors.brand.500}',
+    background: `rgba(0, 0, 0, ${opacity})`,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -31,9 +34,14 @@ const HeroBackground = () => {
     bottom: { transform: `rotateX(-90deg) translateZ(${size / 2}px)` },
   });
 
-  const generateCubes = (count: number, sizeRange: [number, number], opacityRange: [number, number]) => {
+  const generateCubes = (
+    count: number,
+    sizeRange: [number, number],
+    opacityRange: [number, number],
+    isBackground: boolean,
+  ) => {
     const cubes = [];
-    const sections = 6;
+    const sections = 16;
     const sectionHeight = 100 / sections;
 
     for (let i = 0; i < count; i++) {
@@ -49,24 +57,25 @@ const HeroBackground = () => {
         left: '-10%',
         bottom: `${bottom}%`,
         opacity,
+        isBackground,
       });
     }
     return cubes;
   };
 
-  const mainCubes = generateCubes(NUMBER_OF_CUBES, [60, 120], [0.08, 0.1]);
-  const backgroundCubes = generateCubes(NUMBER_OF_BACKGROUND_CUBES, [20, 50], [0.02, 0.05]);
+  const mainCubes = generateCubes(NUMBER_OF_CUBES, [60, 120], [0.08, 0.1], false);
+  const backgroundCubes = generateCubes(NUMBER_OF_BACKGROUND_CUBES, [50, 50], [0.02, 0.05], true);
 
-  const randomIcons = [BitcoinIcon, BlocksIcon];
+  const randomIcons = [ArbitrumIcon, BaseIcon, EthereumIcon, PolygonIcon, EthereumIcon];
 
   return (
     <Box
       position="absolute"
       width="50vw"
       right="0"
-      height="calc(100vh - 72px)"
+      height="calc(100vh + 72px)"
       transformStyle="preserve-3d"
-      perspective="5000px"
+      perspective="4000px"
       overflow="hidden"
     >
       {[...backgroundCubes, ...mainCubes].map((cube, index) => {
@@ -89,15 +98,22 @@ const HeroBackground = () => {
               display="flex"
               alignItems="center"
               justifyContent="center"
-              transform={`translateZ(${cube.size * 0.1}px)`}
+              transform={`translateZ(${cube.size * 0.05}px)`}
               style={{ transformStyle: 'preserve-3d' }}
-              color="rgba(255, 255, 255, 0.5)"
+              color="rgba(0, 0, 0, 1)"
+              animation="none 2s infinite"
+              filter={`grayscale(1)`}
             >
-              <RandomIcon size={cube.size * 0.5} />
+              <RandomIcon width={cube.size * 1} height={cube.size * 1} />
             </Box>
             {/* Cube faces */}
             {Object.entries(getFaces(cube.size)).map(([face, style]) => (
-              <Box key={face} {...getFaceStyles(cube.opacity)} {...style} />
+              <Box
+                key={face}
+                {...getFaceStyles(cube.opacity)}
+                {...style}
+                filter={`blur(${cube.isBackground ? '5px' : '0px'})`}
+              />
             ))}
           </Box>
         );

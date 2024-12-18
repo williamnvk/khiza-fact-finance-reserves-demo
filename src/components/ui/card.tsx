@@ -2,14 +2,14 @@ import { chakra } from '@chakra-ui/react';
 
 export const Card = chakra('div', {
   base: {
-    p: { base: 4, md: 6 },
+    p: { base: 4, md: 8 },
     rounded: '2xl',
     bg: 'white',
     _dark: {
-      bg: 'gray.950',
-      borderColor: 'gray.800',
+      bg: 'whiteAlpha.50',
+      borderColor: 'whiteAlpha.100',
     },
-    border: '1px solid',
+    // border: '1px solid',
     borderColor: 'gray.50',
     display: 'flex',
     flexDirection: 'column',

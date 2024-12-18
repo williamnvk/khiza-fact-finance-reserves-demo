@@ -11,59 +11,42 @@ export const Header: FC<HeaderProps> = () => {
   return (
     <>
       <Box position="fixed" top={0} zIndex={5} w="100vw" h="72px">
-        <Box w="full" position="relative">
-          <Box
-            position="absolute"
-            top={-4}
-            left={0}
-            right={0}
-            bottom={0}
-            h="100px"
-            bg="blackAlpha.500"
-            filter="blur(20px)"
-          />
-          <HStack
-            justify="space-between"
-            align="center"
-            py={4}
-            gap={8}
-            px={4}
-            w="full"
-            bg="blue.500"
-            bg="transparent"
-            position="relative"
-            backdropFilter="blur(8px)"
-            transition="all 0.5s ease-in-out"
-          >
-            <HStack align="center" justify="center" color="white" gap={0}>
-              <Heading size="md">FACT</Heading>
-              <LogoIcon width="12px" height="auto" />
-              <Heading size="md" fontWeight="light">
-                FINANCE
-              </Heading>
-            </HStack>
-
-            <HStack display={{ base: 'none', md: 'flex' }} justify="flex-start" align="center" flex={1}>
-              <Button variant="subtle">Home</Button>
-              <Button variant="plain">Data Hub</Button>
-              <Button variant="plain">Features</Button>
-              <Button variant="plain">Use Cases</Button>
-              <Button variant="plain">Data Providers</Button>
-              <Button variant="plain">Team</Button>
-            </HStack>
-
-            <Button variant="primary">Docs</Button>
-
-            <IconButton
-              display={{ base: 'flex', md: 'none' }}
-              aria-label="Open menu"
-              onClick={onToggle}
-              variant="ghost"
-            >
-              {open ? <XIcon /> : <MenuIcon />}
-            </IconButton>
+        <HStack
+          justify="space-between"
+          align="center"
+          py={4}
+          gap={8}
+          pr={8}
+          pl={4}
+          w="full"
+          bg="transparent"
+          position="relative"
+          // backdropFilter="blur(8px)"
+          transition="all 0.5s ease-in-out"
+        >
+          <HStack align="center" justify="center" gap={0}>
+            <Heading size="md">FACT</Heading>
+            <LogoIcon width="12px" height="auto" />
+            <Heading size="md" fontWeight="light">
+              FINANCE
+            </Heading>
           </HStack>
-        </Box>
+
+          <HStack display={{ base: 'none', md: 'flex' }} justify="flex-start" align="center" flex={1}>
+            <Button variant="subtle">Home</Button>
+            <Button variant="plain">Data Hub</Button>
+            <Button variant="plain">Features</Button>
+            <Button variant="plain">Use Cases</Button>
+            <Button variant="plain">Data Providers</Button>
+            <Button variant="plain">Team</Button>
+          </HStack>
+
+          <Button variant="primary">Docs</Button>
+
+          <IconButton display={{ base: 'flex', md: 'none' }} aria-label="Open menu" onClick={onToggle} variant="ghost">
+            {open ? <XIcon /> : <MenuIcon />}
+          </IconButton>
+        </HStack>
       </Box>
 
       <Box

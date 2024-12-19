@@ -129,6 +129,9 @@ const HeroBackground = () => {
               transform={`translateZ(${cube.size * 0.1}px)`}
               style={{ transformStyle: 'preserve-3d' }}
               color="rgba(0, 0, 0, 1)"
+              _dark={{
+                color: 'rgba(255, 255, 255, 1)',
+              }}
             >
               <RandomIcon size={cube.size * 0.5} />
             </Box>

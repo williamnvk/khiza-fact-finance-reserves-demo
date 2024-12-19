@@ -1,4 +1,4 @@
-import { Box, Center, Container, Flex, Heading, HStack, Link, SimpleGrid, Text, VStack } from '@chakra-ui/react';
+import { Box, Center, Container, Flex, Heading, HStack, Image, Link, SimpleGrid, Text, VStack } from '@chakra-ui/react';
 import { Faq } from '@/components/Shared/Faq';
 import { SEO } from '@/components/Common/SEO';
 import { Button } from '@/components/ui/button';
@@ -11,6 +11,12 @@ import HeroPortal from '@/components/Shared/HeroPortal';
 import BrazilianTesouroNacionalIcon from '@/components/Icons/BrazilianTesouroNacional';
 import SolanaIcon from '@/components/Icons/SolanaIcon';
 import LogoIcon from '@/components/Icons/LogoIcon';
+import { CodeBlock } from '@/components/Shared/CodeBlock';
+import SolanaHorizontal from '@/components/Icons/SolanaHorizontal';
+import MorganCreek from '@/components/Icons/MorganCreek';
+import { TrophyIcon } from 'lucide-react';
+import KhizaIcon from '@/components/Icons/KhizaIcon';
+import LiqiLogo from '@/components/Icons/Liqi';
 
 export const Home = () => {
   return (
@@ -62,7 +68,7 @@ export const Home = () => {
 
             <HStack gap={4}>
               <Button size="xl">Talk to an expert</Button>
-              <Button variant="outline" size="xl">
+              <Button variant="ghost" size="xl">
                 Data hub
               </Button>
             </HStack>
@@ -70,41 +76,29 @@ export const Home = () => {
         </Container>
       </Box>
 
-      <Box py={16}>
+      <Box pb={16}>
         <Container>
-          <TitleSection>
+          <TitleSection zIndex={5000}>
             <Heading textStyle="title">Trusted by</Heading>
             <Text textStyle="subtitle">Supported by key players and institutions driving blockchain innovation</Text>
           </TitleSection>
-          <Flex justify="center" mt={8} flexWrap="wrap" gap={8}>
-            <Card p={2}>
-              <BrazilianTesouroNacionalIcon width={128} height={128} />
-            </Card>
+          <VStack gap={0} align="center" justify="center" filter="grayscale(1)" mt={-8} mb={8}>
+            <HStack justify="center" mt={8} flexWrap="wrap" gap={8}>
+              <BrazilianTesouroNacionalIcon width={80} height={66} />
+              <SolanaHorizontal width={128} height={66} />
+            </HStack>
+            <HStack justify="center" mt={8} flexWrap="wrap" gap={8}>
+              <MorganCreek width={224} height={88} />
+              <KhizaIcon width={128} height={88} />
+              <Image src="/assets/outlier-ventures.png" alt="Outlier Ventures" filter="invert(1)" h="44px" />
+            </HStack>
+            <HStack justify="center" mt={8} flexWrap="wrap" gap={8}>
+              <LiqiLogo width={128} height={44} />
+              <Image src="/assets/firmeza-token.avif" alt="Firmeza Token" filter="invert(1)" h="44px" />
+            </HStack>
+          </VStack>
 
-            <Card>
-              <SolanaIcon width={128} height={128} />
-            </Card>
-          </Flex>
-          <Flex justify="center" mt={8} flexWrap="wrap" gap={8}>
-            <Card p={2}>
-              <BrazilianTesouroNacionalIcon width={128} height={128} />
-            </Card>
-            <Card p={2}>
-              <BrazilianTesouroNacionalIcon width={128} height={128} />
-            </Card>
-            <Card p={2}>
-              <BrazilianTesouroNacionalIcon width={128} height={128} />
-            </Card>
-          </Flex>
-          <Flex justify="center" mt={8} flexWrap="wrap" gap={8}>
-            <Card p={2}>
-              <BrazilianTesouroNacionalIcon width={128} height={128} />
-            </Card>
-            <Card p={2}>
-              <BrazilianTesouroNacionalIcon width={128} height={128} />
-            </Card>
-          </Flex>
-          <Center>
+          <Center pt={8}>
             <Button>Get to know us</Button>
           </Center>
         </Container>
@@ -220,61 +214,25 @@ export const Home = () => {
         <Container>
           <HStack align="center" justify="center" gap={16}>
             <VStack gap={4} align="flex-start">
-              <Text fontSize="sm">Written by developers for developers</Text>
-              <Heading textStyle="title">
-                Seamlessly integrate trusted, verified data into your blockchain projects
-              </Heading>
-              <Text fontSize="sm">
-                Fact Finance provides developers with robust tools and APIs to power tokenized assets and smart
-                contracts with reliable, real-world data. Explore our comprehensive documentation for step-by-step
-                guides, API references, and integration examples across supported blockchains like Ethereum, Solana, and
-                Polygon.
-              </Text>
+              <TitleSection align="flex-start">
+                <Text fontSize="sm" color="brand.300">
+                  CALLING THE DEVS
+                </Text>
+                <Heading textStyle="title">Developers first</Heading>
+                <Text fontSize="sm">
+                  Integrate trusted, verified data effortlessly into your blockchain projects. Fact Finance provides
+                  robust tools and APIs to empower tokenized assets and smart contracts with real-world official data.
+                  Explore our documentation for step-by-step guides, API references, and integration examples on
+                  blockchains like Ethereum, Solana, and Polygon.
+                </Text>
+              </TitleSection>
               <HStack gap={4}>
                 <Button>Explore Documentation</Button>
                 <Button variant="ghost">Contact Support</Button>
               </HStack>
             </VStack>
 
-            <VStack
-              bg="gray.900"
-              flex={1}
-              p={6}
-              borderRadius="md"
-              fontFamily="mono"
-              fontSize="sm"
-              color="blue.300"
-              whiteSpace="pre"
-            >
-              <code className="language-solidity">
-                <Text color="brand.200">/// @title Data Feed Struct</Text>
-                <br />
-                <Text color="brand.200">
-                  /// @notice This struct represents the data feed with a value and confidence level
-                </Text>
-                <br />
-                <Text color="brand.200">
-                  /// @dev Used to store oracle data with an associated confidence score
-                </Text>
-                <br />
-                <span className="token keyword keyword-struct">struct</span>{' '}
-                <span className="token class-name">DataFeed</span> <span className="token punctuation">{`{`}</span><br />
-                <span className="token builtin">int256</span> value<span className="token punctuation">;</span>{' '}
-                <Text color="brand.200">/// @dev Integer value of the data feed</Text>
-                <br />
-                <span className="token builtin">uint256</span> updatedat<span className="token punctuation">;</span>{' '}
-                <Text color="brand.200">/// @dev Timestamp of backend data update</Text>
-                <br />
-                <span className="token builtin">uint8</span> decimal<span className="token punctuation">;</span>{' '}
-                <Text color="brand.200">/// @dev Number of decimal places for the data value</Text>
-                <br />
-                <span className="token builtin">uint8</span> confidence<span className="token punctuation">;</span>{' '}
-                <Text color="brand.200">/// @dev Confidence level of the data feed</Text>
-                <br />
-                <Text color="brand.200">/// @dev 1: outlier, 2: acceptable, 3: reliable</Text>
-                <span className="token punctuation">{`}`}</span>
-              </code>
-            </VStack>
+            <CodeBlock />
           </HStack>
         </Container>
       </Box>
@@ -286,6 +244,7 @@ export const Home = () => {
         role="complementary"
         py={{ base: 8, md: 16 }}
         aria-labelledby="faq-heading"
+        zIndex={5}
       >
         <VStack mb={{ base: 8, md: 16 }} gap={2}>
           <Heading id="faq-heading" textStyle="title">
@@ -313,13 +272,13 @@ export const Home = () => {
       <Box p={32} pos="relative">
         <Box
           position="absolute"
-          bottom="-250px"
+          bottom="-150px"
           left="50%"
           transform="translate(-50%, -50%)"
-          w="600px"
-          h="600px"
-          bg="radial-gradient(circle, white 80%, transparent 100%)"
-          filter="blur(100px)"
+          w="800px"
+          h="400px"
+          bg="radial-gradient(circle, white 50%, transparent 100%)"
+          filter="blur(150px)"
           zIndex={0}
         />
         <Container gap={4} maxW="5xl">

@@ -6,7 +6,7 @@ import PolygonIcon from '../Icons/PolygonIcon';
 
 const HeroBackground = () => {
   const NUMBER_OF_CUBES = 6; // Main cubes
-  const NUMBER_OF_BACKGROUND_CUBES = 16; // Additional background cubes
+  const NUMBER_OF_BACKGROUND_CUBES = 12; // Additional background cubes
 
   const cubeStyles = {
     position: 'absolute',

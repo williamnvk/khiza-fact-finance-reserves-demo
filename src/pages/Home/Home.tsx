@@ -145,7 +145,8 @@ export const Home = () => {
 
           <Box
             borderRadius="4xl"
-            border="2px solid {colors.brand.800}"
+            border="2px solid {colors.whiteAlpha.200}"
+            boxShadow="2xl"
             as="video"
             position="absolute"
             top={0}
@@ -276,8 +277,9 @@ export const Home = () => {
         </Text>
         <Chains />
       </Container>
-
-      <FeaturesSection />
+      <Box pos="relative">
+        <FeaturesSection />
+      </Box>
 
       <Box py={16}>
         <Container>
@@ -339,26 +341,6 @@ export const Home = () => {
       </Container>
 
       <Box pos="relative">
-        <Box
-          as="video"
-          position="absolute"
-          top="-25vh"
-          left={0}
-          w="100vw"
-          h="100vh"
-          objectFit="cover"
-          zIndex={-1}
-          autoPlay
-          muted
-          // filter="brightness(.4)"
-          // mixBlendMode="luminosity"
-          // bg="brand.500"
-          // blendMode="soft-light"
-          opacity={0.5}
-          loop
-          src="/assets/sphere-bg-2.mp4"
-        />
-
         <Container gap={4} maxW="5xl">
           <Box
             position="absolute"

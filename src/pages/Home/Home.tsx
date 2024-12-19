@@ -18,6 +18,7 @@ import { AppleIcon, FileIcon, LandmarkIcon, PlugIcon, TrophyIcon } from 'lucide-
 import KhizaIcon from '@/components/Icons/KhizaIcon';
 import LiqiLogo from '@/components/Icons/Liqi';
 import { V } from 'node_modules/react-router/dist/production/fog-of-war-BDQTYoRQ.d.mts';
+import { FeaturesSection } from '@/components/Shared/FeaturesSection';
 
 export const Home = () => {
   return (
@@ -129,6 +130,20 @@ export const Home = () => {
           />
 
           <Box
+            position="absolute"
+            bottom="25%"
+            left="0%"
+            transform="translate(-50%, -50%)"
+            width="100%"
+            height="100%"
+            background="radial-gradient(circle at center, black 50%, transparent 100%)"
+            pointerEvents="none"
+            filter="blur(50px)"
+            zIndex={-1}
+            opacity={1}
+          />
+
+          <Box
             borderRadius="4xl"
             border="2px solid {colors.brand.800}"
             as="video"
@@ -189,7 +204,7 @@ export const Home = () => {
                 </Center>
                 <Heading fontSize="3xl">Our data comes directly from official and reliable institutions</Heading>
               </Box>
-              <Box color="brand.400">
+              <Box color="brand.400" mt={32}>
                 <LogoIcon width={32} height={32} />
               </Box>
               <Box flex={1} data-aos="fade-up" data-aos-delay="100" p={8}>
@@ -219,7 +234,7 @@ export const Home = () => {
                 </Center>
                 <Heading fontSize="3xl">An oracle connects off-chain data to blockchain ecosystems</Heading>
               </Box>
-              <Box color="brand.400">
+              <Box color="brand.400" mt={32}>
                 <LogoIcon width={32} height={32} />
               </Box>
               <Box flex={1} data-aos="fade-up" data-aos-delay="200">
@@ -262,148 +277,7 @@ export const Home = () => {
         <Chains />
       </Container>
 
-      <Box h="100vh" position="relative" overflow="hidden">
-        <Container>
-          <TitleSection>
-            <TitleSection>
-              <Heading textStyle="title">Our key features</Heading>
-              <Text textStyle="subtitle">Reliable solutions for secure and precise data delivery</Text>
-            </TitleSection>
-          </TitleSection>
-        </Container>
-        <Container maxW="2xl" h="80vh" position="relative">
-          <Box
-            position="absolute"
-            top="20%"
-            left="50%"
-            transform="translate(-50%, -50%)"
-            width="50%"
-            height="50%"
-            background="radial-gradient(circle at center, {colors.brand.700} 0%, transparent 100%)"
-            pointerEvents="none"
-            filter="blur(100px)"
-            zIndex={-1}
-          />
-          <Box
-            position="absolute"
-            top="50%"
-            left="50%"
-            transform="translate(-50%, -50%) rotateX(60deg) rotateZ(-45deg)"
-            transformStyle="preserve-3d"
-            perspective={1500}
-            w="80%"
-            h="80%"
-          >
-            <Box
-              position="absolute"
-              w="full"
-              h="full"
-              bg="brand.500"
-              opacity={0.9}
-              transform="translateZ(200px)"
-              borderRadius="xl"
-              boxShadow="0 0 20px rgba(0,0,0,0.2)"
-            >
-              <Button
-                position="absolute"
-                top="-60px"
-                left="50%"
-                // transform="translate(-50%, 0) rotateX(-60deg) rotateZ(45deg)"
-                colorScheme="blue"
-                size="lg"
-              >
-                Mostrar blockchains
-              </Button>
-              <Button
-                position="absolute"
-                top="50%"
-                right="-80px"
-                // transform="translate(0, -50%) rotateX(-60deg) rotateZ(45deg)"
-                colorScheme="blue"
-                size="lg"
-                zIndex={1000}
-              >
-                Hover com opcoes
-              </Button>
-            </Box>
-            <Box
-              position="absolute"
-              w="full"
-              h="full"
-              bg="brand.800"
-              opacity={0.7}
-              transform="translateZ(100px)"
-              borderRadius="xl"
-              boxShadow="0 0 20px rgba(0,0,0,0.2)"
-            ></Box>
-            <Box
-              position="absolute"
-              w="full"
-              h="full"
-              bg="brand.900"
-              opacity={0.5}
-              transform="translateZ(0)"
-              borderRadius="xl"
-              boxShadow="0 0 20px rgba(0,0,0,0.2)"
-            ></Box>
-            <Button position="absolute" bottom="-60px" left="50%" colorScheme="blue" size="lg">
-              Camada 1
-            </Button>
-          </Box>
-        </Container>
-      </Box>
-
-      <Box my={16}>
-        <Container>
-          <TitleSection>
-            <TitleSection>
-              <Heading textStyle="title">Our key features</Heading>
-              <Text textStyle="subtitle">Reliable solutions for secure and precise data delivery</Text>
-            </TitleSection>
-          </TitleSection>
-
-          <HStack align="center" justify="center" gap={16} w="full" h="full">
-            <Box h="480px" position="relative">
-              <CubesGrid />
-            </Box>
-            <VStack flex={1} align="flext-start" justify="center" gap={8}>
-              <SimpleGrid columns={2} gap={8} mt={-8}>
-                <Card data-aos="fade-up" data-aos-delay="100">
-                  <Heading>Confidence index</Heading>
-                  <Text>
-                    Our confidence index is a measure of the reliability of our data, based on the sources and the
-                    institutions that provide it.
-                  </Text>
-                </Card>
-                <Card data-aos="fade-up" data-aos-delay="200">
-                  <Heading>Compliance</Heading>
-                  <Text>
-                    Our compliance is a measure of the compliance of our data, based on the sources and the institutions
-                    that provide it.
-                  </Text>
-                </Card>
-                <Card data-aos="fade-up" data-aos-delay="300">
-                  <Heading>Proof of Authenticity</Heading>
-                  <Text>
-                    Our proof of authenticity is a measure of the authenticity of our data, based on the sources and the
-                    institutions that provide it.
-                  </Text>
-                </Card>
-                <Card data-aos="fade-up" data-aos-delay="400">
-                  <Heading>External Auditors</Heading>
-                  <Text>
-                    Our external auditors are a measure of the external auditors of our data, based on the sources and
-                    the institutions that provide it.
-                  </Text>
-                </Card>
-              </SimpleGrid>
-              <Center>
-                <Button w="auto">See more</Button>
-              </Center>
-            </VStack>
-          </HStack>
-        </Container>
-      </Box>
+      <FeaturesSection />
 
       <Box py={16}>
         <Container>

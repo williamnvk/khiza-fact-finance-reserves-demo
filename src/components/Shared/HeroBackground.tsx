@@ -1,6 +1,8 @@
 import { Box } from '@chakra-ui/react';
 import {
+  AppleIcon,
   Barcode,
+  CarIcon,
   CircleDollarSignIcon,
   CoinsIcon,
   FuelIcon,
@@ -27,10 +29,10 @@ const HeroBackground = () => {
     position: 'absolute',
     width: '100%',
     height: '100%',
-    border: '1px solid {colors.brand.200}',
-    background: `rgba(0, 0, 0, ${opacity})`,
+    // border: '1px solid {colors.brand.200}',
+    // background: `rgba(0, 0, 0, ${opacity})`,
     _dark: {
-      background: `rgba(255, 255, 255, ${opacity})`,
+      // background: `rgba(255, 255, 255, ${opacity})`,
     },
     display: 'flex',
     alignItems: 'center',
@@ -75,7 +77,7 @@ const HeroBackground = () => {
     return cubes;
   };
 
-  const mainCubes = generateCubes(NUMBER_OF_CUBES, [40, 120], [0.08, 0.1], false);
+  const mainCubes = generateCubes(NUMBER_OF_CUBES, [80, 240], [0.08, 0.1], false);
   const backgroundCubes = generateCubes(NUMBER_OF_BACKGROUND_CUBES, [20, 50], [0.02, 0.05], true);
 
   const randomIcons = [
@@ -89,6 +91,8 @@ const HeroBackground = () => {
     LandmarkIcon,
     CoinsIcon,
     CircleDollarSignIcon,
+    AppleIcon,
+    CarIcon
   ];
 
   return (

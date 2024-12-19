@@ -7,21 +7,7 @@ import LogoIcon from '../Icons/LogoIcon';
 
 export function Footer() {
   return (
-    <Box position="relative" mt={32} w="full" overflow="hidden">
-      <Box
-        position="absolute"
-        bottom="-25px"
-        right="50%"
-        borderRadius="50%"
-        width="200vw"
-        height="10vh"
-        zIndex={-1}
-        transform="translate(50%, 0%)"
-        bgImage="radial-gradient(circle, {colors.brand.900} 80%, transparent 100%)"
-        filter="blur(50px)"
-        opacity={1}
-        aria-hidden="true"
-      />
+    <Box position="relative" mt={32} w="full">
       <Container maxW="container.xl">
         <Stack
           flexDir={{ base: 'column', md: 'row' }}

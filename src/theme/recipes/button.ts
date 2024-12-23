@@ -138,6 +138,13 @@ export const buttonRecipe = defineRecipe({
           bg: 'colorPalette.muted',
         },
       },
+      navbar: {
+        color: 'colorPalette.fg',
+        '&.active': {
+          textDecoration: 'underline',
+          textDecorationColor: 'colorPalette.fg',
+        },
+      },
       surface: {
         bg: 'colorPalette.subtle',
         color: 'colorPalette.fg',

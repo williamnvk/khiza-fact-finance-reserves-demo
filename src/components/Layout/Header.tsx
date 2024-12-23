@@ -2,6 +2,7 @@ import { Box, Button, HStack, IconButton, useDisclosure, Heading } from '@chakra
 import { FC } from 'react';
 import { MenuIcon, XIcon } from 'lucide-react';
 import LogoIcon from '../Icons/LogoIcon';
+import { Link, NavLink } from 'react-router';
 
 export interface HeaderProps {}
 
@@ -24,7 +25,7 @@ export const Header: FC<HeaderProps> = () => {
           // backdropFilter="blur(8px)"
           transition="all 0.5s ease-in-out"
         >
-          <HStack align="center" justify="center" gap={0}>
+          <HStack align="center" justify="center" gap={0} as={Link} to="/">
             <Heading size="md">FACT</Heading>
             <LogoIcon width="12px" height="auto" />
             <Heading size="md" fontWeight="light">
@@ -33,15 +34,27 @@ export const Header: FC<HeaderProps> = () => {
           </HStack>
 
           <HStack display={{ base: 'none', md: 'flex' }} justify="flex-start" align="center" flex={1}>
-            <Button variant="subtle">Home</Button>
-            <Button variant="plain">Data Hub</Button>
-            <Button variant="plain">Features</Button>
-            <Button variant="plain">Use Cases</Button>
-            <Button variant="plain">Data Providers</Button>
-            <Button variant="plain">Team</Button>
+            <Button as={NavLink} to="/" variant="navbar">
+              Home
+            </Button>
+            <Button as={NavLink} to="/data-hub" variant="plain">
+              Data Hub
+            </Button>
+            <Button as={NavLink} to="/features" variant="navbar">
+              Features
+            </Button>
+            <Button as={NavLink} to="/use-cases" variant="navbar">
+              Use Cases
+            </Button>
+            <Button as={NavLink} to="/data-providers" variant="navbar">
+              Data Providers
+            </Button>
+            <Button as={NavLink} to="/team" variant="navbar">
+              Team
+            </Button>
           </HStack>
 
-          <Button variant="primary">Docs</Button>
+          <Button variant="outline">Docs</Button>
 
           <IconButton display={{ base: 'flex', md: 'none' }} aria-label="Open menu" onClick={onToggle} variant="ghost">
             {open ? <XIcon /> : <MenuIcon />}

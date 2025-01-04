@@ -1,21 +1,21 @@
 import { Avatar } from '@/components/ui/avatar';
 import { TitleSection } from '@/components/ui/title-sectiont';
-import { Box, Container, Heading, Text, VStack, SimpleGrid } from '@chakra-ui/react';
+import { Box, Container, Heading, Text, VStack, SimpleGrid, Flex, Image, HStack } from '@chakra-ui/react';
 import LinkedinIcon from '@/components/Icons/LinkedinIcon';
 import { teamMembers } from '@/data/team';
 
 export default function Team() {
   return (
     <Container maxW="5xl" py={{ base: 8, md: 16 }}>
-      <VStack gap={12} align="stretch">
+      <VStack gap={16} align="stretch">
         <TitleSection>
           <Text fontSize="sm" color="brand.300">
-            OUR TEAM
+            Meet the innovators
           </Text>
-          <Heading textStyle="title">Meet the Innovators</Heading>
+          <Heading textStyle="title">The team behind Fact Finance</Heading>
           <Text fontSize="lg">
-            Our team brings together expertise from blockchain, finance, and technology sectors to build the future of
-            decentralized data infrastructure.
+            Dedicated professionals with deep expertise in blockchain, data infrastructure, and economic systems,
+            committed to delivering secure and precise data solutions for web3 and real-world asset tokenization.
           </Text>
         </TitleSection>
 
@@ -23,27 +23,39 @@ export default function Team() {
           {teamMembers.map((member, index) => (
             <Box
               key={index}
-              p={6}
+              p={16}
               borderRadius="xl"
-              bg="whiteAlpha.50"
+              bg="blackAlpha.500"
               _hover={{ bg: 'whiteAlpha.100' }}
               transition="all 0.2s"
             >
               <VStack align="center" gap={0}>
-                <Avatar size="xl" name={member.name} src={member.image} />
-
-                <Heading size="md" mb={1}>
-                  {member.name}
-                </Heading>
-                <Text color="brand.300" fontSize="sm" mb={3}>
-                  {member.role}
-                </Text>
-                <Text color="whiteAlpha.800" fontSize="sm" mb={4} textAlign="center">
+                <Box w={24}>
+                  <Avatar size="full" name={member.name} src={member.image} />
+                </Box>
+                <HStack>
+                  <Heading size="2xl" mb={1}>
+                    {member.name}
+                  </Heading>
+                  <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer">
+                    <LinkedinIcon width={20} height={20} />
+                  </a>
+                </HStack>
+                <Text color="whiteAlpha.800" fontSize="sm" mb={4} textAlign="center" height="100px">
                   {member.bio}
                 </Text>
-                <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer">
-                  <LinkedinIcon width={20} height={20} />
-                </a>
+                <Flex gap={2}>
+                  {member.icons.map((icon, index) => (
+                    <Box w="auto" key={index} bg="whiteAlpha.50" borderRadius="xl" p={4}>
+                      {icon}
+                    </Box>
+                  ))}
+                  {member.images.map((image, index) => (
+                    <Box key={index} bg="whiteAlpha.50" borderRadius="xl" p={4}>
+                      <img src={image} alt={member.name} style={{ width: 'auto', height: '24px' }} />
+                    </Box>
+                  ))}
+                </Flex>
               </VStack>
             </Box>
           ))}

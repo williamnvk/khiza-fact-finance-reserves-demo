@@ -1,12 +1,79 @@
 import { Box, Button, HStack, Text, VStack } from '@chakra-ui/react';
 import { NetworkIcon } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { LightAsync as LightSyntaxHighlighter } from 'react-syntax-highlighter';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import solidity from 'highlightjs-solidity';
+import { a11yDark as theme } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+
+const rustCode = `#[program]
+mod consumer {
+    use super::*;
+
+    // Function to pull data from the Oracle program
+    pub fn pull_oracle(ctx: Context<PullOracle>) -> anchor_lang::Result<()> {   
+        // Calling the CPI method to get data from the Oracle program     
+        let result = oracle::cpi::get_datafeed(
+            CpiContext::new(
+                ctx.accounts.oracle_program.to_account_info(),                
+                GetDataFeed {
+                    datafeed: ctx.accounts.datafeed.to_account_info(),
+                    subscribers: ctx.accounts.subscribers.to_account_info(),
+                    signer: ctx.accounts.signer.to_account_info(),
+                },
+            ),             
+        );
+
+        // Unpacking the result tuple
+        let (value, timestamp, confidence) = result?.get();
+
+        // Logging the retrieved data
+        msg!("consumer value {} and timestamp {} with confidence {} ", value, timestamp, confidence);
+
+        Ok(())
+    }
+}`;
+
+const solidityCode = `// SPDX-License-Identifier: BUSL-1.1
+pragma solidity ^0.8.24;
+
+/// @title Fact Oracle Interface V1
+/// @notice This interface defines the external view functions for accessing data feeds
+/// @dev Implemented by contracts that provide oracle data feeds
+interface FOInterfaceV1 {
+    function getFeed(uint8 _feedId) external  returns (DataFeed memory _datafeed);
+    function getReserve(address _assetId) external returns (DataAsset memory _dataAsset);
+    function subcribeOracle(address _contractAddress,  string calldata _projectName) external;
+}
+
+/// @title Data Feed Struct
+/// @notice This struct represents the data feed with a value and confidence level
+/// @dev Used to store oracle data with an associated confidence score
+
+struct DataFeed {   
+    int256 value;       /// @dev Integer value of the data feed
+    uint256 updatedAt;   /// @dev timestamp of backend data update
+    uint8 decimal;       /// @dev Number of decimal places for the data value
+    uint8 confidence;   /// @dev Confidence level of the data feed
+                        /// @dev 1: outlier, 2: acceptable, 3: reliable
+}
+
+struct DataAsset {
+    uint256 value;      /// @dev Integer value of the asset
+    uint256 updatedAt;  /// @dev Timestamp of backend data update
+    uint8 decimal;      /// @dev Number of decimal places for the data value
+    string info;        /// @dev Additional information about the asset
+}`;
 
 export const CodeBlock = () => {
-  const [tab, setTab] = useState<'solana' | 'evm'>('evm');
+  const [tab, setTab] = useState<'solana' | 'evm'>('solana');
+
+  useEffect(() => {
+    LightSyntaxHighlighter.registerLanguage('solidity', solidity);
+  }, []);
 
   return (
-    <VStack w="full" align="flex-start">
+    <VStack align="flex-start" maxW="800px">
       <HStack bg="gray.900" borderRadius="md" w="full" p={2}>
         <Button variant={tab === 'solana' ? 'solid' : 'ghost'} onClick={() => setTab('solana')}>
           <img src="/assets/solana-icon.png" alt="Solana" width={24} height={24} />
@@ -18,80 +85,32 @@ export const CodeBlock = () => {
         </Button>
       </HStack>
       {tab === 'evm' && (
-        <Box
-          bg="gray.900"
-          flex={1}
-          p={6}
-          borderRadius="md"
-          fontFamily="mono"
-          fontSize="sm"
-          color="blue.300"
-          whiteSpace="pre"
-          as="code"
-          align="flex-start"
-          gap={0}
-        >
-          <Text color="brand.200">/// @title Data Feed Struct</Text>
-          <Text color="brand.200">
-            /// @notice This struct represents the data feed with a value and confidence level
-          </Text>
-          <Text color="brand.200">/// @dev Used to store oracle data with an associated confidence score</Text>
-          <span className="token keyword keyword-struct">struct</span>{' '}
-          <span className="token class-name">DataFeed</span> <span className="token punctuation">{`{`}</span>
-          <br />
-          <span className="token builtin">int256</span> value<span className="token punctuation">;</span>{' '}
-          <Text color="brand.200">/// @dev Integer value of the data feed</Text>
-          <br />
-          <span className="token builtin">uint256</span> updatedat<span className="token punctuation">;</span>{' '}
-          <Text color="brand.200">/// @dev Timestamp of backend data update</Text>
-          <br />
-          <span className="token builtin">uint8</span> decimal<span className="token punctuation">;</span>{' '}
-          <Text color="brand.200">/// @dev Number of decimal places for the data value</Text>
-          <br />
-          <span className="token builtin">uint8</span> confidence<span className="token punctuation">;</span>{' '}
-          <Text color="brand.200">/// @dev Confidence level of the data feed</Text>
-          <br />
-          <Text color="brand.200">/// @dev 1: outlier, 2: acceptable, 3: reliable</Text>
-          <span className="token punctuation">{`}`}</span>
+        <Box borderRadius="md" overflow="hidden" bg="gray.900" p={0} w="full">
+          <LightSyntaxHighlighter
+            language="solidity"
+            style={theme}
+            showLineNumbers
+            customStyle={{ backgroundColor: 'inherit' }}
+            wrapLongLines={false}
+            wrapLines={false}
+          >
+            {solidityCode}
+          </LightSyntaxHighlighter>
         </Box>
       )}
 
       {tab === 'solana' && (
-        <Box
-          bg="gray.900"
-          flex={1}
-          p={6}
-          borderRadius="md"
-          fontFamily="mono"
-          fontSize="sm"
-          color="blue.300"
-          whiteSpace="pre"
-          as="code"
-          align="flex-start"
-          gap={0}
-        >
-          <Text color="brand.200">/// solana</Text>
-          <Text color="brand.200">
-            /// @notice This struct represents the data feed with a value and confidence level
-          </Text>
-          <Text color="brand.200">/// @dev Used to store oracle data with an associated confidence score</Text>
-          <span className="token keyword keyword-struct">struct</span>{' '}
-          <span className="token class-name">DataFeed</span> <span className="token punctuation">{`{`}</span>
-          <br />
-          <span className="token builtin">int256</span> value<span className="token punctuation">;</span>{' '}
-          <Text color="brand.200">/// @dev Integer value of the data feed</Text>
-          <br />
-          <span className="token builtin">uint256</span> updatedat<span className="token punctuation">;</span>{' '}
-          <Text color="brand.200">/// @dev Timestamp of backend data update</Text>
-          <br />
-          <span className="token builtin">uint8</span> decimal<span className="token punctuation">;</span>{' '}
-          <Text color="brand.200">/// @dev Number of decimal places for the data value</Text>
-          <br />
-          <span className="token builtin">uint8</span> confidence<span className="token punctuation">;</span>{' '}
-          <Text color="brand.200">/// @dev Confidence level of the data feed</Text>
-          <br />
-          <Text color="brand.200">/// @dev 1: outlier, 2: acceptable, 3: reliable</Text>
-          <span className="token punctuation">{`}`}</span>
+        <Box borderRadius="md" overflow="hidden" bg="gray.900" p={0} w="full">
+          <SyntaxHighlighter
+            language="rust"
+            style={theme}
+            showLineNumbers
+            customStyle={{ backgroundColor: 'inherit' }}
+            wrapLongLines={false}
+            wrapLines={false}
+          >
+            {rustCode}
+          </SyntaxHighlighter>
         </Box>
       )}
     </VStack>

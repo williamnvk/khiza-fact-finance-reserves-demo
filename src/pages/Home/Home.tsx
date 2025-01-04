@@ -284,7 +284,7 @@ export const Home = () => {
       <Box py={16}>
         <Container>
           <HStack align="center" justify="center" gap={16}>
-            <VStack gap={4} align="flex-start">
+            <VStack gap={4} align="flex-start" flex={1}>
               <TitleSection align="flex-start">
                 <Text fontSize="sm" color="brand.300">
                   CALLING THE DEVS
@@ -340,38 +340,11 @@ export const Home = () => {
         </Center>
       </Container>
 
-      <Box pos="relative">
-        <Container gap={4} maxW="5xl">
-          <Box
-            position="absolute"
-            inset="-25px"
-            borderRadius="2xl"
-            transform="rotate(-5deg) scale(0.8)"
-            background="linear-gradient({colors.brand.800} 0%, {colors.brand.300} 50%, transparent 100%)"
-            filter="blur(20px)"
-            zIndex={-1}
-          />
-          <Box
-            position="absolute"
-            inset="0"
-            bg="brand.500"
-            filter="blur(40px)"
-            transform="scale(0.9)"
-            opacity={0.5}
-            zIndex={4}
-          />
-          <VStack
-            border="1px solid {colors.brand.900}"
-            p={8}
-            borderRadius="2xl"
-            justify="center"
-            align="center"
-            position="relative"
-            bg="black"
-            zIndex={6}
-          >
-            <TitleSection flex={1}>
-              <Heading textStyle="title" textAlign="center">
+      <Box pos="relative" px={4}>
+        <VStack borderRadius="2xl" justify="center" align="center" bg="white" minH="calc(100vh - 160px)">
+          <Center flexDir="column" gap={0}>
+            <TitleSection flex={1} color="brand.950">
+              <Heading  textAlign="center" fontSize="6xl" lineHeight={1.2}>
                 Unlock the value of your
                 <br />
                 tokenized asset with official data
@@ -386,8 +359,8 @@ export const Home = () => {
               <Button>Talk to an expert</Button>
               <Button variant="ghost">Data hub</Button>
             </HStack>
-          </VStack>
-        </Container>
+          </Center>
+        </VStack>
       </Box>
     </>
   );

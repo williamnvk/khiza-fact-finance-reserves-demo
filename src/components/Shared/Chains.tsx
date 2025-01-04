@@ -3,8 +3,7 @@ import { chains } from '@/data/chains';
 import Slider from '@/components/Shared/Slider';
 import { useMemo } from 'react';
 
-export default function HomePage() {
-  // Memoize chain slides to prevent unnecessary re-renders
+export default function Chains() {
   const chainSlides = useMemo(
     () =>
       chains.map((chain) => (

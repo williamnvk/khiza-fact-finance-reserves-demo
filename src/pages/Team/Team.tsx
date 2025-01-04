@@ -1,6 +1,6 @@
 import { Avatar } from '@/components/ui/avatar';
 import { TitleSection } from '@/components/ui/title-sectiont';
-import { Box, Container, Heading, Text, VStack, SimpleGrid, Flex, Image, HStack } from '@chakra-ui/react';
+import { Box, Container, Heading, Text, VStack, SimpleGrid, Flex, Image, HStack, AspectRatio } from '@chakra-ui/react';
 import LinkedinIcon from '@/components/Icons/LinkedinIcon';
 import { teamMembers } from '@/data/team';
 
@@ -60,6 +60,32 @@ export default function Team() {
             </Box>
           ))}
         </SimpleGrid>
+
+        <Box>
+          <TitleSection>
+            <Heading textStyle="title">Learn More About Us</Heading>
+            <Text fontSize="lg">Watch our recent podcast appearances to learn more about our vision and mission</Text>
+          </TitleSection>
+
+          <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} mt={8}>
+            <AspectRatio ratio={16 / 9}>
+              <iframe
+                src="https://www.youtube.com/embed/V2JulIYOQ6A"
+                title="Fact Finance Podcast 2"
+                allowFullScreen
+                style={{ borderRadius: '12px' }}
+              />
+            </AspectRatio>
+            <AspectRatio ratio={16 / 9}>
+              <iframe
+                src="https://www.youtube.com/embed/MT6ZBBPVpNM"
+                title="Fact Finance Podcast 1"
+                allowFullScreen
+                style={{ borderRadius: '12px' }}
+              />
+            </AspectRatio>
+          </SimpleGrid>
+        </Box>
       </VStack>
     </Container>
   );

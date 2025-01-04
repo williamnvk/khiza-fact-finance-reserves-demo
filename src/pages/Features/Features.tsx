@@ -1,56 +1,41 @@
 import { TitleSection } from '@/components/ui/title-sectiont'
-import { Box, Container, Heading, Text, VStack, SimpleGrid, Icon, HStack, Button } from '@chakra-ui/react'
-import { DatabaseIcon, Globe2Icon, LockIcon, ServerIcon, ShieldIcon, ZapIcon } from 'lucide-react'
+import { Box, Container, Heading, Text, VStack, SimpleGrid, Icon, HStack } from '@chakra-ui/react'
+import { BarChart3Icon, ShieldCheckIcon, FileCheckIcon } from 'lucide-react'
 
 export default function Features() {
   const features = [
     {
-      icon: DatabaseIcon,
-      title: "Official Data Sources",
-      description: "Direct integration with authoritative financial data providers and government sources ensures the highest level of data accuracy and reliability."
+      icon: BarChart3Icon,
+      title: "Confidence Index",
+      description: "We classify data into three categories: Reliable (80% confidence), Acceptable (99% confidence), and Outlier. This classification helps prevent market manipulation and enables protocols to make informed decisions.",
+      applications: [
+        "Tokenization platforms withhold payments for outlier rate quotes",
+        "Stablecoins limit transactions when confidence is low",
+        "Decentralized lending adjusts interest rates for outlier assets",
+        "Prediction markets validate data before accepting wagers",
+        "Insurance platforms adjust premiums based on confidence index"
+      ]
     },
     {
-      icon: LockIcon,
-      title: "Secure Infrastructure",
-      description: "Enterprise-grade security measures protect our infrastructure and data transmission channels, maintaining data integrity at every step."
+      icon: ShieldCheckIcon,
+      title: "External Auditor",
+      description: "Our external auditing feature ensures data integrity through independent verification, providing an additional layer of security for all transactions.",
+      benefits: [
+        "Validate data authenticity and compliance",
+        "Identify anomalies for further review",
+        "Enhance trust and transparency",
+        "Maintain rigorous standards"
+      ]
     },
     {
-      icon: ZapIcon,
-      title: "Real-time Updates",
-      description: "Lightning-fast data delivery with minimal latency, ensuring your smart contracts always operate with the most current information."
-    },
-    {
-      icon: Globe2Icon  ,
-      title: "Cross-chain Support",
-      description: "Seamless integration across multiple blockchain networks, including Ethereum, Solana, Polygon, and more."
-    },
-    {
-      icon: ServerIcon,
-      title: "Scalable Architecture",
-      description: "Built to handle high-volume requests with redundancy and failover systems ensuring 99.99% uptime."
-    },
-    {
-      icon: ShieldIcon,
-      title: "Verifiable Proofs",
-      description: "Cryptographic proof systems validate data authenticity, providing transparency and trust in the oracle network."
-    }
-  ]
-
-  const useCases = [
-    {
-      title: "DeFi Protocols",
-      description: "Power lending protocols, synthetic assets, and derivatives with accurate price feeds and market data.",
-      benefits: ["Real-time price data", "Interest rate feeds", "Market indicators"]
-    },
-    {
-      title: "Asset Tokenization",
-      description: "Create and manage tokenized real-world assets with verified underlying data.",
-      benefits: ["Property valuations", "Company financials", "Commodity prices"]
-    },
-    {
-      title: "Insurance Products",
-      description: "Build parametric insurance solutions using reliable external data triggers.",
-      benefits: ["Weather data", "Event verification", "Risk assessment"]
+      icon: FileCheckIcon,
+      title: "Proof of Authenticity",
+      description: "We secure licensing agreements with trusted data providers and ensure their credibility through comprehensive audits and compliance checks.",
+      components: [
+        "Licensing and Partnership with renowned data providers",
+        "Know Your Provider (KYP) thorough audit process",
+        "Cryptographic validation with unique provider keys"
+      ]
     }
   ]
 
@@ -62,69 +47,61 @@ export default function Features() {
             <Text fontSize="sm" color="brand.300">
               FEATURES
             </Text>
-            <Heading textStyle="title">Powering the Future of Finance</Heading>
+            <Heading textStyle="title">Why choose Fact Finance</Heading>
             <Text fontSize="lg">
-              Our oracle network provides secure, reliable, and verifiable data feeds to power 
-              the next generation of blockchain applications. Built with scalability and 
-              security at its core.
+              Explore the key features that make us the trusted data layer for asset tokenization, 
+              empowering secure and efficient blockchain solutions
             </Text>
           </TitleSection>
 
-          <Box>
-            <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap={8}>
-              {features.map((feature, index) => (
-                <Box 
-                  key={index}
-                  p={6}
-                  borderRadius="xl"
-                  bg="whiteAlpha.50"
-                  _hover={{ bg: "whiteAlpha.100" }}
-                  transition="all 0.2s"
-                >
-                  <feature.icon />
-                  <Heading size="md" mb={3}>{feature.title}</Heading>
-                  <Text color="whiteAlpha.800">{feature.description}</Text>
-                </Box>
-              ))}
-            </SimpleGrid>
-          </Box>
+          <VStack gap={12}>
+            {features.map((feature, index) => (
+              <Box 
+                key={index}
+                w="full"
+                p={8}
+                borderRadius="xl"
+                bg="whiteAlpha.50"
+              >
+                <VStack align="start" gap={6}>
+                  <HStack>
+                    <Box p={3} bg="whiteAlpha.100" borderRadius="lg">
+                      <feature.icon size={24} />
+                    </Box>
+                    <Heading size="lg">{feature.title}</Heading>
+                  </HStack>
+                  
+                  <Text color="whiteAlpha.800" fontSize="lg">
+                    {feature.description}
+                  </Text>
 
-          <Box>
-            <Heading fontSize="2xl" mb={8}>Use Cases</Heading>
-            <SimpleGrid columns={{ base: 1, md: 3 }} gap={8}>
-              {useCases.map((useCase, index) => (
-                <Box 
-                  key={index}
-                  p={6}
-                  borderRadius="xl"
-                  bg="whiteAlpha.100"
-                  height="100%"
-                >
-                  <Heading size="md" mb={4}>{useCase.title}</Heading>
-                  <Text mb={4} color="whiteAlpha.800">{useCase.description}</Text>
-                  <VStack align="stretch" gap={2}>
-                    {useCase.benefits.map((benefit, i) => (
-                      <Text key={i} fontSize="sm" color="brand.300">• {benefit}</Text>
-                    ))}
-                  </VStack>
-                </Box>
-              ))}
-            </SimpleGrid>
-          </Box>
-
-          <Box bg="whiteAlpha.50" p={8} borderRadius="xl">
-            <VStack align="center" gap={6}>
-              <Heading size="lg">Ready to Get Started?</Heading>
-              <Text textAlign="center" maxW="2xl">
-                Join the growing ecosystem of applications powered by Fact Finance's oracle network. 
-                Our team is here to help you integrate reliable data feeds into your blockchain projects.
-              </Text>
-              <HStack gap={4}>
-                <Button size="lg">View Documentation</Button>
-                <Button size="lg" variant="outline">Contact Sales</Button>
-              </HStack>
-            </VStack>
-          </Box>
+                  <Box>
+                    {feature.applications && (
+                      <VStack align="start" gap={2}>
+                        {feature.applications.map((item, i) => (
+                          <Text key={i} color="whiteAlpha.800">• {item}</Text>
+                        ))}
+                      </VStack>
+                    )}
+                    {feature.benefits && (
+                      <VStack align="start" gap={2}>
+                        {feature.benefits.map((item, i) => (
+                          <Text key={i} color="whiteAlpha.800">• {item}</Text>
+                        ))}
+                      </VStack>
+                    )}
+                    {feature.components && (
+                      <VStack align="start" gap={2}>
+                        {feature.components.map((item, i) => (
+                          <Text key={i} color="whiteAlpha.800">• {item}</Text>
+                        ))}
+                      </VStack>
+                    )}
+                  </Box>
+                </VStack>
+              </Box>
+            ))}
+          </VStack>
         </VStack>
       </Container>
     </Box>

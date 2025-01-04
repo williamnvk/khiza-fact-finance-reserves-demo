@@ -38,8 +38,8 @@ export function Footer() {
                 <Link href="/careers" color="gray.300" fontSize="sm" _hover={{ color: 'blue.400' }}>
                   Careers
                 </Link>
-                <Link href="/about" color="gray.300" fontSize="sm" _hover={{ color: 'blue.400' }}>
-                  About
+                <Link href="/team" color="gray.300" fontSize="sm" _hover={{ color: 'blue.400' }}>
+                  Team
                 </Link>
               </Stack>
               <Text fontSize="sm" color="gray.300">

@@ -49,9 +49,6 @@ export const Header: FC<HeaderProps> = () => {
             <Button as={NavLink} to="/data-providers" variant="navbar">
               Data Providers
             </Button>
-            <Button as={NavLink} to="/team" variant="navbar">
-              Team
-            </Button>
           </HStack>
 
           <Button variant="outline">Docs</Button>
@@ -98,7 +95,6 @@ export const Header: FC<HeaderProps> = () => {
         <Button variant="plain">Features</Button>
         <Button variant="plain">Use Cases</Button>
         <Button variant="plain">Data Providers</Button>
-        <Button variant="plain">Team</Button>
       </Box>
     </>
   );

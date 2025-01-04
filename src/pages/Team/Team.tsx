@@ -16,7 +16,7 @@ export default function Team() {
         description="Meet the innovative team behind Fact Finance. Our experts specialize in blockchain, data infrastructure, and economic systems."
         keywords="Fact Finance team, blockchain experts, data infrastructure, web3 solutions, asset tokenization"
       />
-      <Container maxW="6xl" py={{ base: 12, md: 20 }} as="main">
+      <Container maxW="6xl" py={{ base: 12, md: 20 }} as="main" role="main" aria-label="Team Section">
         <VStack gap={20} align="stretch">
           <TitleSection>
             <Text
@@ -55,7 +55,7 @@ export default function Team() {
                   boxShadow: '2xl',
                 }}
                 role="article"
-                aria-label={`Team member ${member.name}`}
+                aria-labelledby={`team-member-${index}`}
               >
                 <VStack align="center" gap={4}>
                   <Box
@@ -79,11 +79,12 @@ export default function Team() {
                       name={member.name}
                       src={member.image}
                       alt={`${member.name}'s profile picture`}
+                      aria-hidden="true"
                     />
                   </Box>
                   <VStack gap={2}>
                     <HStack gap={3}>
-                      <Heading as="h2" size="lg">
+                      <Heading as="h2" size="lg" id={`team-member-${index}`}>
                         {member.name}
                       </Heading>
                       <a
@@ -93,7 +94,7 @@ export default function Team() {
                         style={{ transition: 'transform 0.2s' }}
                         onMouseOver={(e) => (e.currentTarget.style.transform = 'scale(1.2)')}
                         onMouseOut={(e) => (e.currentTarget.style.transform = 'scale(1)')}
-                        aria-label={`${member.name}'s LinkedIn profile`}
+                        aria-label={`Visit ${member.name}'s LinkedIn profile`}
                       >
                         <LinkedinIcon width={24} height={24} />
                       </a>
@@ -112,6 +113,8 @@ export default function Team() {
                         p={3}
                         _hover={{ bg: 'whiteAlpha.200' }}
                         transition="background 0.2s"
+                        role="img"
+                        aria-label={`Icon`}
                       >
                         {icon}
                       </Box>

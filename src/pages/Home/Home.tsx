@@ -167,7 +167,16 @@ export const Home = () => {
           />
           <VStack gap={4} w="full" align="center" p={16}>
             <TitleSection>
-              <Text color="brand.300" fontWeight="600" letterSpacing={2}>
+            <Text
+              fontSize="sm"
+              bgGradient="to-r"
+              gradientFrom="brand.50"
+              gradientTo="brand.400"
+              bgClip="text"
+              textTransform="uppercase"
+              letterSpacing={2}
+              fontWeight="600"
+            >
                 WHAT WE DO
               </Text>
               <Heading textStyle="title">Enabling real-world data on the blockchain</Heading>

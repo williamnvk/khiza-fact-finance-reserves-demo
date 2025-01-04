@@ -1,17 +1,5 @@
 import { TitleSection } from '@/components/ui/title-sectiont';
-import {
-  Box,
-  Container,
-  Heading,
-  Text,
-  VStack,
-  SimpleGrid,
-  HStack,
-  Badge,
-  List,
-  ListItem,
-  ListIcon,
-} from '@chakra-ui/react';
+import { Box, Container, Heading, Text, VStack, SimpleGrid, List, Flex, Separator } from '@chakra-ui/react';
 import {
   BarChart3Icon,
   ShieldCheckIcon,
@@ -30,67 +18,94 @@ import {
 export default function Features() {
   return (
     <Box as="main">
-      <Container maxW="6xl" py={{ base: 12, md: 20 }}>
-        <VStack gap={20} align="stretch">
+      <Container maxW="6xl" py={{ base: 16, md: 24 }}>
+        <VStack gap={24} align="stretch">
           <TitleSection>
-            <Text fontSize="sm" color="brand.300" textTransform="uppercase" fontWeight="bold">
-              Features
+            <Text color="brand.300" fontWeight="600" letterSpacing={2}>
+              FEATURES
             </Text>
-            <Heading textStyle="title">Why choose Fact Finance</Heading>
-            <Text fontSize="xl" maxW="3xl" mx="auto" textAlign="center" color="whiteAlpha.800">
+            <Heading textStyle="title" mb={6}>
+              Why choose Fact Finance
+            </Heading>
+            <Text fontSize="xl" maxW="3xl" mx="auto" textAlign="center" color="whiteAlpha.800" lineHeight="tall">
               Explore the key features that make us the trusted data layer for asset tokenization, empowering secure and
               efficient blockchain solutions
             </Text>
           </TitleSection>
 
-          <VStack gap={16}>
+          <VStack gap={24}>
             {/* Confidence Index */}
             <Box w="full">
-              <HStack mb={8} gap={4}>
-                <Box p={4} bg="brand.300" borderRadius="xl">
-                  <BarChart3Icon size={24} />
+              <Flex align="center" mb={10} gap={6}>
+                <Box p={5} bg="brand.300" borderRadius="2xl">
+                  <BarChart3Icon size={32} />
                 </Box>
-                <Heading size="lg">Confidence Index</Heading>
-              </HStack>
+                <VStack align="start" gap={2}>
+                  <Heading size="lg">Confidence Index</Heading>
+                  <Text color="whiteAlpha.800" fontSize="lg">
+                    At Fact Finance, we classify data into three categories to prevent market manipulation and ensure
+                    data accuracy in web3 protocols.
+                  </Text>
+                </VStack>
+              </Flex>
 
-              <Text color="whiteAlpha.800" fontSize="lg" mb={8}>
-                At Fact Finance, we classify data into three categories to prevent market manipulation and ensure data
-                accuracy in web3 protocols.
-              </Text>
-
-              <SimpleGrid columns={{ base: 1, md: 3 }} gap={8} mb={8}>
-                <Box p={6} bg="whiteAlpha.50" borderRadius="xl" position="relative" overflow="hidden">
-                  <Box position="absolute" top={0} right={0} w="100%" h="4px" bg="green.400" opacity={0.3} />
-                  <VStack>
+              <SimpleGrid columns={{ base: 1, md: 3 }} gap={8} mb={12}>
+                <Box
+                  p={8}
+                  bg="whiteAlpha.100"
+                  borderRadius="2xl"
+                  position="relative"
+                  overflow="hidden"
+                  _hover={{ transform: 'translateY(-4px)', bg: 'whiteAlpha.200' }}
+                  transition="all 0.3s"
+                >
+                  <Box position="absolute" top={0} right={0} w="100%" h="4px" bg="green.400" opacity={0.5} />
+                  <VStack gap={4}>
                     <Box color="green.400">
-                      <CheckCircleIcon size={40} />
+                      <CheckCircleIcon size={48} />
                     </Box>
-                    <Text fontWeight="bold">Reliable</Text>
-                    <Text fontSize="sm" textAlign="center">
+                    <Heading size="md">Reliable</Heading>
+                    <Text fontSize="md" textAlign="center" color="whiteAlpha.800">
                       Within 80% confidence margin
                     </Text>
                   </VStack>
                 </Box>
-                <Box p={6} bg="whiteAlpha.50" borderRadius="xl" position="relative" overflow="hidden">
-                  <Box position="absolute" top={0} right={0} w="100%" h="4px" bg="yellow.400" opacity={0.3} />
-                  <VStack>
+                <Box
+                  p={8}
+                  bg="whiteAlpha.100"
+                  borderRadius="2xl"
+                  position="relative"
+                  overflow="hidden"
+                  _hover={{ transform: 'translateY(-4px)', bg: 'whiteAlpha.200' }}
+                  transition="all 0.3s"
+                >
+                  <Box position="absolute" top={0} right={0} w="100%" h="4px" bg="yellow.400" opacity={0.5} />
+                  <VStack gap={4}>
                     <Box color="yellow.400">
-                      <AlertCircleIcon size={40} />
+                      <AlertCircleIcon size={48} />
                     </Box>
-                    <Text fontWeight="bold">Acceptable</Text>
-                    <Text fontSize="sm" textAlign="center">
+                    <Heading size="md">Acceptable</Heading>
+                    <Text fontSize="md" textAlign="center" color="whiteAlpha.800">
                       Within 99% confidence margin
                     </Text>
                   </VStack>
                 </Box>
-                <Box p={6} bg="whiteAlpha.50" borderRadius="xl" position="relative" overflow="hidden">
-                  <Box position="absolute" top={0} right={0} w="100%" h="4px" bg="red.400" opacity={0.3} />
-                  <VStack>
+                <Box
+                  p={8}
+                  bg="whiteAlpha.100"
+                  borderRadius="2xl"
+                  position="relative"
+                  overflow="hidden"
+                  _hover={{ transform: 'translateY(-4px)', bg: 'whiteAlpha.200' }}
+                  transition="all 0.3s"
+                >
+                  <Box position="absolute" top={0} right={0} w="100%" h="4px" bg="red.400" opacity={0.5} />
+                  <VStack gap={4}>
                     <Box color="red.400">
-                      <XCircleIcon size={40} />
+                      <XCircleIcon size={48} />
                     </Box>
-                    <Text fontWeight="bold">Outlier</Text>
-                    <Text fontSize="sm" textAlign="center">
+                    <Heading size="md">Outlier</Heading>
+                    <Text fontSize="md" textAlign="center" color="whiteAlpha.800">
                       Outside confidence margins
                     </Text>
                   </VStack>
@@ -99,155 +114,201 @@ export default function Features() {
 
               <SimpleGrid columns={{ base: 1, md: 2 }} gap={8}>
                 <Box
-                  p={6}
-                  bg="whiteAlpha.50"
-                  borderRadius="xl"
-                  _hover={{ transform: 'translateY(-4px)', transition: 'transform 0.2s' }}
+                  p={8}
+                  bg="whiteAlpha.100"
+                  borderRadius="2xl"
+                  _hover={{ transform: 'translateY(-4px)', bg: 'whiteAlpha.200' }}
+                  transition="all 0.3s"
                 >
-                  <VStack align="start" gap={2}>
-                    <Text fontWeight="bold" mb={2}>
+                  <VStack align="start" gap={4}>
+                    <Heading size="md" color="brand.300">
                       Tokenization & Stablecoins
-                    </Text>
-                    <Text fontSize="sm">• Withhold payments for outlier rate quotes</Text>
-                    <Text fontSize="sm">• Limit transactions when confidence is low</Text>
+                    </Heading>
+                    <List.Root gap={3}>
+                      <List.Item display="flex" alignItems="center">
+                        <Box as="span" mr={2}>
+                          •
+                        </Box>
+                        <Text>Withhold payments for outlier rate quotes</Text>
+                      </List.Item>
+                      <List.Item display="flex" alignItems="center">
+                        <Box as="span" mr={2}>
+                          •
+                        </Box>
+                        <Text>Limit transactions when confidence is low</Text>
+                      </List.Item>
+                    </List.Root>
                   </VStack>
                 </Box>
                 <Box
-                  p={6}
-                  bg="whiteAlpha.50"
-                  borderRadius="xl"
-                  _hover={{ transform: 'translateY(-4px)', transition: 'transform 0.2s' }}
+                  p={8}
+                  bg="whiteAlpha.100"
+                  borderRadius="2xl"
+                  _hover={{ transform: 'translateY(-4px)', bg: 'whiteAlpha.200' }}
+                  transition="all 0.3s"
                 >
-                  <VStack align="start" gap={2}>
-                    <Text fontWeight="bold" mb={2}>
+                  <VStack align="start" gap={4}>
+                    <Heading size="md" color="brand.300">
                       DeFi & Markets
-                    </Text>
-                    <Text fontSize="sm">• Adjust lending rates for outlier assets</Text>
-                    <Text fontSize="sm">• Validate data before accepting wagers</Text>
-                    <Text fontSize="sm">• Adjust insurance premiums based on confidence</Text>
+                    </Heading>
+                    <List.Root gap={3}>
+                      <List.Item display="flex" alignItems="center">
+                        <Box as="span" mr={2}>
+                          •
+                        </Box>
+                        <Text>Adjust lending rates for outlier assets</Text>
+                      </List.Item>
+                      <List.Item display="flex" alignItems="center">
+                        <Box as="span" mr={2}>
+                          •
+                        </Box>
+                        <Text>Validate data before accepting wagers</Text>
+                      </List.Item>
+                      <List.Item display="flex" alignItems="center">
+                        <Box as="span" mr={2}>
+                          •
+                        </Box>
+                        <Text>Adjust insurance premiums based on confidence</Text>
+                      </List.Item>
+                    </List.Root>
                   </VStack>
                 </Box>
               </SimpleGrid>
             </Box>
+
+            <Separator borderColor="whiteAlpha.200" />
 
             {/* External Auditor */}
             <Box w="full">
-              <HStack mb={8} gap={4}>
-                <Box p={4} bg="brand.300" borderRadius="xl">
-                  <ShieldCheckIcon size={24} />
+              <Flex align="center" mb={10} gap={6}>
+                <Box p={5} bg="brand.300" borderRadius="2xl">
+                  <ShieldCheckIcon size={32} />
                 </Box>
-                <Heading size="lg">External Auditor</Heading>
-              </HStack>
-
-              <Text color="whiteAlpha.800" fontSize="lg" mb={8}>
-                Our external auditing feature ensures data integrity by allowing independent auditors to verify
-                accuracy, providing an added layer of security.
-              </Text>
+                <VStack align="start" gap={2}>
+                  <Heading size="lg">External Auditor</Heading>
+                  <Text color="whiteAlpha.800" fontSize="lg">
+                    Our external auditing feature ensures data integrity by allowing independent auditors to verify
+                    accuracy, providing an added layer of security.
+                  </Text>
+                </VStack>
+              </Flex>
 
               <SimpleGrid columns={{ base: 1, md: 4 }} gap={8}>
-                <Box
-                  p={6}
-                  bg="whiteAlpha.50"
-                  borderRadius="xl"
-                  textAlign="center"
-                  _hover={{ bg: 'whiteAlpha.100', transform: 'scale(1.05)', transition: 'all 0.2s' }}
-                >
-                  <Box color="brand.300" mb={4}>
-                    <ShieldIcon size={32} />
+                {[
+                  {
+                    icon: <ShieldIcon size={32} />,
+                    title: 'Validate',
+                    description: 'Ensure data authenticity and compliance',
+                  },
+                  {
+                    icon: <SearchIcon size={32} />,
+                    title: 'Identify',
+                    description: 'Flag anomalies for further review',
+                  },
+                  {
+                    icon: <AwardIcon size={32} />,
+                    title: 'Enhance',
+                    description: 'Build trust and transparency',
+                  },
+                  {
+                    icon: <FileTextIcon size={32} />,
+                    title: 'Maintain',
+                    description: 'Uphold rigorous standards',
+                  },
+                ].map((item, index) => (
+                  <Box
+                    key={index}
+                    p={8}
+                    bg="whiteAlpha.100"
+                    borderRadius="2xl"
+                    textAlign="center"
+                    _hover={{ bg: 'whiteAlpha.200', transform: 'scale(1.05)' }}
+                    transition="all 0.3s"
+                  >
+                    <Box color="brand.300" mb={6}>
+                      {item.icon}
+                    </Box>
+                    <Heading size="md" mb={4}>
+                      {item.title}
+                    </Heading>
+                    <Text fontSize="md" color="whiteAlpha.800">
+                      {item.description}
+                    </Text>
                   </Box>
-                  <Text fontWeight="bold" mb={2}>
-                    Validate
-                  </Text>
-                  <Text fontSize="sm">Ensure data authenticity and compliance</Text>
-                </Box>
-                <Box
-                  p={6}
-                  bg="whiteAlpha.50"
-                  borderRadius="xl"
-                  textAlign="center"
-                  _hover={{ bg: 'whiteAlpha.100', transform: 'scale(1.05)', transition: 'all 0.2s' }}
-                >
-                  <Box color="brand.300" mb={4}>
-                    <SearchIcon size={32} />
-                  </Box>
-                  <Text fontWeight="bold" mb={2}>
-                    Identify
-                  </Text>
-                  <Text fontSize="sm">Flag anomalies for further review</Text>
-                </Box>
-                <Box
-                  p={6}
-                  bg="whiteAlpha.50"
-                  borderRadius="xl"
-                  textAlign="center"
-                  _hover={{ bg: 'whiteAlpha.100', transform: 'scale(1.05)', transition: 'all 0.2s' }}
-                >
-                  <Box color="brand.300" mb={4}>
-                    <AwardIcon size={32} />
-                  </Box>
-                  <Text fontWeight="bold" mb={2}>
-                    Enhance
-                  </Text>
-                  <Text fontSize="sm">Build trust and transparency</Text>
-                </Box>
-                <Box
-                  p={6}
-                  bg="whiteAlpha.50"
-                  borderRadius="xl"
-                  textAlign="center"
-                  _hover={{ bg: 'whiteAlpha.100', transform: 'scale(1.05)', transition: 'all 0.2s' }}
-                >
-                  <Box color="brand.300" mb={4}>
-                    <FileTextIcon size={32} />
-                  </Box>
-                  <Text fontWeight="bold" mb={2}>
-                    Maintain
-                  </Text>
-                  <Text fontSize="sm">Uphold rigorous standards</Text>
-                </Box>
+                ))}
               </SimpleGrid>
             </Box>
 
+            <Separator borderColor="whiteAlpha.200" />
+
             {/* Proof of Authenticity */}
             <Box w="full">
-              <HStack mb={8} gap={4}>
-                <Box p={4} bg="brand.300" borderRadius="xl">
-                  <FileCheckIcon size={24} />
+              <Flex align="center" mb={10} gap={6}>
+                <Box p={5} bg="brand.300" borderRadius="2xl">
+                  <FileCheckIcon size={32} />
                 </Box>
-                <Heading size="lg">Proof of Authenticity</Heading>
-              </HStack>
-
-              <Text color="whiteAlpha.800" fontSize="lg" mb={8}>
-                We secure licensing agreements with trusted data providers and ensure their credibility through rigorous
-                audits and compliance checks.
-              </Text>
+                <VStack align="start" gap={2}>
+                  <Heading size="lg">Proof of Authenticity</Heading>
+                  <Text color="whiteAlpha.800" fontSize="lg">
+                    We secure licensing agreements with trusted data providers and ensure their credibility through
+                    rigorous audits and compliance checks.
+                  </Text>
+                </VStack>
+              </Flex>
 
               <SimpleGrid columns={{ base: 1, md: 3 }} gap={8}>
-                <Box p={6} bg="whiteAlpha.50" borderRadius="xl" position="relative" _hover={{ bg: 'whiteAlpha.100' }}>
-                  <Box position="absolute" top={-3} right={4} bg="brand.300" px={3} py={1} borderRadius="full">
-                    <KeyIcon size={16} />
+                <Box
+                  p={8}
+                  bg="whiteAlpha.100"
+                  borderRadius="2xl"
+                  position="relative"
+                  _hover={{ bg: 'whiteAlpha.200', transform: 'translateY(-4px)' }}
+                  transition="all 0.3s"
+                >
+                  <Box position="absolute" top={-4} right={6} bg="brand.300" px={4} py={2} borderRadius="xl">
+                    <KeyIcon size={20} />
                   </Box>
-                  <VStack align="start" gap={2}>
-                    <Text fontWeight="bold">Licensing and Partnership</Text>
-                    <Text fontSize="sm">We establish agreements with renowned and reputable data providers</Text>
+                  <VStack align="start" gap={4}>
+                    <Heading size="md">Licensing and Partnership</Heading>
+                    <Text fontSize="md" color="whiteAlpha.800">
+                      We establish agreements with renowned and reputable data providers
+                    </Text>
                   </VStack>
                 </Box>
-                <Box p={6} bg="whiteAlpha.50" borderRadius="xl" position="relative" _hover={{ bg: 'whiteAlpha.100' }}>
-                  <Box position="absolute" top={-3} right={4} bg="brand.300" px={3} py={1} borderRadius="full">
-                    <UserCheckIcon size={16} />
+                <Box
+                  p={8}
+                  bg="whiteAlpha.100"
+                  borderRadius="2xl"
+                  position="relative"
+                  _hover={{ bg: 'whiteAlpha.200', transform: 'translateY(-4px)' }}
+                  transition="all 0.3s"
+                >
+                  <Box position="absolute" top={-4} right={6} bg="brand.300" px={4} py={2} borderRadius="xl">
+                    <UserCheckIcon size={20} />
                   </Box>
-                  <VStack align="start" gap={2}>
-                    <Text fontWeight="bold">KYP Process</Text>
-                    <Text fontSize="sm">Thorough audit and verification of providers before integration</Text>
+                  <VStack align="start" gap={4}>
+                    <Heading size="md">KYP Process</Heading>
+                    <Text fontSize="md" color="whiteAlpha.800">
+                      Thorough audit and verification of providers before integration
+                    </Text>
                   </VStack>
                 </Box>
-                <Box p={6} bg="whiteAlpha.50" borderRadius="xl" position="relative" _hover={{ bg: 'whiteAlpha.100' }}>
-                  <Box position="absolute" top={-3} right={4} bg="brand.300" px={3} py={1} borderRadius="full">
-                    <ShieldCheckIcon size={16} />
+                <Box
+                  p={8}
+                  bg="whiteAlpha.100"
+                  borderRadius="2xl"
+                  position="relative"
+                  _hover={{ bg: 'whiteAlpha.200', transform: 'translateY(-4px)' }}
+                  transition="all 0.3s"
+                >
+                  <Box position="absolute" top={-4} right={6} bg="brand.300" px={4} py={2} borderRadius="xl">
+                    <ShieldCheckIcon size={20} />
                   </Box>
-                  <VStack align="start" gap={2}>
-                    <Text fontWeight="bold">Cryptographic Validation</Text>
-                    <Text fontSize="sm">Unique cryptographic key generated for each data provider</Text>
+                  <VStack align="start" gap={4}>
+                    <Heading size="md">Cryptographic Validation</Heading>
+                    <Text fontSize="md" color="whiteAlpha.800">
+                      Unique cryptographic key generated for each data provider
+                    </Text>
                   </VStack>
                 </Box>
               </SimpleGrid>

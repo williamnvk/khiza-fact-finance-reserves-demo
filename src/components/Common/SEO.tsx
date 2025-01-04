@@ -10,31 +10,29 @@ interface SEOProps {
 }
 
 export const SEO = ({
-  title = 'Tash Finance - Investimentos em Criptomoedas Simplificados',
-  description = 'Maximize seus retornos com portfólios cripto personalizados e gestão automatizada. Comece a investir em criptomoedas de forma simples e segura.',
-  keywords = 'criptomoedas, investimentos, bitcoin, ethereum, carteira digital, gestão automatizada, portfólio cripto',
+  title = 'Fact Finance - Blockchain & Data Infrastructure Experts',
+  description = 'A data layer connecting trusted, official data sources to tokenized assets, unlocking new financial solutions',
+  keywords = 'oráculo, data layer, data hub, blockchain, web3, asset tokenization',
   image = '/assets/post.png',
-  url = 'https://tash.finance',
+  url = 'https://fact.finance',
   type = 'website',
 }: SEOProps) => {
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': type,
-    name: 'Tash Finance',
+    name: 'Fact Finance',
     description,
     url,
     applicationCategory: '',
     operatingSystem: 'Any',
     keywords: keywords.split(','),
     sameAs: [
-      'https://x.com/tashfinance',
-      'https://www.linkedin.com/company/tashfinance/',
-      'https://www.tiktok.com/@tash.finance',
-      'https://www.instagram.com/tash.finance/',
+      'https://x.com/TheFactOracle',
+      'https://www.linkedin.com/company/fact-finance-oracle',
     ],
   };
 
-  const baseUrl = 'https://tash.finance/';
+  const baseUrl = 'https://fact.finance/';
 
   return (
     <Helmet>
@@ -54,7 +52,7 @@ export const SEO = ({
       <meta property="twitter:image" content={baseUrl + image} />
 
       <meta name="keywords" content={keywords} />
-      <meta name="author" content="Tash Finance" />
+      <meta name="author" content="Fact Finance" />
       <meta name="robots" content="index, follow" />
       <link rel="canonical" href={url} />
 

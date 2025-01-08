@@ -22,7 +22,7 @@ export const Home = () => {
   const heroNumber = Number(searchParams.get('opcao')) || 3;
 
   return (
-    <Box as="main" minH="100vh">
+    <Box>
       <SEO
         title="Home - Fact Finance"
         description="Seamless blockchain data integration for developers. Connect smart contracts to real-world data with our powerful APIs and developer tools."

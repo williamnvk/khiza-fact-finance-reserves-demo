@@ -50,7 +50,7 @@ export default function DataProviders() {
   }, []);
 
   return (
-    <Box as="main">
+    <Box>
       <Container maxW="5xl" py={{ base: 8, md: 16 }}>
         <VStack gap={12} align="stretch">
           <TitleSection>

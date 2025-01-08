@@ -5,9 +5,21 @@ import { memo } from 'react';
 
 const FeaturesSection = memo(() => {
   const isMobile = useBreakpointValue({ base: true, md: false });
-  const stackDirection = useBreakpointValue({ base: 'column', md: 'row' }) as 'column' | 'row';
-  const cardWidth = useBreakpointValue({ base: '250px', md: '300px' });
-  const cardHeight = useBreakpointValue({ base: '300px', md: '400px' });
+  const stackDirection = useBreakpointValue({ base: 'column-reverse', md: 'row' }) as 'column-reverse' | 'row';
+  const cardWidth = useBreakpointValue({
+    base: '250px',
+    sm: '280px',
+    md: '300px',
+    lg: '320px',
+    xl: '340px',
+  });
+  const cardHeight = useBreakpointValue({
+    base: '300px',
+    sm: '320px',
+    md: '33vh',
+    lg: '35vh',
+    xl: '38vh',
+  });
 
   const cards = [
     {
@@ -34,7 +46,7 @@ const FeaturesSection = memo(() => {
 
   const updateCardPositions = (hoveredIndex: number | null) => {
     if (isMobile) return;
-    
+
     requestAnimationFrame(() => {
       cards.forEach((_, index) => {
         const cardElement = document.querySelector(`.card-${index}`) as HTMLElement;
@@ -59,19 +71,37 @@ const FeaturesSection = memo(() => {
   };
 
   return (
-    <Container py={{ base: 8, md: 16 }} as="section" aria-labelledby="features-heading">
+    <Container
+      py={{ base: 6, sm: 8, md: 12, lg: 16 }}
+      as="section"
+      aria-labelledby="features-heading"
+      maxW={{ base: '100%', lg: '6xl', xl: '7xl' }}
+      role="section"
+      aria-label="Features Section"
+    >
       <TitleSection>
-        <Heading id="features-heading" textStyle="title">Our key features</Heading>
-        <Text textStyle="subtitle">Reliable solutions for secure and precise data delivery</Text>
+        <Heading id="features-heading" textStyle="title" fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }}>
+          Our key features
+        </Heading>
+        <Text
+          textStyle="subtitle"
+          fontSize={{ base: 'sm', sm: 'md', md: 'lg' }}
+          maxW={{ base: '90%', md: '80%', lg: '70%' }}
+          mx="auto"
+        >
+          Reliable solutions for secure and precise data delivery
+        </Text>
       </TitleSection>
-      <HStack 
-        position="relative" 
-        w="100%" 
+      <HStack
+        role="list"
+        position="relative"
+        w="100%"
+        h={{ base: '100vh', md: 'full' }}
         gap={{ base: 8, md: 20 }}
         flexDirection={stackDirection}
         align="stretch"
       >
-        <VStack flex={1} pos="relative" h={{ base: '400px', md: '600px' }} aria-hidden="true">
+        <VStack flex={1} pos="relative" aria-hidden="true" px={{ base: 0, md: 8 }}>
           {cards.map((card, index) => (
             <VStack
               key={index}
@@ -81,14 +111,16 @@ const FeaturesSection = memo(() => {
               w={cardWidth}
               h={cardHeight}
               zIndex={cards.length - index}
-              transform={`translate(-50%, calc(${isMobile ? '70px' : '100px'} * ${index})) rotate(40deg) skew(-20deg, -10deg)`}
+              transform={`translate(-50%, calc(${
+                isMobile ? '70px' : '100px'
+              } * ${index})) rotate(40deg) skew(-20deg, -10deg)`}
               border="2px solid"
               borderColor={card.borderColor}
               bg="transparent"
               boxShadow="lg"
               borderRadius="xl"
               gap={8}
-              transition={isMobile ? 'none' : "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)"}
+              transition={isMobile ? 'none' : 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)'}
               className={`card-${index}`}
               align="center"
               backdropFilter="blur(2px)"
@@ -145,19 +177,32 @@ const FeaturesSection = memo(() => {
                 p={{ base: 4, md: 8 }}
                 borderRadius="md"
                 position="relative"
-                transition={isMobile ? 'none' : "all 0.3s ease-in-out"}
-                _hover={isMobile ? {} : {
-                  py: 16,
-                  '& > .connector': {
-                    opacity: 1,
-                    width: '49px',
-                    left: '-49px',
-                  },
-                }}
+                transition={isMobile ? 'none' : 'all 0.3s ease-in-out'}
+                _hover={
+                  isMobile
+                    ? {}
+                    : {
+                        py: 16,
+                        '& > .connector': {
+                          opacity: 1,
+                          width: '49px',
+                          left: '-49px',
+                        },
+                      }
+                }
               >
                 <VStack w="full" align="flex-start" gap={2}>
-                  <Heading id={`feature-title-${index}`} color="whiteAlpha.900" as="h3" fontSize={{ base: 'lg', md: 'xl' }}>{card.title}</Heading>
-                  <Text color="whiteAlpha.500" fontSize={{ base: 'sm', md: 'md' }}>{card.subtitle}</Text>
+                  <Heading
+                    id={`feature-title-${index}`}
+                    color="whiteAlpha.900"
+                    as="h3"
+                    fontSize={{ base: 'lg', md: 'xl' }}
+                  >
+                    {card.title}
+                  </Heading>
+                  <Text color="whiteAlpha.500" fontSize={{ base: 'sm', md: 'md' }}>
+                    {card.subtitle}
+                  </Text>
                 </VStack>
                 {!isMobile && (
                   <>

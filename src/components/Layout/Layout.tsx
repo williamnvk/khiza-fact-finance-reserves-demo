@@ -9,7 +9,7 @@ export function BaseLayout() {
     <>
       <AOSInit />
       <Header />
-      <Box as="main" maxW="100vw">
+      <Box as="main" maxW="100vw" role="main" aria-label="Main Content">
         <Outlet />
       </Box>
       <Footer />

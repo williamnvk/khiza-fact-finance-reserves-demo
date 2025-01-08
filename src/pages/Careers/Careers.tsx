@@ -156,7 +156,7 @@ export default function Careers() {
   };
 
   return (
-    <Box as="main">
+    <Box>
       <Helmet>
         <title>Careers at Fact Finance | Join Our Team</title>
         <meta

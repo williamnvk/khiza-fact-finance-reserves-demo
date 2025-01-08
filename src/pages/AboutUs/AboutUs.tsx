@@ -50,7 +50,7 @@ export default function AboutUs() {
         zIndex={1}
       />
 
-      <Container maxW="6xl" py={{ base: 12, md: 20 }} as="main" role="main" aria-label="About Us Section" zIndex={1}>
+      <Container maxW="6xl" py={{ base: 12, md: 20 }} aria-label="About Us Section" zIndex={1}>
         <VStack gap={8} align="stretch">
           <TitleSection>
             <Text

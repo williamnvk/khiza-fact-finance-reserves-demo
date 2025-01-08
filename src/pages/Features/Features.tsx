@@ -17,7 +17,7 @@ import {
 
 export default function Features() {
   return (
-    <Box as="main">
+    <Box>
       <Container maxW="6xl" py={{ base: 16, md: 24 }}>
         <VStack gap={24} align="stretch">
           <TitleSection>

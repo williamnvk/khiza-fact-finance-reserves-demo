@@ -16,7 +16,7 @@ export default function Team() {
         description="Meet the innovative team behind Fact Finance. Our experts specialize in blockchain, data infrastructure, and economic systems."
         keywords="Fact Finance team, blockchain experts, data infrastructure, web3 solutions, asset tokenization"
       />
-      <Container maxW="6xl" py={{ base: 12, md: 20 }} as="main" role="main" aria-label="Team Section">
+      <Container maxW="6xl" py={{ base: 12, md: 20 }} aria-label="Team Section">
         <VStack gap={20} align="stretch">
           <TitleSection>
             <Text

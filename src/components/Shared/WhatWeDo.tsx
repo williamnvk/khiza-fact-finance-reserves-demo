@@ -15,7 +15,7 @@ export const WhatWeDo = () => {
   
   // Responsive layout
   const stackDirection = useBreakpointValue({ base: 'column', lg: 'row' });
-  const headingSize = useBreakpointValue({ base: '3xl', md: '4xl', lg: '4xl' });
+  const headingSize = useBreakpointValue({ base: '2xl', md: '3xl', lg: '4xl' });
   const containerMaxW = useBreakpointValue({ base: '100%', lg: '7xl' });
 
   useEffect(() => {
@@ -37,11 +37,21 @@ export const WhatWeDo = () => {
   }, [hoveredCard]);
 
   return (
-    <Container as="section" maxW={containerMaxW} py={{ base: 8, md: 16 }} aria-labelledby="what-we-do-title" zIndex={2}>
-      <VStack gap={8} w="full" align="center">
+    <Container 
+      as="section" 
+      maxW={{ base: "100%", lg: "6xl", xl: "7xl" }}
+      minH={{ base: 'auto', lg: 'auto' }}
+      py={{ base: 6, sm: 8, md: 12, lg: 16 }} 
+      px={{ base: 4, sm: 6, md: 8 }}
+      aria-labelledby="what-we-do-title" 
+      zIndex={2}
+      display="flex"
+      alignItems="center"
+    >
+      <VStack gap={{ base: 6, sm: 8, md: 10 }} w="full" align="center">
         <TitleSection>
           <Text
-            fontSize="sm"
+            fontSize={{ base: "xs", sm: "sm" }}
             bgGradient="to-r"
             gradientFrom="brand.50"
             gradientTo="brand.400"
@@ -52,12 +62,23 @@ export const WhatWeDo = () => {
           >
             WHAT WE DO
           </Text>
-          <Heading id="what-we-do-title" textStyle="title" textAlign="center">
+          <Heading 
+            id="what-we-do-title" 
+            textStyle="title"
+            fontSize={{ base: "2xl", sm: "3xl", md: "4xl", lg: "5xl" }}
+            textAlign="center"
+          >
             Powering asset tokenization with
             <br />
             trusted real-world data{' '}
           </Heading>
-          <Text as="p" textStyle="subtitle" maxW="2xl" textAlign="center">
+          <Text 
+            as="p" 
+            textStyle="subtitle"
+            fontSize={{ base: "sm", sm: "md" }}
+            maxW={{ base: "90%", md: "80%", lg: "70%" }}
+            mx="auto"
+          >
             The data layer connecting official data sources to tokenized assets, unlocking innovative financial
             solutions
           </Text>
@@ -65,7 +86,7 @@ export const WhatWeDo = () => {
 
         <HStack 
           as={motion.div}
-          gap={{ base: 4, md: 8 }} 
+          gap={{ base: 4, md: 6, lg: 8 }} 
           w="full" 
           align="stretch" 
           justify="center"
@@ -99,8 +120,9 @@ export const WhatWeDo = () => {
               className="what-we-do-card"
               align="flex-start"
               flex="1"
-              minH={{ base: '300px', md: '400px' }}
-              p={6}
+              minH={{ base: '250px', sm: '300px', md: '350px', lg: '400px' }}
+              maxH={{ lg: '450px' }}
+              p={{ base: 4, sm: 6 }}
               position="relative"
               overflow="hidden"
               role="article"
@@ -161,7 +183,7 @@ export const WhatWeDo = () => {
                 textStyle="subtitle" 
                 zIndex={2}
                 fontSize={{ base: 'sm', md: 'md' }}
-                h="100px"
+                maxH={{ base: '80px', sm: '100px' }}
               >
                 {card.description}
               </Text>

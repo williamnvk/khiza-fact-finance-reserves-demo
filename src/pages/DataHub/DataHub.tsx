@@ -3,7 +3,7 @@ import { Box, Container, SimpleGrid, Heading, Text, VStack } from '@chakra-ui/re
 
 export default function DataHub() {
   return (
-    <Box as="main">
+    <Box>
       <Container maxW="5xl" py={{ base: 8, md: 16 }}>
         <VStack gap={12} align="stretch">
           <TitleSection>

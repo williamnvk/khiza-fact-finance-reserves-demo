@@ -15,7 +15,7 @@ export const WhatWeDo = () => {
   
   // Responsive layout
   const stackDirection = useBreakpointValue({ base: 'column', lg: 'row' });
-  const headingSize = useBreakpointValue({ base: '3xl', md: '4xl', lg: '5xl' });
+  const headingSize = useBreakpointValue({ base: '3xl', md: '4xl', lg: '4xl' });
   const containerMaxW = useBreakpointValue({ base: '100%', lg: '7xl' });
 
   useEffect(() => {
@@ -151,6 +151,7 @@ export const WhatWeDo = () => {
               <Heading 
                 as="h3" 
                 fontSize={headingSize} 
+                lineHeight={1}
                 mb={4} 
                 zIndex={2}
               >
@@ -160,6 +161,7 @@ export const WhatWeDo = () => {
                 textStyle="subtitle" 
                 zIndex={2}
                 fontSize={{ base: 'sm', md: 'md' }}
+                h="100px"
               >
                 {card.description}
               </Text>

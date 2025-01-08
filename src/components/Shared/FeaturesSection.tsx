@@ -78,6 +78,8 @@ const FeaturesSection = () => {
               backdropFilter="blur(2px)"
               justify="center"
               overflow="hidden"
+              onMouseEnter={() => updateCardPositions(index)}
+              onMouseLeave={() => updateCardPositions(null)}
             >
               <Box
                 position="absolute"

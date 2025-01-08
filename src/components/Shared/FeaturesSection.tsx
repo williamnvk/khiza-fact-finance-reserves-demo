@@ -1,9 +1,14 @@
-import { Box, Text, Heading, VStack, HStack, Container } from '@chakra-ui/react';
+import { Box, Text, Heading, VStack, HStack, Container, useBreakpointValue } from '@chakra-ui/react';
 import { BadgeCheckIcon, ComponentIcon, ShieldCheckIcon } from 'lucide-react';
 import { TitleSection } from '../ui/title-sectiont';
 import { memo } from 'react';
 
 const FeaturesSection = memo(() => {
+  const isMobile = useBreakpointValue({ base: true, md: false });
+  const stackDirection = useBreakpointValue({ base: 'column', md: 'row' }) as 'column' | 'row';
+  const cardWidth = useBreakpointValue({ base: '250px', md: '300px' });
+  const cardHeight = useBreakpointValue({ base: '300px', md: '400px' });
+
   const cards = [
     {
       icon: (size: number = 24) => <BadgeCheckIcon size={size} strokeWidth={1.5} aria-hidden="true" />,
@@ -28,6 +33,8 @@ const FeaturesSection = memo(() => {
   ];
 
   const updateCardPositions = (hoveredIndex: number | null) => {
+    if (isMobile) return;
+    
     requestAnimationFrame(() => {
       cards.forEach((_, index) => {
         const cardElement = document.querySelector(`.card-${index}`) as HTMLElement;
@@ -57,32 +64,38 @@ const FeaturesSection = memo(() => {
         <Heading id="features-heading" textStyle="title">Our key features</Heading>
         <Text textStyle="subtitle">Reliable solutions for secure and precise data delivery</Text>
       </TitleSection>
-      <HStack position="relative" w="100%" gap={20}>
-        <VStack flex={1} pos="relative" h="600px" aria-hidden="true">
+      <HStack 
+        position="relative" 
+        w="100%" 
+        gap={{ base: 8, md: 20 }}
+        flexDirection={stackDirection}
+        align="stretch"
+      >
+        <VStack flex={1} pos="relative" h={{ base: '400px', md: '600px' }} aria-hidden="true">
           {cards.map((card, index) => (
             <VStack
               key={index}
               position="absolute"
               top="0%"
               left="50%"
-              w="300px"
-              h="400px"
+              w={cardWidth}
+              h={cardHeight}
               zIndex={cards.length - index}
-              transform={`translate(-50%, calc(100px * ${index})) rotate(40deg) skew(-20deg, -10deg)`}
+              transform={`translate(-50%, calc(${isMobile ? '70px' : '100px'} * ${index})) rotate(40deg) skew(-20deg, -10deg)`}
               border="2px solid"
               borderColor={card.borderColor}
               bg="transparent"
               boxShadow="lg"
               borderRadius="xl"
               gap={8}
-              transition="transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
+              transition={isMobile ? 'none' : "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)"}
               className={`card-${index}`}
               align="center"
               backdropFilter="blur(2px)"
               justify="center"
               overflow="hidden"
-              onMouseEnter={() => updateCardPositions(index)}
-              onMouseLeave={() => updateCardPositions(null)}
+              onMouseEnter={() => !isMobile && updateCardPositions(index)}
+              onMouseLeave={() => !isMobile && updateCardPositions(null)}
             >
               <Box
                 position="absolute"
@@ -108,7 +121,7 @@ const FeaturesSection = memo(() => {
                 opacity={0.25}
                 zIndex={1}
               />
-              <Text color={card.borderColor}>{card.icon(48)}</Text>
+              <Text color={card.borderColor}>{card.icon(isMobile ? 32 : 48)}</Text>
             </VStack>
           ))}
         </VStack>
@@ -120,20 +133,20 @@ const FeaturesSection = memo(() => {
                 tabIndex={0}
                 aria-labelledby={`feature-title-${index}`}
                 id={`card-info-${index}`}
-                onMouseEnter={() => updateCardPositions(index)}
-                onMouseLeave={() => updateCardPositions(null)}
+                onMouseEnter={() => !isMobile && updateCardPositions(index)}
+                onMouseLeave={() => !isMobile && updateCardPositions(null)}
                 onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
+                  if (!isMobile && (e.key === 'Enter' || e.key === ' ')) {
                     updateCardPositions(index);
                   }
                 }}
-                onBlur={() => updateCardPositions(null)}
+                onBlur={() => !isMobile && updateCardPositions(null)}
                 alignItems="flex-start"
-                p={8}
+                p={{ base: 4, md: 8 }}
                 borderRadius="md"
                 position="relative"
-                transition="all 0.3s ease-in-out"
-                _hover={{
+                transition={isMobile ? 'none' : "all 0.3s ease-in-out"}
+                _hover={isMobile ? {} : {
                   py: 16,
                   '& > .connector': {
                     opacity: 1,
@@ -143,47 +156,51 @@ const FeaturesSection = memo(() => {
                 }}
               >
                 <VStack w="full" align="flex-start" gap={2}>
-                  <Heading id={`feature-title-${index}`} color="whiteAlpha.900" as="h3" fontSize="xl">{card.title}</Heading>
-                  <Text color="whiteAlpha.500">{card.subtitle}</Text>
+                  <Heading id={`feature-title-${index}`} color="whiteAlpha.900" as="h3" fontSize={{ base: 'lg', md: 'xl' }}>{card.title}</Heading>
+                  <Text color="whiteAlpha.500" fontSize={{ base: 'sm', md: 'md' }}>{card.subtitle}</Text>
                 </VStack>
-                <Box
-                  className="connector"
-                  position="absolute"
-                  left="-8px"
-                  top="50%"
-                  height="2px"
-                  w="0px"
-                  bg={card.borderColor}
-                  transformOrigin="left"
-                  transition="width 0.3s ease-in-out"
-                  opacity={0}
-                  aria-hidden="true"
-                />
-                <Box
-                  className="connector-dot"
-                  position="absolute"
-                  left="-60px"
-                  top="50%"
-                  borderRadius="full"
-                  color={card.borderColor}
-                  transform="translate(-50%, -50%)"
-                  transition="all 0.3s ease-in-out"
-                  opacity={1}
-                  aria-hidden="true"
-                  _before={{
-                    content: '""',
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    width: '100%',
-                    height: '100%',
-                    borderRadius: 'full',
-                    animation: 'pulse 1.5s ease-in-out infinite',
-                  }}
-                >
-                  {card.icon(24)}
-                </Box>
+                {!isMobile && (
+                  <>
+                    <Box
+                      className="connector"
+                      position="absolute"
+                      left="-8px"
+                      top="50%"
+                      height="2px"
+                      w="0px"
+                      bg={card.borderColor}
+                      transformOrigin="left"
+                      transition="width 0.3s ease-in-out"
+                      opacity={0}
+                      aria-hidden="true"
+                    />
+                    <Box
+                      className="connector-dot"
+                      position="absolute"
+                      left="-60px"
+                      top="50%"
+                      borderRadius="full"
+                      color={card.borderColor}
+                      transform="translate(-50%, -50%)"
+                      transition="all 0.3s ease-in-out"
+                      opacity={1}
+                      aria-hidden="true"
+                      _before={{
+                        content: '""',
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        width: '100%',
+                        height: '100%',
+                        borderRadius: 'full',
+                        animation: 'pulse 1.5s ease-in-out infinite',
+                      }}
+                    >
+                      {card.icon(24)}
+                    </Box>
+                  </>
+                )}
               </VStack>
             </Box>
           ))}

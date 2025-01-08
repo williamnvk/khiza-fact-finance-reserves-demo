@@ -77,7 +77,7 @@ export const textStyles = defineTextStyles({
         md: "5xl",
         xl: "5xl",
       },
-      lineHeight: "1.2",
+      lineHeight: "1.1",
       letterSpacing: "-0.025em"
     },
   },

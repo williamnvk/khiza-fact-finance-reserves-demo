@@ -1,4 +1,4 @@
-import { Box, Container, Heading, HStack, Image, Text, VStack } from '@chakra-ui/react';
+import { Box, Container, Heading, HStack, Image, Text, VStack, useBreakpointValue } from '@chakra-ui/react';
 import { Button } from '@/components/ui/button';
 import BrazilianTesouroNacionalIcon from '@/components/Icons/BrazilianTesouroNacional';
 import SolanaHorizontal from '@/components/Icons/SolanaHorizontal';
@@ -9,9 +9,20 @@ import LogoIcon from '@/components/Icons/LogoIcon';
 import { FC } from 'react';
 
 export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
+  const isMobile = useBreakpointValue({ base: true, md: false });
+  const stackSpacing = useBreakpointValue({ base: 4, md: 8 });
+  const logoSize = useBreakpointValue({ base: 24, md: 32 });
+  const partnerLogoSizes = {
+    morganCreek: useBreakpointValue({ base: { width: 100, height: 52 }, md: { width: 168, height: 88 } }),
+    khiza: useBreakpointValue({ base: { width: 64, height: 52 }, md: { width: 112, height: 88 } }),
+    liqi: useBreakpointValue({ base: { width: 96, height: 54 }, md: { width: 128, height: 72 } }),
+    solana: useBreakpointValue({ base: { width: 146, height: 59 }, md: { width: 195, height: 78 } }),
+    tesouro: useBreakpointValue({ base: { width: 80, height: 80 }, md: { width: 112, height: 112 } }),
+  };
+
   return (
     <Box pos="relative">
-      <HStack w="auto" minH="calc(100vh + 72px)">
+      <HStack w="auto" minH={{ base: '100vh', md: 'calc(100vh + 72px)' }}>
         <Box
           as="video"
           position="absolute"
@@ -23,12 +34,9 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
           zIndex={0}
           autoPlay
           muted
+          playsInline
           filter={heroNumber === 8 ? 'invert(1) brightness(0.15)' : 'brightness(0.2)'}
-          // filter="brightness(.2)"
-          // transform="rotate(180deg)"
           mixBlendMode="luminosity"
-          // blendMode="soft-light"
-          // opacity={.8}
           loop
           src={`/assets/hero-${heroNumber}.mp4`}
         />
@@ -49,11 +57,11 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
           top="100%"
           right="-50%"
           transform="translate(-50%, -50%)"
-          w="50vw"
+          w={{ base: '75vw', md: '50vw' }}
           h="100vh"
           bg="radial-gradient(circle, {colors.brand.950} 0%, {colors.brand.900} 25%, rgba(0,0,0,.5) 100%)"
           filter="blur(100px)"
-          zIndex={2}
+          zIndex={1}
         />
         <Box
           position="absolute"
@@ -61,58 +69,82 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
           left="0%"
           transform="translate(-50%, -50%)"
           w="300vw"
-          h="10vh"
+          h={{ base: '5vh', md: '10vh' }}
           bg="radial-gradient(circle, {colors.black} 0%, {colors.black} 25%, rgba(0,0,0,.5) 100%)"
           filter="blur(30px)"
           zIndex={0}
         />
       </HStack>
-      <Container pos="absolute" top="50%" left="50%" transform="translate(-50%, -50%)" w="full" h="full" zIndex={1}>
-        <VStack align="center" h="calc(100vh - 144px)" justify="center" gap={0} mt="72px">
-          <VStack flex={1} align="center" justify="center" gap={8}>
-            <LogoIcon width={32} height={32} />
-            <Heading fontSize="6xl" lineHeight={1} textAlign="center" fontWeight="400">
+      <Container
+        pos="absolute"
+        top="50%"
+        left="50%"
+        transform="translate(-50%, -50%)"
+        w="full"
+        maxW={{ base: '100%', md: 'container.xl' }}
+        px={{ base: 4, md: 8 }}
+        h="full"
+        zIndex={1}
+      >
+        <VStack
+          align="center"
+          h={{ base: 'calc(100vh - 72px)', md: 'calc(100vh - 144px)' }}
+          justify="center"
+          gap={stackSpacing}
+          mt={{ base: '36px', md: '72px' }}
+        >
+          <VStack flex={1} align="center" justify="center" gap={stackSpacing}>
+            <LogoIcon width={logoSize} height={logoSize} />
+            <Heading
+              fontSize={{ base: '3xl', sm: '4xl', md: '5xl', lg: '6xl' }}
+              lineHeight={1.1}
+              textAlign="center"
+              fontWeight="400"
+              px={2}
+            >
               Official data for the
               <br />
-              <Text as="span" fontSize="8xl" lineHeight={1} textAlign="center" fontWeight="600" color="brand.50">
+              <Text
+                as="span"
+                fontSize={{ base: '3xl', sm: '4xl', md: '5xl', lg: '6xl' }}
+                lineHeight={1.1}
+                textAlign="center"
+                fontWeight="600"
+                color="brand.50"
+              >
                 tokenized economy
               </Text>
             </Heading>
-            <Text textStyle="subtitle" textAlign="center">
-              Delivering accurate, verified, and official data to power <br />
+            <Text textStyle="subtitle" textAlign="center" px={{ base: 4, md: 0 }}>
+              Delivering accurate, verified, and official data to power{isMobile ? '' : <br />}
               real-world asset tokenization.{' '}
             </Text>
 
-            <HStack gap={4}>
-              <Button size="xl">Talk to an expert</Button>
-              <Button variant="ghost" size="xl">
+            <HStack gap={4} flexDir={{ base: 'column', sm: 'row' }} w={{ base: 'full', sm: 'auto' }}>
+              <Button size="xl" w={{ base: 'full', sm: 'auto' }}>
+                Talk to an expert
+              </Button>
+              <Button variant="ghost" size="xl" w={{ base: 'full', sm: 'auto' }}>
                 Data hub
               </Button>
             </HStack>
           </VStack>
-          <VStack w="full" justify="center" align="center" maxW="4xl" gap={0}>
-            <VStack align="flex-start">
-              <Text
-                fontSize="sm"
-                bgGradient="to-r"
-                gradientFrom="brand.900"
-                gradientTo="brand.400"
-                bgClip="text"
-                textTransform="uppercase"
-                letterSpacing={2}
-                fontWeight="600"
-              >
-                Trusted by
-              </Text>
-              {/* <Text fontSize="sm">
-                  Supported by key players and institutions
-                  <br />
-                  driving blockchain innovation
-                </Text> */}
-            </VStack>
+          <VStack w="full" justify="center" align="center" maxW="4xl" gap={{ base: 0, md: 2 }} pb={4} zIndex={5}>
+            <Text
+              fontSize="sm"
+              bgGradient="to-r"
+              gradientFrom="brand.900"
+              gradientTo="brand.400"
+              bgClip="text"
+              textTransform="uppercase"
+              letterSpacing={2}
+              fontWeight="600"
+            >
+              Trusted by
+            </Text>
             <HStack
               flex={1}
-              gap={4}
+              gap={{ base: 0, md: 4 }}
               align="center"
               justify="center"
               filter="grayscale(1)"
@@ -120,30 +152,32 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
               transition="opacity 0.3s ease-in-out"
               opacity={0.5}
               _hover={{ opacity: 1 }}
+              flexWrap={{ base: 'wrap', md: 'nowrap' }}
             >
-              <VStack gap={0} align="flex-start" justify="center">
-                <HStack justify="center" flexWrap="wrap" gap={4} flex={1}>
-                  <MorganCreek width={168} height={88} />
-                  <Image src="/assets/outlier-ventures.png" alt="Outlier Ventures" filter="invert(1)" h="22px" />
-                  <KhizaIcon width={112} height={88} />
+              <VStack gap={0} align={{ base: 'center', md: 'flex-start' }} justify="center">
+                <HStack justify="center" flexWrap="wrap" gap={{ base: 2, md: 4 }} flex={1}>
+                  <MorganCreek {...partnerLogoSizes.morganCreek} />
+                  <Image
+                    src="/assets/outlier-ventures.png"
+                    alt="Outlier Ventures"
+                    filter="invert(1)"
+                    h={{ base: '18px', md: '22px' }}
+                  />
+                  <KhizaIcon {...partnerLogoSizes.khiza} />
                 </HStack>
-                <HStack justify="center" flexWrap="wrap" gap={4} mt={-6}>
-                  <LiqiLogo width={128} height={72} />
+                <HStack justify="center" flexWrap="wrap" gap={{ base: 0, md: 4 }} mt={{ base: -2, md: -6 }}>
+                  <LiqiLogo {...partnerLogoSizes.liqi} />
                   <Image
                     src="/assets/firmeza-token.avif"
                     alt="Firmeza Token"
                     filter="invert(1) brightness(2)"
-                    h="42px"
+                    h={{ base: '32px', md: '42px' }}
                   />
-                  <SolanaHorizontal width={195} height={78} />
+                  <SolanaHorizontal {...partnerLogoSizes.solana} />
                 </HStack>
               </VStack>
-              <BrazilianTesouroNacionalIcon width={112} height={112} />
+              <BrazilianTesouroNacionalIcon {...partnerLogoSizes.tesouro} />
             </HStack>
-
-            {/* <Center pt={8}>
-            <Button variant="outline">Get to know us</Button>
-          </Center> */}
           </VStack>
         </VStack>
       </Container>

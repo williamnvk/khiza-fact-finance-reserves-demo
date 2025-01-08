@@ -29,11 +29,17 @@ export const Home = () => {
       />
       <Hero heroNumber={heroNumber} />
 
-      <Suspense fallback={<Text role="status" textAlign="center" p={4}>Loading what we do section...</Text>}>
+      <Suspense
+        fallback={
+          <Text role="status" textAlign="center" p={4}>
+            Loading what we do section...
+          </Text>
+        }
+      >
         <LazyWhatWeDo />
       </Suspense>
 
-      <Container my={{ base: 8, md: 16 }} px={4} aria-labelledby="supported-chains-heading" as="section">
+      <Container aria-labelledby="supported-chains-heading" as="section">
         <Text
           id="supported-chains-heading"
           as="h2"
@@ -48,15 +54,21 @@ export const Home = () => {
       </Container>
 
       <Box pos="relative" aria-labelledby="features-section-heading" as="section">
-        <Suspense fallback={<Text role="status" textAlign="center" p={4}>Loading features section...</Text>}>
+        <Suspense
+          fallback={
+            <Text role="status" textAlign="center" p={4}>
+              Loading features section...
+            </Text>
+          }
+        >
           <LazyFeaturesSection />
         </Suspense>
       </Box>
 
       <Container py={{ base: 8, md: 32 }} px={4} role="group" aria-labelledby="call-to-action-heading" as="section">
-        <HStack 
-          align={{ base: 'stretch', lg: 'center' }} 
-          justify="center" 
+        <HStack
+          align={{ base: 'stretch', lg: 'center' }}
+          justify="center"
           gap={{ base: 8, lg: 16 }}
           flexDirection={{ base: 'column', lg: 'row' }}
         >
@@ -109,7 +121,13 @@ export const Home = () => {
             Find answers to common questions about Fact Finance
           </Text>
         </VStack>
-        <Suspense fallback={<Text role="status" textAlign="center" p={4}>Loading FAQs...</Text>}>
+        <Suspense
+          fallback={
+            <Text role="status" textAlign="center" p={4}>
+              Loading FAQs...
+            </Text>
+          }
+        >
           <LazyFaq />
         </Suspense>
         <Center gap={3} mt={{ base: 6, md: 10 }} flexWrap="wrap">
@@ -151,10 +169,10 @@ export const Home = () => {
               <br />
               Tokenized Asset with Official Data
             </Heading>
-            <Text 
-              id="unlock-value-description" 
-              maxW="2xl" 
-              textStyle="subtitle" 
+            <Text
+              id="unlock-value-description"
+              maxW="2xl"
+              textStyle="subtitle"
               textAlign="center"
               fontSize={{ base: 'sm', md: 'md' }}
             >
@@ -164,9 +182,9 @@ export const Home = () => {
           </TitleSection>
 
           <HStack justify="center" gap={4} mt={4} flexWrap={{ base: 'wrap', md: 'nowrap' }}>
-            <Button 
-              as={RouterLink} 
-              to="/expert-consultation" 
+            <Button
+              as={RouterLink}
+              to="/expert-consultation"
               aria-label="Talk to an Expert"
               w={{ base: 'full', md: 'auto' }}
             >

@@ -37,7 +37,7 @@ export const WhatWeDo = () => {
   }, [hoveredCard]);
 
   return (
-    <Container as="section" maxW={containerMaxW} py={{ base: 8, md: 16 }} aria-labelledby="what-we-do-title">
+    <Container as="section" maxW={containerMaxW} py={{ base: 8, md: 16 }} aria-labelledby="what-we-do-title" zIndex={2}>
       <VStack gap={8} w="full" align="center">
         <TitleSection>
           <Text

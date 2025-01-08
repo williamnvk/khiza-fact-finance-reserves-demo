@@ -9,28 +9,39 @@ export default function Chains() {
       chains.map((chain) => (
         <Slider.Slide key={chain.value}>
           <HStack
-            p={4}
-            _hover={{ transform: 'scale(1.1)' }}
-            transition="all 0.3s ease-in-out"
+            as="article"
+            p={{ base: 2, sm: 3, md: 4 }}
+            _hover={{ transform: 'scale(1.05)', opacity: 0.9 }}
+            transition="all 0.2s ease-in-out"
             borderRadius="full"
             bg="whiteAlpha.50"
-            gap={4}
+            gap={{ base: 2, sm: 3, md: 4 }}
             align="center"
             justify="center"
-            h="80px"
+            h={{ base: "60px", sm: "70px", md: "80px" }}
+            role="listitem"
+            aria-label={`${chain.value} blockchain network`}
           >
             {chain.icon ? (
               <Image
                 filter="grayscale(1)"
                 _hover={{ filter: 'grayscale(0)' }}
-                alt={`${chain.value} logo`}
+                alt={`${chain.value} blockchain network logo`}
                 src={chain.icon}
-                width={{ base: '48px', md: '48px' }}
-                height={{ base: '48px', md: 'auto' }}
+                width={{ base: '36px', sm: '42px', md: '48px' }}
+                height={{ base: '36px', sm: '42px', md: '48px' }}
                 loading="lazy"
+                decoding="async"
+                fetchPriority="low"
               />
             ) : null}
-            <Text flex={1}>{chain.value}</Text>
+            <Text 
+              flex={1}
+              fontSize={{ base: 'sm', sm: 'md', md: 'lg' }}
+              fontWeight="medium"
+            >
+              {chain.value}
+            </Text>
           </HStack>
         </Slider.Slide>
       )),
@@ -39,8 +50,9 @@ export default function Chains() {
 
   return (
     <Box
+      as="section"
       w="full"
-      mb={{ base: 0, md: 12 }}
+      mb={{ base: 4, sm: 8, md: 12 }}
       role="region"
       aria-label="Supported Blockchain Networks"
       pos="relative"
@@ -53,12 +65,19 @@ export default function Chains() {
         pos="absolute"
         top="0"
         left="0"
-        w="25vw"
-        h="120px"
+        w={{ base: "15vw", md: "25vw" }}
+        h={{ base: "80px", sm: "100px", md: "120px" }}
         zIndex={1}
-      ></Box>
+        aria-hidden="true"
+      />
 
-      <Slider alias="first" duration={5}>{chainSlides}</Slider>
+      <Slider 
+        alias="first" 
+        duration={5}
+        aria-label="Blockchain networks carousel"
+      >
+        {chainSlides}
+      </Slider>
 
       <Box
         bgGradient="to-l"
@@ -67,10 +86,11 @@ export default function Chains() {
         pos="absolute"
         top={0}
         right={0}
-        w="25vw"
-        h="120px"
+        w={{ base: "15vw", md: "25vw" }}
+        h={{ base: "80px", sm: "100px", md: "120px" }}
         zIndex={1}
-      ></Box>
+        aria-hidden="true"
+      />
     </Box>
   );
 }

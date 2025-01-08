@@ -23,7 +23,7 @@ export const Header: FC<HeaderProps> = () => {
           position="relative"
           backdropFilter="blur(5px)"
           transition="all 0.5s ease-in-out"
-          // boxShadow="2xl"
+          boxShadow="2xl"
         >
           <HStack align="center" justify="center" gap={0} as={Link} to="/">
             <Heading size="md">FACT</Heading>

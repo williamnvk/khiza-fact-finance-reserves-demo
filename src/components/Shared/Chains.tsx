@@ -48,7 +48,7 @@ export default function Chains() {
     >
       <Box
         bgGradient="to-r"
-        gradientFrom="#000"
+        gradientFrom="black"
         gradientTo="transparent"
         pos="absolute"
         top="0"
@@ -62,7 +62,7 @@ export default function Chains() {
 
       <Box
         bgGradient="to-l"
-        gradientFrom="#000"
+        gradientFrom="black"
         gradientTo="transparent"
         pos="absolute"
         top={0}

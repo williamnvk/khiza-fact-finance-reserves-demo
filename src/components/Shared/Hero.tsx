@@ -8,14 +8,11 @@ import LiqiLogo from '@/components/Icons/Liqi';
 import LogoIcon from '@/components/Icons/LogoIcon';
 import { FC } from 'react';
 
-export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 8 }) => {
+export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
   return (
     <Box pos="relative">
       <HStack w="auto" minH="calc(100vh + 72px)">
         <Box
-          // borderRadius="4xl"
-          // border="2px solid {colors.whiteAlpha.200}"
-          // boxShadow="2xl"
           as="video"
           position="absolute"
           top={0}
@@ -35,17 +32,7 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 8 }) => {
           loop
           src={`/assets/hero-${heroNumber}.mp4`}
         />
-        {/* <Box
-          position="absolute"
-          top="50%"
-          left="50%"
-          transform="translate(-50%, -50%)"
-          w="full"
-          h="full"
-          bg="radial-gradient(circle, transparent 0%, {colors.brand.950} 25%, transparent 100%)"
-          filter="blur(200px)"
-          zIndex={1}
-        /> */}
+       
         <Box
           position="absolute"
           top="0%"
@@ -67,6 +54,17 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 8 }) => {
           bg="radial-gradient(circle, {colors.brand.950} 0%, {colors.brand.900} 25%, rgba(0,0,0,.5) 100%)"
           filter="blur(100px)"
           zIndex={2}
+        />
+          <Box
+          position="absolute"
+          top="100%"
+          left="0%"
+          transform="translate(-50%, -50%)"
+          w="300vw"
+          h="10vh"
+          bg="radial-gradient(circle, {colors.black} 0%, {colors.black} 25%, rgba(0,0,0,.5) 100%)"
+          filter="blur(30px)"
+          zIndex={0}
         />
       </HStack>
       <Container pos="absolute" top="50%" left="50%" transform="translate(-50%, -50%)" w="full" h="full" zIndex={1}>

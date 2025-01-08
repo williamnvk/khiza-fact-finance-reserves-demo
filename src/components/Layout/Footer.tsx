@@ -4,7 +4,7 @@ import XIcon from '../Icons/XIcon';
 
 export function Footer() {
   return (
-    <Box position="relative" w="full" bg="#000">
+    <Box position="relative" w="full">
       <Container maxW="container.xl">
         <Stack
           flexDir={{ base: 'column', md: 'row' }}

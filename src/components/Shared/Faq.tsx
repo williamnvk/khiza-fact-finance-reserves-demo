@@ -1,27 +1,21 @@
 import { AccordionItem, AccordionItemContent, AccordionItemTrigger, AccordionRoot } from '@/components/ui/accordion';
 import { Icon, Text, VStack } from '@chakra-ui/react';
-import {
-  Blocks,
-  BlocksIcon,
-  CircleHelpIcon,
-  CodeIcon,
-  DatabaseIcon,
-  DollarSignIcon,
-  GitPullRequestArrowIcon,
-  HandCoinsIcon,
-  HardDriveIcon,
-  LockIcon,
-  StarIcon,
-  UsersRoundIcon,
-} from 'lucide-react';
+import { BlocksIcon, CodeIcon, DatabaseIcon, HardDriveIcon, UsersRoundIcon } from 'lucide-react';
 
 export const Faq = () => {
   return (
-    <AccordionRoot collapsible defaultValue={[]} variant="enclosed" size="lg">
+    <AccordionRoot
+      collapsible
+      defaultValue={[]}
+      variant="enclosed"
+      size="lg"
+      role="region"
+      aria-labelledby="faq-heading"
+    >
       {items.map((item) => (
-        <AccordionItem key={item.value} value={item.value}>
+        <AccordionItem key={item.value} value={item.value} aria-labelledby={`faq-${item.value}`}>
           <AccordionItemTrigger fontFamily="body">
-            <Icon fontSize="lg" color="fg.subtle">
+            <Icon fontSize="lg" color="whiteAlpha.400" aria-hidden="true">
               {item.icon}
             </Icon>
             <Text fontSize={{ base: 'sm', md: 'lg' }} lineHeight={{ base: 1.2, md: 1 }}>
@@ -31,7 +25,7 @@ export const Faq = () => {
           <AccordionItemContent>
             <VStack gap={4} w="full" align="flex-start">
               {item.content.map((content) => (
-                <Text key={content} fontSize={{ base: 'sm', md: 'md' }}>
+                <Text key={content} fontSize={{ base: 'sm', md: 'md' }} role="document">
                   {content}
                 </Text>
               ))}

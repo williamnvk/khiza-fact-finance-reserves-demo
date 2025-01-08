@@ -38,7 +38,7 @@ export const teamMembers = [
     brands: [
       {
         type: 'image',
-        asset: '/assets/honeyisland.png',
+        asset: '/assets/about/honeyisland.png',
       },
       {
         type: 'icon',
@@ -46,7 +46,7 @@ export const teamMembers = [
       },
       {
         type: 'image',
-        asset: '/assets/dec-institute.webp',
+        asset: '/assets/about/dec-institute.webp',
       },
     ],
   },

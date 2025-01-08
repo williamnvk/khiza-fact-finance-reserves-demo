@@ -1,12 +1,10 @@
-import { Container, Flex, HStack, Text, Box, Separator, Link, Stack } from '@chakra-ui/react';
-import KhizaIcon from '../Icons/KhizaIcon';
+import { Container, HStack, Text, Box, Link, Stack } from '@chakra-ui/react';
 import LinkedinIcon from '../Icons/LinkedinIcon';
 import XIcon from '../Icons/XIcon';
-import LogoIcon from '../Icons/LogoIcon';
 
 export function Footer() {
   return (
-    <Box position="relative" mt={8} w="full">
+    <Box position="relative" w="full" bg="#000">
       <Container maxW="container.xl">
         <Stack
           flexDir={{ base: 'column', md: 'row' }}

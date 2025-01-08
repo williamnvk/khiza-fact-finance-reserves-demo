@@ -91,12 +91,12 @@ export const WhatWeDo = () => {
               autoPlay
               muted
               filter="brightness(0.3)"
-            //   transform="rotate(180deg)"
+              //   transform="rotate(180deg)"
               mixBlendMode="luminosity"
-            //   blendMode="soft-light"
+              //   blendMode="soft-light"
               // opacity={.1}
               loop
-              src="/assets/capital-markets-3.mp4"
+              src="/assets/what-we-do/capital-markets.mp4"
             />
             <Box
               position="absolute"
@@ -110,7 +110,7 @@ export const WhatWeDo = () => {
               opacity={0.3}
               zIndex={1}
             />
-             <Box
+            <Box
               position="absolute"
               top="0%"
               right="-100%"
@@ -179,7 +179,7 @@ export const WhatWeDo = () => {
               // blendMode="soft-light"
               // opacity={.1}
               loop
-              src="/assets/real-estate-2.mp4"
+              src="/assets/what-we-do/real-estate.mp4"
             />
             <Box
               position="absolute"
@@ -232,9 +232,6 @@ export const WhatWeDo = () => {
             zIndex={2}
           >
             <Box
-              // borderRadius="4xl"
-              // border="2px solid {colors.whiteAlpha.200}"
-              // boxShadow="2xl"
               as="video"
               position="absolute"
               top={0}
@@ -246,24 +243,8 @@ export const WhatWeDo = () => {
               autoPlay
               muted
               filter="brightness(.25) grayscale(1)"
-              // transform="rotate(180deg)"
-            //   mixBlendMode="luminosity"
-            //   blendMode="soft-light"
-              // opacity={.1}
               loop
-              src="/assets/commodities-1.mp4"
-            />
-            <Box
-              position="absolute"
-              top="0%"
-              left="0%"
-              transform="translate(-50%, -50%)"
-              w="100%"
-              h="100%"
-              bg="radial-gradient(circle, black 0%, rgba(0,0,0,.5) 100%)"
-              filter="blur(60px)"
-              opacity={0.3}
-              zIndex={1}
+              src="/assets/what-we-do/commodities.mp4"
             />
             <Box
               position="absolute"

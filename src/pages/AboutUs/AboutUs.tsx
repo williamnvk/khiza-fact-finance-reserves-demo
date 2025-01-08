@@ -26,7 +26,7 @@ export default function AboutUs() {
         top={0}
         left={0}
         w="100vw"
-        h="50vh"
+        h="100vh"
         objectFit="cover"
         zIndex={0}
         autoPlay
@@ -37,7 +37,7 @@ export default function AboutUs() {
         // blendMode="soft-light"
         opacity={0.5}
         loop
-        src="/assets/hero-7.mp4"
+        src="/assets/about/bg.mp4"
       />
 
       <Container maxW="6xl" py={{ base: 12, md: 20 }} as="main" role="main" aria-label="About Us Section">
@@ -69,23 +69,7 @@ export default function AboutUs() {
               <Box overflow="hidden" bg={cardBg} _hover={{ bg: cardHoverBg }} transition="all 0.2s">
                 <Box
                   as="img"
-                  src="/assets/about/picture-1.jpeg"
-                  alt="Team meeting discussing blockchain solutions"
-                  objectFit="cover"
-                  w="full"
-                  filter="grayscale(100%)"
-                  transition="all 0.2s ease-in-out"
-                  _hover={{ filter: 'grayscale(0%)', transform: 'scale(1.1)' }}
-                  h="full"
-                />
-              </Box>
-            </AspectRatio>
-
-            <AspectRatio ratio={1}>
-              <Box overflow="hidden" bg={cardBg} _hover={{ bg: cardHoverBg }} transition="all 0.2s">
-                <Box
-                  as="img"
-                  src="/assets/about/picture-2.jpeg"
+                  src="/assets/about/luciano-juvinski-speaker.webp"
                   alt="Product launch event"
                   objectFit="cover"
                   w="full"
@@ -101,7 +85,23 @@ export default function AboutUs() {
               <Box overflow="hidden" bg={cardBg} _hover={{ bg: cardHoverBg }} transition="all 0.2s">
                 <Box
                   as="img"
-                  src="/assets/about/picture-3.jpeg"
+                  src="/assets/about/luciano-juvinski-speaker-2.webp"
+                  alt="Team meeting discussing blockchain solutions"
+                  objectFit="cover"
+                  w="full"
+                  filter="grayscale(100%)"
+                  transition="all 0.2s ease-in-out"
+                  _hover={{ filter: 'grayscale(0%)', transform: 'scale(1.1)' }}
+                  h="full"
+                />
+              </Box>
+            </AspectRatio>
+
+            <AspectRatio ratio={1}>
+              <Box overflow="hidden" bg={cardBg} _hover={{ bg: cardHoverBg }} transition="all 0.2s">
+                <Box
+                  as="img"
+                  src="/assets/about/fernanda-regina.webp"
                   alt="Speaking at blockchain conference"
                   objectFit="cover"
                   w="full"
@@ -117,7 +117,7 @@ export default function AboutUs() {
               <Box overflow="hidden" bg={cardBg} _hover={{ bg: cardHoverBg }} transition="all 0.2s">
                 <Box
                   // as="img"
-                  backgroundImage="url(/assets/about/solana-1.jpeg)"
+                  backgroundImage="url(/assets/about/fernanda-stand.webp)"
                   backgroundSize="cover"
                   backgroundPosition="-145px center"
                   backgroundRepeat="no-repeat"
@@ -130,13 +130,11 @@ export default function AboutUs() {
               </Box>
             </AspectRatio>
 
-           
-
             <AspectRatio ratio={1}>
               <Box overflow="hidden" bg={cardBg} _hover={{ bg: cardHoverBg }} transition="all 0.2s">
                 <Box
                   as="img"
-                  src="/assets/about/solana-vencedor.jpeg"
+                  src="/assets/about/demo-day.webp"
                   alt="Our office space"
                   objectFit="cover"
                   w="full"
@@ -148,12 +146,11 @@ export default function AboutUs() {
               </Box>
             </AspectRatio>
 
-
             <AspectRatio ratio={1}>
               <Box overflow="hidden" bg={cardBg} _hover={{ bg: cardHoverBg }} transition="all 0.2s">
                 <Box
                   as="img"
-                  src="/assets/about/fact-finance-vencedores-premio-brazil.jpeg"
+                  src="/assets/about/fact-finance-vencedores-premio-brasil.webp"
                   alt="Our office space"
                   objectFit="cover"
                   w="full"
@@ -164,9 +161,6 @@ export default function AboutUs() {
                 />
               </Box>
             </AspectRatio>
-
-
-            
           </SimpleGrid>
 
           <VStack gap={6} align="stretch" maxW="4xl" mx="auto">
@@ -209,7 +203,9 @@ export default function AboutUs() {
                   key={index}
                   p={8}
                   borderRadius="2xl"
-                  bg={cardBg}
+                  bgGradient="to-br"
+                  gradientFrom="whiteAlpha.50"
+                  gradientTo="transparent"
                   role="article"
                   aria-labelledby={`team-member-${index}`}
                 >

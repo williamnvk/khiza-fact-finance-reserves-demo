@@ -166,4 +166,14 @@ export const globalCss = defineGlobalStyles({
       zIndex: 5,
     },
   },
+  '@keyframes connectAnimation': {
+    '0%': {
+      width: 0,
+      opacity: 1,
+    },
+    '100%': {
+      width: "80px",
+      opacity: 1,
+    },
+  },
 });

@@ -30,7 +30,7 @@ export const Home = () => {
         <FeaturesSection />
       </Box>
 
-      <Box py={8}>
+      <Box py={{ base: 8, md: 32 }}>
         <Container>
           <HStack align="center" justify="center" gap={16}>
             <VStack gap={0} align="flex-start" flex={1}>
@@ -62,7 +62,7 @@ export const Home = () => {
         maxW="5xl"
         id="faq"
         role="complementary"
-        py={{ base: 8, md: 16 }}
+        py={{ base: 8, md: 32 }}
         aria-labelledby="faq-heading"
         zIndex={5}
       >

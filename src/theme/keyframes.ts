@@ -9,13 +9,13 @@ export const keyframes = {
   },
   pulse: {
     '0%': {
-      boxShadow: '0 0 0 0 rgba(140, 20, 252, 0.5)',
+      boxShadow: '0 0 0 0 rgba(255, 255, 255, 0.5)',
     },
     '50%': {
-      boxShadow: '0 0 0 10px rgba(0, 0, 0, 0)',
+      boxShadow: '0 0 0 10px rgba(255, 255, 255, 0)',
     },
     '100%': {
-      boxShadow: '0 0 0 0 rgba(0, 0, 0, 0)',
+      boxShadow: '0 0 0 0 rgba(255, 255, 255, 0)',
     },
   },
   ping: {

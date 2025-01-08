@@ -1,252 +1,181 @@
-import { Box, Container, Heading, Text, HStack, VStack } from '@chakra-ui/react';
-import { TitleSection } from '@/components/ui/title-sectiont';
-import { BadgeCheckIcon, ComponentIcon, EyeIcon, ShieldCheckIcon } from 'lucide-react';
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { Box, Text, Heading, VStack, HStack, Container } from '@chakra-ui/react';
+import { BadgeCheckIcon, ComponentIcon, ShieldCheckIcon } from 'lucide-react';
+import { TitleSection } from '../ui/title-sectiont';
 
-export const FeaturesSection = () => {
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  const handleScroll = useCallback(() => {
-    const section = document.getElementById('features-section');
-    if (section) {
-      const rect = section.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const distanceFromViewport = rect.top - windowHeight;
-
-      if (distanceFromViewport < 200 && !hasAnimated) {
-        setHasAnimated(true);
-      }
-
-      const progress = hasAnimated ? Math.max(0, Math.min(1, 1 - distanceFromViewport / windowHeight)) : 0;
-      setScrollProgress(progress);
-    }
-  }, [hasAnimated]);
-
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    setMousePosition({ x: e.clientX, y: e.clientY });
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('mousemove', handleMouseMove);
-    handleScroll();
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, [handleScroll, handleMouseMove]);
-
-  const layergap = hasAnimated ? 500 - scrollProgress * 300 : 500;
-
-  const features = useMemo(
-    () => [
-      {
-        icon: <ComponentIcon size={32} strokeWidth={3} />,
-        title: 'Confidence index',
-        description: 'Reliability measure based on trusted data sources and institutions',
-        index: 0,
-        offset: 0.8,
-        opacity: 'whiteAlpha.100',
-        color: 'blue.400',
-      },
-      {
-        icon: <ShieldCheckIcon size={32} strokeWidth={3} />,
-        title: 'Compliance',
-        description: 'Regulatory adherence verified by official institutions',
-        index: 1,
-        offset: 0.5,
-        opacity: 'whiteAlpha.50',
-        color: 'purple.400',
-      },
-      {
-        icon: <BadgeCheckIcon size={32} strokeWidth={3} />,
-        title: 'Proof of Authenticity',
-        description: 'Cryptographic verification of data authenticity',
-        index: 2,
-        offset: 0.2,
-        opacity: 'whiteAlpha.30',
-        color: 'pink.400',
-      },
-    ],
-    [],
-  );
-
-  const calculateDynamicTransform = useCallback(
-    (index: number) => {
-      const mouseX = (mousePosition.x / window.innerWidth - 0.5) * 20;
-      const mouseY = (mousePosition.y / window.innerHeight - 0.5) * 20;
-
-      if (hoveredCard === index) {
-        const rotateX = (mousePosition.y / window.innerHeight - 0.5) * 30;
-        const rotateY = (mousePosition.x / window.innerWidth - 0.5) * 30;
-        return `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(100px) scale(1.1)`;
-      }
-      return `perspective(1000px) rotateX(${mouseY + 60 + Math.sin(Date.now() / 2000) * 10}deg) rotateY(${
-        mouseX + 45 + Math.cos(Date.now() / 2000) * 10
-      }deg) translateZ(${-layergap * features[index].offset}px)`;
+const FeaturesSection = () => {
+  const cards = [
+    {
+      icon: (size: number = 24) => <BadgeCheckIcon size={size} strokeWidth={1.5} />,
+      title: 'Proof of Authenticity',
+      subtitle:
+        'On-chain wallet validation that the data comes directly from the official data provider, eliminating risks of tampering.',
+      borderColor: 'whiteAlpha.800',
     },
-    [hoveredCard, mousePosition, layergap, features],
-  );
-
-  const handleMouseEnter = useCallback((i: number) => {
-    setHoveredCard(i);
-  }, []);
-
-  const handleMouseLeave = useCallback(() => {
-    setHoveredCard(null);
-  }, []);
-
-  const handleCardMouseMove = useCallback(
-    (e: React.MouseEvent, index: number) => {
-      if (hoveredCard !== index) return;
-
-      const card = e.currentTarget;
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      card.style.setProperty('--x', `${x}px`);
-      card.style.setProperty('--y', `${y}px`);
+    {
+      icon: (size: number = 24) => <ShieldCheckIcon size={size} strokeWidth={1.5} />,
+      title: 'Confidence Index',
+      subtitle:
+        'Our system monitors data for anomalies using statistical and density-based detection techniques. Any outlier data is flagged so the consumer contract can determine how to handle it.',
+      borderColor: 'brand.800',
     },
-    [hoveredCard],
-  );
+    {
+      icon: (size: number = 24) => <ComponentIcon size={size} strokeWidth={1.5} />,
+      title: 'External Auditors',
+      subtitle: 'A pool of independent auditors validates the integrity and accuracy of the data provided',
+      borderColor: 'brand.950',
+    },
+  ];
 
-  const renderFeatureCard = useCallback(
-    (feature: (typeof features)[0], i: number) => (
-      <VStack
-        key={i}
-        position="absolute"
-        width="380px"
-        height="280px"
-        borderRadius="xl"
-        transform={calculateDynamicTransform(i)}
-        border="4px solid"
-        borderColor={hoveredCard === i ? feature.color : `whiteAlpha.${200 - i * 50}`}
-        top="100px"
-        left="50%"
-        marginLeft="-200px"
-        align="center"
-        justify="center"
-        zIndex={hoveredCard === i ? 3 : 1}
-        transition="all 0.2s cubic-bezier(0.4, 0, 0.2, 1)"
-        boxShadow={
-          hoveredCard === i
-            ? `0 20px 60px ${feature.color}33, 0 0 20px ${feature.color}22, inset 0 0 20px rgba(255,255,255,0.1)`
-            : '0 20px 40px rgba(0,0,0,0.3)'
+  const updateCardPositions = (hoveredIndex: number | null) => {
+    cards.forEach((_, index) => {
+      const cardElement = document.querySelector(`.card-${index}`) as HTMLElement;
+      if (cardElement) {
+        let yOffset = 100 * index;
+
+        if (hoveredIndex !== null) {
+          const distance = Math.abs(index - hoveredIndex);
+          if (index < hoveredIndex) {
+            yOffset -= 40 / (distance + 1);
+          } else if (index > hoveredIndex) {
+            yOffset += 40 / (distance + 1);
+          } else {
+            yOffset -= 30;
+          }
         }
-        style={
-          {
-            transformStyle: 'preserve-3d',
-            backdropFilter: hoveredCard === i ? 'blur(4px)' : 'none',
-            '--x': '0px',
-            '--y': '0px',
-          } as React.CSSProperties
-        }
-        cursor="pointer"
-        _before={{
-          content: '""',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background:
-            hoveredCard === i
-              ? 'radial-gradient(circle at var(--x) var(--y), rgba(255,255,255,0.15) 0%, transparent 80%)'
-              : 'none',
-          borderRadius: 'xl',
-          pointerEvents: 'none',
-        }}
-        onMouseEnter={() => handleMouseEnter(i)}
-        onMouseLeave={handleMouseLeave}
-        onMouseMove={(e) => handleCardMouseMove(e, i)}
-      >
-        <VStack gap={4} p={6}>
-          <Box
-            opacity={hoveredCard === i ? 1 : 0.7}
-            transform={hoveredCard === i ? 'scale(1.2) rotate(360deg)' : 'scale(1)'}
-            transition="all 0.6s cubic-bezier(0.4, 0, 0.2, 1)"
-            color={hoveredCard === i ? feature.color : 'white'}
-          >
-            {feature.icon}
-          </Box>
-          <Heading
-            fontSize="xl"
-            opacity={hoveredCard === i ? 1 : 0.9}
-            transform={hoveredCard === i ? 'translateY(0)' : 'translateY(10px)'}
-            transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
-            color={hoveredCard === i ? feature.color : 'white'}
-            textShadow={hoveredCard === i ? '0 0 10px rgba(255,255,255,0.3)' : 'none'}
-          >
-            {feature.title}
-          </Heading>
-          <Text
-            fontSize="sm"
-            textAlign="center"
-            color={hoveredCard === i ? 'white' : 'whiteAlpha.900'}
-            opacity={hoveredCard === i ? 1 : 0}
-            transform={hoveredCard === i ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.9)'}
-            transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
-            textShadow={hoveredCard === i ? '0 0 10px rgba(255,255,255,0.3)' : 'none'}
-          >
-            {feature.description}
-          </Text>
-        </VStack>
-      </VStack>
-    ),
-    [hoveredCard, mousePosition, calculateDynamicTransform, handleMouseEnter, handleMouseLeave, handleCardMouseMove],
-  );
+
+        cardElement.style.transform = `translate(-50%, ${yOffset}px) rotate(40deg) skew(-20deg, -10deg)`;
+      }
+    });
+  };
 
   return (
-    <Box position="relative" overflow="hidden" id="features-section">
-      <Container h="calc(100vh - 72px)">
-        <TitleSection align="center" margin={0}>
-          <Heading textStyle="title" mb={4}>
-            Our key features
-          </Heading>
-          <Text textStyle="subtitle" mb={12}>
-            Reliable solutions for secure and precise data delivery
-          </Text>
-        </TitleSection>
-
-        <VStack align="center" h="full" gap={12}>
-          <HStack gap={4} w="full" justify="center">
-            {features.map((feature, i) => (
-              <HStack
-                key={i}
-                onMouseEnter={() => handleMouseEnter(i)}
-                onMouseLeave={handleMouseLeave}
-                opacity={hoveredCard === i ? 1 : 0.7}
-                transform={hoveredCard === i ? 'translateY(-8px)' : 'none'}
-                transition="all 0.3s"
-                bg={hoveredCard === i ? `rgba(255,255,255,0.1)` : 'transparent'}
-                borderColor={hoveredCard === i ? feature.color : 'whiteAlpha.200'}
-                style={{
-                  backdropFilter: hoveredCard === i ? 'blur(10px)' : 'none',
-                }}
-                gap={4}
-                align="center"
-                justify="center"
-                p={4}
-                borderRadius="xl"
-              >
-                <Box color={hoveredCard === i ? feature.color : 'white'}>{feature.icon}</Box>
-                <Heading fontSize="sm" color={hoveredCard === i ? feature.color : 'white'}>
-                  {feature.title}
-                </Heading>
-              </HStack>
-            ))}
-          </HStack>
-
-          <Box position="relative" h="full">
-            {features.map((feature, i) => renderFeatureCard(feature, i))}
-          </Box>
+    <Container py={{ base: 8, md: 16 }}>
+      <TitleSection>
+        <Heading textStyle="title">Our key features</Heading>
+        <Text textStyle="subtitle">Reliable solutions for secure and precise data delivery</Text>
+      </TitleSection>
+      <HStack position="relative" w="100%" gap={20}>
+        <VStack flex={1} pos="relative" h="600px">
+          {cards.map((card, index) => (
+            <VStack
+              key={index}
+              position="absolute"
+              top="0%"
+              left="50%"
+              w="300px"
+              h="400px"
+              zIndex={cards.length - index}
+              transform={`translate(-50%, calc(100px * ${index})) rotate(40deg) skew(-20deg, -10deg)`}
+              border="2px solid"
+              borderColor={card.borderColor}
+              bg="trasnparent"
+              boxShadow="lg"
+              borderRadius="xl"
+              gap={8}
+              transition="all 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
+              className={`card-${index}`}
+              align="center"
+              backdropFilter="blur(2px)"
+              justify="center"
+              overflow="hidden"
+            >
+              <Box
+                position="absolute"
+                top="0%"
+                left="0%"
+                transform="translate(-50%, -50%)"
+                w="100%"
+                h="100%"
+                bg="radial-gradient(circle, {colors.brand.900} 0%, rgba(0,0,0,.5) 100%)"
+                filter="blur(60px)"
+                opacity={0.25 * (index + 1)}
+                zIndex={1}
+              />
+              <Box
+                position="absolute"
+                bottom="-50%"
+                left="0%"
+                transform="translate(-50%, -50%)"
+                w="100%"
+                h="100%"
+                bg={`radial-gradient(circle, {colors.${card.borderColor}} 0%, rgba(0,0,0,.5) 100%)`}
+                filter="blur(60px)"
+                opacity={0.25}
+                zIndex={1}
+              />
+              <Text color={card.borderColor}>{card.icon(48)}</Text>
+            </VStack>
+          ))}
         </VStack>
-      </Container>
-    </Box>
+        <VStack flex={1} gap={0} position="relative">
+          {cards.map((card, index) => (
+            <Box key={index} position="relative" w="100%">
+              <VStack
+                role="button"
+                id={`card-info-${index}`}
+                onMouseEnter={() => updateCardPositions(index)}
+                onMouseLeave={() => updateCardPositions(null)}
+                alignItems="flex-start"
+                p={8}
+                borderRadius="md"
+                position="relative"
+                transition="all 0.3s ease-in-out"
+                _hover={{
+                  py: 16,
+                  '& > .connector': {
+                    opacity: 1,
+                    width: '49px',
+                    left: '-49px',
+                  },
+                }}
+              >
+                <VStack w="full" align="flex-start">
+                  <Heading color="whiteAlpha.900">{card.title}</Heading>
+                  <Text color="whiteAlpha.500">{card.subtitle}</Text>
+                </VStack>
+                <Box
+                  className="connector"
+                  position="absolute"
+                  left="-8px"
+                  top="50%"
+                  height="2px"
+                  w="0px"
+                  bg={card.borderColor}
+                  transformOrigin="left"
+                  transition="width 0.3s ease-in-out"
+                  opacity={0}
+                />
+                <Box
+                  className="connector-dot"
+                  position="absolute"
+                  left="-60px"
+                  top="50%"
+                  borderRadius="full"
+                  color={card.borderColor}
+                  transform="translate(-50%, -50%)"
+                  transition="all 0.3s ease-in-out"
+                  opacity={1}
+                  _before={{
+                    content: '""',
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: 'full',
+                    animation: 'pulse 1.5s ease-in-out infinite',
+                  }}
+                >
+                  {card.icon(24)}
+                </Box>
+              </VStack>
+            </Box>
+          ))}
+        </VStack>
+      </HStack>
+    </Container>
   );
 };
+
+export { FeaturesSection };

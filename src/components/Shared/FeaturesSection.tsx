@@ -41,7 +41,7 @@ export const FeaturesSection = () => {
     };
   }, [hasAnimated]);
 
-  const layergap = hasAnimated ? 300 - scrollProgress * 250 : 300;
+  const layergap = hasAnimated ? 500 - scrollProgress * 300 : 500; // Increased from 300 to 500
 
   const features = [
     {
@@ -49,7 +49,7 @@ export const FeaturesSection = () => {
       title: 'Confidence index',
       description: 'Reliability measure based on trusted data sources and institutions',
       index: 0,
-      offset: 0.5,
+      offset: 0.8, // Increased from 0.5 to 0.8
       opacity: 'whiteAlpha.100',
       color: 'blue.400'
     },
@@ -58,7 +58,7 @@ export const FeaturesSection = () => {
       title: 'Compliance',
       description: 'Regulatory adherence verified by official institutions',
       index: 1,
-      offset: 0.3,
+      offset: 0.5, // Increased from 0.3 to 0.5
       opacity: 'whiteAlpha.50',
       color: 'purple.400'
     },
@@ -67,7 +67,7 @@ export const FeaturesSection = () => {
       title: 'Proof of Authenticity', 
       description: 'Cryptographic verification of data authenticity',
       index: 2,
-      offset: 0.1,
+      offset: 0.2, // Increased from 0.1 to 0.2
       opacity: 'whiteAlpha.30',
       color: 'pink.400'
     }
@@ -88,34 +88,40 @@ export const FeaturesSection = () => {
   return (
     <Box position="relative" overflow="hidden" id="features-section">
       <Container maxW="6xl">
-        <TitleSection align="flex-start">
+        <TitleSection align="center">
           <Heading textStyle="title" mb={4}>Our key features</Heading>
           <Text textStyle="subtitle" mb={12}>Reliable solutions for secure and precise data delivery</Text>
         </TitleSection>
 
         <VStack align="stretch" gap={12}>
-          <Box position="relative" h="500px">
+          <Box position="relative" h="600px">
             {features.map((feature, i) => (
               <VStack
                 key={i}
                 position="absolute"
                 width="400px"
                 height="300px"
-                bg={hoveredCard === i ? `${feature.color}` : feature.opacity}
+                bg={hoveredCard === i ? 
+                  `rgba(255, 255, 255, 0.1)` : 
+                  feature.opacity}
                 borderRadius="xl"
                 transform={calculateDynamicTransform(i)}
                 border="4px solid"
                 borderColor={hoveredCard === i ? feature.color : `whiteAlpha.${200 - i * 50}`}
-                top="150px"
-                left={`${50 + (i * 100) + layergap * feature.offset}px`}
+                top="100px"
+                left="50%"
+                marginLeft="-200px"
                 align="center"
                 justify="center"
                 zIndex={hoveredCard === i ? 3 : 1}
                 transition="all 0.2s cubic-bezier(0.4, 0, 0.2, 1)"
                 boxShadow={hoveredCard === i ? 
-                  `0 20px 60px ${feature.color}33, 0 0 20px ${feature.color}22` : 
+                  `0 20px 60px ${feature.color}33, 0 0 20px ${feature.color}22, inset 0 0 20px rgba(255,255,255,0.1)` : 
                   '0 20px 40px rgba(0,0,0,0.3)'}
-                style={{ transformStyle: 'preserve-3d' }}
+                style={{ 
+                  transformStyle: 'preserve-3d',
+                  backdropFilter: hoveredCard === i ? 'blur(10px)' : 'none'
+                }}
                 cursor="pointer"
                 _before={{
                   content: '""',
@@ -147,6 +153,7 @@ export const FeaturesSection = () => {
                     transform={hoveredCard === i ? 'translateY(0)' : 'translateY(10px)'}
                     transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
                     color={hoveredCard === i ? feature.color : 'white'}
+                    textShadow={hoveredCard === i ? '0 0 10px rgba(255,255,255,0.3)' : 'none'}
                   >
                     {feature.title}
                   </Heading>
@@ -157,6 +164,7 @@ export const FeaturesSection = () => {
                     opacity={hoveredCard === i ? 1 : 0}
                     transform={hoveredCard === i ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.9)'}
                     transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+                    textShadow={hoveredCard === i ? '0 0 10px rgba(255,255,255,0.3)' : 'none'}
                   >
                     {feature.description}
                   </Text>
@@ -165,21 +173,25 @@ export const FeaturesSection = () => {
             ))}
           </Box>
 
-          <HStack gap={8} w="full">
+          <HStack gap={8} w="full" justify="center">
             {features.map((feature, i) => (
               <Card 
-                key={i} 
+                key={i}
+                w="200px"
                 onMouseEnter={() => setHoveredCard(i)} 
                 onMouseLeave={() => setHoveredCard(null)}
                 opacity={hoveredCard === i ? 1 : 0.7}
                 transform={hoveredCard === i ? 'translateY(-8px)' : 'none'}
                 transition="all 0.3s"
-                bg={hoveredCard === i ? feature.color + '22' : 'transparent'}
+                bg={hoveredCard === i ? `rgba(255,255,255,0.1)` : 'transparent'}
                 borderColor={hoveredCard === i ? feature.color : 'whiteAlpha.200'}
+                style={{
+                  backdropFilter: hoveredCard === i ? 'blur(10px)' : 'none'
+                }}
               >
-                <HStack gap={4} align="center">
+                <HStack gap={4} align="center" justify="center">
                   <Box color={hoveredCard === i ? feature.color : 'white'}>{feature.icon}</Box>
-                  <Heading fontSize="md" color={hoveredCard === i ? feature.color : 'white'}>{feature.title}</Heading>
+                  <Heading fontSize="sm" color={hoveredCard === i ? feature.color : 'white'}>{feature.title}</Heading>
                 </HStack>
               </Card>
             ))}

@@ -1,7 +1,6 @@
 import { Box, Container, Heading, Text, HStack, VStack } from '@chakra-ui/react';
-import { Card } from '@/components/ui/card';
 import { TitleSection } from '@/components/ui/title-sectiont';
-import { ArrowUpIcon, EyeIcon, LockIcon } from 'lucide-react';
+import { BadgeCheckIcon, ComponentIcon, EyeIcon, ShieldCheckIcon } from 'lucide-react';
 import { useState, useEffect, useCallback, useMemo } from 'react';
 
 export const FeaturesSection = () => {
@@ -46,7 +45,7 @@ export const FeaturesSection = () => {
   const features = useMemo(
     () => [
       {
-        icon: <EyeIcon size={32} strokeWidth={3} />,
+        icon: <ComponentIcon size={32} strokeWidth={3} />,
         title: 'Confidence index',
         description: 'Reliability measure based on trusted data sources and institutions',
         index: 0,
@@ -55,7 +54,7 @@ export const FeaturesSection = () => {
         color: 'blue.400',
       },
       {
-        icon: <ArrowUpIcon size={32} strokeWidth={3} />,
+        icon: <ShieldCheckIcon size={32} strokeWidth={3} />,
         title: 'Compliance',
         description: 'Regulatory adherence verified by official institutions',
         index: 1,
@@ -64,7 +63,7 @@ export const FeaturesSection = () => {
         color: 'purple.400',
       },
       {
-        icon: <LockIcon size={32} strokeWidth={3} />,
+        icon: <BadgeCheckIcon size={32} strokeWidth={3} />,
         title: 'Proof of Authenticity',
         description: 'Cryptographic verification of data authenticity',
         index: 2,
@@ -101,13 +100,28 @@ export const FeaturesSection = () => {
     setHoveredCard(null);
   }, []);
 
+  const handleCardMouseMove = useCallback(
+    (e: React.MouseEvent, index: number) => {
+      if (hoveredCard !== index) return;
+
+      const card = e.currentTarget;
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      card.style.setProperty('--x', `${x}px`);
+      card.style.setProperty('--y', `${y}px`);
+    },
+    [hoveredCard],
+  );
+
   const renderFeatureCard = useCallback(
     (feature: (typeof features)[0], i: number) => (
       <VStack
         key={i}
         position="absolute"
-        width="400px"
-        height="300px"
+        width="380px"
+        height="280px"
         borderRadius="xl"
         transform={calculateDynamicTransform(i)}
         border="4px solid"
@@ -124,10 +138,14 @@ export const FeaturesSection = () => {
             ? `0 20px 60px ${feature.color}33, 0 0 20px ${feature.color}22, inset 0 0 20px rgba(255,255,255,0.1)`
             : '0 20px 40px rgba(0,0,0,0.3)'
         }
-        style={{
-          transformStyle: 'preserve-3d',
-          backdropFilter: hoveredCard === i ? 'blur(4px)' : 'none',
-        }}
+        style={
+          {
+            transformStyle: 'preserve-3d',
+            backdropFilter: hoveredCard === i ? 'blur(4px)' : 'none',
+            '--x': '0px',
+            '--y': '0px',
+          } as React.CSSProperties
+        }
         cursor="pointer"
         _before={{
           content: '""',
@@ -136,13 +154,16 @@ export const FeaturesSection = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, ${feature.color}22 0%, transparent 60%)`,
-          opacity: hoveredCard === i ? 1 : 0,
-          transition: 'opacity 0.3s',
+          background:
+            hoveredCard === i
+              ? 'radial-gradient(circle at var(--x) var(--y), rgba(255,255,255,0.15) 0%, transparent 80%)'
+              : 'none',
           borderRadius: 'xl',
+          pointerEvents: 'none',
         }}
         onMouseEnter={() => handleMouseEnter(i)}
         onMouseLeave={handleMouseLeave}
+        onMouseMove={(e) => handleCardMouseMove(e, i)}
       >
         <VStack gap={4} p={6}>
           <Box
@@ -177,7 +198,7 @@ export const FeaturesSection = () => {
         </VStack>
       </VStack>
     ),
-    [hoveredCard, mousePosition, calculateDynamicTransform, handleMouseEnter, handleMouseLeave],
+    [hoveredCard, mousePosition, calculateDynamicTransform, handleMouseEnter, handleMouseLeave, handleCardMouseMove],
   );
 
   return (

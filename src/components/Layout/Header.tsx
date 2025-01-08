@@ -1,4 +1,4 @@
-import { Box, Button, HStack, IconButton, useDisclosure, Heading } from '@chakra-ui/react';
+import { Box, Button, HStack, IconButton, useDisclosure, Heading, Badge } from '@chakra-ui/react';
 import { FC } from 'react';
 import { MenuIcon, XIcon } from 'lucide-react';
 import LogoIcon from '../Icons/LogoIcon';
@@ -11,7 +11,7 @@ export const Header: FC<HeaderProps> = () => {
 
   return (
     <>
-      <Box position="fixed" top={0} zIndex={5} w="100vw" h="72px">
+      <Box position="fixed" top={0} zIndex={100} w="full" h="72px" m={0} borderRadius="md" overflow="hidden">
         <HStack
           justify="space-between"
           align="center"
@@ -20,10 +20,10 @@ export const Header: FC<HeaderProps> = () => {
           pr={8}
           pl={4}
           w="full"
-          bg="transparent"
           position="relative"
-          // backdropFilter="blur(8px)"
+          backdropFilter="blur(5px)"
           transition="all 0.5s ease-in-out"
+          // boxShadow="2xl"
         >
           <HStack align="center" justify="center" gap={0} as={Link} to="/">
             <Heading size="md">FACT</Heading>
@@ -37,8 +37,11 @@ export const Header: FC<HeaderProps> = () => {
             <Button as={NavLink} to="/" variant="navbar">
               Home
             </Button>
-            <Button as={NavLink} to="/data-hub" variant="plain">
-              Data Hub
+            <Button as={NavLink} to="/data-hub" variant="navbar" disabled>
+              Data Hub{' '}
+              <Badge px={3} variant="outline">
+                SOON
+              </Badge>
             </Button>
             <Button as={NavLink} to="/features" variant="navbar">
               Features
@@ -46,12 +49,18 @@ export const Header: FC<HeaderProps> = () => {
             <Button as={NavLink} to="/use-cases" variant="navbar">
               Use Cases
             </Button>
-            <Button as={NavLink} to="/data-providers" variant="navbar">
-              Data Providers
+            <Button as={NavLink} to="/data-providers" variant="navbar" disabled>
+              Data Providers{' '}
+              <Badge px={3} variant="outline">
+                SOON
+              </Badge>
+            </Button>
+            <Button as={NavLink} to="/about" variant="navbar">
+              About Us
             </Button>
           </HStack>
 
-          <Button variant="outline">Docs</Button>
+          <Button variant="solid">Docs</Button>
 
           <IconButton display={{ base: 'flex', md: 'none' }} aria-label="Open menu" onClick={onToggle} variant="ghost">
             {open ? <XIcon /> : <MenuIcon />}

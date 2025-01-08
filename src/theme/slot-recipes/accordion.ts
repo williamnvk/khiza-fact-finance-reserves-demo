@@ -16,7 +16,7 @@ export const accordionSlotRecipe = defineSlotRecipe({
         borderTopWidth: '0',
       },
       _dark: {
-        borderColor: 'gray.700',
+        borderColor: 'whiteAlpha.100',
       },
     },
     itemTrigger: {
@@ -70,6 +70,9 @@ export const accordionSlotRecipe = defineSlotRecipe({
       outline: {
         item: {
           borderBottomWidth: '1px',
+          _dark: {
+            borderColor: 'gray.700',
+          },
         },
       },
       subtle: {
@@ -90,13 +93,12 @@ export const accordionSlotRecipe = defineSlotRecipe({
         root: {
           bg: 'white',
           _dark: {
-            bg: 'gray.950',
-            borderColor: 'gray.800',
+            bg: 'bg',
+            borderColor: 'whiteAlpha.50',
           },
           borderWidth: '2px',
           borderRadius: 'xl',
-          borderColor: 'gray.50',
-
+          borderColor: 'whiteAlpha.50',
           divideY: '1px',
           overflow: 'hidden',
         },
@@ -110,7 +112,7 @@ export const accordionSlotRecipe = defineSlotRecipe({
           _open: {
             bg: 'white',
             _dark: {
-              bg: 'gray.800',
+              bg: 'transparent',
             },
           },
         },

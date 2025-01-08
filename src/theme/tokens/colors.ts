@@ -258,4 +258,39 @@ export const colors = defineTokens.colors({
       value: '#022c1e',
     },
   },
+  success: {
+    '50': {
+      value: '#e9fff7',
+    },
+    '100': {
+      value: '#caffea',
+    },
+    '200': {
+      value: '#9bffdb',
+    },
+    '300': {
+      value: '#5bfacb',
+    },
+    '400': {
+      value: '#13ebb2',
+    },
+    '500': {
+      value: '#00d49f',
+    },
+    '600': {
+      value: '#00ad83',
+    },
+    '700': {
+      value: '#008b6d',
+    },
+    '800': {
+      value: '#006d57',
+    },
+    '900': {
+      value: '#005a49',
+    },
+    '950': {
+      value: '#00332b',
+    },
+  },
 });

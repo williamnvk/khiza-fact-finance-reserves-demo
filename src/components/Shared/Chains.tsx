@@ -48,7 +48,7 @@ export default function Chains() {
     >
       <Box
         bgGradient="to-r"
-        gradientFrom="bg"
+        gradientFrom="#000"
         gradientTo="transparent"
         pos="absolute"
         top="0"
@@ -58,11 +58,11 @@ export default function Chains() {
         zIndex={1}
       ></Box>
 
-      <Slider alias="first">{chainSlides}</Slider>
+      <Slider alias="first" duration={5}>{chainSlides}</Slider>
 
       <Box
         bgGradient="to-l"
-        gradientFrom="bg"
+        gradientFrom="#000"
         gradientTo="transparent"
         pos="absolute"
         top={0}

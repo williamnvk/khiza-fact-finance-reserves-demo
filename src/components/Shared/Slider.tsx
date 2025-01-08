@@ -79,10 +79,6 @@ const Slider = ({ alias, children, width = '200px', duration = 10, toRight = fal
             opacity={0.7}
             _hover={{opacity: 1}}
             transition="opacity 0.3s"
-            data-aos="fade-right"
-            data-aos-easing="ease-out-cubic"
-            data-aos-duration="500"
-            data-aos-delay={i * 100}
           >
             {React.cloneElement(child, { width })}
           </Box>

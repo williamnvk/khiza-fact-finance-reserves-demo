@@ -71,7 +71,7 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 8 }) => {
       </HStack>
       <Container pos="absolute" top="50%" left="50%" transform="translate(-50%, -50%)" w="full" h="full" zIndex={1}>
         <VStack align="center" h="calc(100vh - 144px)" justify="center" gap={0} mt="72px">
-          <VStack flex={1} align="center" justify="center">
+          <VStack flex={1} align="center" justify="center" gap={8}>
             <LogoIcon width={32} height={32} />
             <Heading fontSize="6xl" lineHeight={1} textAlign="center" fontWeight="400">
               Official data for the

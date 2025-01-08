@@ -1,25 +1,26 @@
 import { Box, Text, Heading, VStack, HStack, Container } from '@chakra-ui/react';
 import { BadgeCheckIcon, ComponentIcon, ShieldCheckIcon } from 'lucide-react';
 import { TitleSection } from '../ui/title-sectiont';
+import { memo } from 'react';
 
-const FeaturesSection = () => {
+const FeaturesSection = memo(() => {
   const cards = [
     {
-      icon: (size: number = 24) => <BadgeCheckIcon size={size} strokeWidth={1.5} />,
+      icon: (size: number = 24) => <BadgeCheckIcon size={size} strokeWidth={1.5} aria-hidden="true" />,
       title: 'Proof of Authenticity',
       subtitle:
         'On-chain wallet validation that the data comes directly from the official data provider, eliminating risks of tampering.',
       borderColor: 'whiteAlpha.800',
     },
     {
-      icon: (size: number = 24) => <ShieldCheckIcon size={size} strokeWidth={1.5} />,
+      icon: (size: number = 24) => <ShieldCheckIcon size={size} strokeWidth={1.5} aria-hidden="true" />,
       title: 'Confidence Index',
       subtitle:
         'Our system monitors data for anomalies using statistical and density-based detection techniques. Any outlier data is flagged so the consumer contract can determine how to handle it.',
       borderColor: 'brand.800',
     },
     {
-      icon: (size: number = 24) => <ComponentIcon size={size} strokeWidth={1.5} />,
+      icon: (size: number = 24) => <ComponentIcon size={size} strokeWidth={1.5} aria-hidden="true" />,
       title: 'External Auditors',
       subtitle: 'A pool of independent auditors validates the integrity and accuracy of the data provided',
       borderColor: 'brand.950',
@@ -27,35 +28,37 @@ const FeaturesSection = () => {
   ];
 
   const updateCardPositions = (hoveredIndex: number | null) => {
-    cards.forEach((_, index) => {
-      const cardElement = document.querySelector(`.card-${index}`) as HTMLElement;
-      if (cardElement) {
-        let yOffset = 100 * index;
+    requestAnimationFrame(() => {
+      cards.forEach((_, index) => {
+        const cardElement = document.querySelector(`.card-${index}`) as HTMLElement;
+        if (cardElement) {
+          let yOffset = 100 * index;
 
-        if (hoveredIndex !== null) {
-          const distance = Math.abs(index - hoveredIndex);
-          if (index < hoveredIndex) {
-            yOffset -= 40 / (distance + 1);
-          } else if (index > hoveredIndex) {
-            yOffset += 40 / (distance + 1);
-          } else {
-            yOffset -= 30;
+          if (hoveredIndex !== null) {
+            const distance = Math.abs(index - hoveredIndex);
+            if (index < hoveredIndex) {
+              yOffset -= 40 / (distance + 1);
+            } else if (index > hoveredIndex) {
+              yOffset += 40 / (distance + 1);
+            } else {
+              yOffset -= 30;
+            }
           }
-        }
 
-        cardElement.style.transform = `translate(-50%, ${yOffset}px) rotate(40deg) skew(-20deg, -10deg)`;
-      }
+          cardElement.style.transform = `translate(-50%, ${yOffset}px) rotate(40deg) skew(-20deg, -10deg)`;
+        }
+      });
     });
   };
 
   return (
-    <Container py={{ base: 8, md: 16 }}>
+    <Container py={{ base: 8, md: 16 }} as="section" aria-labelledby="features-heading">
       <TitleSection>
-        <Heading textStyle="title">Our key features</Heading>
+        <Heading id="features-heading" textStyle="title">Our key features</Heading>
         <Text textStyle="subtitle">Reliable solutions for secure and precise data delivery</Text>
       </TitleSection>
       <HStack position="relative" w="100%" gap={20}>
-        <VStack flex={1} pos="relative" h="600px">
+        <VStack flex={1} pos="relative" h="600px" aria-hidden="true">
           {cards.map((card, index) => (
             <VStack
               key={index}
@@ -68,11 +71,11 @@ const FeaturesSection = () => {
               transform={`translate(-50%, calc(100px * ${index})) rotate(40deg) skew(-20deg, -10deg)`}
               border="2px solid"
               borderColor={card.borderColor}
-              bg="trasnparent"
+              bg="transparent"
               boxShadow="lg"
               borderRadius="xl"
               gap={8}
-              transition="all 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
+              transition="transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
               className={`card-${index}`}
               align="center"
               backdropFilter="blur(2px)"
@@ -114,9 +117,17 @@ const FeaturesSection = () => {
             <Box key={index} position="relative" w="100%">
               <VStack
                 role="button"
+                tabIndex={0}
+                aria-labelledby={`feature-title-${index}`}
                 id={`card-info-${index}`}
                 onMouseEnter={() => updateCardPositions(index)}
                 onMouseLeave={() => updateCardPositions(null)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    updateCardPositions(index);
+                  }
+                }}
+                onBlur={() => updateCardPositions(null)}
                 alignItems="flex-start"
                 p={8}
                 borderRadius="md"
@@ -131,8 +142,8 @@ const FeaturesSection = () => {
                   },
                 }}
               >
-                <VStack w="full" align="flex-start">
-                  <Heading color="whiteAlpha.900">{card.title}</Heading>
+                <VStack w="full" align="flex-start" gap={2}>
+                  <Heading id={`feature-title-${index}`} color="whiteAlpha.900" as="h3" fontSize="xl">{card.title}</Heading>
                   <Text color="whiteAlpha.500">{card.subtitle}</Text>
                 </VStack>
                 <Box
@@ -146,6 +157,7 @@ const FeaturesSection = () => {
                   transformOrigin="left"
                   transition="width 0.3s ease-in-out"
                   opacity={0}
+                  aria-hidden="true"
                 />
                 <Box
                   className="connector-dot"
@@ -157,6 +169,7 @@ const FeaturesSection = () => {
                   transform="translate(-50%, -50%)"
                   transition="all 0.3s ease-in-out"
                   opacity={1}
+                  aria-hidden="true"
                   _before={{
                     content: '""',
                     position: 'absolute',
@@ -178,6 +191,8 @@ const FeaturesSection = () => {
       </HStack>
     </Container>
   );
-};
+});
+
+FeaturesSection.displayName = 'FeaturesSection';
 
 export { FeaturesSection };

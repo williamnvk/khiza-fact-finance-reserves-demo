@@ -5,7 +5,7 @@
 // import cronosIcon from '@/assets/chains/cronos.svg';
 // import fantomIcon from '@/assets/chains/fantom.svg';
 import gnosisIcon from '@/assets/chains/gnosis.svg';
-// import optimismIcon from '@/assets/chains/optimism.svg';
+import moonbeamIcon from '@/assets/chains/moonbeam.svg';
 import polygonIcon from '@/assets/chains/polygon.svg';
 import ethereumIcon from '@/assets/chains/ethereum.svg';
 // import bscIcon from '@/assets/chains/bsc.svg';
@@ -30,6 +30,7 @@ export const chains: ChainDef[] = [
   // { name: 'Fantom', value: 'fantomTestnet', icon: fantomIcon },
   // { name: 'Optimism', value: 'optimismSepolia', icon: optimismIcon },
   { name: 'Gnosis', value: 'Gnosis', icon: gnosisIcon },
+  { name: 'Moonbeam', value: 'Moonbeam', icon: moonbeamIcon },
   // { name: 'Aurora', value: 'auroraTestnet', icon: auroraIcon },
   // { name: "ZkSync", value: "zkSyncSepoliaTestnet", icon: "" },
   // { name: 'Cronos', value: 'cronosTestnet', icon: cronosIcon },

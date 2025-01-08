@@ -12,22 +12,42 @@ export const teamMembers = [
     social: {
       linkedin: 'https://linkedin.com/in/juvinski',
     },
-    icons: [
-      <NaveggIcon width={100} height={24} />,
-      <DentsuAegisIcon width={100} height={24} />,
-      <DuckUniversityIcon width={100} height={24} />,
+    brands: [
+      {
+        type: "icon",
+        asset: <NaveggIcon width={100} height={24} />,
+      },
+      {
+        type: 'icon',
+        asset:  <DentsuAegisIcon width={100} height={24} />,
+      },
+      {
+        type: 'icon',
+        asset:  <DuckUniversityIcon width={100} height={24} />,
+      },
     ],
-    images: [],
   },
   {
     name: 'Fernanda Garanhani',
-    role: 'Founder & COO',
+    role: 'Co-Founder & COO',
     image: '/assets/team/fernandagaranhani.jpeg',
     bio: 'Fernanda Garanhani has over four years of experience in blockchain and Web3. She started her career as a blockchain analyst at Honey Island Capital, a venture capital firm, and advanced to become Head of New Business at Liqi Digital Assets, a leading asset tokenization platform. She is certified as a blockchain professional by the DEC Institute.',
     social: {
       linkedin: 'https://linkedin.com/in/fernandagaranhan',
     },
-    icons: [<LiqiLogo width={100} height={24} />, <DuckUniversityIcon width={100} height={24} />],
-    images: ['/assets/honeyisland.png'],
+    brands: [
+      {
+        type: 'image',
+        asset: '/assets/honeyisland.png',
+      },
+      {
+        type: 'icon',
+        asset: <LiqiLogo width={100} height={24} />,
+      },
+      {
+        type: 'image',
+        asset: '/assets/dec-institute.webp',
+      },
+    ],
   },
 ];

@@ -35,7 +35,7 @@ export default function AboutUs() {
         transform="rotate(180deg)"
         mixBlendMode="luminosity"
         // blendMode="soft-light"
-        opacity={.5}
+        opacity={0.5}
         loop
         src="/assets/hero-7.mp4"
       />
@@ -69,7 +69,7 @@ export default function AboutUs() {
               <Box overflow="hidden" bg={cardBg} _hover={{ bg: cardHoverBg }} transition="all 0.2s">
                 <Box
                   as="img"
-                  src="/about/picture-1.jpeg"
+                  src="/assets/about/picture-1.jpeg"
                   alt="Team meeting discussing blockchain solutions"
                   objectFit="cover"
                   w="full"
@@ -85,7 +85,7 @@ export default function AboutUs() {
               <Box overflow="hidden" bg={cardBg} _hover={{ bg: cardHoverBg }} transition="all 0.2s">
                 <Box
                   as="img"
-                  src="/about/picture-2.jpeg"
+                  src="/assets/about/picture-2.jpeg"
                   alt="Product launch event"
                   objectFit="cover"
                   w="full"
@@ -101,7 +101,7 @@ export default function AboutUs() {
               <Box overflow="hidden" bg={cardBg} _hover={{ bg: cardHoverBg }} transition="all 0.2s">
                 <Box
                   as="img"
-                  src="/about/picture-3.jpeg"
+                  src="/assets/about/picture-3.jpeg"
                   alt="Speaking at blockchain conference"
                   objectFit="cover"
                   w="full"
@@ -116,10 +116,11 @@ export default function AboutUs() {
             <AspectRatio ratio={1}>
               <Box overflow="hidden" bg={cardBg} _hover={{ bg: cardHoverBg }} transition="all 0.2s">
                 <Box
-                  as="img"
-                  src="/about/solana-1.jpeg"
-                  alt="Development team coding"
-                  objectFit="cover"
+                  // as="img"
+                  backgroundImage="url(/assets/about/solana-1.jpeg)"
+                  backgroundSize="cover"
+                  backgroundPosition="-145px center"
+                  backgroundRepeat="no-repeat"
                   w="full"
                   h="full"
                   filter="grayscale(100%)"
@@ -129,27 +130,13 @@ export default function AboutUs() {
               </Box>
             </AspectRatio>
 
-            <AspectRatio ratio={1}>
-              <Box overflow="hidden" bg={cardBg} _hover={{ bg: cardHoverBg }} transition="all 0.2s">
-                <Box
-                  as="img"
-                  src="/about/win-national-pitch-battle.jpeg"
-                  alt="Partnership signing ceremony"
-                  objectFit="cover"
-                  w="full"
-                  h="full"
-                  filter="grayscale(100%)"
-                  transition="all 0.2s ease-in-out"
-                  _hover={{ filter: 'grayscale(0%)', transform: 'scale(1.1)' }}
-                />
-              </Box>
-            </AspectRatio>
+           
 
             <AspectRatio ratio={1}>
               <Box overflow="hidden" bg={cardBg} _hover={{ bg: cardHoverBg }} transition="all 0.2s">
                 <Box
                   as="img"
-                  src="/about/solana-vencedor.jpeg"
+                  src="/assets/about/solana-vencedor.jpeg"
                   alt="Our office space"
                   objectFit="cover"
                   w="full"
@@ -160,6 +147,26 @@ export default function AboutUs() {
                 />
               </Box>
             </AspectRatio>
+
+
+            <AspectRatio ratio={1}>
+              <Box overflow="hidden" bg={cardBg} _hover={{ bg: cardHoverBg }} transition="all 0.2s">
+                <Box
+                  as="img"
+                  src="/assets/about/fact-finance-vencedores-premio-brazil.jpeg"
+                  alt="Our office space"
+                  objectFit="cover"
+                  w="full"
+                  h="full"
+                  filter="grayscale(100%)"
+                  transition="all 0.2s ease-in-out"
+                  _hover={{ filter: 'grayscale(0%)', transform: 'scale(1.1)' }}
+                />
+              </Box>
+            </AspectRatio>
+
+
+            
           </SimpleGrid>
 
           <VStack gap={6} align="stretch" maxW="4xl" mx="auto">
@@ -220,77 +227,70 @@ export default function AboutUs() {
                           right: '-4px',
                           bottom: '-4px',
                           bg: 'brand.500',
-                          borderRadius: 'xl',
+                          borderRadius: 'full',
                         }}
                       >
                         <Avatar
                           size="full"
-                          borderRadius="xl"
+                          // borderRadius="xl"
                           name={member.name}
                           src={member.image}
                           aria-hidden="true"
                         />
                       </Box>
-                      <VStack align="flex-start" gap={2}>
-                        <HStack>
-                          <Heading as="h3" size="2xl" id={`team-member-${index}`}>
-                            {member.name}
-                          </Heading>
-                          <Button
-                            as="a"
-                            href={member.social.linkedin}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            leftIcon={<LinkedinIcon width={20} height={20} />}
-                            size="sm"
-                            variant="plain"
-                            aria-label={`Visit ${member.name}'s LinkedIn profile`}
-                          >
-                            <LinkedinIcon />
-                          </Button>
-                        </HStack>
+                      <VStack align="flex-start" justify="center" gap={2} flex={1}>
+                        <Heading as="h3" size="2xl" id={`team-member-${index}`}>
+                          {member.name}
+                        </Heading>
 
-                        <Text color="brand.400" fontWeight="500">
+                        <Text color="brand.300" fontWeight="500">
                           {member.role}
                         </Text>
                       </VStack>
+                      <Button
+                        as="a"
+                        href={member.social.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        leftIcon={<LinkedinIcon width={20} height={20} />}
+                        size="sm"
+                        variant="plain"
+                        aria-label={`Visit ${member.name}'s LinkedIn profile`}
+                      >
+                        <LinkedinIcon />
+                      </Button>
                     </HStack>
-                    <Text color="whiteAlpha.800" fontSize="md" lineHeight="tall">
+                    <Text color="whiteAlpha.800" fontSize="lg" lineHeight="tall">
                       {member.bio}
                     </Text>
-                    <Flex gap={3} flexWrap="wrap" justify="flex-start" align="flex-start" w="full">
-                      {member.icons.map((icon, index) => (
-                        <Box
-                          w="auto"
-                          key={index}
-                          bg="whiteAlpha.100"
-                          borderRadius="lg"
-                          p={4}
-                          _hover={{ bg: 'whiteAlpha.200' }}
-                          transition="background 0.2s"
-                          role="img"
-                          aria-label={`Icon`}
-                        >
-                          {icon}
-                        </Box>
-                      ))}
-                      {member.images.map((image, index) => (
-                        <Box
-                          key={index}
-                          bg="whiteAlpha.100"
-                          borderRadius="lg"
-                          p={4}
-                          _hover={{ bg: 'whiteAlpha.200' }}
-                          transition="background 0.2s"
-                        >
-                          <img
-                            src={image}
-                            alt={`${member.name}'s technology expertise icon`}
-                            style={{ width: 'auto', height: '24px' }}
-                          />
-                        </Box>
-                      ))}
-                    </Flex>
+
+                    {member.brands.length > 0 && (
+                      <Flex gap={3} flexWrap="wrap" justify="flex-start" align="flex-start" w="full">
+                        {member.brands.map((brand, index) => (
+                          <Box
+                            w="auto"
+                            key={index}
+                            bg="whiteAlpha.100"
+                            borderRadius="lg"
+                            p={4}
+                            _hover={{ bg: 'whiteAlpha.200' }}
+                            transition="background 0.2s"
+                            role="img"
+                            aria-label={`Icon`}
+                          >
+                            {brand.type === 'icon' ? (
+                              brand.asset
+                            ) : (
+                              <img
+                                src={brand.asset}
+                                alt={`${member.name}'s technology expertise icon`}
+                                style={{ width: 'auto', height: '24px' }}
+                              />
+                            )}
+                          </Box>
+                        ))}
+                      </Flex>
+                    )}
                   </VStack>
                 </Box>
               ))}

@@ -1,6 +1,6 @@
 import { defineTextStyles } from "@chakra-ui/react"
 
-export const textStyles = {
+export const textStyles = defineTextStyles({
   title: {
     fontSize: { 
       base: "2xl", 
@@ -21,4 +21,4 @@ export const textStyles = {
     lineHeight: "tall",
     color: "whiteAlpha.800"
   }
-};
+});

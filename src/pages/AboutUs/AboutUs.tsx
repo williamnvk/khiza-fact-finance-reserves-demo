@@ -65,7 +65,7 @@ export default function AboutUs() {
             >
               Our History
             </Text>
-            <Heading as="h1" textStyle="title">
+            <Heading as="h1" textStyle="title" fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }}>
               Bridging Traditional Finance with Web3
             </Heading>
             <Text textAlign="center" textStyle="subtitle">
@@ -199,7 +199,7 @@ export default function AboutUs() {
               >
                 Meet the innovators
               </Text>
-              <Heading as="h2" textStyle="title">
+              <Heading as="h2" textStyle="title" fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }}>
                 The team behind Fact Finance
               </Heading>
               <Text fontSize={{ base: 'md', md: 'lg' }} maxW="3xl" mx="auto" textAlign="center" color="whiteAlpha.800">
@@ -313,7 +313,7 @@ export default function AboutUs() {
               >
                 Media & Press
               </Text>
-              <Heading as="h2" textStyle="title">
+              <Heading as="h2" textStyle="title" fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }}>
                 Learn More About Us
               </Heading>
               <Text fontSize={{ base: 'md', md: 'lg' }} maxW="2xl" mx="auto" textAlign="center" color="whiteAlpha.800">

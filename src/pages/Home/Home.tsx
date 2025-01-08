@@ -77,7 +77,13 @@ export const Home = () => {
               <Text fontSize="sm" color="brand.300">
                 CALLING THE DEVS
               </Text>
-              <Heading as="h2" id="call-to-action-heading" textStyle="title" textAlign={{ base: 'center', lg: 'left' }}>
+              <Heading
+                as="h2"
+                id="call-to-action-heading"
+                textStyle="title"
+                textAlign={{ base: 'center', lg: 'left' }}
+                fontSize={{ base: '2xl', sm: '3xl', md: '3xl', lg: '4xl' }}
+              >
                 Seamless Data Integration for Blockchain Developers
               </Heading>
               <Text fontSize="sm" textAlign={{ base: 'center', lg: 'left' }}>
@@ -97,7 +103,7 @@ export const Home = () => {
               </Button>
             </HStack>
           </VStack>
-          <Box flex={1.5} w="full" minH={{ base: '300px', md: '400px' }}>
+          <Box flex={1}>
             <CodeBlock aria-label="Code Example" />
           </Box>
         </HStack>
@@ -114,7 +120,13 @@ export const Home = () => {
         zIndex={5}
       >
         <VStack mb={{ base: 8, md: 16 }} gap={4}>
-          <Heading id="faq-heading" textStyle="title" as="h2" textAlign="center">
+          <Heading
+            id="faq-heading"
+            textStyle="title"
+            as="h2"
+            textAlign="center"
+            fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }}
+          >
             Frequently Asked Questions
           </Heading>
           <Text as="p" textStyle="subtitle" textAlign="center">

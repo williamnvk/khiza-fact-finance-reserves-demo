@@ -53,7 +53,6 @@ export const CodeBlock = () => {
       bgGradient="to-br"
       gradientFrom="whiteAlpha.100"
       gradientTo="transparent"
-      flex={1.5}
       p={4}
       w="full"
       h="full"

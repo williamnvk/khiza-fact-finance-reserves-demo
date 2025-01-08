@@ -74,12 +74,15 @@ export const FeaturesSection = () => {
   ];
 
   const calculateDynamicTransform = (index: number) => {
+    const mouseX = (mousePosition.x / window.innerWidth - 0.5) * 20;
+    const mouseY = (mousePosition.y / window.innerHeight - 0.5) * 20;
+
     if (hoveredCard === index) {
       const rotateX = (mousePosition.y / window.innerHeight - 0.5) * 30;
       const rotateY = (mousePosition.x / window.innerWidth - 0.5) * 30;
       return `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(100px) scale(1.1)`;
     }
-    return `perspective(1000px) rotateX(${60 + Math.sin(Date.now() / 2000) * 10}deg) rotateY(${45 + Math.cos(Date.now() / 2000) * 10}deg) translateZ(${-layergap * features[index].offset}px)`;
+    return `perspective(1000px) rotateX(${mouseY + 60 + Math.sin(Date.now() / 2000) * 10}deg) rotateY(${mouseX + 45 + Math.cos(Date.now() / 2000) * 10}deg) translateZ(${-layergap * features[index].offset}px)`;
   };
 
   return (
@@ -108,7 +111,7 @@ export const FeaturesSection = () => {
                 align="center"
                 justify="center"
                 zIndex={hoveredCard === i ? 3 : 1}
-                transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+                transition="all 0.2s cubic-bezier(0.4, 0, 0.2, 1)"
                 boxShadow={hoveredCard === i ? 
                   `0 20px 60px ${feature.color}33, 0 0 20px ${feature.color}22` : 
                   '0 20px 40px rgba(0,0,0,0.3)'}

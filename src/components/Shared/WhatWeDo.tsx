@@ -1,7 +1,8 @@
-import { Box, Container, Heading, HStack, Text, VStack } from '@chakra-ui/react';
+import { Box, Container, Heading, HStack, Text, VStack, useBreakpointValue } from '@chakra-ui/react';
 import { Button } from '@/components/ui/button';
 import { TitleSection } from '@/components/ui/title-sectiont';
 import { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 
 export const WhatWeDo = () => {
   const cardRefs = {
@@ -11,6 +12,11 @@ export const WhatWeDo = () => {
   };
 
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  
+  // Responsive layout
+  const stackDirection = useBreakpointValue({ base: 'column', lg: 'row' });
+  const headingSize = useBreakpointValue({ base: '3xl', md: '4xl', lg: '5xl' });
+  const containerMaxW = useBreakpointValue({ base: '100%', lg: '7xl' });
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -31,8 +37,8 @@ export const WhatWeDo = () => {
   }, [hoveredCard]);
 
   return (
-    <Container>
-      <VStack gap={4} w="full" align="center">
+    <Container as="section" maxW={containerMaxW} py={{ base: 8, md: 16 }} aria-labelledby="what-we-do-title">
+      <VStack gap={8} w="full" align="center">
         <TitleSection>
           <Text
             fontSize="sm"
@@ -46,226 +52,128 @@ export const WhatWeDo = () => {
           >
             WHAT WE DO
           </Text>
-          <Heading textStyle="title" textAlign="center">
+          <Heading id="what-we-do-title" textStyle="title" textAlign="center">
             Powering asset tokenization with
             <br />
             trusted real-world data{' '}
           </Heading>
-          <Text textStyle="subtitle" maxW="2xl" textAlign="center">
+          <Text as="p" textStyle="subtitle" maxW="2xl" textAlign="center">
             The data layer connecting official data sources to tokenized assets, unlocking innovative financial
             solutions
           </Text>
         </TitleSection>
 
-        <HStack gap={8} w="full" align="center" justify="center">
-          <VStack
-            ref={cardRefs['capital-markets']}
-            id="card-capital-markets"
-            className="what-we-do-card"
-            align="flex-start"
-            onMouseEnter={() => {
-              setHoveredCard('capital-markets');
-              if (cardRefs['capital-markets'].current) {
-                cardRefs['capital-markets'].current.style.setProperty('--size', '200px');
-              }
-            }}
-            onMouseLeave={() => {
-              setHoveredCard(null);
-              if (cardRefs['capital-markets'].current) {
-                cardRefs['capital-markets'].current.style.setProperty('--size', '0px');
-              }
-            }}
-          >
-            <Box
-              // borderRadius="4xl"
-              // border="2px solid {colors.whiteAlpha.200}"
-              // boxShadow="2xl"
-              as="video"
-              position="absolute"
-              top={0}
-              left={0}
-              w="100%"
-              h="100%"
-              objectFit="cover"
-              zIndex={0}
-              autoPlay
-              muted
-              filter="brightness(0.3)"
-              //   transform="rotate(180deg)"
-              mixBlendMode="luminosity"
-              //   blendMode="soft-light"
-              // opacity={.1}
-              loop
-              src="/assets/what-we-do/capital-markets.mp4"
-            />
-            <Box
-              position="absolute"
-              top="50%"
-              left="0%"
-              transform="translate(-50%, -50%)"
-              w="100%"
-              h="100%"
-              bg="radial-gradient(circle, black 0%, rgba(0,0,0,.5) 100%)"
-              filter="blur(60px)"
-              opacity={0.3}
-              zIndex={1}
-            />
-            <Box
-              position="absolute"
-              top="0%"
-              right="-100%"
-              transform="translate(-50%, -50%)"
-              w="100%"
-              h="100%"
-              bg="radial-gradient(circle, black 0%, rgba(0,0,0,.5) 100%)"
-              filter="blur(60px)"
-              opacity={0.6}
-              zIndex={1}
-            />
-            <Box
-              position="absolute"
-              bottom="-50%"
-              right="-50%"
-              transform="translate(-50%, -50%)"
-              w="50%"
-              h="50%"
-              bg="radial-gradient(circle, {colors.brand.900} 0%, {colors.brand.900} 25%, rgba(0,0,0,.5) 100%)"
-              filter="blur(40px)"
-              zIndex={1}
-            />
-            <Heading fontSize="4xl" mb={4} zIndex={2}>
-              Capital Markets
-            </Heading>
-            <Text textStyle="subtitle" zIndex={2}>
-              Access official economic indices straight from the official source
-            </Text>
-          </VStack>
+        <HStack 
+          as={motion.div}
+          gap={{ base: 4, md: 8 }} 
+          w="full" 
+          align="stretch" 
+          justify="center"
+          flexDirection={stackDirection as StackDirection}
+          flexWrap={{ base: 'wrap', lg: 'nowrap' }}
+        >
+          {[
+            {
+              id: 'capital-markets',
+              title: 'Capital Markets',
+              description: 'Access official economic indices straight from the official source',
+              video: '/assets/what-we-do/capital-markets.mp4'
+            },
+            {
+              id: 'real-estate', 
+              title: 'Real Estate',
+              description: 'Square meter price and proof of reserve for tokenized properties',
+              video: '/assets/what-we-do/real-estate.mp4'
+            },
+            {
+              id: 'commodities',
+              title: 'Commodities', 
+              description: 'Qualitative data and event monitoring for tokenized commodities',
+              video: '/assets/what-we-do/commodities.mp4'
+            }
+          ].map(card => (
+            <VStack
+              key={card.id}
+              ref={cardRefs[card.id as keyof typeof cardRefs]}
+              id={`card-${card.id}`}
+              className="what-we-do-card"
+              align="flex-start"
+              flex="1"
+              minH={{ base: '300px', md: '400px' }}
+              p={6}
+              position="relative"
+              overflow="hidden"
+              role="article"
+              borderRadius="xl"
+              transition="all 0.3s ease"
+              _hover={{ transform: 'scale(1.02)' }}
+              onMouseEnter={() => {
+                setHoveredCard(card.id);
+                if (cardRefs[card.id as keyof typeof cardRefs].current) {
+                  cardRefs[card.id as keyof typeof cardRefs].current!.style.setProperty('--size', '200px');
+                }
+              }}
+              onMouseLeave={() => {
+                setHoveredCard(null);
+                if (cardRefs[card.id as keyof typeof cardRefs].current) {
+                  cardRefs[card.id as keyof typeof cardRefs].current!.style.setProperty('--size', '0px');
+                }
+              }}
+            >
+              <Box
+                as="video"
+                position="absolute"
+                top={0}
+                left={0}
+                w="100%"
+                h="100%"
+                objectFit="cover"
+                zIndex={0}
+                autoPlay
+                muted
+                playsInline
+                loop
+                preload="metadata"
+                aria-hidden="true"
+                filter="brightness(0.3)"
+                mixBlendMode="luminosity"
+              >
+                <source src={card.video} type="video/mp4" />
+              </Box>
 
-          <VStack
-            ref={cardRefs['real-estate']}
-            id="card-real-estate"
-            className="what-we-do-card"
-            align="flex-start"
-            onMouseEnter={() => {
-              setHoveredCard('real-estate');
-              if (cardRefs['real-estate'].current) {
-                cardRefs['real-estate'].current.style.setProperty('--size', '200px');
-              }
-            }}
-            onMouseLeave={() => {
-              setHoveredCard(null);
-              if (cardRefs['real-estate'].current) {
-                cardRefs['real-estate'].current.style.setProperty('--size', '0px');
-              }
-            }}
-          >
-            <Box
-              // borderRadius="4xl"
-              // border="2px solid {colors.whiteAlpha.200}"
-              // boxShadow="2xl"
-              as="video"
-              position="absolute"
-              top={0}
-              left={0}
-              w="100%"
-              h="100%"
-              objectFit="cover"
-              zIndex={0}
-              autoPlay
-              muted
-              filter="brightness(.25)"
-              // transform="rotate(180deg)"
-              mixBlendMode="luminosity"
-              // blendMode="soft-light"
-              // opacity={.1}
-              loop
-              src="/assets/what-we-do/real-estate.mp4"
-            />
-            <Box
-              position="absolute"
-              top="0%"
-              left="0%"
-              transform="translate(-50%, -50%)"
-              w="100%"
-              h="100%"
-              bg="radial-gradient(circle, black 0%, rgba(0,0,0,.5) 100%)"
-              filter="blur(60px)"
-              opacity={0.3}
-              zIndex={1}
-            />
-            <Box
-              position="absolute"
-              bottom="-50%"
-              right="-50%"
-              transform="translate(-50%, -50%)"
-              w="50%"
-              h="50%"
-              bg="radial-gradient(circle, {colors.brand.900} 0%, {colors.brand.900} 25%, rgba(0,0,0,.5) 100%)"
-              filter="blur(40px)"
-              zIndex={1}
-            />
-            <Heading fontSize="5xl" mb={4} zIndex={2}>
-              Real Estate
-            </Heading>
-            <Text textStyle="subtitle" zIndex={2}>
-              Square meter price and proof of reserve for tokenized properties{' '}
-            </Text>
-          </VStack>
+              <Box
+                position="absolute"
+                inset={0}
+                bg="linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7))"
+                zIndex={1}
+              />
 
-          <VStack
-            ref={cardRefs['commodities']}
-            id="card-commodities"
-            className="what-we-do-card"
-            align="flex-start"
-            onMouseEnter={() => {
-              setHoveredCard('commodities');
-              if (cardRefs['commodities'].current) {
-                cardRefs['commodities'].current.style.setProperty('--size', '200px');
-              }
-            }}
-            onMouseLeave={() => {
-              setHoveredCard(null);
-              if (cardRefs['commodities'].current) {
-                cardRefs['commodities'].current.style.setProperty('--size', '0px');
-              }
-            }}
-            zIndex={2}
-          >
-            <Box
-              as="video"
-              position="absolute"
-              top={0}
-              left={0}
-              w="100%"
-              h="100%"
-              objectFit="cover"
-              zIndex={0}
-              autoPlay
-              muted
-              filter="brightness(.25) grayscale(1)"
-              loop
-              src="/assets/what-we-do/commodities.mp4"
-            />
-            <Box
-              position="absolute"
-              bottom="-50%"
-              right="-50%"
-              transform="translate(-50%, -50%)"
-              w="50%"
-              h="50%"
-              bg="radial-gradient(circle, {colors.brand.900} 0%, {colors.brand.900} 25%, rgba(0,0,0,.5) 100%)"
-              filter="blur(40px)"
-              zIndex={1}
-            />
-            <Heading fontSize="5xl" mb={4} zIndex={2}>
-              Commodities
-            </Heading>
-            <Text textStyle="subtitle" zIndex={2}>
-              Qualitative data and event monitoring for tokenized commoditie
-            </Text>
-          </VStack>
+              <Heading 
+                as="h3" 
+                fontSize={headingSize} 
+                mb={4} 
+                zIndex={2}
+              >
+                {card.title}
+              </Heading>
+              <Text 
+                textStyle="subtitle" 
+                zIndex={2}
+                fontSize={{ base: 'sm', md: 'md' }}
+              >
+                {card.description}
+              </Text>
+            </VStack>
+          ))}
         </HStack>
-        <Button variant="ghost">See our use cases</Button>
+
+        <Button 
+          variant="ghost"
+          aria-label="View use cases"
+          size={{ base: 'md', md: 'lg' }}
+        >
+          See our use cases
+        </Button>
       </VStack>
     </Container>
   );

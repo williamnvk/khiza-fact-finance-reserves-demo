@@ -1,4 +1,4 @@
-import { Box, Button, HStack, Text } from '@chakra-ui/react';
+import { Box, Button, Code, HStack, Text } from '@chakra-ui/react';
 import { NetworkIcon } from 'lucide-react';
 import { useState } from 'react';
 import { ClipboardIconButton, ClipboardRoot } from '@/components/ui/clipboard';
@@ -50,9 +50,11 @@ export const CodeBlock = () => {
       borderRadius="lg"
       overflowY="hidden"
       overflowX="auto"
-      bg="whiteAlpha.50"
+      bgGradient="to-br"
+      gradientFrom="whiteAlpha.100"
+      gradientTo="transparent"
       flex={1.5}
-      p={2}
+      p={4}
       w="full"
       h="full"
       position="relative"
@@ -66,15 +68,14 @@ export const CodeBlock = () => {
           <img src="/assets/solana-icon.png" alt="Solana" width={24} height={24} />
           <Text flex={1}>Solana</Text>
         </Button>
+        <ClipboardRoot value={tab === 'evm' ? evmCode : solanaCode}>
+          <ClipboardIconButton />
+        </ClipboardRoot>
       </HStack>
 
-      <ClipboardRoot value={tab === 'evm' ? evmCode : solanaCode} position="absolute" top={16} right={4}>
-        <ClipboardIconButton />
-      </ClipboardRoot>
-
       {tab === 'evm' && (
-        <code>
-          <Box as="pre" fontFamily="mono" fontSize="sm" p={4}>
+        <Code w="full" bg="transparent">
+          <Box as="pre" fontFamily="mono" fontSize="sm" py={4}>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
                 &nbsp;&nbsp;1
@@ -198,12 +199,12 @@ export const CodeBlock = () => {
               <Text color="white">{`}`}</Text>
             </HStack>
           </Box>
-        </code>
+        </Code>
       )}
 
       {tab === 'solana' && (
-        <code>
-          <Box as="pre" fontFamily="mono" fontSize="sm" p={4}>
+        <Code w="full" bg="transparent">
+          <Box as="pre" fontFamily="mono" fontSize="sm" py={4}>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
                 &nbsp;&nbsp;1
@@ -466,7 +467,7 @@ export const CodeBlock = () => {
               </Text>
             </HStack>
           </Box>
-        </code>
+        </Code>
       )}
     </Box>
   );

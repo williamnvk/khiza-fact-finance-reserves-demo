@@ -4,23 +4,21 @@ import { Box, Container, Heading, Text, VStack, SimpleGrid, Flex, HStack, Aspect
 import LinkedinIcon from '@/components/Icons/LinkedinIcon';
 import { teamMembers } from '@/data/team';
 import { SEO } from '@/components/Common/SEO';
+import { Image } from '@chakra-ui/react';
 
 export default function AboutUs() {
   const cardBg = 'blackAlpha.500';
   const cardHoverBg = 'whiteAlpha.100';
 
   return (
-    <Box bg="#000" pos="relative" w="full" h="full" pt="25vh">
+    <Box pos="relative" w="full" h="full" pt="25vh">
       <SEO
-        title="About Us | Fact Finance"
-        description="Meet the innovative team behind Fact Finance. Our experts specialize in blockchain, data infrastructure, and economic systems."
-        keywords="Fact Finance team, blockchain experts, data infrastructure, web3 solutions, asset tokenization"
+        title="About Fact Finance | Blockchain Data Infrastructure & Asset Tokenization"
+        description="Fact Finance provides secure data infrastructure for the tokenized economy, connecting platforms to official sources. Meet our expert team in blockchain, data & finance."
+        keywords="Fact Finance, blockchain data, asset tokenization, web3 infrastructure, blockchain experts, data solutions, real-world assets"
       />
 
       <Box
-        // borderRadius="4xl"
-        // border="2px solid {colors.whiteAlpha.200}"
-        // boxShadow="2xl"
         as="video"
         position="absolute"
         top={0}
@@ -28,19 +26,31 @@ export default function AboutUs() {
         w="100vw"
         h="100vh"
         objectFit="cover"
-        zIndex={0}
+        playsInline
         autoPlay
         muted
         filter="brightness(.25)"
         transform="rotate(180deg)"
         mixBlendMode="luminosity"
-        // blendMode="soft-light"
         opacity={0.5}
         loop
         src="/assets/about/bg.mp4"
+        aria-hidden="true"
+        zIndex={-1}
+      />
+      <Box
+        position="absolute"
+        top="100vh"
+        left="0%"
+        transform="translate(-50%, -50%)"
+        w="300vw"
+        h="10vh"
+        bg="radial-gradient(circle, {colors.black} 0%, {colors.black} 25%, rgba(0,0,0,.5) 100%)"
+        filter="blur(30px)"
+        zIndex={1}
       />
 
-      <Container maxW="6xl" py={{ base: 12, md: 20 }} as="main" role="main" aria-label="About Us Section">
+      <Container maxW="6xl" py={{ base: 12, md: 20 }} as="main" role="main" aria-label="About Us Section" zIndex={1}>
         <VStack gap={8} align="stretch">
           <TitleSection>
             <Text
@@ -67,48 +77,48 @@ export default function AboutUs() {
           <SimpleGrid columns={{ base: 2, md: 3 }} w="full" borderRadius="2xl" overflow="hidden" maxW="4xl" mx="auto">
             <AspectRatio ratio={1}>
               <Box overflow="hidden" bg={cardBg} _hover={{ bg: cardHoverBg }} transition="all 0.2s">
-                <Box
-                  as="img"
+                <Image
                   src="/assets/about/luciano-juvinski-speaker.webp"
-                  alt="Product launch event"
+                  alt="Luciano Juvinski speaking at product launch event"
                   objectFit="cover"
                   w="full"
                   h="full"
                   filter="grayscale(100%)"
                   transition="all 0.2s ease-in-out"
                   _hover={{ filter: 'grayscale(0%)', transform: 'scale(1.1)' }}
+                  loading="lazy"
                 />
               </Box>
             </AspectRatio>
 
             <AspectRatio ratio={1}>
               <Box overflow="hidden" bg={cardBg} _hover={{ bg: cardHoverBg }} transition="all 0.2s">
-                <Box
-                  as="img"
+                <Image
                   src="/assets/about/luciano-juvinski-speaker-2.webp"
-                  alt="Team meeting discussing blockchain solutions"
+                  alt="Fact Finance team discussing blockchain solutions at meeting"
                   objectFit="cover"
                   w="full"
                   filter="grayscale(100%)"
                   transition="all 0.2s ease-in-out"
                   _hover={{ filter: 'grayscale(0%)', transform: 'scale(1.1)' }}
                   h="full"
+                  loading="lazy"
                 />
               </Box>
             </AspectRatio>
 
             <AspectRatio ratio={1}>
               <Box overflow="hidden" bg={cardBg} _hover={{ bg: cardHoverBg }} transition="all 0.2s">
-                <Box
-                  as="img"
+                <Image
                   src="/assets/about/fernanda-regina.webp"
-                  alt="Speaking at blockchain conference"
+                  alt="Fernanda Regina speaking at blockchain conference"
                   objectFit="cover"
                   w="full"
                   h="full"
                   filter="grayscale(100%)"
                   transition="all 0.2s ease-in-out"
                   _hover={{ filter: 'grayscale(0%)', transform: 'scale(1.1)' }}
+                  loading="lazy"
                 />
               </Box>
             </AspectRatio>
@@ -116,7 +126,6 @@ export default function AboutUs() {
             <AspectRatio ratio={1}>
               <Box overflow="hidden" bg={cardBg} _hover={{ bg: cardHoverBg }} transition="all 0.2s">
                 <Box
-                  // as="img"
                   backgroundImage="url(/assets/about/fernanda-stand.webp)"
                   backgroundSize="cover"
                   backgroundPosition="-145px center"
@@ -126,38 +135,40 @@ export default function AboutUs() {
                   filter="grayscale(100%)"
                   transition="all 0.2s ease-in-out"
                   _hover={{ filter: 'grayscale(0%)', transform: 'scale(1.1)' }}
+                  role="img"
+                  aria-label="Fernanda presenting Fact Finance solutions at a conference stand"
                 />
               </Box>
             </AspectRatio>
 
             <AspectRatio ratio={1}>
               <Box overflow="hidden" bg={cardBg} _hover={{ bg: cardHoverBg }} transition="all 0.2s">
-                <Box
-                  as="img"
+                <Image
                   src="/assets/about/demo-day.webp"
-                  alt="Our office space"
+                  alt="Fact Finance team presenting at demo day event"
                   objectFit="cover"
                   w="full"
                   h="full"
                   filter="grayscale(100%)"
                   transition="all 0.2s ease-in-out"
                   _hover={{ filter: 'grayscale(0%)', transform: 'scale(1.1)' }}
+                  loading="lazy"
                 />
               </Box>
             </AspectRatio>
 
             <AspectRatio ratio={1}>
               <Box overflow="hidden" bg={cardBg} _hover={{ bg: cardHoverBg }} transition="all 0.2s">
-                <Box
-                  as="img"
+                <Image
                   src="/assets/about/fact-finance-vencedores-premio-brasil.webp"
-                  alt="Our office space"
+                  alt="Fact Finance team celebrating after receiving prestigious Brazil technology award"
                   objectFit="cover"
                   w="full"
                   h="full"
                   filter="grayscale(100%)"
                   transition="all 0.2s ease-in-out"
                   _hover={{ filter: 'grayscale(0%)', transform: 'scale(1.1)' }}
+                  loading="lazy"
                 />
               </Box>
             </AspectRatio>
@@ -226,13 +237,7 @@ export default function AboutUs() {
                           borderRadius: 'full',
                         }}
                       >
-                        <Avatar
-                          size="full"
-                          // borderRadius="xl"
-                          name={member.name}
-                          src={member.image}
-                          aria-hidden="true"
-                        />
+                        <Avatar size="full" name={member.name} src={member.image} aria-hidden="true" />
                       </Box>
                       <VStack align="flex-start" justify="center" gap={2} flex={1}>
                         <Heading as="h3" size="2xl" id={`team-member-${index}`}>
@@ -272,15 +277,16 @@ export default function AboutUs() {
                             _hover={{ bg: 'whiteAlpha.200' }}
                             transition="background 0.2s"
                             role="img"
-                            aria-label={`Icon`}
+                            aria-label={`${member.name}'s ${brand.type === 'icon' ? 'technology expertise' : 'brand'}`}
                           >
                             {brand.type === 'icon' ? (
                               brand.asset
                             ) : (
-                              <img
+                              <Image
                                 src={brand.asset}
-                                alt={`${member.name}'s technology expertise icon`}
+                                alt={`${member.name}'s expertise in ${brand.name}`}
                                 style={{ width: 'auto', height: '24px' }}
+                                loading="lazy"
                               />
                             )}
                           </Box>
@@ -317,8 +323,14 @@ export default function AboutUs() {
 
             <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} mt={12}>
               {[
-                { url: 'https://www.youtube.com/embed/V2JulIYOQ6A', title: 'Fact Finance Podcast 2' },
-                { url: 'https://www.youtube.com/embed/MT6ZBBPVpNM', title: 'Fact Finance Podcast 1' },
+                {
+                  url: 'https://www.youtube.com/embed/V2JulIYOQ6A',
+                  title: 'Fact Finance discusses blockchain data infrastructure and asset tokenization',
+                },
+                {
+                  url: 'https://www.youtube.com/embed/MT6ZBBPVpNM',
+                  title: 'Fact Finance explains the future of tokenized assets',
+                },
               ].map((video, index) => (
                 <Box key={index}>
                   <AspectRatio ratio={16 / 9}>

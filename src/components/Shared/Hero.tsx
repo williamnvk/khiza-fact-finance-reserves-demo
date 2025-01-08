@@ -32,7 +32,7 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
           loop
           src={`/assets/hero-${heroNumber}.mp4`}
         />
-       
+
         <Box
           position="absolute"
           top="0%"
@@ -55,7 +55,7 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
           filter="blur(100px)"
           zIndex={2}
         />
-          <Box
+        <Box
           position="absolute"
           top="100%"
           left="0%"

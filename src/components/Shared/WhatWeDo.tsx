@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { TitleSection } from '@/components/ui/title-sectiont';
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { StackDirection } from 'node_modules/@chakra-ui/react/dist/types/components/stack/get-separator-style';
 
 export const WhatWeDo = () => {
   const cardRefs = {
@@ -125,7 +126,8 @@ export const WhatWeDo = () => {
               className="what-we-do-card"
               align="flex-start"
               flex="1"
-              h={{ base: '360px', md: '360px' }}
+              minH={{ base: '240px', md: '360px' }}
+              h={{ base: '240px', md: '360px' }}
               p={{ base: 4, sm: 8 }}
               position="relative"
               overflow="hidden"

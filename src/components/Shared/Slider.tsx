@@ -11,7 +11,7 @@ export interface SliderProps extends React.HTMLAttributes<HTMLDivElement> {
   alias: string;
 }
 
-const Slider = ({ alias, children, width = '200px', duration = 10, toRight = false, ...props }: SliderProps) => {
+const Slider = ({ alias, children, width = '200px', duration = 5, toRight = false, ...props }: SliderProps) => {
   const [items, setItems] = useState<ReactElement[]>([]);
 
   // Memoize items creation
@@ -82,11 +82,12 @@ const Slider = ({ alias, children, width = '200px', duration = 10, toRight = fal
       {...props}
     >
       <Flex
-        gap={8}
+        gap={4}
         py={4}
         role="list"
+        h="120px"
         style={{
-          animation: `slider_${alias} ${duration * 2}s linear infinite`,
+          animation: `slider_${alias} ${duration}s linear infinite`,
           willChange: 'transform',
           backfaceVisibility: 'hidden',
           WebkitFontSmoothing: 'antialiased',
@@ -100,10 +101,7 @@ const Slider = ({ alias, children, width = '200px', duration = 10, toRight = fal
             _hover={{ opacity: 1 }}
             transition="opacity 0.3s ease"
             willChange="opacity"
-            style={{
-              minWidth: width,
-              flexShrink: 0,
-            }}
+            flexShrink={0}
           >
             {React.cloneElement(child, { width })}
           </Box>

@@ -88,15 +88,15 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
       >
         <VStack
           align="center"
-          h={{ base: 'calc(100vh - 72px)', md: 'calc(100vh - 144px)' }}
+          h={{ base: 'full', md: 'calc(100vh - 144px)' }}
           justify="center"
           gap={stackSpacing}
-          mt={{ base: '36px', md: '72px' }}
+          mt={{ base: '0', md: '72px' }}
         >
           <VStack flex={1} align="center" justify="center" gap={stackSpacing}>
             <LogoIcon width={logoSize} height={logoSize} />
             <Heading
-              fontSize={{ base: '4xl', sm: '4xl', md: '6xl', lg: '7xl' }}
+              fontSize={{ base: '5xl', sm: '5xl', md: '6xl', lg: '7xl' }}
               lineHeight={1.1}
               fontWeight="400"
               w="full"
@@ -141,10 +141,10 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
               gap={{ base: 0, md: 4 }}
               align="center"
               justify="center"
-              filter="grayscale(1)"
+              filter="grayscale(1) brightness(2)"
               my={0}
               transition="opacity 0.3s ease-in-out"
-              opacity={0.5}
+              // opacity={0.5}
               _hover={{ opacity: 1 }}
               flexWrap={{ base: 'wrap', md: 'nowrap' }}
             >
@@ -155,7 +155,7 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
                     src="/assets/outlier-ventures.png"
                     alt="Outlier Ventures"
                     filter="invert(1)"
-                    h={{ base: '18px', md: '22px' }}
+                    h={{ base: '20px', md: '22px' }}
                   />
                   <KhizaIcon {...partnerLogoSizes.khiza} />
                 </HStack>
@@ -165,7 +165,7 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
                     src="/assets/firmeza-token.avif"
                     alt="Firmeza Token"
                     filter="invert(1) brightness(2)"
-                    h={{ base: '32px', md: '42px' }}
+                    h={{ base: '28px', md: '42px' }}
                   />
                   <SolanaHorizontal {...partnerLogoSizes.solana} />
                 </HStack>

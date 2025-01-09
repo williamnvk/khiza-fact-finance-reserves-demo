@@ -52,7 +52,6 @@ export default function Chains() {
     <Box
       as="section"
       w="full"
-      mb={{ base: 4, sm: 8, md: 12 }}
       role="region"
       aria-label="Supported Blockchain Networks"
       pos="relative"
@@ -73,7 +72,6 @@ export default function Chains() {
 
       <Slider 
         alias="first" 
-        duration={5}
         aria-label="Blockchain networks carousel"
       >
         {chainSlides}

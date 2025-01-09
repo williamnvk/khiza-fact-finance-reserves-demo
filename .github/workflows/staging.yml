@@ -50,4 +50,4 @@ jobs:
         uses: tsickert/discord-webhook@v5.3.0
         with:
           webhook-url: ${{ secrets.KHIZA_DISCORD_WEBHOOK_URL }}
-          content: "**Peece frontend** deployed to **staging**."
+          content: "**Fact.finance frontend** deployed to **staging**."

@@ -154,11 +154,17 @@ export const Header: FC<HeaderProps> = () => {
               SOON
             </Badge>
           </Button>
-          <Button as={NavLink} to="/features" variant="plain">
-            Features
+          <Button as={NavLink} to="/features" variant="plain" disabled>
+            Features{' '}
+            <Badge px={3} variant="outline" ml={2}>
+              SOON
+            </Badge>
           </Button>
-          <Button as={NavLink} to="/use-cases" variant="plain">
-            Use Cases
+          <Button as={NavLink} to="/use-cases" variant="plain" disabled>
+            Use Cases{' '}
+            <Badge px={3} variant="outline" ml={2}>
+              SOON
+            </Badge>
           </Button>
           <Button as={NavLink} to="/data-providers" variant="plain" disabled>
             Data Providers

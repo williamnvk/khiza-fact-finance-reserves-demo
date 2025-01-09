@@ -1,5 +1,5 @@
-const CACHE_NAME = 'tash-finance-cache-v1';
-const IMAGE_CACHE_NAME = 'tash-finance-image-cache-v1';
+const CACHE_NAME = 'fact-finance-cache-v1';
+const IMAGE_CACHE_NAME = 'fact-finance-image-cache-v1';
 
 const CACHED_URLS = [
   '/',

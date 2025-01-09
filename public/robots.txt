@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tash.finance/sitemap.xml
+Sitemap: https://fact.finance/sitemap.xml

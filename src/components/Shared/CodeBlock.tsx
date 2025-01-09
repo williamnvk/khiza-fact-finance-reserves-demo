@@ -59,11 +59,11 @@ export const CodeBlock = () => {
       position="relative"
     >
       <HStack>
-        <Button variant={tab === 'evm' ? 'subtle' : 'ghost'} onClick={() => setTab('evm')}>
+        <Button variant={tab === 'evm' ? 'solid' : 'plain'} onClick={() => setTab('evm')}>
           <NetworkIcon size={24} />
           EVM
         </Button>
-        <Button variant={tab === 'solana' ? 'subtle' : 'ghost'} onClick={() => setTab('solana')}>
+        <Button variant={tab === 'solana' ? 'solid' : 'plain'} onClick={() => setTab('solana')}>
           <img src="/assets/solana-icon.png" alt="Solana" width={24} height={24} />
           <Text flex={1}>Solana</Text>
         </Button>

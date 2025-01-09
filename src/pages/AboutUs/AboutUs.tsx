@@ -114,16 +114,16 @@ export default function AboutUs() {
 
             <AspectRatio ratio={1}>
               <Box overflow="hidden" bg={cardBg} _hover={{ bg: cardHoverBg }} transition="all 0.2s">
-                <Image
-                  src="/assets/about/luciano-juvinski-speaker-2.webp"
-                  alt="Fact Finance team discussing blockchain solutions at meeting"
-                  objectFit="cover"
+                <Box
+                  backgroundImage="url(/assets/about/luciano-juvinski-speaker-2.webp)"
+                  backgroundSize="cover"
+                  backgroundPosition="-160px center"
+                  backgroundRepeat="no-repeat"
                   w="full"
+                  h="full"
                   filter="grayscale(100%)"
                   transition="all 0.2s ease-in-out"
                   _hover={{ filter: 'grayscale(0%)', transform: 'scale(1.1)' }}
-                  h="full"
-                  loading="lazy"
                 />
               </Box>
             </AspectRatio>
@@ -149,7 +149,7 @@ export default function AboutUs() {
                 <Box
                   backgroundImage="url(/assets/about/fernanda-stand.webp)"
                   backgroundSize="cover"
-                  backgroundPosition="-145px center"
+                  backgroundPosition="left center"
                   backgroundRepeat="no-repeat"
                   w="full"
                   h="full"

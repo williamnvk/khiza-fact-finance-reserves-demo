@@ -72,7 +72,7 @@ const FeaturesSection = memo(() => {
 
   return (
     <Container
-      py={{ base: 4, sm: 8, md: 12, lg: 16 }}
+      py={{ base: 4, md: 8 }}
       as="section"
       aria-labelledby="features-heading"
       maxW={{ base: '100%', lg: '6xl', xl: '7xl' }}
@@ -200,8 +200,8 @@ const FeaturesSection = memo(() => {
                         py: 16,
                         '& > .connector': {
                           opacity: 1,
-                          width: '49px',
-                          left: '-49px',
+                          width: '51px',
+                          left: '-51px',
                         },
                       }
                 }

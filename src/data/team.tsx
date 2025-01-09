@@ -32,7 +32,7 @@ export const teamMembers = [
     name: 'Fernanda Garanhani',
     role: 'Co-Founder & COO',
     image: 'fernandagaranhani.jpeg',
-    bio: 'Fernanda Garanhani has over four years of experience in blockchain and Web3. She started her career as a blockchain analyst at Honey Island Capital, a venture capital firm, and advanced to become Head of New Business at Liqi Digital Assets, a leading asset tokenization platform. She is certified as a blockchain professional by the DEC Institute.',
+    bio: 'Fernanda Garanhani has over four years of experience in blockchain and Web3. She started her career as a blockchain analyst at Honey Island Capital, a venture capital firm, and later as Head of New Business at Liqi Digital Assets, a leading asset tokenization platform. She is certified as a blockchain professional by the DEC Institute.',
     social: {
       linkedin: 'fernandagaranhan',
       x: '0xFGB',

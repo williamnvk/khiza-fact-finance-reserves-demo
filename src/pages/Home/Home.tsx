@@ -1,4 +1,4 @@
-import { Box, Center, Container, Heading, HStack, Link as ChakraLink, Text, VStack } from '@chakra-ui/react';
+import { Box, Center, Container, Heading, HStack, Link as ChakraLink, Text, VStack, Badge } from '@chakra-ui/react';
 import { SEO } from '@/components/Common/SEO';
 import { Button } from '@/components/ui/button';
 import Chains from '@/components/Shared/Chains';
@@ -40,16 +40,6 @@ export const Home = () => {
       </Suspense>
 
       <Container aria-labelledby="supported-chains-heading" as="section">
-        <Text
-          id="supported-chains-heading"
-          as="h2"
-          textAlign="center"
-          mb={{ base: 6, md: 8 }}
-          color="whiteAlpha.500"
-          fontSize={{ base: 'lg', md: 'xl' }}
-        >
-          Supported Chains
-        </Text>
         <Chains aria-label="Supported Blockchain Networks" />
       </Container>
 
@@ -65,31 +55,33 @@ export const Home = () => {
         </Suspense>
       </Box>
 
-      <Container py={{ base: 8, md: 32 }} px={4} role="group" aria-labelledby="call-to-action-heading" as="section">
+      <Container py={{ base: 8, md: 8 }} px={4} role="group" aria-labelledby="call-to-action-heading" as="section">
         <HStack
-          align={{ base: 'stretch', lg: 'center' }}
+          align={{ base: 'stretch', md: 'center' }}
           justify="center"
           gap={{ base: 8, lg: 16 }}
           flexDirection={{ base: 'column', lg: 'row' }}
         >
-          <VStack gap={6} align={{ base: 'center', lg: 'flex-start' }} flex={1}>
-            <TitleSection align={{ base: 'center', lg: 'flex-start' }}>
-              <Text fontSize="sm" color="brand.300">
+          <VStack gap={6} align={{ base: 'center', md: 'flex-start' }} flex={1}>
+            <TitleSection align={{ base: 'center', md: 'flex-start' }}>
+              <Text fontSize="sm" color="brand.300" w="full" textAlign={{ base: 'left', md: 'left' }}>
                 CALLING THE DEVS
               </Text>
               <Heading
                 as="h2"
                 id="call-to-action-heading"
                 textStyle="title"
-                textAlign={{ base: 'center', lg: 'left' }}
+                w="full"
+                textAlign={{ base: 'left', md: 'left' }}
                 fontSize={{ base: '2xl', sm: '3xl', md: '3xl', lg: '4xl' }}
               >
                 Seamless Data Integration for Blockchain Developers
               </Heading>
-              <Text fontSize="sm" textAlign={{ base: 'center', lg: 'left' }}>
+              <Text fontSize="sm" w="full" textAlign={{ base: 'left', md: 'left' }}>
                 Effortlessly integrate trusted, verified data into your blockchain projects with our time-saving data
                 hub. Fact Finance provides powerful APIs to connect smart contracts to real-world data sources.
-                <br />
+              </Text>
+              <Text fontSize="sm" w="full" textAlign={{ base: 'left', md: 'left' }}>
                 No complex onboarding, just clear documentation, step-by-step guides, and ready-to-use examples for EVMs
                 and Solana.
               </Text>
@@ -124,33 +116,36 @@ export const Home = () => {
             id="faq-heading"
             textStyle="title"
             as="h2"
-            textAlign="center"
+            w="full"
+            textAlign={{ base: 'left', md: 'center' }}
             fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }}
           >
             Frequently Asked Questions
           </Heading>
-          <Text as="p" textStyle="subtitle" textAlign="center">
+          <Text as="p" textStyle="subtitle" w="full" textAlign={{ base: 'left', md: 'center' }}>
             Find answers to common questions about Fact Finance
           </Text>
         </VStack>
         <Suspense
           fallback={
-            <Text role="status" textAlign="center" p={4}>
+            <Text role="status" w="full" textAlign={{ base: 'left', md: 'center' }} p={4}>
               Loading FAQs...
             </Text>
           }
         >
           <LazyFaq />
         </Suspense>
-        <Center gap={3} mt={{ base: 6, md: 10 }} flexWrap="wrap">
+        <Center gap={3} mt={{ base: 4, md: 8 }}>
           <Text fontSize="smaller">Still have questions?</Text>
           <ChakraLink
-            as={RouterLink}
-            to="/contact"
+            as="a"
+            href="mailto:juvinski@fact.finance"
             color="brand.500"
             fontSize="smaller"
             aria-label="Contact us for more information"
             _hover={{ textDecoration: 'underline' }}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Contact us
           </ChakraLink>
@@ -169,12 +164,12 @@ export const Home = () => {
         aria-describedby="unlock-value-description"
         as="section"
       >
-        <Center flexDir="column" gap={6}>
+        <Center flexDir="column" gap={6} maxW="5xl">
           <TitleSection flex={1} color="brand.950">
             <Heading
               id="unlock-value-heading"
-              textAlign="center"
-              fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
+              textAlign={{ base: 'left', md: 'center' }}
+              fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
               lineHeight={1.2}
             >
               Unlock the Value of Your
@@ -185,7 +180,7 @@ export const Home = () => {
               id="unlock-value-description"
               maxW="2xl"
               textStyle="subtitle"
-              textAlign="center"
+              textAlign={{ base: 'left', md: 'center' }}
               fontSize={{ base: 'sm', md: 'md' }}
             >
               Our data layer connects trusted, official data sources to tokenized assets, unlocking new financial
@@ -202,9 +197,9 @@ export const Home = () => {
             >
               Talk to an Expert
             </Button>
-            {/* <Button variant="ghost" disabled aria-disabled="true">
-                Data Hub <Badge>Soon</Badge>
-              </Button> */}
+            <Button variant="plain" color="bg" disabled aria-disabled="true">
+              Data Hub <Badge opacity={0.3}>Soon</Badge>
+            </Button>
           </HStack>
         </Center>
       </VStack>

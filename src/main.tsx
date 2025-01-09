@@ -14,6 +14,10 @@ import UseCases from './pages/UseCases/UseCases.tsx';
 import DataProviders from './pages/DataProviders/DataProviders.tsx';
 import DataHub from './pages/DataHub/DataHub.tsx';
 
+import ReactGA from 'react-ga4';
+const TRACKING_ID = 'G-RJFBTSN4WT';
+ReactGA.initialize(TRACKING_ID);
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ChakraProvider>

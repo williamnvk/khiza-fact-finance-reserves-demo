@@ -84,7 +84,6 @@ const Slider = ({ alias, children, width = '200px', duration = 5, toRight = fals
       <Flex
         gap={4}
         py={4}
-        role="list"
         h="120px"
         style={{
           animation: `slider_${alias} ${duration}s linear infinite`,

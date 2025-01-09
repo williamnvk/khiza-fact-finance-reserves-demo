@@ -87,11 +87,9 @@ export default function AboutUs() {
             >
               Bridging Traditional Finance with Web3
             </Heading> */}
-            <Text textStyle="subtitle" w="full" textAlign={{ base: 'left', md: 'center' }}>
+            <Text fontSize="lg" w="full" textAlign={{ base: 'left', md: 'center' }} lineHeight="moderate">
               Fact Finance was born to provide data infrastructure for the tokenized economy.
-            </Text>
-
-            <Text textStyle="subtitle" w="full" textAlign={{ base: 'left', md: 'center' }}>
+              <br />
               We connect tokenization platforms to official and licensed sources, enabling secure and compliant access
               to data.
             </Text>
@@ -200,8 +198,8 @@ export default function AboutUs() {
             </AspectRatio>
           </SimpleGrid>
 
-          <VStack gap={6} align="stretch" maxW="4xl" mx="auto">
-            <Text fontSize="xl" w="full" textAlign={{ base: 'left', md: 'center' }} lineHeight="moderate">
+          <VStack gap={6} align="stretch" maxW="5xl" mx="auto">
+            <Text fontSize="lg" w="full" textAlign={{ base: 'left', md: 'center' }} lineHeight="moderate">
               <Text as="span" fontWeight="bold">
                 Our vision
               </Text>{' '}

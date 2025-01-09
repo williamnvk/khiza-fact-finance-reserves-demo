@@ -84,14 +84,16 @@ export const Home = () => {
             </TitleSection>
             <HStack gap={4} flexWrap={{ base: 'wrap', md: 'nowrap' }} justify={{ base: 'center', lg: 'flex-start' }}>
               <Button
-                as={RouterLink}
-                to="/documentation"
+                as="a"
+                href="https://docs.fact.finance"
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Explore Documentation"
                 w={{ base: 'full', md: 'auto' }}
               >
                 Explore Documentation
               </Button>
-              <Button variant="ghost" as={RouterLink} to="/contact" aria-label="Contact Support">
+              <Button variant="ghost" as="a" href="mailto:juvinski@fact.finance" aria-label="Contact Support">
                 Contact Support
               </Button>
             </HStack>

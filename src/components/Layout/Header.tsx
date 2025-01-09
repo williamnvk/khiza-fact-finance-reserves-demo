@@ -66,20 +66,20 @@ export const Header: FC<HeaderProps> = () => {
             <Button as={NavLink} to="/about" variant="navbar">
               About Us
             </Button>
-            <Button as={NavLink} to="/data-hub" variant="navbar" disabled>
+            {/* <Button as={NavLink} to="/data-hub" variant="navbar" disabled>
               Data Hub
               <Badge px={3} variant="outline" ml={2}>
                 SOON
               </Badge>
               <VisuallyHidden>Coming Soon</VisuallyHidden>
-            </Button>
+            </Button> */}
             {/* <Button as={NavLink} to="/features" variant="navbar" disabled>
               Features
               <Badge px={3} variant="outline" ml={2}>
                 SOON
               </Badge>
             </Button> */}
-            <Button as={NavLink} to="/use-cases" variant="navbar" disabled>
+            {/* <Button as={NavLink} to="/use-cases" variant="navbar" disabled>
               Use Cases
               <Badge px={3} variant="outline" ml={2}>
                 SOON
@@ -91,7 +91,7 @@ export const Header: FC<HeaderProps> = () => {
                 SOON
               </Badge>
               <VisuallyHidden>Coming Soon</VisuallyHidden>
-            </Button>
+            </Button> */}
           </HStack>
 
           <Button

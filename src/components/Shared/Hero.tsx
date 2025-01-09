@@ -8,7 +8,7 @@ import LiqiLogo from '@/components/Icons/Liqi';
 import LogoIcon from '@/components/Icons/LogoIcon';
 import { FC } from 'react';
 
-export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
+export const Hero: FC = () => {
   const isMobile = useBreakpointValue({ base: true, md: false });
   const stackSpacing = useBreakpointValue({ base: 4, md: 8 });
   const logoSize = useBreakpointValue({ base: 24, md: 32 });
@@ -38,7 +38,7 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
           filter="brightness(0.2)"
           mixBlendMode="luminosity"
           loop
-          src={`/assets/hero-${heroNumber}.mp4`}
+          src={`/assets/hero.mp4`}
         />
 
         <Box

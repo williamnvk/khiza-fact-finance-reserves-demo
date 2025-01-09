@@ -57,31 +57,27 @@ const items = [
       'Blockchain projects that need to integrate real-world data into their blockchain.',
     ],
   },
-  {
-    value: 'responsibility',
-    icon: <HardDriveIcon />,
-    title: 'Is Fact Finance responsible for the data provided?',
-    content: [
-      'Fact Finance ensures the data comes from trusted and official sources but does not alter or manipulate the original content.',
-      'Fact Finance is not responsible for the data provided by the oracle, but it ensures that the data is accurate and reliable.',
-    ],
-  },
+  // {
+  //   value: 'responsibility',
+  //   icon: <HardDriveIcon />,
+  //   title: 'Is Fact Finance responsible for the data provided?',
+  //   content: [
+  //     'Fact Finance ensures the data comes from trusted and official sources but does not alter or manipulate the original content.',
+  //     'Fact Finance is not responsible for the data provided by the oracle, but it ensures that the data is accurate and reliable.',
+  //   ],
+  // },
   {
     value: 'availability',
     icon: <BlocksIcon />,
     title: 'How can I make my data available?',
     content: [
       "Contact our team to explore partnership opportunities and integrate your data into Fact Finance's ecosystem.",
-      'We can provide a secure and reliable source of information for tokenized assets.',
     ],
   },
   {
     value: 'integration',
     icon: <CodeIcon />,
     title: 'How do I integrate data into one of my projects?',
-    content: [
-      'Contact us to access APIs and documentation tailored for seamless integration into your project.',
-      'We can provide a secure and reliable source of information for tokenized assets.',
-    ],
+    content: ['Contact us to access APIs and documentation tailored for seamless integration into your project.'],
   },
 ];

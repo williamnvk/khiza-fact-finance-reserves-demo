@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button';
 import Chains from '@/components/Shared/Chains';
 import { TitleSection } from '@/components/ui/title-sectiont';
 import { CodeBlock } from '@/components/Shared/CodeBlock';
-import { useSearchParams } from 'react-router';
 import { Hero } from '@/components/Shared/Hero';
 import { Suspense, lazy } from 'react';
 import { Link as RouterLink } from 'react-router';
@@ -18,16 +17,13 @@ const LazyWhatWeDo = lazy(() =>
 );
 
 export const Home = () => {
-  const [searchParams] = useSearchParams();
-  const heroNumber = Number(searchParams.get('opcao')) || 3;
-
   return (
     <Box>
       <SEO
         title="Fact Finance"
         description="Seamless blockchain data integration for developers. Connect smart contracts to real-world data with our powerful APIs and developer tools."
       />
-      <Hero heroNumber={heroNumber} />
+      <Hero />
 
       <Suspense
         fallback={

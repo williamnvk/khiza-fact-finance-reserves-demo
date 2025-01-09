@@ -19,7 +19,6 @@ export default function Chains() {
             align="center"
             justify="center"
             h={{ base: "60px", sm: "70px", md: "80px" }}
-            aria-label={`${chain.value} blockchain network`}
           >
             {chain.icon ? (
               <Image
@@ -51,8 +50,7 @@ export default function Chains() {
     <Box
       as="section"
       w="full"
-      role="region"
-      aria-label="Supported Blockchain Networks"
+      aria-label="Supported blockchain networks"
       pos="relative"
       overflow="hidden"
     >
@@ -70,8 +68,8 @@ export default function Chains() {
       />
 
       <Slider 
-        alias="first" 
-        aria-label="Blockchain networks carousel"
+        alias="first"
+        aria-roledescription="carousel"
       >
         {chainSlides}
       </Slider>

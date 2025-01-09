@@ -40,7 +40,7 @@ export const teamMembers = [
     brands: [
       {
         type: 'image',
-        asset: '/assets/about/honeyisland.png',
+        asset: '/assets/about/honeyisland.webp',
       },
       {
         type: 'icon',

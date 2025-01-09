@@ -8,6 +8,13 @@ const CACHED_URLS = [
   '/apple-touch-icon.png',
   '/favicon-32x32.png',
   '/favicon-16x16.png',
+  '/assets/solana-icon.webp',
+  '/assets/outlier-ventures.webp',
+  '/assets/khiza.webp',
+  '/assets/liqi.webp',
+  '/assets/firmeza-token.avif',
+  '/assets/solana-horizontal.webp',
+  '/assets/morgan-creek.webp'
 ];
 
 self.addEventListener('install', (event) => {

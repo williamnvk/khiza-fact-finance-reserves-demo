@@ -181,7 +181,7 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
                     src="/assets/firmeza-token.avif"
                     alt="Firmeza Token"
                     filter="invert(1) brightness(2)"
-                    w="auto"
+                    w={{ base: '84px', md: '163px' }}
                     h={{ base: '22px', md: '42px' }}
                   />
                   <SolanaHorizontal {...partnerLogoSizes.solana} />

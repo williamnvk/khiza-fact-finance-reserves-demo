@@ -43,41 +43,39 @@ const items = [
     icon: <DatabaseIcon />,
     title: 'What is an oracle?',
     content: [
-      'An oracle bridges real-world data to the blockchain, enabling its use in decentralized applications.',
-      'Our oracle connects off-chain data to blockchain ecosystems, providing a secure and reliable source of information for tokenized assets.',
+      'An oracle bridges real-world data to the blockchain, enabling smart contracts to execute based on real-world events.',
     ],
   },
   {
     value: 'who-needs',
     icon: <UsersRoundIcon />,
-    title: 'Who needs an oracle?',
+    title: 'Why do tokenized assets need oracles?',
     content: [
-      'Businesses like tokenization platforms, DeFi protocols, and stablecoins requiring real-world economic and licensed data for their operations.',
-      'Decentralized applications (dApps) that need to access real-world data for their operations.',
-      'Blockchain projects that need to integrate real-world data into their blockchain.',
+      'Oracles provide the real-world data that tokenized assets need to function accurately, such as property valuations for real estate tokens or interest rates  and inflation for private credit tokens. Without oracles, tokenized assets cannot reflect real-time changes or off-chain events.',
     ],
   },
-  // {
-  //   value: 'responsibility',
-  //   icon: <HardDriveIcon />,
-  //   title: 'Is Fact Finance responsible for the data provided?',
-  //   content: [
-  //     'Fact Finance ensures the data comes from trusted and official sources but does not alter or manipulate the original content.',
-  //     'Fact Finance is not responsible for the data provided by the oracle, but it ensures that the data is accurate and reliable.',
-  //   ],
-  // },
+  {
+    value: 'responsibility',
+    icon: <HardDriveIcon />,
+    title: 'What types of data Fact Finance can provide?',
+    content: [
+      'We can provide various types of data, including market prices, economic indices, proof of reserves, square meter price for real estate, weather updates, and more, depending on the use case. Contact us if your project needs any other specifc data.',
+    ],
+  },
   {
     value: 'availability',
     icon: <BlocksIcon />,
-    title: 'How can I make my data available?',
+    title: 'Where does Fact Finance source its data?',
     content: [
-      "Contact our team to explore partnership opportunities and integrate your data into Fact Finance's ecosystem.",
+      'Our data feeds come directly from official sources, such as central banks, research institutes and financial institutions.',
     ],
   },
   {
     value: 'integration',
     icon: <CodeIcon />,
-    title: 'How do I integrate data into one of my projects?',
-    content: ['Contact us to access APIs and documentation tailored for seamless integration into your project.'],
+    title: 'How do I integrate Fact Finance’s APIs into my project?',
+    content: [
+      'Our documentation provides step-by-step guides, API references, and examples for integration with EVM-based blockchains and Solana.',
+    ],
   },
 ];

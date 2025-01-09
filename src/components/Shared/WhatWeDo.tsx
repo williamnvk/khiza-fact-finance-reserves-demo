@@ -154,8 +154,8 @@ export const WhatWeDo = () => {
                 left="50%"
                 transform="translate(-50%, -50%)"
                 w="300%"
-                h="100px"
-                bg="radial-gradient(circle, #000 0%, {colors.black} 25%, rgba(0,0,0,.5) 100%)"
+                h={{ base: '200px', md: '100px' }}
+                bg="radial-gradient(circle, #000 0%, #000 25%, rgba(0,0,0,.5) 100%)"
                 filter="blur(20px)"
                 zIndex={1}
               />

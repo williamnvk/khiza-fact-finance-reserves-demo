@@ -87,7 +87,7 @@ export const Home = () => {
               </Text>
             </TitleSection>
             <HStack gap={4} flexWrap={{ base: 'wrap', md: 'nowrap' }} justify={{ base: 'center', lg: 'flex-start' }}>
-              <Button as={RouterLink} to="/documentation" aria-label="Explore Documentation">
+              <Button as={RouterLink} to="/documentation" aria-label="Explore Documentation" w={{ base: 'full', md: 'auto' }}>
                 Explore Documentation
               </Button>
               <Button variant="ghost" as={RouterLink} to="/contact" aria-label="Contact Support">

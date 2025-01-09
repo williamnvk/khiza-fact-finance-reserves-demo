@@ -64,7 +64,7 @@ export default function AboutUs() {
       <Container maxW="6xl" aria-label="About Us Section" zIndex={1}>
         <VStack gap={8} align="stretch">
           <TitleSection>
-            <Text
+            {/* <Text
               fontSize="sm"
               bgGradient="to-r"
               gradientFrom="brand.50"
@@ -77,7 +77,7 @@ export default function AboutUs() {
               textAlign={{ base: 'left', md: 'center' }}
             >
               Our History
-            </Text>
+            </Text> */}
             <Heading
               as="h1"
               textStyle="title"
@@ -345,7 +345,7 @@ export default function AboutUs() {
                                 src={brand.asset}
                                 alt={`${member.name}'s expertise in ${brand.name}`}
                                 w="auto"
-                                h={{ base: '24px', md: '24px' }}
+                                h={{ base: '23px', md: '24px' }}
                                 loading="lazy"
                               />
                             )}

@@ -13,11 +13,11 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
   const stackSpacing = useBreakpointValue({ base: 4, md: 8 });
   const logoSize = useBreakpointValue({ base: 24, md: 32 });
   const partnerLogoSizes = {
-    morganCreek: useBreakpointValue({ base: { width: 100, height: 52 }, md: { width: 168, height: 88 } }),
-    khiza: useBreakpointValue({ base: { width: 64, height: 52 }, md: { width: 112, height: 88 } }),
-    liqi: useBreakpointValue({ base: { width: 96, height: 54 }, md: { width: 128, height: 72 } }),
-    solana: useBreakpointValue({ base: { width: 146, height: 59 }, md: { width: 195, height: 78 } }),
-    tesouro: useBreakpointValue({ base: { width: 80, height: 80 }, md: { width: 112, height: 112 } }),
+    morganCreek: useBreakpointValue({ base: { width: 80, height: 42 }, md: { width: 168, height: 88 } }),
+    khiza: useBreakpointValue({ base: { width: 52, height: 42 }, md: { width: 112, height: 88 } }),
+    liqi: useBreakpointValue({ base: { width: 76, height: 44 }, md: { width: 128, height: 72 } }),
+    solana: useBreakpointValue({ base: { width: 116, height: 47 }, md: { width: 195, height: 78 } }),
+    tesouro: useBreakpointValue({ base: { width: 64, height: 64 }, md: { width: 112, height: 112 } }),
   };
 
   return (
@@ -35,7 +35,7 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
           autoPlay
           muted
           playsInline
-          filter='brightness(0.2)'
+          filter="brightness(0.2)"
           mixBlendMode="luminosity"
           loop
           src={`/assets/hero-${heroNumber}.mp4`}
@@ -91,12 +91,12 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
           h={{ base: 'full', md: 'calc(100vh - 144px)' }}
           justify="center"
           gap={stackSpacing}
-          mt={{ base: '0', md: '72px' }}
+          mt={{ base: '72px', md: '72px' }}
         >
           <VStack flex={1} align="center" justify="center" gap={stackSpacing}>
             <LogoIcon width={logoSize} height={logoSize} />
             <Heading
-              fontSize={{ base: '5xl', sm: '5xl', md: '6xl', lg: '7xl' }}
+              fontSize={{ base: '4xl', sm: '5xl', md: '6xl', lg: '7xl' }}
               lineHeight={1.1}
               fontWeight="400"
               w="full"
@@ -123,7 +123,15 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
               </Button>
             </HStack>
           </VStack>
-          <VStack w="full" justify="center" align="center" maxW="4xl" gap={{ base: 0, md: 2 }} pb={4} zIndex={5}>
+          <VStack
+            w="full"
+            justify="center"
+            align="center"
+            maxW={{ base: 'full', md: '4xl' }}
+            gap={{ base: 0, md: 2 }}
+            pb={{ base: 24, md: 0 }}
+            zIndex={5}
+          >
             <Text
               fontSize="sm"
               bgGradient="to-r"
@@ -155,7 +163,7 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
                     src="/assets/outlier-ventures.png"
                     alt="Outlier Ventures"
                     filter="invert(1)"
-                    h={{ base: '20px', md: '22px' }}
+                    h={{ base: '16px', md: '22px' }}
                   />
                   <KhizaIcon {...partnerLogoSizes.khiza} />
                 </HStack>
@@ -165,7 +173,7 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
                     src="/assets/firmeza-token.avif"
                     alt="Firmeza Token"
                     filter="invert(1) brightness(2)"
-                    h={{ base: '28px', md: '42px' }}
+                    h={{ base: '22px', md: '42px' }}
                   />
                   <SolanaHorizontal {...partnerLogoSizes.solana} />
                 </HStack>

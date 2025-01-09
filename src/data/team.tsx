@@ -8,7 +8,7 @@ export const teamMembers = [
     name: 'Luciano Juvinski',
     role: 'Founder & CEO',
     image: 'lucianojuvinski.jpeg',
-    bio: 'Luciano Juvinski brings over a decade of expertise in the data industry. He is the founder of Navegg, Brazil’s first Data Management Platform, which was later acquired by Dentsu Aegis and served global clients like Google, Salesforce, and Adobe. He also holds a Master’s degree in Blockchain and Fintech from Duke University.',
+    bio: "Luciano Juvinski brings over a decade of expertise in the data industry. He is the founder of Navegg, Brazil’s first Data Management Platform, which was later acquired by Dentsu Aegis and served global clients like Google, Salesforce, and Adobe. He is currently pursuing a Master's degree in Blockchain and Fintech from Duke University.",
     social: {
       linkedin: 'juvinski',
       x: 'juvinski',

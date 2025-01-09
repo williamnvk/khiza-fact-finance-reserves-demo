@@ -40,7 +40,7 @@ export const WhatWeDo = () => {
   return (
     <Container
       as="section"
-      maxW={{ base: '100%', lg: '6xl', xl: '7xl' }}
+      // maxW={{ base: '100%', lg: '6xl', xl: '7xl' }}
       minH={{ base: 'auto', lg: 'auto' }}
       py={{ base: 6, sm: 8, md: 12, lg: 16 }}
       px={{ base: 4, sm: 6, md: 8 }}
@@ -150,7 +150,7 @@ export const WhatWeDo = () => {
             >
               <Box
                 position="absolute"
-                top="220px"
+                top="240px"
                 left="50%"
                 transform="translate(-50%, -50%)"
                 w="300%"

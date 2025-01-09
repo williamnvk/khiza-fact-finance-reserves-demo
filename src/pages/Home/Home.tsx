@@ -87,7 +87,12 @@ export const Home = () => {
               </Text>
             </TitleSection>
             <HStack gap={4} flexWrap={{ base: 'wrap', md: 'nowrap' }} justify={{ base: 'center', lg: 'flex-start' }}>
-              <Button as={RouterLink} to="/documentation" aria-label="Explore Documentation" w={{ base: 'full', md: 'auto' }}>
+              <Button
+                as={RouterLink}
+                to="/documentation"
+                aria-label="Explore Documentation"
+                w={{ base: 'full', md: 'auto' }}
+              >
                 Explore Documentation
               </Button>
               <Button variant="ghost" as={RouterLink} to="/contact" aria-label="Contact Support">
@@ -190,12 +195,14 @@ export const Home = () => {
 
           <HStack justify="center" gap={4} mt={4} flexWrap={{ base: 'wrap', md: 'nowrap' }}>
             <Button
-              as={RouterLink}
-              to="/expert-consultation"
-              aria-label="Talk to an Expert"
-              w={{ base: 'full', md: 'auto' }}
+              size="xl"
+              w={{ base: 'full', sm: 'auto' }}
+              as="a"
+              href="mailto:fernanda@fact.finance"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Talk to an Expert
+              Talk to an expert
             </Button>
             <Button variant="plain" color="bg" disabled aria-disabled="true">
               Data Hub <Badge opacity={0.3}>Soon</Badge>

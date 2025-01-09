@@ -76,8 +76,6 @@ const FeaturesSection = memo(() => {
       as="section"
       aria-labelledby="features-heading"
       maxW={{ base: '100%', lg: '6xl', xl: '7xl' }}
-      role="section"
-      aria-label="Features Section"
     >
       <TitleSection>
         <Heading

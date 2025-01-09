@@ -115,7 +115,14 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
             </Text>
 
             <HStack gap={4} flexDir={{ base: 'column', sm: 'row' }} w={{ base: 'full', sm: 'auto' }}>
-              <Button size="xl" w={{ base: 'full', sm: 'auto' }}>
+              <Button
+                size="xl"
+                w={{ base: 'full', sm: 'auto' }}
+                as="a"
+                href="mailto:fernanda@fact.finance"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Talk to an expert
               </Button>
               <Button variant="ghost" size="xl" w={{ base: 'full', sm: 'auto' }}>

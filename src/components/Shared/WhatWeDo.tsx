@@ -12,7 +12,7 @@ export const WhatWeDo = () => {
   };
 
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
-  
+
   // Responsive layout
   const stackDirection = useBreakpointValue({ base: 'column', lg: 'row' });
   const headingSize = useBreakpointValue({ base: '2xl', md: '3xl', lg: '4xl' });
@@ -37,13 +37,13 @@ export const WhatWeDo = () => {
   }, [hoveredCard]);
 
   return (
-    <Container 
-      as="section" 
-      maxW={{ base: "100%", lg: "6xl", xl: "7xl" }}
+    <Container
+      as="section"
+      maxW={{ base: '100%', lg: '6xl', xl: '7xl' }}
       minH={{ base: 'auto', lg: 'auto' }}
-      py={{ base: 6, sm: 8, md: 12, lg: 16 }} 
+      py={{ base: 6, sm: 8, md: 12, lg: 16 }}
       px={{ base: 4, sm: 6, md: 8 }}
-      aria-labelledby="what-we-do-title" 
+      aria-labelledby="what-we-do-title"
       zIndex={2}
       display="flex"
       alignItems="center"
@@ -51,7 +51,7 @@ export const WhatWeDo = () => {
       <VStack gap={{ base: 6, sm: 8, md: 10 }} w="full" align="center">
         <TitleSection>
           <Text
-            fontSize={{ base: "xs", sm: "sm" }}
+            fontSize={{ base: 'xs', sm: 'sm' }}
             bgGradient="to-r"
             gradientFrom="brand.50"
             gradientTo="brand.400"
@@ -59,36 +59,41 @@ export const WhatWeDo = () => {
             textTransform="uppercase"
             letterSpacing={2}
             fontWeight="600"
+            w="full"
+            textAlign={{ base: 'left', md: 'center' }}
           >
             WHAT WE DO
           </Text>
-          <Heading 
-            id="what-we-do-title" 
+          <Heading
+            id="what-we-do-title"
             textStyle="title"
-            fontSize={{ base: "2xl", sm: "3xl", md: "4xl", lg: "5xl" }}
-            textAlign="center"
+            fontSize={{ base: '4xl', sm: '3xl', md: '4xl', lg: '5xl' }}
+            textAlign={{ base: 'left', md: 'center' }}
+            lineHeight={{ base: '1.2', md: '1.3' }}
           >
             Powering asset tokenization with
             <br />
             trusted real-world data{' '}
           </Heading>
-          <Text 
-            as="p" 
+          <Text
+            as="p"
             textStyle="subtitle"
-            fontSize={{ base: "sm", sm: "md" }}
-            maxW={{ base: "90%", md: "80%", lg: "70%" }}
-            mx="auto"
+            fontSize={{ base: 'sm', sm: 'md' }}
+            maxW={{ base: '100%', md: '80%', lg: '70%' }}
+            mx={{ base: 0, md: 'auto' }}
+            w="full"
+            textAlign={{ base: 'left', md: 'center' }}
           >
             The data layer connecting official data sources to tokenized assets, unlocking innovative financial
             solutions
           </Text>
         </TitleSection>
 
-        <HStack 
+        <HStack
           as={motion.div}
-          gap={{ base: 4, md: 6, lg: 8 }} 
-          w="full" 
-          align="stretch" 
+          gap={{ base: 4, md: 6, lg: 8 }}
+          w="full"
+          align="stretch"
           justify="center"
           flexDirection={stackDirection as StackDirection}
           flexWrap={{ base: 'wrap', lg: 'nowrap' }}
@@ -98,21 +103,21 @@ export const WhatWeDo = () => {
               id: 'capital-markets',
               title: 'Capital Markets',
               description: 'Access official economic indices straight from the official source',
-              video: '/assets/what-we-do/capital-markets.mp4'
+              video: '/assets/what-we-do/capital-markets.mp4',
             },
             {
-              id: 'real-estate', 
+              id: 'real-estate',
               title: 'Real Estate',
               description: 'Square meter price and proof of reserve for tokenized properties',
-              video: '/assets/what-we-do/real-estate.mp4'
+              video: '/assets/what-we-do/real-estate.mp4',
             },
             {
               id: 'commodities',
-              title: 'Commodities', 
+              title: 'Commodities',
               description: 'Qualitative data and event monitoring for tokenized commodities',
-              video: '/assets/what-we-do/commodities.mp4'
-            }
-          ].map(card => (
+              video: '/assets/what-we-do/commodities.mp4',
+            },
+          ].map((card) => (
             <VStack
               key={card.id}
               ref={cardRefs[card.id as keyof typeof cardRefs]}
@@ -170,20 +175,13 @@ export const WhatWeDo = () => {
                 zIndex={1}
               />
 
-              <Heading 
-                as="h3" 
-                fontSize={headingSize} 
-                lineHeight={1}
-                mb={4} 
-                zIndex={2}
-              >
+              <Heading as="h3" fontSize={headingSize} lineHeight={1} mb={4} zIndex={2}>
                 {card.title}
               </Heading>
-              <Text 
-                textStyle="subtitle" 
+              <Text
+                textStyle="subtitle"
                 zIndex={2}
-                fontSize={{ base: 'sm', md: 'md' }}
-                maxH={{ base: '80px', sm: '100px' }}
+                fontSize={{ base: 'md', md: 'lg' }}
               >
                 {card.description}
               </Text>
@@ -191,11 +189,7 @@ export const WhatWeDo = () => {
           ))}
         </HStack>
 
-        <Button 
-          variant="ghost"
-          aria-label="View use cases"
-          size={{ base: 'md', md: 'lg' }}
-        >
+        <Button variant="ghost" aria-label="View use cases" size={{ base: 'md', md: 'lg' }}>
           See our use cases
         </Button>
       </VStack>

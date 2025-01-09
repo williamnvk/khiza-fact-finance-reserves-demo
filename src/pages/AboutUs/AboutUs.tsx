@@ -1,17 +1,30 @@
 import { Avatar } from '@/components/ui/avatar';
 import { TitleSection } from '@/components/ui/title-sectiont';
-import { Box, Container, Heading, Text, VStack, SimpleGrid, Flex, HStack, AspectRatio, Button } from '@chakra-ui/react';
+import {
+  Box,
+  Container,
+  Heading,
+  Text,
+  VStack,
+  SimpleGrid,
+  Flex,
+  HStack,
+  AspectRatio,
+  Button,
+  IconButton,
+} from '@chakra-ui/react';
 import LinkedinIcon from '@/components/Icons/LinkedinIcon';
 import { teamMembers } from '@/data/team';
 import { SEO } from '@/components/Common/SEO';
 import { Image } from '@chakra-ui/react';
+import XIcon from '@/components/Icons/XIcon';
 
 export default function AboutUs() {
   const cardBg = 'blackAlpha.500';
   const cardHoverBg = 'whiteAlpha.100';
 
   return (
-    <Box pos="relative" w="full" h="full" pt="25vh">
+    <Box pos="relative" w="full" h="full" pt={{ base: '72px', md: '144px' }}>
       <SEO
         title="About Fact Finance | Blockchain Data Infrastructure & Asset Tokenization"
         description="Fact Finance provides secure data infrastructure for the tokenized economy, connecting platforms to official sources. Meet our expert team in blockchain, data & finance."
@@ -50,7 +63,7 @@ export default function AboutUs() {
         zIndex={1}
       />
 
-      <Container maxW="6xl" py={{ base: 12, md: 20 }} aria-label="About Us Section" zIndex={1}>
+      <Container maxW="6xl" aria-label="About Us Section" zIndex={1}>
         <VStack gap={8} align="stretch">
           <TitleSection>
             <Text
@@ -62,19 +75,27 @@ export default function AboutUs() {
               textTransform="uppercase"
               letterSpacing={2}
               fontWeight="600"
+              w="full"
+              textAlign={{ base: 'left', md: 'center' }}
             >
               Our History
             </Text>
-            <Heading as="h1" textStyle="title" fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }}>
+            <Heading
+              as="h1"
+              textStyle="title"
+              fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }}
+              w="full"
+              textAlign={{ base: 'left', md: 'center' }}
+            >
               Bridging Traditional Finance with Web3
             </Heading>
-            <Text textAlign="center" textStyle="subtitle">
+            <Text textStyle="subtitle" w="full" textAlign={{ base: 'left', md: 'center' }}>
               Fact Finance was born to provide data infrastructure for the tokenized economy. We connect tokenization
               platforms to official and licensed sources, enabling secure and compliant access to data.{' '}
             </Text>
           </TitleSection>
 
-          <SimpleGrid columns={{ base: 2, md: 3 }} w="full" borderRadius="2xl" overflow="hidden" maxW="4xl" mx="auto">
+          <SimpleGrid columns={{ base: 2, md: 3 }} w="full" borderRadius="2xl" overflow="hidden">
             <AspectRatio ratio={1}>
               <Box overflow="hidden" bg={cardBg} _hover={{ bg: cardHoverBg }} transition="all 0.2s">
                 <Image
@@ -175,7 +196,7 @@ export default function AboutUs() {
           </SimpleGrid>
 
           <VStack gap={6} align="stretch" maxW="4xl" mx="auto">
-            <Text fontSize="xl" lineHeight="tall" textAlign="center">
+            <Text fontSize="xl" w="full" textAlign={{ base: 'left', md: 'center' }} lineHeight="moderate">
               <Text as="span" fontWeight="bold">
                 Our vision
               </Text>{' '}
@@ -196,13 +217,28 @@ export default function AboutUs() {
                 textTransform="uppercase"
                 letterSpacing={2}
                 fontWeight="600"
+                w="full"
+                textAlign={{ base: 'left', md: 'center' }}
               >
                 Meet the innovators
               </Text>
-              <Heading as="h2" textStyle="title" fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }}>
+              <Heading
+                as="h2"
+                textStyle="title"
+                fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }}
+                w="full"
+                textAlign={{ base: 'left', md: 'center' }}
+              >
                 The team behind Fact Finance
               </Heading>
-              <Text fontSize={{ base: 'md', md: 'lg' }} maxW="3xl" mx="auto" textAlign="center" color="whiteAlpha.800">
+              <Text
+                fontSize={{ base: 'md', md: 'lg' }}
+                maxW="3xl"
+                mx="auto"
+                w="full"
+                textAlign={{ base: 'left', md: 'center' }}
+                color="whiteAlpha.800"
+              >
                 Dedicated professionals with deep expertise in blockchain, data infrastructure, and economic systems,
                 committed to delivering secure and precise data solutions for web3 and real-world asset tokenization.
               </Text>
@@ -212,56 +248,83 @@ export default function AboutUs() {
               {teamMembers.map((member, index) => (
                 <Box
                   key={index}
-                  p={8}
+                  p={{ base: 0, md: 8 }}
                   borderRadius="2xl"
                   bgGradient="to-br"
-                  gradientFrom="whiteAlpha.50"
+                  gradientFrom={{ base: 'transparent', md: 'whiteAlpha.50' }}
                   gradientTo="transparent"
                   role="article"
                   aria-labelledby={`team-member-${index}`}
                 >
-                  <VStack align="flex-start" gap={6} w="full">
-                    <HStack gap={{ base: 4, md: 6 }} align="center" w="full">
+                  <VStack align="stretch" gap={8} w="full">
+                    <HStack gap={{ base: 6, md: 8 }} align="center" w="full">
                       <Box
-                        w={24}
-                        h={24}
+                        w={{ base: 20, md: 24 }}
+                        h={{ base: 20, md: 24 }}
                         position="relative"
                         _before={{
                           content: '""',
                           position: 'absolute',
-                          top: '-4px',
-                          left: '-4px',
-                          right: '-4px',
-                          bottom: '-4px',
+                          zIndex: -1,
+                          top: '-2px',
+                          left: '-2px',
+                          right: '-2px',
+                          bottom: '-2px',
                           bg: 'brand.500',
                           borderRadius: 'full',
                         }}
                       >
-                        <Avatar size="full" name={member.name} src={member.image} aria-hidden="true" />
+                        <Image
+                          objectFit="cover"
+                          w={{ base: 'full', md: 24 }}
+                          h={{ base: 'full', md: 24 }}
+                          alt={member.name}
+                          src={`/assets/about/team/${member.image}`}
+                          aria-hidden="true"
+                          borderRadius="full"
+                        />
                       </Box>
-                      <VStack align="flex-start" justify="center" gap={2} flex={1}>
-                        <Heading as="h3" size="2xl" id={`team-member-${index}`}>
+                      <VStack align="flex-start" justify="center" gap={0} flex={1}>
+                        <Heading as="h3" fontSize="lg" id={`team-member-${index}`}>
                           {member.name}
                         </Heading>
-
                         <Text color="brand.300" fontWeight="500">
                           {member.role}
                         </Text>
+                        <Flex gap={2} ml={-2}>
+                          <IconButton
+                            as="a"
+                            href={`https://linkedin.com/in/${member.social.linkedin}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            leftIcon={<LinkedinIcon width={20} height={20} />}
+                            size="sm"
+                            variant="plain"
+                            aria-label={`Visit ${member.name}'s LinkedIn profile`}
+                          >
+                            <LinkedinIcon />
+                          </IconButton>
+                          <IconButton
+                            as="a"
+                            href={`https://x.com/${member.social.x}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            leftIcon={<XIcon width={20} height={20} />}
+                            size="sm"
+                            variant="plain"
+                            aria-label={`Visit ${member.name}'s X profile`}
+                          >
+                            <XIcon />
+                          </IconButton>
+                        </Flex>
                       </VStack>
-                      <Button
-                        as="a"
-                        href={member.social.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        leftIcon={<LinkedinIcon width={20} height={20} />}
-                        size="sm"
-                        variant="plain"
-                        aria-label={`Visit ${member.name}'s LinkedIn profile`}
-                      >
-                        <LinkedinIcon />
-                      </Button>
                     </HStack>
-                    <Text color="whiteAlpha.800" fontSize="lg" lineHeight="tall">
+                    <Text
+                      color="whiteAlpha.800"
+                      fontSize={{ base: 'sm', md: 'lg' }}
+                      lineHeight="tall"
+                      minH={{ base: 'auto', md: '232px' }}
+                    >
                       {member.bio}
                     </Text>
 
@@ -271,11 +334,6 @@ export default function AboutUs() {
                           <Box
                             w="auto"
                             key={index}
-                            bg="whiteAlpha.100"
-                            borderRadius="lg"
-                            p={4}
-                            _hover={{ bg: 'whiteAlpha.200' }}
-                            transition="background 0.2s"
                             role="img"
                             aria-label={`${member.name}'s ${brand.type === 'icon' ? 'technology expertise' : 'brand'}`}
                           >
@@ -285,7 +343,8 @@ export default function AboutUs() {
                               <Image
                                 src={brand.asset}
                                 alt={`${member.name}'s expertise in ${brand.name}`}
-                                style={{ width: 'auto', height: '24px' }}
+                                w="auto"
+                                h={{ base: '24px', md: '24px' }}
                                 loading="lazy"
                               />
                             )}
@@ -310,13 +369,28 @@ export default function AboutUs() {
                 textTransform="uppercase"
                 letterSpacing={2}
                 fontWeight="600"
+                w="full"
+                textAlign={{ base: 'left', md: 'center' }}
               >
                 Media & Press
               </Text>
-              <Heading as="h2" textStyle="title" fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }}>
+              <Heading
+                as="h2"
+                textStyle="title"
+                fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }}
+                w="full"
+                textAlign={{ base: 'left', md: 'center' }}
+              >
                 Learn More About Us
               </Heading>
-              <Text fontSize={{ base: 'md', md: 'lg' }} maxW="2xl" mx="auto" textAlign="center" color="whiteAlpha.800">
+              <Text
+                fontSize={{ base: 'md', md: 'lg' }}
+                maxW="2xl"
+                mx="auto"
+                w="full"
+                textAlign={{ base: 'left', md: 'center' }}
+                color="whiteAlpha.800"
+              >
                 Watch our recent podcast appearances to learn more about our vision and mission
               </Text>
             </TitleSection>

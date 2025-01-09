@@ -96,26 +96,20 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
           <VStack flex={1} align="center" justify="center" gap={stackSpacing}>
             <LogoIcon width={logoSize} height={logoSize} />
             <Heading
-              fontSize={{ base: '3xl', sm: '4xl', md: '5xl', lg: '6xl' }}
+              fontSize={{ base: '4xl', sm: '4xl', md: '5xl', lg: '6xl' }}
               lineHeight={1.1}
-              textAlign="center"
               fontWeight="400"
-              px={2}
+              w="full"
+              textAlign={{ base: 'left', md: 'center' }}
+              px={{ base: 0, md: 2 }}
             >
               Official data for the
               <br />
-              <Text
-                as="span"
-                fontSize={{ base: '3xl', sm: '4xl', md: '5xl', lg: '6xl' }}
-                lineHeight={1.1}
-                textAlign="center"
-                fontWeight="600"
-                color="brand.50"
-              >
+              <Text as="span" lineHeight={1.1} textAlign="center" fontWeight="600" color="brand.50">
                 tokenized economy
               </Text>
             </Heading>
-            <Text textStyle="subtitle" textAlign="center" px={{ base: 4, md: 0 }}>
+            <Text textStyle="subtitle" w="full" textAlign={{ base: 'left', md: 'center' }} px={{ base: 0, md: 4 }}>
               Delivering accurate, verified, and official data to power{isMobile ? '' : <br />}
               real-world asset tokenization.{' '}
             </Text>

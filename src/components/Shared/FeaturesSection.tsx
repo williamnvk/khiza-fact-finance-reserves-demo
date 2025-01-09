@@ -1,20 +1,20 @@
 import { Box, Text, Heading, VStack, HStack, Container, useBreakpointValue } from '@chakra-ui/react';
-import { BadgeCheckIcon, ComponentIcon, ShieldCheckIcon } from 'lucide-react';
+import { BadgeCheckIcon, ComponentIcon, SearchIcon } from 'lucide-react';
 import { TitleSection } from '../ui/title-sectiont';
 import { memo } from 'react';
 
 const FeaturesSection = memo(() => {
   const isMobile = useBreakpointValue({ base: true, md: false });
-  const stackDirection = useBreakpointValue({ base: 'column-reverse', md: 'row' }) as 'column-reverse' | 'row';
+  const stackDirection = useBreakpointValue({ base: 'column', md: 'row' }) as 'column' | 'row';
   const cardWidth = useBreakpointValue({
-    base: '250px',
+    base: '200px',
     sm: '280px',
     md: '300px',
     lg: '320px',
     xl: '340px',
   });
   const cardHeight = useBreakpointValue({
-    base: '300px',
+    base: '150px',
     sm: '320px',
     md: '33vh',
     lg: '35vh',
@@ -27,20 +27,20 @@ const FeaturesSection = memo(() => {
       title: 'Proof of Authenticity',
       subtitle:
         'On-chain wallet validation that the data comes directly from the official data provider, eliminating risks of tampering.',
-      borderColor: 'whiteAlpha.800',
+      borderColor: 'white',
     },
     {
-      icon: (size: number = 24) => <ShieldCheckIcon size={size} strokeWidth={1.5} aria-hidden="true" />,
+      icon: (size: number = 24) => <SearchIcon size={size} strokeWidth={1.5} aria-hidden="true" />,
       title: 'Confidence Index',
       subtitle:
         'Our system monitors data for anomalies using statistical and density-based detection techniques. Any outlier data is flagged so the consumer contract can determine how to handle it.',
-      borderColor: 'brand.800',
+      borderColor: 'brand.500',
     },
     {
       icon: (size: number = 24) => <ComponentIcon size={size} strokeWidth={1.5} aria-hidden="true" />,
       title: 'External Auditors',
       subtitle: 'A pool of independent auditors validates the integrity and accuracy of the data provided',
-      borderColor: 'brand.950',
+      borderColor: 'brand.800',
     },
   ];
 
@@ -72,7 +72,7 @@ const FeaturesSection = memo(() => {
 
   return (
     <Container
-      py={{ base: 6, sm: 8, md: 12, lg: 16 }}
+      py={{ base: 4, sm: 8, md: 12, lg: 16 }}
       as="section"
       aria-labelledby="features-heading"
       maxW={{ base: '100%', lg: '6xl', xl: '7xl' }}
@@ -80,14 +80,21 @@ const FeaturesSection = memo(() => {
       aria-label="Features Section"
     >
       <TitleSection>
-        <Heading id="features-heading" textStyle="title" fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }}>
+        <Heading
+          id="features-heading"
+          textStyle="title"
+          fontSize={{ base: '4xl', sm: '4xl', md: '4xl', lg: '5xl' }}
+          w="full"
+          textAlign={{ base: 'left', md: 'center' }}
+        >
           Our key features
         </Heading>
         <Text
           textStyle="subtitle"
           fontSize={{ base: 'sm', sm: 'md', md: 'lg' }}
-          maxW={{ base: '90%', md: '80%', lg: '70%' }}
-          mx="auto"
+          maxW={{ base: '100%', md: '80%', lg: '70%' }}
+          w="full"
+          textAlign={{ base: 'left', md: 'center' }}
         >
           Reliable solutions for secure and precise data delivery
         </Text>
@@ -96,12 +103,19 @@ const FeaturesSection = memo(() => {
         role="list"
         position="relative"
         w="100%"
-        h={{ base: '100vh', md: 'full' }}
-        gap={{ base: 8, md: 20 }}
+        gap={{ base: 0, md: 20 }}
         flexDirection={stackDirection}
         align="stretch"
       >
-        <VStack flex={1} pos="relative" aria-hidden="true" px={{ base: 0, md: 8 }}>
+        <VStack
+          minH={{ base: '280px', md: 'auto' }}
+          flex={{ base: 0.6, md: 1 }}
+          pos="relative"
+          aria-hidden="true"
+          px={{ base: 0, md: 8 }}
+          align="center"
+          justify="center"
+        >
           {cards.map((card, index) => (
             <VStack
               key={index}
@@ -112,7 +126,7 @@ const FeaturesSection = memo(() => {
               h={cardHeight}
               zIndex={cards.length - index}
               transform={`translate(-50%, calc(${
-                isMobile ? '70px' : '100px'
+                isMobile ? '40px' : '100px'
               } * ${index})) rotate(40deg) skew(-20deg, -10deg)`}
               border="2px solid"
               borderColor={card.borderColor}
@@ -157,9 +171,9 @@ const FeaturesSection = memo(() => {
             </VStack>
           ))}
         </VStack>
-        <VStack flex={1} gap={0} position="relative">
+        <VStack flex={{ base: 0.4, md: 1 }} gap={0} position="relative">
           {cards.map((card, index) => (
-            <Box key={index} position="relative" w="100%">
+            <Box key={index} position="relative" w="full">
               <VStack
                 role="button"
                 tabIndex={0}
@@ -174,7 +188,8 @@ const FeaturesSection = memo(() => {
                 }}
                 onBlur={() => !isMobile && updateCardPositions(null)}
                 alignItems="flex-start"
-                p={{ base: 4, md: 8 }}
+                px={{ base: 0, md: 8 }}
+                py={{ base: 4, md: 8 }}
                 borderRadius="md"
                 position="relative"
                 transition={isMobile ? 'none' : 'all 0.3s ease-in-out'}
@@ -213,7 +228,8 @@ const FeaturesSection = memo(() => {
                       top="50%"
                       height="2px"
                       w="0px"
-                      bg={card.borderColor}
+                      // bg={card.borderColor}
+                      bg="white"
                       transformOrigin="left"
                       transition="width 0.3s ease-in-out"
                       opacity={0}
@@ -225,7 +241,8 @@ const FeaturesSection = memo(() => {
                       left="-60px"
                       top="50%"
                       borderRadius="full"
-                      color={card.borderColor}
+                      // color={card.borderColor}
+                      color="white"
                       transform="translate(-50%, -50%)"
                       transition="all 0.3s ease-in-out"
                       opacity={1}

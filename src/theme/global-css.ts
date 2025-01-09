@@ -38,6 +38,9 @@ export const globalCss = defineGlobalStyles({
     colorPalette: 'gray',
     overflowX: 'clip',
   },
+  body: {
+    overflowX: 'clip',
+  },
   '*::placeholder': {
     color: 'fg.muted/80',
   },

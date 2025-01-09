@@ -30,7 +30,6 @@ export default function Chains() {
                 height={{ base: '36px', sm: '42px', md: '48px' }}
                 loading="lazy"
                 decoding="async"
-                fetchPriority="low"
               />
             ) : null}
             <Text 

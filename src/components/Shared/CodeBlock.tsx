@@ -1,4 +1,4 @@
-import { Box, Button, Code, HStack, Text } from '@chakra-ui/react';
+import { Box, Button, Code, HStack, Image, Text } from '@chakra-ui/react';
 import { NetworkIcon } from 'lucide-react';
 import { useState } from 'react';
 import { ClipboardIconButton, ClipboardRoot } from '@/components/ui/clipboard';
@@ -64,7 +64,7 @@ export const CodeBlock = () => {
           EVM
         </Button>
         <Button variant={tab === 'solana' ? 'solid' : 'plain'} onClick={() => setTab('solana')}>
-          <img src="/assets/solana-icon.png" alt="Solana" width={24} height={24} />
+          <Image src="/assets/solana-icon.webp" loading="lazy" alt="Solana" width={24} height={24} />
           <Text flex={1}>Solana</Text>
         </Button>
         <ClipboardRoot value={tab === 'evm' ? evmCode : solanaCode}>

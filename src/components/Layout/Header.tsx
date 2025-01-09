@@ -145,7 +145,7 @@ export const Header: FC<HeaderProps> = () => {
         zIndex={3}
         px={4}
         pt="72px"
-        pb={16}
+        pb={24}
         gap={2}
         overflowY="auto"
         align="flex-start"
@@ -178,7 +178,7 @@ export const Header: FC<HeaderProps> = () => {
               SOON
             </Badge>
           </Button>
-          <Button as={NavLink} to="/about" variant="navbar"  onClick={onToggle}>
+          <Button as={NavLink} to="/about" variant="navbar" onClick={onToggle}>
             About Us
           </Button>
           <Button as="a" href="https://docs.fact.finance/" target="_blank" rel="noopener noreferrer" variant="navbar">
@@ -192,6 +192,7 @@ export const Header: FC<HeaderProps> = () => {
           as="nav"
           aria-label="Social Media Links"
           w="full"
+          mb={4}
         >
           <Link
             title="Linkedin"

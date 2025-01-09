@@ -19,7 +19,6 @@ export default function Chains() {
             align="center"
             justify="center"
             h={{ base: "60px", sm: "70px", md: "80px" }}
-            role="listitem"
             aria-label={`${chain.value} blockchain network`}
           >
             {chain.icon ? (

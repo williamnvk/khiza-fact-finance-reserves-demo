@@ -96,7 +96,6 @@ const Slider = ({ alias, children, width = '200px', duration = 5, toRight = fals
         {items.map((child, i) => (
           <Box
             key={i}
-            role="listitem"
             opacity={0.7}
             _hover={{ opacity: 1 }}
             transition="opacity 0.3s ease"

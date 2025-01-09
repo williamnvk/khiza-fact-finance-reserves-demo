@@ -129,7 +129,7 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
             align="center"
             maxW={{ base: 'full', md: '4xl' }}
             gap={{ base: 0, md: 2 }}
-            pb={{ base: 24, md: 0 }}
+            pb={{ base: 32, md: 0 }}
             zIndex={5}
           >
             <Text
@@ -160,9 +160,10 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
                 <HStack justify="center" flexWrap="wrap" gap={{ base: 2, md: 4 }} flex={1}>
                   <MorganCreek {...partnerLogoSizes.morganCreek} />
                   <Image
-                    src="/assets/outlier-ventures.png"
+                    src="/assets/outlier-ventures.webp"
                     alt="Outlier Ventures"
                     filter="invert(1)"
+                    w="auto"
                     h={{ base: '16px', md: '22px' }}
                   />
                   <KhizaIcon {...partnerLogoSizes.khiza} />
@@ -173,6 +174,7 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
                     src="/assets/firmeza-token.avif"
                     alt="Firmeza Token"
                     filter="invert(1) brightness(2)"
+                    w="auto"
                     h={{ base: '22px', md: '42px' }}
                   />
                   <SolanaHorizontal {...partnerLogoSizes.solana} />

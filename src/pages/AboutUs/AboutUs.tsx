@@ -64,7 +64,7 @@ export default function AboutUs() {
       <Container maxW="6xl" aria-label="About Us Section" zIndex={1}>
         <VStack gap={8} align="stretch">
           <TitleSection>
-            {/* <Text
+            <Text
               fontSize="sm"
               bgGradient="to-r"
               gradientFrom="brand.50"
@@ -76,9 +76,9 @@ export default function AboutUs() {
               w="full"
               textAlign={{ base: 'left', md: 'center' }}
             >
-              Our History
-            </Text> */}
-            <Heading
+              Our Mission
+            </Text>
+            {/* <Heading
               as="h1"
               textStyle="title"
               fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }}
@@ -86,10 +86,14 @@ export default function AboutUs() {
               textAlign={{ base: 'left', md: 'center' }}
             >
               Bridging Traditional Finance with Web3
-            </Heading>
+            </Heading> */}
             <Text textStyle="subtitle" w="full" textAlign={{ base: 'left', md: 'center' }}>
-              Fact Finance was born to provide data infrastructure for the tokenized economy. We connect tokenization
-              platforms to official and licensed sources, enabling secure and compliant access to data.{' '}
+              Fact Finance was born to provide data infrastructure for the tokenized economy.
+            </Text>
+
+            <Text textStyle="subtitle" w="full" textAlign={{ base: 'left', md: 'center' }}>
+              We connect tokenization platforms to official and licensed sources, enabling secure and compliant access
+              to data.
             </Text>
           </TitleSection>
 

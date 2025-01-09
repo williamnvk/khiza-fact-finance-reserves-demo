@@ -14,10 +14,6 @@ export const badgeRecipe = defineRecipe({
   },
   variants: {
     variant: {
-      positive: {
-        bg: "secondary.100",
-        color: "secondary.800",
-      },
       solid: {
         bg: "colorPalette.solid",
         color: "colorPalette.contrast",
@@ -29,7 +25,7 @@ export const badgeRecipe = defineRecipe({
       outline: {
         color: "colorPalette.fg",
         shadow: "inset 0 0 0px 1px var(--shadow-color)",
-        shadowColor: "colorPalette.muted",
+        shadowColor: "white",
       },
       surface: {
         bg: "colorPalette.subtle",

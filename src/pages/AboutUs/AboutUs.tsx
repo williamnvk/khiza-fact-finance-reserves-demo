@@ -1,4 +1,3 @@
-import { Avatar } from '@/components/ui/avatar';
 import { TitleSection } from '@/components/ui/title-sectiont';
 import {
   Box,
@@ -10,7 +9,6 @@ import {
   Flex,
   HStack,
   AspectRatio,
-  Button,
   IconButton,
 } from '@chakra-ui/react';
 import LinkedinIcon from '@/components/Icons/LinkedinIcon';
@@ -117,7 +115,10 @@ export default function AboutUs() {
                 <Box
                   backgroundImage="url(/assets/about/luciano-juvinski-speaker-2.webp)"
                   backgroundSize="cover"
-                  backgroundPosition="-160px center"
+                  backgroundPosition={{
+                    base: '-80px center',
+                    md: '-160px center',
+                  }}
                   backgroundRepeat="no-repeat"
                   w="full"
                   h="full"

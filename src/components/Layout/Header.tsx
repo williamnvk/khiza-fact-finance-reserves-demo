@@ -63,6 +63,9 @@ export const Header: FC<HeaderProps> = () => {
             <Button as={NavLink} to="/" variant="navbar">
               Home
             </Button>
+            <Button as={NavLink} to="/about" variant="navbar">
+              About Us
+            </Button>
             <Button as={NavLink} to="/data-hub" variant="navbar" disabled>
               Data Hub
               <Badge px={3} variant="outline" ml={2}>
@@ -70,11 +73,17 @@ export const Header: FC<HeaderProps> = () => {
               </Badge>
               <VisuallyHidden>Coming Soon</VisuallyHidden>
             </Button>
-            <Button as={NavLink} to="/features" variant="navbar">
+            {/* <Button as={NavLink} to="/features" variant="navbar" disabled>
               Features
-            </Button>
-            <Button as={NavLink} to="/use-cases" variant="navbar">
+              <Badge px={3} variant="outline" ml={2}>
+                SOON
+              </Badge>
+            </Button> */}
+            <Button as={NavLink} to="/use-cases" variant="navbar" disabled>
               Use Cases
+              <Badge px={3} variant="outline" ml={2}>
+                SOON
+              </Badge>
             </Button>
             <Button as={NavLink} to="/data-providers" variant="navbar" disabled>
               Data Providers
@@ -82,9 +91,6 @@ export const Header: FC<HeaderProps> = () => {
                 SOON
               </Badge>
               <VisuallyHidden>Coming Soon</VisuallyHidden>
-            </Button>
-            <Button as={NavLink} to="/about" variant="navbar">
-              About Us
             </Button>
           </HStack>
 
@@ -98,7 +104,7 @@ export const Header: FC<HeaderProps> = () => {
             aria-expanded={open}
             aria-controls="mobile-menu"
             onClick={onToggle}
-            variant="ghost"
+            variant="plain"
           >
             {open ? <CloseIcon aria-hidden="true" /> : <MenuIcon aria-hidden="true" />}
           </IconButton>
@@ -144,38 +150,38 @@ export const Header: FC<HeaderProps> = () => {
         overflowY="auto"
         align="flex-start"
       >
-        <VStack gap={2} align="flex-start" flex={1} mt={4}>
-          <Button as={NavLink} to="/" variant="subtle">
+        <VStack gap={2} align="flex-start" flex={1} mt={4} w="full">
+          <Button as={NavLink} to="/" variant="navbar" onClick={onToggle}>
             Home
           </Button>
-          <Button as={NavLink} to="/data-hub" variant="plain" disabled>
+          <Button as={NavLink} to="/data-hub" variant="navbar" disabled>
             Data Hub
             <Badge px={3} variant="outline" ml={2}>
               SOON
             </Badge>
           </Button>
-          <Button as={NavLink} to="/features" variant="plain" disabled>
+          <Button as={NavLink} to="/features" variant="navbar" disabled>
             Features{' '}
             <Badge px={3} variant="outline" ml={2}>
               SOON
             </Badge>
           </Button>
-          <Button as={NavLink} to="/use-cases" variant="plain" disabled>
+          <Button as={NavLink} to="/use-cases" variant="navbar" disabled>
             Use Cases{' '}
             <Badge px={3} variant="outline" ml={2}>
               SOON
             </Badge>
           </Button>
-          <Button as={NavLink} to="/data-providers" variant="plain" disabled>
+          <Button as={NavLink} to="/data-providers" variant="navbar" disabled>
             Data Providers
             <Badge px={3} variant="outline" ml={2}>
               SOON
             </Badge>
           </Button>
-          <Button as={NavLink} to="/about" variant="plain">
+          <Button as={NavLink} to="/about" variant="navbar"  onClick={onToggle}>
             About Us
           </Button>
-          <Button as={NavLink} to="/docs" variant="plain">
+          <Button as="a" href="https://docs.fact.finance/" target="_blank" rel="noopener noreferrer" variant="navbar">
             Documentation
           </Button>
         </VStack>

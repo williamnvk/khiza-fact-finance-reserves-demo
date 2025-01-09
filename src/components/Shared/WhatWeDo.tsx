@@ -125,9 +125,8 @@ export const WhatWeDo = () => {
               className="what-we-do-card"
               align="flex-start"
               flex="1"
-              minH={{ base: '250px', sm: '300px', md: '350px', lg: '400px' }}
-              maxH={{ lg: '450px' }}
-              p={{ base: 4, sm: 6 }}
+              h={{ base: '360px', md: '360px' }}
+              p={{ base: 4, sm: 8 }}
               position="relative"
               overflow="hidden"
               role="article"
@@ -148,13 +147,26 @@ export const WhatWeDo = () => {
               }}
             >
               <Box
+                position="absolute"
+                top="220px"
+                left="50%"
+                transform="translate(-50%, -50%)"
+                w="300%"
+                h="100px"
+                bg="radial-gradient(circle, #000 0%, {colors.black} 25%, rgba(0,0,0,.5) 100%)"
+                filter="blur(20px)"
+                zIndex={1}
+              />
+
+              <Box
                 as="video"
                 position="absolute"
                 top={0}
                 left={0}
                 w="100%"
                 h="100%"
-                objectFit="cover"
+                // objectFit="cover"
+                objectPosition="top center"
                 zIndex={0}
                 autoPlay
                 muted
@@ -162,8 +174,8 @@ export const WhatWeDo = () => {
                 loop
                 preload="metadata"
                 aria-hidden="true"
-                filter="brightness(0.3)"
-                mixBlendMode="luminosity"
+                // filter="brightness(1) grayscale(1)"
+                // mixBlendMode="luminosity"
               >
                 <source src={card.video} type="video/mp4" />
               </Box>
@@ -178,20 +190,16 @@ export const WhatWeDo = () => {
               <Heading as="h3" fontSize={headingSize} lineHeight={1} mb={4} zIndex={2}>
                 {card.title}
               </Heading>
-              <Text
-                textStyle="subtitle"
-                zIndex={2}
-                fontSize={{ base: 'md', md: 'lg' }}
-              >
+              <Text textStyle="subtitle" zIndex={2} fontSize={{ base: 'md', md: '17px' }}>
                 {card.description}
               </Text>
             </VStack>
           ))}
         </HStack>
 
-        <Button variant="ghost" aria-label="View use cases" size={{ base: 'md', md: 'lg' }}>
+        {/* <Button variant="ghost" aria-label="View use cases" size={{ base: 'md', md: 'lg' }}>
           See our use cases
-        </Button>
+        </Button> */}
       </VStack>
     </Container>
   );

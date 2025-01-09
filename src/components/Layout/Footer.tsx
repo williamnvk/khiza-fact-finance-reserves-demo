@@ -23,7 +23,7 @@ export function Footer() {
           >
             <Stack gap={4} flex={1}>
               <Text fontSize="sm" color="gray.300">
-                &copy; {new Date().getFullYear()} Fact.Finance. All rights reserved.
+                &copy; {new Date().getFullYear()} Fact Finance. All rights reserved.
               </Text>
               <Text fontSize="xs" color="gray.400">
                 Powering asset tokenization with trusted real-world data.

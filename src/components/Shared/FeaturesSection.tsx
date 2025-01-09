@@ -9,16 +9,16 @@ const FeaturesSection = memo(() => {
   const cardWidth = useBreakpointValue({
     base: '200px',
     sm: '280px',
-    md: '300px',
-    lg: '320px',
-    xl: '340px',
+    md: '280px',
+    lg: '280px',
+    xl: '280px',
   });
   const cardHeight = useBreakpointValue({
     base: '150px',
     sm: '320px',
-    md: '33vh',
-    lg: '35vh',
-    xl: '38vh',
+    md: '320px',
+    lg: '320px',
+    xl: '320px',
   });
 
   const cards = [
@@ -200,8 +200,8 @@ const FeaturesSection = memo(() => {
                         py: 16,
                         '& > .connector': {
                           opacity: 1,
-                          width: '51px',
-                          left: '-51px',
+                          width: '40px',
+                          left: '-12px',
                         },
                       }
                 }
@@ -238,7 +238,7 @@ const FeaturesSection = memo(() => {
                     <Box
                       className="connector-dot"
                       position="absolute"
-                      left="-60px"
+                      left="-30px"
                       top="50%"
                       borderRadius="full"
                       // color={card.borderColor}

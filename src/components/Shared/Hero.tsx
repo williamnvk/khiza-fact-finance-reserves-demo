@@ -35,7 +35,7 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
           autoPlay
           muted
           playsInline
-          filter={heroNumber === 8 ? 'invert(1) brightness(0.15)' : 'brightness(0.2)'}
+          filter='brightness(0.2)'
           mixBlendMode="luminosity"
           loop
           src={`/assets/hero-${heroNumber}.mp4`}
@@ -49,7 +49,7 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
           w="100vw"
           h="100vh"
           bg="radial-gradient(circle, {colors.brand.900} 0%, {colors.brand.900} 25%, rgba(0,0,0,.5) 100%)"
-          filter="blur(100px)"
+          filter="blur(200px)"
           zIndex={1}
         />
         <Box
@@ -60,7 +60,7 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
           w={{ base: '75vw', md: '50vw' }}
           h="100vh"
           bg="radial-gradient(circle, {colors.brand.950} 0%, {colors.brand.900} 25%, rgba(0,0,0,.5) 100%)"
-          filter="blur(100px)"
+          filter="blur(200px)"
           zIndex={1}
         />
         <Box
@@ -96,7 +96,7 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
           <VStack flex={1} align="center" justify="center" gap={stackSpacing}>
             <LogoIcon width={logoSize} height={logoSize} />
             <Heading
-              fontSize={{ base: '4xl', sm: '4xl', md: '5xl', lg: '6xl' }}
+              fontSize={{ base: '4xl', sm: '4xl', md: '6xl', lg: '7xl' }}
               lineHeight={1.1}
               fontWeight="400"
               w="full"

@@ -94,7 +94,14 @@ export const Header: FC<HeaderProps> = () => {
             </Button>
           </HStack>
 
-          <Button variant="solid" display={{ base: 'none', md: 'flex' }}>
+          <Button
+            variant="solid"
+            display={{ base: 'none', md: 'flex' }}
+            as="a"
+            href="https://docs.fact.finance/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Docs
           </Button>
 

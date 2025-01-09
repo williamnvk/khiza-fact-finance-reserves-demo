@@ -1,4 +1,4 @@
-import { Box, Container, Heading, HStack, Image, Text, VStack, useBreakpointValue } from '@chakra-ui/react';
+import { Box, Container, Heading, HStack, Image, Text, VStack, useBreakpointValue, Badge } from '@chakra-ui/react';
 import { Button } from '@/components/ui/button';
 import BrazilianTesouroNacionalIcon from '@/components/Icons/BrazilianTesouroNacional';
 import SolanaHorizontal from '@/components/Icons/SolanaHorizontal';
@@ -125,8 +125,11 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
               >
                 Talk to an expert
               </Button>
-              <Button variant="ghost" size="xl" w={{ base: 'full', sm: 'auto' }}>
+              <Button variant="ghost" size="xl" w={{ base: 'full', sm: 'auto' }} disabled>
                 Data hub
+                <Badge mr={2} variant="outline">
+                  Soon
+                </Badge>
               </Button>
             </HStack>
           </VStack>

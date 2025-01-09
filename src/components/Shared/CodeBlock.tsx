@@ -64,7 +64,7 @@ export const CodeBlock = () => {
           EVM
         </Button>
         <Button variant={tab === 'solana' ? 'solid' : 'plain'} onClick={() => setTab('solana')}>
-          <Image src="/assets/solana-icon.webp" loading="lazy" alt="Solana" width={24} height={24} />
+          <Image src="/assets/solana-icon.webp" loading="lazy" alt="Solana" width="24px" height="24px" />
           <Text flex={1}>Solana</Text>
         </Button>
         <ClipboardRoot value={tab === 'evm' ? evmCode : solanaCode}>

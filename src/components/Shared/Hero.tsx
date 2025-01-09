@@ -170,7 +170,7 @@ export const Hero: FC<{ heroNumber: number }> = ({ heroNumber = 3 }) => {
                     src="/assets/outlier-ventures.webp"
                     alt="Outlier Ventures"
                     filter="invert(1)"
-                    w="auto"
+                    w={{ base: '140px', md: '192px' }}
                     h={{ base: '16px', md: '22px' }}
                   />
                   <KhizaIcon {...partnerLogoSizes.khiza} />

@@ -51,16 +51,16 @@ export const Home = () => {
         </Suspense>
       </Box>
 
-      <Container py={{ base: 8, md: 8 }} px={4} role="group" aria-labelledby="call-to-action-heading" as="section">
+      <Container py={{ base: 8, md: 8 }} role="group" aria-labelledby="call-to-action-heading" as="section">
         <HStack
           align={{ base: 'stretch', md: 'center' }}
           justify="center"
           gap={{ base: 8, lg: 16 }}
-          flexDirection={{ base: 'column', lg: 'row' }}
+          flexDirection={{ base: 'column', xl: 'row' }}
         >
           <VStack gap={6} align={{ base: 'center', md: 'flex-start' }} flex={1}>
             <TitleSection align={{ base: 'center', md: 'flex-start' }}>
-              <Text fontSize="sm" color="brand.300" w="full" textAlign={{ base: 'left', md: 'left' }}>
+              <Text fontSize="sm" color="brand.300" w="full" textAlign={{ base: 'left', md: 'center', xl: 'left' }}>
                 CALLING THE DEVS
               </Text>
               <Heading
@@ -68,16 +68,29 @@ export const Home = () => {
                 id="call-to-action-heading"
                 textStyle="title"
                 w="full"
-                textAlign={{ base: 'left', md: 'left' }}
+                textAlign={{ base: 'left', md: 'center', xl: 'left' }}
                 fontSize={{ base: '2xl', sm: '3xl', md: '3xl', lg: '4xl' }}
+                maxW={{ base: 'full', md: 'xl', xl: 'full' }}
               >
                 Seamless Data Integration for Blockchain Developers
               </Heading>
-              <Text fontSize="sm" w="full" textAlign={{ base: 'left', md: 'left' }}>
+              <Text
+                fontSize="sm"
+                w="full"
+                textAlign={{ base: 'left', md: 'center', xl: 'left' }}
+                maxW={{ base: 'full', md: 'xl', xl: 'full' }}
+                mx="auto"
+              >
                 Effortlessly integrate trusted, verified data into your blockchain projects with our time-saving data
                 hub. Fact Finance provides powerful APIs to connect smart contracts to real-world data sources.
               </Text>
-              <Text fontSize="sm" w="full" textAlign={{ base: 'left', md: 'left' }}>
+              <Text
+                fontSize="sm"
+                w="full"
+                textAlign={{ base: 'left', md: 'center', xl: 'left' }}
+                maxW={{ base: 'full', md: 'xl', xl: 'full' }}
+                mx="auto"
+              >
                 No complex onboarding, just clear documentation, step-by-step guides, and ready-to-use examples for EVMs
                 and Solana.
               </Text>

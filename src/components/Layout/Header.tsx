@@ -161,7 +161,7 @@ export const Header: FC<HeaderProps> = () => {
           <Button as={NavLink} to="/" variant="navbar" onClick={onToggle}>
             Home
           </Button>
-          <Button as={NavLink} to="/data-hub" variant="navbar" disabled>
+          {/* <Button as={NavLink} to="/data-hub" variant="navbar" disabled>
             Data Hub
             <Badge px={3} variant="outline" ml={2}>
               SOON
@@ -184,7 +184,7 @@ export const Header: FC<HeaderProps> = () => {
             <Badge px={3} variant="outline" ml={2}>
               SOON
             </Badge>
-          </Button>
+          </Button> */}
           <Button as={NavLink} to="/about" variant="navbar" onClick={onToggle}>
             About Us
           </Button>

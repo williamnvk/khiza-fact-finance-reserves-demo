@@ -3,17 +3,28 @@ import { NetworkIcon } from 'lucide-react';
 import { useState } from 'react';
 import { ClipboardIconButton, ClipboardRoot } from '@/components/ui/clipboard';
 
-const evmCode = `/// @title Data Feed Struct
-/// @notice Represents the data feed with a value, timestamp, and confidence level
-/// @dev Stores oracle data with additional metadata for reliability and scaling
-struct DataFeed {    
-    int256 value;        /// @dev Integer value of the data feed
-    uint256 updatedAt;   /// @dev Timestamp of the last data update
-    uint8 decimal;       /// @dev Number of decimal places for interpreting the value
-    uint8 confidence;    /// @dev Confidence level of the data feed
-                         /// @dev 0: outlier, 5: acceptable, 95: reliable
-}`;
+const evmCode = `/// Oracle contract interface
+    FOInterfaceV1 public _fOracle; 
 
+    ///Constructor to initialize the ConsumerFOracle contract
+    constructor(address oracleAddress) { 
+        _fOracle = FOInterfaceV1(oracleAddress);
+    }
+     
+    /// Retrieves the latest data feed from the oracle and updates contract state variables
+    function getFeed(uint16 code) public {
+        DataFeed _data = _fOracle.getFeed(code);               
+    }
+
+    /// DataFeed field struct
+    struct DataFeed {   
+      int256 value;       /// @dev Integer value of the data feed
+      uint256 updatedAt;  /// @dev timestamp of backend data update
+      uint8 decimal;      /// @dev Number of decimal places for the data value
+      uint8 confidence;   /// @dev Confidence level of the data feed
+                          /// @dev 0: outlier, 5: acceptable, 95: reliable
+    }
+`;
 const solanaCode = `#[program]
 mod consumer {
     use super::*;
@@ -79,11 +90,122 @@ export const CodeBlock = () => {
               <Text color="gray.500" w="10">
                 &nbsp;&nbsp;1
               </Text>
-              <Text color="success.400">/// @title Data Feed Struct</Text>
+              <Text color="success.400">/// Oracle contract interface</Text>
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
                 &nbsp;&nbsp;2
+              </Text>
+              <Text color="warning.400">FOInterfaceV1</Text>
+              <Text as="span" color="white">
+                public _fOracle;
+              </Text>
+            </HStack>
+            <HStack gap={2} w="full">
+              <Text color="gray.500" w="10">
+                &nbsp;&nbsp;3
+              </Text>
+              <Text color="success.400"></Text>
+            </HStack>
+            <HStack gap={2} w="full">
+              <Text color="gray.500" w="10">
+                &nbsp;&nbsp;4
+              </Text>
+              <Text color="success.400">/// Constructor to initialize the ConsumerFOracle contract</Text>
+            </HStack>
+            <HStack gap={2} w="full">
+              <Text color="gray.500" w="10">
+                &nbsp;&nbsp;5
+              </Text>
+              <Text color="warning.400">constructor</Text>
+              <Text as="span" color="white">
+                (address oracleAddress) {`{`}
+              </Text>
+            </HStack>
+            <HStack gap={2} w="full">
+              <Text color="gray.500" w="10">
+                &nbsp;&nbsp;6
+              </Text>
+              <Text color="warning.400">&nbsp;&nbsp;&nbsp;&nbsp;_fOracle = FOInterfaceV1</Text>
+              <Text as="span" color="white">
+                (oracleAddress);
+              </Text>
+            </HStack>
+            <HStack gap={2} w="full">
+              <Text color="gray.500" w="10">
+                &nbsp;&nbsp;7
+              </Text>
+              <Text color="white">{`}`}</Text>
+            </HStack>
+            <HStack gap={2} w="full">
+              <Text color="gray.500" w="10">
+                &nbsp;&nbsp;8
+              </Text>
+              <Text color="success.400"></Text>
+            </HStack>
+            <HStack gap={2} w="full">
+              <Text color="gray.500" w="10">
+                &nbsp;&nbsp;9
+              </Text>
+              <Text color="success.400">
+                /// Retrieves the latest data feed from the oracle and updates contract state variables
+              </Text>
+            </HStack>
+            <HStack gap={2} w="full">
+              <Text color="gray.500" w="10">
+                &nbsp;10
+              </Text>
+              <Text color="warning.400">function</Text>
+              <Text as="span" color="white">
+                getFeed(uint16 code)
+              </Text>
+              <Text color="warning.400">
+                public <Text color="white" as="span">{`{`}</Text>{' '}
+              </Text>
+            </HStack>
+            <HStack gap={2} w="full">
+              <Text color="gray.500" w="10">
+                &nbsp;11
+              </Text>
+              <Text color="warning.400">&nbsp;&nbsp;&nbsp;&nbsp;DataFeed</Text>
+              <Text as="span" color="white">
+                _data
+              </Text>
+              <Text color="warning.400">=</Text>
+              <Text as="span" color="white">
+                _fOracle.getFeed
+              </Text>
+              <Text color="warning.400">(</Text>
+              <Text as="span" color="white">
+                code
+              </Text>
+              <Text as="span" color="warning.400">
+                )
+              </Text>
+              <Text as="span" color="white">
+                ;
+              </Text>
+            </HStack>
+            <HStack gap={2} w="full">
+              <Text color="gray.500" w="10">
+                &nbsp;12
+              </Text>
+              <Text color="white">{`}`}</Text>
+            </HStack>
+            <HStack gap={2} w="full">
+              <Text color="gray.500" w="10">
+                &nbsp;13
+              </Text>
+            </HStack>
+            <HStack gap={2} w="full">
+              <Text color="gray.500" w="10">
+                &nbsp;14
+              </Text>
+              <Text color="success.400">/// @title Data Feed Struct</Text>
+            </HStack>
+            <HStack gap={2} w="full">
+              <Text color="gray.500" w="10">
+                &nbsp;15
               </Text>
               <Text color="success.400">
                 /// @notice This struct represents the data feed with a value and confidence level
@@ -91,19 +213,14 @@ export const CodeBlock = () => {
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
-                &nbsp;&nbsp;3
+                &nbsp;16
               </Text>
               <Text color="success.400">/// @dev Used to store oracle data with an associated confidence score</Text>
             </HStack>
+           
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
-                &nbsp;&nbsp;4
-              </Text>
-              <Text color="white"></Text>
-            </HStack>
-            <HStack gap={2} w="full">
-              <Text color="gray.500" w="10">
-                &nbsp;&nbsp;5
+                &nbsp;17
               </Text>
               <Text>
                 <Text as="span" color="warning.400">
@@ -116,7 +233,7 @@ export const CodeBlock = () => {
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
-                &nbsp;&nbsp;6
+                &nbsp;18
               </Text>
               <Text>
                 <Text as="span" color="warning.400">
@@ -132,7 +249,7 @@ export const CodeBlock = () => {
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
-                &nbsp;&nbsp;7
+                &nbsp;19
               </Text>
               <Text>
                 <Text as="span" color="warning.400">
@@ -148,7 +265,7 @@ export const CodeBlock = () => {
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
-                &nbsp;&nbsp;8
+                &nbsp;20
               </Text>
               <Text>
                 <Text as="span" color="warning.400">
@@ -164,7 +281,7 @@ export const CodeBlock = () => {
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
-                &nbsp;&nbsp;9
+                &nbsp;21
               </Text>
               <Text>
                 <Text as="span" color="warning.400">
@@ -180,20 +297,20 @@ export const CodeBlock = () => {
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
-                &nbsp;10
+                &nbsp;22
               </Text>
               <Text>
                 <Text as="span" color="white">
                   &nbsp;&nbsp;&nbsp;&nbsp;
                 </Text>
                 <Text as="span" color="success.400">
-                  /// @dev 1: outlier, 2: acceptable, 3: reliable
+                  /// @dev 0 outlier, 5 acceptable, 95 reliable
                 </Text>
               </Text>
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
-                &nbsp;11
+                &nbsp;23
               </Text>
               <Text color="white">{`}`}</Text>
             </HStack>

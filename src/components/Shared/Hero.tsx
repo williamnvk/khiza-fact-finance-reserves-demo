@@ -1,7 +1,5 @@
 import { Box, Container, Heading, HStack, Image, Text, VStack, useBreakpointValue, Badge } from '@chakra-ui/react';
 import { Button } from '@/components/ui/button';
-import BrazilianTesouroNacionalIcon from '@/components/Icons/BrazilianTesouroNacional';
-import SolanaHorizontal from '@/components/Icons/SolanaHorizontal';
 import MorganCreek from '@/components/Icons/MorganCreek';
 import KhizaIcon from '@/components/Icons/KhizaIcon';
 import LiqiLogo from '@/components/Icons/Liqi';
@@ -15,9 +13,7 @@ export const Hero: FC = () => {
   const partnerLogoSizes = {
     morganCreek: useBreakpointValue({ base: { width: 80, height: 42 }, md: { width: 168, height: 88 } }),
     khiza: useBreakpointValue({ base: { width: 52, height: 42 }, md: { width: 112, height: 88 } }),
-    liqi: useBreakpointValue({ base: { width: 76, height: 44 }, md: { width: 128, height: 72 } }),
-    solana: useBreakpointValue({ base: { width: 116, height: 47 }, md: { width: 195, height: 78 } }),
-    tesouro: useBreakpointValue({ base: { width: 64, height: 64 }, md: { width: 112, height: 112 } }),
+    liqi: useBreakpointValue({ base: { width: 76, height: 44 }, md: { width: 112, height: 54 } }),
   };
 
   return (
@@ -177,20 +173,16 @@ export const Hero: FC = () => {
                     h={{ base: '16px', md: '22px' }}
                   />
                   <KhizaIcon {...partnerLogoSizes.khiza} />
-                </HStack>
-                <HStack justify="center" flexWrap="wrap" gap={{ base: 0, md: 4 }} mt={{ base: -2, md: -6 }}>
                   <LiqiLogo {...partnerLogoSizes.liqi} />
                   <Image
                     src="/assets/firmeza-token.avif"
                     alt="Firmeza Token"
                     filter="invert(1) brightness(2)"
-                    w={{ base: '84px', md: '163px' }}
-                    h={{ base: '22px', md: '42px' }}
+                    w={{ base: '84px', md: '122px' }}
+                    h={{ base: '22px', md: '32px' }}
                   />
-                  <SolanaHorizontal {...partnerLogoSizes.solana} />
                 </HStack>
               </VStack>
-              <BrazilianTesouroNacionalIcon {...partnerLogoSizes.tesouro} />
             </HStack>
           </VStack>
         </VStack>

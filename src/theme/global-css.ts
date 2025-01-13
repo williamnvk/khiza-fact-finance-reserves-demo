@@ -81,8 +81,6 @@ export const globalCss = defineGlobalStyles({
     border: '1px solid',
     borderColor: 'whiteAlpha.200',
     position: 'relative',
-    p: 8,
-    h: '280px',
     justifyContent: 'flex-end',
     '&::before': {
       content: '""',

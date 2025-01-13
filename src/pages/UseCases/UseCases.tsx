@@ -228,8 +228,8 @@ export default function UseCases() {
                 className="use-case-card"
                 align="flex-start"
                 flex="1"
-                minH={{ base: '240px', md: '360px' }}
-                h={{ base: '240px', md: '360px' }}
+                minH={{ base: '160px', md: '360px' }}
+                h={{ base: '160px', md: '360px' }}
                 p={{ base: 4, sm: 8 }}
                 position="relative"
                 overflow="hidden"
@@ -255,15 +255,12 @@ export default function UseCases() {
                   }
                 }}
               >
-                {' '}
                 <Heading as="h2" fontSize="3xl" lineHeight="1" textAlign="left" id={`heading-${card.id}`}>
-                  {' '}
-                  {card.title}{' '}
-                </Heading>{' '}
+                  {card.title}
+                </Heading>
                 <Text fontSize="md" color="whiteAlpha.900">
-                  {' '}
-                  {card.description}{' '}
-                </Text>{' '}
+                  {card.description}
+                </Text>
                 <Box
                   as="video"
                   position="absolute"
@@ -287,9 +284,9 @@ export default function UseCases() {
                   zIndex={-1}
                   fetchPriority={currentUseCase === card.id ? 'high' : 'low'}
                   aria-label={`Background video showing ${card.title}`}
-                />{' '}
+                />
               </VStack>
-            ))}{' '}
+            ))}
           </SimpleGrid>
           <VStack
             w="full"
@@ -299,7 +296,7 @@ export default function UseCases() {
           >
             <Heading
               as="h2"
-              fontSize="8xl"
+              fontSize={{ base: '2xl', md: '8xl' }}
               lineHeight="1"
               aria-label="Section heading about unlocking liquidity and transparency"
             >
@@ -437,7 +434,7 @@ export default function UseCases() {
             data-use-case={USE_CASE_REAL_ESTATE}
             display={currentUseCase === USE_CASE_REAL_ESTATE ? 'block' : 'none'}
           >
-            <Text fontWeight="bold" fontSize="8xl" lineHeight="1">
+            <Text fontWeight="bold" fontSize={{ base: '2xl', md: '8xl' }} lineHeight="1">
               Unlocking utility by reducing information asymmetry
             </Text>
             <br />
@@ -472,11 +469,11 @@ export default function UseCases() {
               market value for that asset, transforming the token into a true digital twin.
             </Text>
             <br />
-            <Text fontWeight="bold" fontSize="2xl">
+            <Text fontWeight="bold" fontSize={{ base: 'lg', md: '2xl' }}>
               What type of data?
             </Text>
             <br />
-            <SimpleGrid columns={3} w="full" gap={{ base: 4, md: 4 }}>
+            <SimpleGrid columns={{ base: 1, md: 3 }} w="full" gap={{ base: 4, md: 4 }}>
               <VStack
                 gap={4}
                 w="full"
@@ -543,7 +540,7 @@ export default function UseCases() {
               ensures a reliable connection:
             </Text>
             <br />
-            <SimpleGrid columns={3} w="full" gap={{ base: 4, md: 4 }}>
+            <SimpleGrid columns={{ base: 1, md: 3 }} w="full" gap={{ base: 4, md: 4 }}>
               <VStack gap={4} w="full" p={{ base: 4, md: 12 }} bg="whiteAlpha.50" borderRadius="lg">
                 <Text color="brand.500">
                   <BadgeCheckIcon size={32} />
@@ -617,7 +614,7 @@ export default function UseCases() {
               compliance while unlocking new efficiencies.
             </Text>
             <br />
-            <Text fontWeight="bold" fontSize="6xl" lineHeight="1">
+            <Text fontWeight="bold" fontSize={{ base: '2xl', md: '6xl' }} lineHeight="1">
               Fact Finance role connecting official data and tokenized assets
             </Text>
             <br />
@@ -641,7 +638,7 @@ export default function UseCases() {
               receive real-time price updates based on official data.
             </Text>
             <br />
-            <Text fontWeight="bold" fontSize="4xl" lineHeight="1">
+            <Text fontWeight="bold" fontSize={{ base: '2xl', md: '4xl' }} lineHeight="1">
               Unlock the potential of tokenized capital markets
             </Text>
             <br />

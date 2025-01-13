@@ -28,6 +28,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               <Route index element={<Home />} />
               <Route path="/careers" element={<Careers />} />
               <Route path="/features" element={<Features />} />
+              <Route path="/use-cases/:useCase" element={<UseCases />} />
               <Route path="/use-cases" element={<UseCases />} />
               <Route path="/about" element={<AboutUs />} />
               <Route path="/data-providers" element={<DataProviders />} />

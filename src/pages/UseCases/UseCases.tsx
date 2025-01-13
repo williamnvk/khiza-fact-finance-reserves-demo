@@ -3,6 +3,7 @@ import { TitleSection } from '@/components/ui/title-sectiont';
 import { Box, Container, Heading, Text, VStack, SimpleGrid } from '@chakra-ui/react';
 import { BadgeCheckIcon, ComponentIcon, SearchIcon } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
+import { Link, useParams } from 'react-router';
 
 const USE_CASE_COMMODITIES = 'commodities';
 const USE_CASE_REAL_ESTATE = 'real-estate';
@@ -11,6 +12,17 @@ const USE_CASE_CAPITAL_MARKETS = 'capital-markets';
 type UseCase = typeof USE_CASE_COMMODITIES | typeof USE_CASE_REAL_ESTATE | typeof USE_CASE_CAPITAL_MARKETS;
 
 export default function UseCases() {
+  const { useCase } = useParams();
+  const [currentUseCase, setCurrentUseCase] = useState<UseCase | null>(null);
+
+  useEffect(() => {
+    if (useCase) {
+      setCurrentUseCase(useCase as UseCase);
+    } else {
+      setCurrentUseCase(USE_CASE_REAL_ESTATE);
+    }
+  }, [useCase]);
+
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
@@ -48,7 +60,6 @@ export default function UseCases() {
     commodities: useRef<HTMLDivElement>(null),
   };
 
-  const [useCase, setUseCase] = useState<UseCase>(USE_CASE_REAL_ESTATE);
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   useEffect(() => {
@@ -77,7 +88,6 @@ export default function UseCases() {
         keywords="real estate tokenization, capital markets blockchain, tokenized commodities, blockchain data infrastructure, asset tokenization use cases"
         structuredData={JSON.stringify(structuredData)}
       />
-
       <Box as="main" pos="relative" w="full" h="full" pt={{ base: '72px', md: '144px' }} pb={{ base: 12, md: 24 }}>
         <Container maxW="6xl" as="section">
           <TitleSection>
@@ -162,18 +172,13 @@ export default function UseCases() {
                 overflow="hidden"
                 role="button"
                 tabIndex={0}
-                aria-pressed={useCase === card.id}
+                aria-pressed={currentUseCase === card.id}
                 aria-controls={`content-${card.id}`}
                 borderRadius="xl"
                 transition="all 0.3s ease"
                 _hover={{ transform: 'scale(1.02)', cursor: 'pointer' }}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    setUseCase(card.id);
-                  }
-                }}
-                onClick={() => setUseCase(card.id)}
+                as={Link}
+                to={`/use-cases/${card.id}`}
                 onMouseEnter={() => {
                   setHoveredCard(card.id);
                   if (cardRefs[card.id as keyof typeof cardRefs].current) {
@@ -210,14 +215,14 @@ export default function UseCases() {
                   loading="lazy"
                   preload="metadata"
                   poster={card.poster}
-                  filter={useCase === card.id ? 'brightness(1)' : 'brightness(0.25)'}
-                  mixBlendMode={useCase === card.id ? 'normal' : 'luminosity'}
+                  filter={currentUseCase === card.id ? 'brightness(1)' : 'brightness(0.25)'}
+                  mixBlendMode={currentUseCase === card.id ? 'normal' : 'luminosity'}
                   opacity={0.5}
                   loop
                   src={card.video}
                   aria-hidden="true"
                   zIndex={-1}
-                  fetchPriority={useCase === card.id ? 'high' : 'low'}
+                  fetchPriority={currentUseCase === card.id ? 'high' : 'low'}
                   aria-label={`Background video showing ${card.title}`}
                 />{' '}
               </VStack>
@@ -227,7 +232,7 @@ export default function UseCases() {
             w="full"
             gap={4}
             data-use-case={USE_CASE_COMMODITIES}
-            display={useCase === USE_CASE_COMMODITIES ? 'block' : 'none'}
+            display={currentUseCase === USE_CASE_COMMODITIES ? 'block' : 'none'}
           >
             <Heading
               as="h2"
@@ -367,7 +372,7 @@ export default function UseCases() {
             w="full"
             gap={4}
             data-use-case={USE_CASE_REAL_ESTATE}
-            display={useCase === USE_CASE_REAL_ESTATE ? 'block' : 'none'}
+            display={currentUseCase === USE_CASE_REAL_ESTATE ? 'block' : 'none'}
           >
             <Text fontWeight="bold" fontSize="8xl" lineHeight="1">
               Unlocking utility by reducing information asymmetry
@@ -527,7 +532,7 @@ export default function UseCases() {
           <VStack
             w="full"
             data-use-case={USE_CASE_CAPITAL_MARKETS}
-            display={useCase === USE_CASE_CAPITAL_MARKETS ? 'block' : 'none'}
+            display={currentUseCase === USE_CASE_CAPITAL_MARKETS ? 'block' : 'none'}
           >
             <Text fontSize="lg">
               Tokenized capital markets are reshaping the financial landscape, especially in regions like Latin America,

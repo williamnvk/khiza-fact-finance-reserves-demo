@@ -8,6 +8,7 @@ interface SEOProps {
   url?: string;
   type?: string;
   structuredData?: any;
+  canonical?: string;
 }
 
 export const SEO = ({
@@ -18,6 +19,7 @@ export const SEO = ({
   url = 'https://fact.finance',
   type = 'website',
   structuredData = {},
+  canonical = 'https://fact.finance',
 }: SEOProps) => {
   const rawStructuredData =
     JSON.stringify(structuredData) === JSON.stringify({})
@@ -56,7 +58,7 @@ export const SEO = ({
       <meta name="keywords" content={keywords} />
       <meta name="author" content="Fact Finance" />
       <meta name="robots" content="index, follow" />
-      <link rel="canonical" href={url} />
+      <link rel="canonical" href={canonical} />
 
       <script type="application/ld+json">{JSON.stringify(rawStructuredData)}</script>
     </Helmet>

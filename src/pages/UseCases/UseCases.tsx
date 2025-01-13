@@ -26,9 +26,27 @@ export default function UseCases() {
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: 'Use Cases | Fact Finance - Real World Asset Tokenization Solutions',
+    name: 'Use Cases | Fact Finance - Real World Asset Tokenization Platform',
     description:
-      'Explore how Fact Finance powers real estate tokenization, capital markets, and commodities with trusted data infrastructure.',
+      'Discover how Fact Finance enables real estate tokenization, capital markets digitization, and commodities tokenization with secure blockchain infrastructure and verified data.',
+    url: 'https://fact.finance/use-cases',
+    breadcrumb: {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://fact.finance',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Use Cases',
+          item: 'https://fact.finance/use-cases',
+        },
+      ],
+    },
     mainEntity: {
       '@type': 'ItemList',
       itemListElement: [
@@ -36,22 +54,43 @@ export default function UseCases() {
           '@type': 'ListItem',
           position: 1,
           name: 'Tokenized Capital Markets',
-          description: 'Access official economic indices from authorized sources',
+          description: 'Access official economic indices and market data for tokenized financial instruments',
+          url: 'https://fact.finance/use-cases/capital-markets',
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Real Estate Tokenization',
-          description: 'Square meter price and proof of reserve for properties',
+          description: 'Verified property data, square meter pricing, and proof of reserve for tokenized real estate',
+          url: 'https://fact.finance/use-cases/real-estate',
         },
         {
           '@type': 'ListItem',
           position: 3,
           name: 'Tokenized Commodities',
-          description: 'Qualitative data and monitoring for commodities',
+          description:
+            'Real-time commodity pricing, quality metrics, and environmental monitoring for tokenized assets',
+          url: 'https://fact.finance/use-cases/commodities',
         },
       ],
     },
+    about: {
+      '@type': 'Thing',
+      name: 'Asset Tokenization Platform',
+      description: 'Enterprise blockchain infrastructure for tokenizing real-world assets with verified data',
+    },
+    keywords: [
+      'real estate tokenization',
+      'asset tokenization platform',
+      'blockchain infrastructure',
+      'tokenized commodities',
+      'digital assets',
+      'capital markets blockchain',
+      'real estate DeFi',
+      'commodity tokenization',
+      'verified asset data',
+      'blockchain oracle',
+    ],
   };
 
   const cardRefs = {
@@ -83,10 +122,34 @@ export default function UseCases() {
   return (
     <>
       <SEO
-        title="Use Cases | Fact Finance - Real World Asset Tokenization Solutions"
-        description="Explore how Fact Finance powers real estate tokenization, capital markets, and commodities with trusted data infrastructure. Learn about our blockchain solutions."
-        keywords="real estate tokenization, capital markets blockchain, tokenized commodities, blockchain data infrastructure, asset tokenization use cases"
+        title="Use Cases | Fact Finance - Enterprise Asset Tokenization Platform"
+        description="Explore how Fact Finance enables real estate tokenization, capital markets digitization, and commodities tokenization with secure blockchain infrastructure and verified data. Learn about our enterprise solutions."
+        keywords="real estate tokenization, asset tokenization platform, blockchain infrastructure, tokenized commodities, digital assets, capital markets blockchain, real estate DeFi, commodity tokenization, verified asset data, blockchain oracle"
         structuredData={JSON.stringify(structuredData)}
+        canonical="https://fact.finance/use-cases"
+        openGraph={{
+          title: 'Use Cases | Fact Finance - Enterprise Asset Tokenization Platform',
+          description:
+            'Explore how Fact Finance enables real estate tokenization, capital markets digitization, and commodities tokenization with secure blockchain infrastructure and verified data.',
+          url: 'https://fact.finance/use-cases',
+          type: 'website',
+          images: [
+            {
+              url: 'https://fact.finance/og-image-use-cases.jpg',
+              width: 1200,
+              height: 630,
+              alt: 'Fact Finance Use Cases',
+            },
+          ],
+        }}
+        twitter={{
+          card: 'summary_large_image',
+          site: '@FactFinance',
+          title: 'Use Cases | Fact Finance - Enterprise Asset Tokenization Platform',
+          description:
+            'Explore how Fact Finance enables real estate tokenization, capital markets digitization, and commodities tokenization with secure blockchain infrastructure and verified data.',
+          image: 'https://fact.finance/twitter-image-use-cases.jpg',
+        }}
       />
       <Box as="main" pos="relative" w="full" h="full" pt={{ base: '72px', md: '144px' }} pb={{ base: 12, md: 24 }}>
         <Container maxW="6xl" as="section">
@@ -244,7 +307,7 @@ export default function UseCases() {
             </Heading>
             <br />
             <Text fontSize="lg">
-              Latin America’s economies heavily rely on the commodities sector, driving global markets for agricultural
+              Latin America's economies heavily rely on the commodities sector, driving global markets for agricultural
               goods, minerals, and energy. Despite its significance, this sector faces challenges such as operational
               inefficiencies, high transaction costs, and limited access to financing, particularly for smaller
               producers.
@@ -475,7 +538,7 @@ export default function UseCases() {
             <br />
 
             <Text fontWeight="bold" fontSize="5xl" lineHeight="1">
-              Here’s how Fact Finance
+              Here's how Fact Finance
               <br />
               ensures a reliable connection:
             </Text>
@@ -523,7 +586,7 @@ export default function UseCases() {
             <br />
 
             <Text fontSize="xl" fontWeight="400">
-              With Fact Finance’s integration, tokenized real estate moves beyond static representation to become a
+              With Fact Finance's integration, tokenized real estate moves beyond static representation to become a
               dynamic financial asset. Tokens can now serve as collateral for loans or be used in DeFi applications,
               unlocking greater utility and liquidity for both issuers and investors.
             </Text>
@@ -560,7 +623,7 @@ export default function UseCases() {
             <br />
             <Text fontSize="lg">
               In Brazil, approximately 45% of public debt is tied to the Selic (Interest rate), and another 30% to
-              inflation-adjusted bonds. These indexed instruments dominate over 75% of the country’s bond market. Beyond
+              inflation-adjusted bonds. These indexed instruments dominate over 75% of the country's bond market. Beyond
               public debt, private long-term contracts, such as residential leases, also rely on inflation indexing,
               with the General Market Price Index (IGP-M) being a staple for rent price adjustments.
             </Text>
@@ -583,7 +646,7 @@ export default function UseCases() {
             </Text>
             <br />
             <Text fontSize="lg">
-              Ready to see how Fact Finance’s data hub can power your tokenized assets solutions? Visit our data feeds
+              Ready to see how Fact Finance's data hub can power your tokenized assets solutions? Visit our data feeds
               page today to learn more.
             </Text>
             <Text fontSize="lg" visibility="hidden">

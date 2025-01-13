@@ -19,7 +19,6 @@ import { teamMembers } from '@/data/team';
 import { SEO } from '@/components/Common/SEO';
 import { Image } from '@chakra-ui/react';
 import XIcon from '@/components/Icons/XIcon';
-import BrazilianTesouroNacionalIcon from '@/components/Icons/BrazilianTesouroNacional';
 import { useState, useCallback } from 'react';
 
 export default function AboutUs() {
@@ -37,24 +36,49 @@ export default function AboutUs() {
     card.style.setProperty('--y', `${y}px`);
   }, []);
 
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Fact Finance',
+    description: 'Enterprise blockchain infrastructure and data solutions for real-world asset tokenization',
+    url: 'https://fact.finance/about',
+    logo: 'https://fact.finance/logo.png',
+    foundingDate: '2023',
+    founders: teamMembers.map((member) => ({
+      '@type': 'Person',
+      name: member.name,
+      jobTitle: member.role,
+      sameAs: [`https://linkedin.com/in/${member.social.linkedin}`, `https://x.com/${member.social.x}`],
+    })),
+    sameAs: [
+      'https://linkedin.com/company/fact-finance-oracle',
+      'https://x.com/FactFinance',
+      'https://github.com/fact-finance',
+    ],
+    award: [
+      {
+        '@type': 'Award',
+        name: 'Solana Renaissance Hackathon Brazil Winner',
+        description: 'First place in the Brazilian stage of Solana Renaissance Hackathon 2024',
+        dateAwarded: '2024',
+      },
+      {
+        '@type': 'Award',
+        name: 'Brazilian National Treasury Web3 Hackathon',
+        description: '3rd place in the National Treasury Tokenization Hackathon',
+        dateAwarded: '2023',
+      },
+    ],
+  };
+
   return (
     <Box pos="relative" w="full" h="full" pt={{ base: '72px', md: '144px' }}>
       <SEO
-        title="About Fact Finance | Blockchain Data Infrastructure & Asset Tokenization"
-        description="Fact Finance provides secure data infrastructure for the tokenized economy, connecting platforms to official sources. Meet our expert team in blockchain, data & finance."
-        keywords="Fact Finance, blockchain data, asset tokenization, web3 infrastructure, blockchain experts, data solutions, real-world assets"
-        openGraph={{
-          title: 'About Fact Finance',
-          description: 'Learn about our mission, team and achievements in blockchain data infrastructure',
-          image: '/assets/about/team/og-image.jpg',
-        }}
-        twitter={{
-          card: 'summary_large_image',
-          site: '@FactFinance',
-          title: 'About Fact Finance',
-          description: 'Learn about our mission, team and achievements in blockchain data infrastructure',
-          image: '/assets/about/team/og-image.jpg',
-        }}
+        title="About Fact Finance | Enterprise Blockchain Infrastructure & Data Solutions"
+        description="Meet the expert team behind Fact Finance's secure data infrastructure for real-world asset tokenization. Learn about our achievements in blockchain technology and data solutions."
+        keywords="blockchain infrastructure, data solutions, asset tokenization, web3 technology, blockchain experts, data infrastructure, real-world assets, blockchain oracle, tokenization platform"
+        structuredData={JSON.stringify(structuredData)}
+        canonical="https://fact.finance/about"
       />
 
       <Box
@@ -278,7 +302,14 @@ export default function AboutUs() {
               Awards
             </Text>
 
-            <SimpleGrid columns={{ base: 1, md: 2 }} gap={{ base: 4, md: 8 }} id="awards" aria-label="Awards" bg="bg" role="region">
+            <SimpleGrid
+              columns={{ base: 1, md: 2 }}
+              gap={{ base: 4, md: 8 }}
+              id="awards"
+              aria-label="Awards"
+              bg="bg"
+              role="region"
+            >
               <Link
                 flex={1}
                 href="https://x.com/SuperteamBR/status/1787619456455217439"

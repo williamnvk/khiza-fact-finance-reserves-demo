@@ -245,8 +245,8 @@ export default function AboutUs() {
               bottom="-25%"
               left="50%"
               transform="translate(-50%, -50%)"
-              w="50vw"
-              h="15vh"
+              w="500px"
+              h="200px"
               bg="radial-gradient(circle, {colors.brand.800} 0%, {colors.brand.900} 25%, rgba(0,0,0,.5) 100%)"
               filter="blur(80px)"
               zIndex={-1}
@@ -278,7 +278,7 @@ export default function AboutUs() {
               Awards
             </Text>
 
-            <SimpleGrid columns={{ base: 1, md: 2 }} gap={{ base: 4, md: 8 }} id="awards" aria-label="Awards" bg="bg">
+            <SimpleGrid columns={{ base: 1, md: 2 }} gap={{ base: 4, md: 8 }} id="awards" aria-label="Awards" bg="bg" role="region">
               <Link
                 flex={1}
                 href="https://x.com/SuperteamBR/status/1787619456455217439"

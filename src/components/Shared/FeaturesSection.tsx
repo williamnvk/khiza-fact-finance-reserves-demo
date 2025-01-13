@@ -104,6 +104,7 @@ const FeaturesSection = memo(() => {
         gap={{ base: 0, md: 20 }}
         flexDirection={stackDirection}
         align="stretch"
+        aria-label="Feature cards"
       >
         <VStack
           minH={{ base: '280px', md: 'auto' }}

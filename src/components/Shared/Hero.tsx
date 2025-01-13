@@ -35,6 +35,10 @@ export const Hero: FC = () => {
           mixBlendMode="luminosity"
           loop
           src={`/assets/hero.mp4`}
+          loading="lazy"
+          preload="none"
+          poster="/assets/hero-poster.webp"
+          aria-hidden="true"
         />
 
         <Box
@@ -168,6 +172,10 @@ export const Hero: FC = () => {
                   <Image
                     src="/assets/outlier-ventures.webp"
                     alt="Outlier Ventures"
+                    width={192}
+                    height={22}
+                    loading="lazy"
+                    decoding="async"
                     filter="invert(1)"
                     w={{ base: '140px', md: '192px' }}
                     h={{ base: '16px', md: '22px' }}

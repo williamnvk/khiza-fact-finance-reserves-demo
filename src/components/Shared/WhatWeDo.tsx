@@ -102,13 +102,13 @@ export const WhatWeDo = () => {
           {[
             {
               id: 'capital-markets',
-              title: 'Capital Markets',
+              title: 'Capital markets',
               description: 'Access official economic indices straight from the official source',
               video: '/assets/what-we-do/capital-markets.mp4',
             },
             {
               id: 'real-estate',
-              title: 'Real Estate',
+              title: 'Real estate',
               description: 'Square meter price and proof of reserve for tokenized properties',
               video: '/assets/what-we-do/real-estate.mp4',
             },

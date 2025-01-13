@@ -1,98 +1,595 @@
-import { TitleSection } from '@/components/ui/title-sectiont'
-import { Box, Container, Heading, Text, VStack, SimpleGrid, Icon, Button } from '@chakra-ui/react'
-import { BarChart3Icon, BuildingIcon, ShieldIcon, CoinsIcon } from 'lucide-react'
+import { TitleSection } from '@/components/ui/title-sectiont';
+import {
+  Box,
+  Container,
+  Heading,
+  Text,
+  VStack,
+  SimpleGrid,
+  Button,
+  List,
+  ListItem,
+  HStack,
+  Separator,
+} from '@chakra-ui/react';
+
+import { BadgeCheckIcon, ComponentIcon, SearchIcon } from 'lucide-react';
+
+import { useState, useEffect, useRef } from 'react';
 
 export default function UseCases() {
-  const useCases = [
-    {
-      icon: BuildingIcon,
-      title: "Enterprise Finance",
-      description: "Enable real-time financial reporting and automated compliance with verified data feeds.",
-      examples: [
-        "Automated financial statements",
-        "Regulatory reporting",
-        "Treasury management"
-      ]
-    },
-    {
-      icon: CoinsIcon, 
-      title: "DeFi Applications",
-      description: "Build robust decentralized financial products with reliable market data and price feeds.",
-      examples: [
-        "Lending protocols",
-        "Synthetic assets",
-        "Derivatives platforms"
-      ]
-    },
-    {
-      icon: ShieldIcon,
-      title: "Insurance Solutions",
-      description: "Create innovative insurance products using verified real-world data triggers.",
-      examples: [
-        "Parametric insurance",
-        "Risk assessment",
-        "Claims automation"
-      ]
-    },
-    {
-      icon: BarChart3Icon,
-      title: "Asset Management",
-      description: "Power tokenized investment products with accurate pricing and market data.",
-      examples: [
-        "Real estate tokens",
-        "Commodity-backed assets", 
-        "Investment funds"
-      ]
-    }
-  ]
+  const cardRefs = {
+    'capital-markets': useRef<HTMLDivElement>(null),
+    'real-estate': useRef<HTMLDivElement>(null),
+    commodities: useRef<HTMLDivElement>(null),
+  };
+
+  const [useCase, setUseCase] = useState<string | null>('real-state-tokenization');
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!hoveredCard || !cardRefs[hoveredCard]?.current) return;
+
+      const card = cardRefs[hoveredCard].current;
+      const rect = card.getBoundingClientRect();
+
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      card.style.setProperty('--x', `${x}px`);
+      card.style.setProperty('--y', `${y}px`);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [hoveredCard]);
 
   return (
-    <Box>
-      <Container maxW="5xl" py={{ base: 8, md: 16 }}>
-        <VStack gap={12} align="stretch">
-          <TitleSection>
-            <Text fontSize="sm" color="brand.300">
-              USE CASES
-            </Text>
-            <Heading textStyle="title">Transform Your Industry</Heading>
-            <Text fontSize="lg">
-              Fact Finance's oracle network enables innovative blockchain solutions across multiple industries.
-              Discover how our verified data feeds can power your next application.
-            </Text>
-          </TitleSection>
+    <Box pos="relative" w="full" h="full" pt={{ base: '72px', md: '144px' }} pb={{ base: 12, md: 24 }}>
+      <Container maxW="6xl" as="section">
+        <TitleSection>
+          <Text
+            fontSize="sm"
+            bgGradient="to-r"
+            gradientFrom="brand.50"
+            gradientTo="brand.400"
+            bgClip="text"
+            textTransform="uppercase"
+            letterSpacing={2}
+            fontWeight="600"
+            w="full"
+            textAlign={{ base: 'left', md: 'center' }}
+          >
+            Use Case
+          </Text>
+          <Heading
+            as="h1"
+            textStyle="title"
+            fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }}
+            w="full"
+            textAlign={{ base: 'left', md: 'center' }}
+          >
+            Real-world use cases for blockchain solutions
+          </Heading>
+          <Text
+            fontSize={{ base: 'md', md: 'lg' }}
+            maxW="3xl"
+            mx="auto"
+            w="full"
+            textAlign={{ base: 'left', md: 'center' }}
+            color="whiteAlpha.800"
+          >
+            Discover practical applications of Fact Finance's data across industries, from real estate to commodities,
+            driving innovation in the tokenized economy.
+          </Text>
+        </TitleSection>
 
-          <SimpleGrid columns={{ base: 1, md: 2 }} gap={8}>
-            {useCases.map((useCase, index) => (
-              <Box 
-                key={index}
-                p={8}
-                borderRadius="xl"
-                bg="whiteAlpha.50"
-                _hover={{ bg: "whiteAlpha.100" }}
-                transition="all 0.2s"
-              >
-                <useCase.icon />
-                <Heading size="md" mb={3}>{useCase.title}</Heading>
-                <Text color="whiteAlpha.800" mb={4}>{useCase.description}</Text>
-                <VStack align="stretch" gap={2}>
-                  {useCase.examples.map((example, i) => (
-                    <Text key={i} fontSize="sm" color="whiteAlpha.600">• {example}</Text>
-                  ))}
-                </VStack>
-              </Box>
-            ))}
+        <SimpleGrid columns={{ base: 1, md: 3 }} gap={4} mb={8}>
+          <VStack
+            as="button"
+            flex={1}
+            p={24}
+            borderRadius="lg"
+            onClick={() => setUseCase('tokenized-capital-markets')}
+            data-use-case="tokenized-capital-markets"
+            overflow="hidden"
+            pos="relative"
+            transition="all 0.3s ease"
+            _hover={{ transform: 'scale(1.02)' }}
+            className="use-case-card"
+            ref={cardRefs['capital-markets']}
+            onMouseEnter={() => {
+              setHoveredCard('capital-markets');
+              if (cardRefs['capital-markets'].current) {
+                cardRefs['capital-markets'].current!.style.setProperty('--size', '200px');
+              }
+            }}
+            onMouseLeave={() => {
+              setHoveredCard(null);
+              if (cardRefs['capital-markets'].current) {
+                cardRefs['capital-markets'].current!.style.setProperty('--size', '0px');
+              }
+            }}
+          >
+            <Heading fontSize="3xl" lineHeight="1" textAlign="left">
+              Tokenized Capital Markets
+            </Heading>
+            <Box
+              as="video"
+              position="absolute"
+              top={0}
+              left={0}
+              w="100%"
+              h="100%"
+              objectFit="cover"
+              autoPlay
+              muted
+              filter={useCase === 'tokenized-capital-markets' ? 'brightness(1)' : 'brightness(0.25)'}
+              mixBlendMode={useCase === 'tokenized-capital-markets' ? 'normal' : 'luminosity'}
+              opacity={0.5}
+              loop
+              src="/assets/what-we-do/capital-markets.mp4"
+              aria-hidden="true"
+              zIndex={-1}
+              preload="none"
+            />
+          </VStack>
+          <VStack
+            as="button"
+            flex={1}
+            p={24}
+            borderRadius="lg"
+            onClick={() => setUseCase('real-state-tokenization')}
+            data-use-case="real-state-tokenization"
+            overflow="hidden"
+            pos="relative"
+            transition="all 0.3s ease"
+            _hover={{ transform: 'scale(1.02)' }}
+            className="use-case-card"
+            ref={cardRefs['real-estate']}
+            onMouseEnter={() => {
+              setHoveredCard('real-estate');
+              if (cardRefs['real-estate'].current) {
+                cardRefs['real-estate'].current!.style.setProperty('--size', '200px');
+              }
+            }}
+            onMouseLeave={() => {
+              setHoveredCard(null);
+              if (cardRefs['real-estate'].current) {
+                cardRefs['real-estate'].current!.style.setProperty('--size', '0px');
+              }
+            }}
+          >
+            <Heading fontSize="3xl" lineHeight="1" textAlign="left">
+              Real Estate Tokenization
+            </Heading>
+            <Box
+              as="video"
+              position="absolute"
+              top={0}
+              left={0}
+              w="100%"
+              h="100%"
+              objectFit="cover"
+              autoPlay
+              muted
+              filter={useCase === 'real-state-tokenization' ? 'brightness(1)' : 'brightness(0.25)'}
+              mixBlendMode={useCase === 'real-state-tokenization' ? 'normal' : 'luminosity'}
+              opacity={0.5}
+              loop
+              src="/assets/what-we-do/real-estate.mp4"
+              aria-hidden="true"
+              zIndex={-1}
+              preload="none"
+            />
+          </VStack>
+          <VStack
+            as="button"
+            flex={1}
+            p={24}
+            borderRadius="lg"
+            onClick={() => setUseCase('tokenized-commodities')}
+            data-use-case="tokenized-commodities"
+            overflow="hidden"
+            pos="relative"
+            _hover={{ transform: 'scale(1.02)' }}
+            className="use-case-card"
+            ref={cardRefs['commodities']}
+            onMouseEnter={() => {
+              setHoveredCard('commodities');
+              if (cardRefs['commodities'].current) {
+                cardRefs['commodities'].current!.style.setProperty('--size', '200px');
+              }
+            }}
+            onMouseLeave={() => {
+              setHoveredCard(null);
+              if (cardRefs['commodities'].current) {
+                cardRefs['commodities'].current!.style.setProperty('--size', '0px');
+              }
+            }}
+          >
+            <Heading fontSize="3xl" lineHeight="1" textAlign="left">
+              Tokenized Commodities
+            </Heading>
+            <Box
+              as="video"
+              position="absolute"
+              top={0}
+              left={0}
+              w="100%"
+              h="100%"
+              objectFit="cover"
+              autoPlay
+              muted
+              filter={useCase === 'tokenized-commodities' ? 'brightness(1)' : 'brightness(0.25)'}
+              mixBlendMode={useCase === 'tokenized-commodities' ? 'normal' : 'luminosity'}
+              opacity={0.5}
+              loop
+              src="/assets/what-we-do/commodities.mp4"
+              aria-hidden="true"
+              zIndex={-1}
+              preload="none"
+            />
+          </VStack>
+        </SimpleGrid>
+        <VStack
+          w="full"
+          gap={4}
+          data-use-case="tokenized-commodities"
+          display={useCase === 'tokenized-commodities' ? 'block' : 'none'}
+        >
+          <Text fontWeight="bold" fontSize="8xl" lineHeight="1">
+            Unlocking liquidity and transparency
+          </Text>
+          <br />
+          <Text fontSize="lg">
+            Latin America’s economies heavily rely on the commodities sector, driving global markets for agricultural
+            goods, minerals, and energy. Despite its significance, this sector faces challenges such as operational
+            inefficiencies, high transaction costs, and limited access to financing, particularly for smaller producers.
+          </Text>
+          <br />
+          <Text fontSize="lg">
+            Tokenization provides a powerful solution by digitizing physical commodities, making them tradable and
+            usable as collateral for financing. This unlocks liquidity for producers while enabling them to retain
+            ownership of their assets.
+          </Text>
+          <br />
+          <Text fontWeight="bold" fontSize="2xl">
+            Reducing risk with verified data for commodity tokenization
+          </Text>
+          <br />
+          <Text fontSize="lg">
+            In lending markets, managing risk exposure is critical for both lenders and borrowers. Collateralized assets
+            must be as transparent as possible to reduce perceived risk. In agriculture, for example, variables such as
+            region, weather, grain type, and other qualitative factors significantly impact the associated risk score.
+            Addressing these information asymmetries is key to unlocking tokenization's potential to expand financing to
+            small producers.
+          </Text>
+          <br />
+          <Text fontSize="lg">
+            Fact Finance bridges this gap by connecting tokenized assets, such as grains or livestock, to trusted data
+            sources directly associated with the underlying commodities. This includes:
+          </Text>
+          <br />
+          <SimpleGrid columns={4} w="full" gap={{ base: 4, md: 4 }}>
+            <VStack
+              gap={4}
+              w="full"
+              bg="white"
+              p={{ base: 4, md: 8 }}
+              borderRadius="lg"
+              align="flex-start"
+              color="black"
+            >
+              <Text as="span" fontWeight="bold" fontSize="xl">
+                Market prices
+              </Text>
+              <Text fontSize="sm">
+                Real-time pricing pulled directly from trusted exchanges like the CME (Chicago Mercantile Exchange).
+              </Text>
+            </VStack>
+
+            <VStack
+              gap={4}
+              w="full"
+              bg="white"
+              p={{ base: 4, md: 8 }}
+              borderRadius="lg"
+              align="flex-start"
+              color="black"
+            >
+              <Text as="span" fontWeight="bold" fontSize="xl">
+                Qualitative data
+              </Text>
+              <Text fontSize="sm">
+                Information from farmers' ERP systems, such as productivity history, crop type, and operational
+                timelines.
+              </Text>
+            </VStack>
+
+            <VStack
+              gap={4}
+              w="full"
+              bg="white"
+              p={{ base: 4, md: 8 }}
+              borderRadius="lg"
+              align="flex-start"
+              color="black"
+            >
+              <Text as="span" fontWeight="bold" fontSize="xl">
+                Environmental data
+              </Text>
+              <Text fontSize="sm">
+                Weather conditions and climate forecasts that influence yield quality and asset value.
+              </Text>
+            </VStack>
+
+            <VStack
+              gap={4}
+              w="full"
+              bg="white"
+              p={{ base: 4, md: 8 }}
+              borderRadius="lg"
+              align="flex-start"
+              color="black"
+            >
+              <Text as="span" fontWeight="bold" fontSize="xl">
+                Logistics data
+              </Text>
+              <Text fontSize="sm">
+                Key information such as proximity to ports or transportation hubs, affecting delivery efficiency and
+                costs.
+              </Text>
+            </VStack>
           </SimpleGrid>
 
-          <Box bg="whiteAlpha.100" p={8} borderRadius="xl" textAlign="center">
-            <Heading size="lg" mb={4}>Ready to Build?</Heading>
-            <Text maxW="2xl" mx="auto" mb={6}>
-              Start building with Fact Finance today. Our team is ready to help you implement
-              reliable data feeds for your specific use case.
-            </Text>
-            <Button size="lg">Contact Our Team</Button>
-          </Box>
+          <br />
+
+          <Text fontWeight="bold" fontSize="2xl" lineHeight="1">
+            Event monitoring for tokenized commodities
+          </Text>
+          <br />
+
+          <Text fontSize="lg" fontWeight="400">
+            By enriching tokens with real-time data, oracles can track off-chain events that directly affect the value
+            or utility of tokenized assets. For example, an insurance smart contract for agricultural assets can use
+            weather oracles to monitor events such as droughts or floods, automatically triggering payouts when
+            predefined thresholds are met. Similarly, Fact Finance's oracles can flag significant changes, such as
+            adverse weather conditions, that may require lenders to reassess loan terms.
+          </Text>
+          <br />
+          <Text fontSize="lg" fontWeight="400">
+            With this data integration, collateralized tokens become dynamic financial instruments rather than static
+            representations, reducing risk and increasing transparency. This enables lending protocols to offer higher
+            Loan-to-Value (LTV) ratios, giving producers greater access to financing without sacrificing control over
+            their assets.
+          </Text>
+        </VStack>
+
+        <VStack
+          w="full"
+          gap={4}
+          data-use-case="real-state-tokenization"
+          display={useCase === 'real-state-tokenization' ? 'block' : 'none'}
+        >
+          <Text fontWeight="bold" fontSize="8xl" lineHeight="1">
+            Unlocking utility by reducing information asymmetry
+          </Text>
+          <br />
+          <Text fontSize="lg">
+            The tokenization of real estate offers the advantages of{' '}
+            <Text as="span" fontWeight="bold">
+              fractional ownership
+            </Text>{' '}
+            and the potential for increased liquidity, making these high-value assets more accessible to a broader range
+            of investors within a tradable and programmable infrastructure. However, significant{' '}
+            <Text as="span" fontWeight="bold">
+              information asymmetries
+            </Text>{' '}
+            between the token and the off-chain asset it represents still limit its full potential. To unlock greater
+            utility and liquidity, tokenized real estate assets must be enriched with{' '}
+            <Text as="span" fontWeight="bold">
+              verified, up-to-date data
+            </Text>{' '}
+            that provides a real-time connection to the underlying property.
+          </Text>
+          <br />
+          <Text fontSize="lg">
+            Tokenized properties offer greater accessibility, but blockchain technology lacks intrinsic connections to
+            off-chain data. This creates a gap: while tokens can represent ownership, they do not inherently reflect the{' '}
+            <Text as="span" fontWeight="bold">
+              current market conditions
+            </Text>{' '}
+            of the real-world asset they are tied to. Fact Finance bridges this gap by serving as the data layer between
+            tokenized assets and proprietary data sources. For example, a real estate company tokenizing a property
+            needs the token to reflect more than just ownership, it must also carry the information of the market value
+            for that asset, transforming the token into a true digital twin.
+          </Text>
+          <br />
+          <Text fontWeight="bold" fontSize="2xl">
+            What type of data?
+          </Text>
+          <br />
+          <SimpleGrid columns={3} w="full" gap={{ base: 4, md: 4 }}>
+            <VStack
+              gap={4}
+              w="full"
+              bg="white"
+              p={{ base: 4, md: 8 }}
+              borderRadius="lg"
+              align="flex-start"
+              color="black"
+            >
+              <Text as="span" fontWeight="bold" fontSize="3xl">
+                Proof of Reserve
+              </Text>
+              <Text fontSize="sm">
+                To confirm that the token corresponds to a specific property, Fact Finance can provide on-chain
+                information, such as: Address and geolocation, Legal status (Due Diligence), Property type (residential
+                or commercial), year of construction.
+              </Text>
+            </VStack>
+
+            <VStack
+              gap={4}
+              w="full"
+              bg="white"
+              p={{ base: 4, md: 8 }}
+              borderRadius="lg"
+              align="flex-start"
+              color="black"
+            >
+              <Text as="span" fontWeight="bold" fontSize="3xl">
+                Square Meter Price
+              </Text>
+              <Text fontSize="sm">
+                To reflect property appreciation or depreciation, tokens require up-to-date regional price per square
+                meter data. Fact Finance integrates directly with licensed data institutions to provide precise market
+                pricing, enabling an up-to-date valuation of the property to be calculated.
+              </Text>
+            </VStack>
+
+            <VStack
+              gap={4}
+              w="full"
+              bg="white"
+              p={{ base: 4, md: 8 }}
+              borderRadius="lg"
+              align="flex-start"
+              color="black"
+            >
+              <Text as="span" fontWeight="bold" fontSize="3xl">
+                Economic indices
+              </Text>
+              <Text fontSize="sm">
+                Real estate contracts often require inflation adjustments. In Brazil, 90% of rental contracts are tied
+                to the inflation index IGP-M. Fact Finance connects directly to this official data source, ensuring
+                seamless inflation updates.
+              </Text>
+            </VStack>
+          </SimpleGrid>
+
+          <br />
+
+          <Text fontWeight="bold" fontSize="5xl" lineHeight="1">
+            Here’s how Fact Finance
+            <br />
+            ensures a reliable connection:
+          </Text>
+          <br />
+          <SimpleGrid columns={3} w="full" gap={{ base: 4, md: 4 }}>
+            <VStack gap={4} w="full" p={{ base: 4, md: 12 }} bg="whiteAlpha.50" borderRadius="lg">
+              <Text color="brand.500">
+                <BadgeCheckIcon size={32} />
+              </Text>
+              <VStack gap={4} flex={1} align="flex-start">
+                <Heading fontSize="xl">Proof of Authenticity</Heading>
+                <Text fontSize="lg">
+                  On-chain wallet validation that the data comes directly from the official data provider, eliminating
+                  risks of tampering.
+                </Text>
+              </VStack>
+            </VStack>
+
+            <VStack gap={4} w="full" p={{ base: 4, md: 12 }} bg="whiteAlpha.50" borderRadius="lg">
+              <Text color="brand.500">
+                <SearchIcon size={32} />
+              </Text>
+              <VStack gap={4} flex={1} align="flex-start">
+                <Heading fontSize="xl">Confidence Index</Heading>
+                <Text fontSize="lg">
+                  Our system monitors data for anomalies using statistical and density-based detection techniques. Any
+                  outlier data is flagged so the consumer contract can determine how to handle it.
+                </Text>
+              </VStack>
+            </VStack>
+
+            <VStack gap={4} w="full" p={{ base: 4, md: 12 }} bg="whiteAlpha.50" borderRadius="lg">
+              <Text color="brand.500">
+                <ComponentIcon size={32} />
+              </Text>
+              <VStack gap={4} flex={1} align="flex-start">
+                <Heading fontSize="xl">External Auditors</Heading>
+                <Text fontSize="lg">
+                  A pool of independent auditors validates the integrity and accuracy of the data provided
+                </Text>
+              </VStack>
+            </VStack>
+          </SimpleGrid>
+
+          <br />
+
+          <Text fontSize="xl" fontWeight="400">
+            With Fact Finance’s integration, tokenized real estate moves beyond static representation to become a
+            dynamic financial asset. Tokens can now serve as collateral for loans or be used in DeFi applications,
+            unlocking greater utility and liquidity for both issuers and investors.
+          </Text>
+        </VStack>
+
+        <VStack
+          w="full"
+          data-use-case="tokenized-capital-markets"
+          display={useCase === 'tokenized-capital-markets' ? 'block' : 'none'}
+        >
+          <Text fontSize="lg">
+            Tokenized capital markets are reshaping the financial landscape, especially in regions like Latin America,
+            where high interest rates and inflation have historically shaped economic behavior. As investors seek to
+            protect real returns, tokenization is emerging as a powerful tool to modernize financial systems.
+          </Text>
+          <br />
+          <Text fontSize="lg">
+            Brazil is at the forefront of adopting blockchain for financial instruments. With the Central Bank
+            developing its own DLT infrastructure and regulators collaborating with market players, tokenization has
+            moved beyond theory to become a reality. This shift brings faster settlements, lower costs, and increased
+            efficiency, all while keeping traditional market standards.
+          </Text>
+          <br />
+          <Text fontSize="lg">
+            The rise of tokenization platforms signals a new era of financial innovation in Brazil. These companies are
+            working closely with regulators to integrate smart contract programmability into the needs of the
+            traditional financial system. The goal is to create the tokenized economy that maintains regulatory
+            compliance while unlocking new efficiencies.
+          </Text>
+          <br />
+          <Text fontWeight="bold" fontSize="6xl" lineHeight="1">
+            Fact Finance role connecting official data and tokenized assets
+          </Text>
+          <br />
+          <Text fontSize="lg">
+            In Brazil, approximately 45% of public debt is tied to the Selic (Interest rate), and another 30% to
+            inflation-adjusted bonds. These indexed instruments dominate over 75% of the country’s bond market. Beyond
+            public debt, private long-term contracts, such as residential leases, also rely on inflation indexing, with
+            the General Market Price Index (IGP-M) being a staple for rent price adjustments.
+          </Text>
+          <br />
+          <Text fontSize="lg">
+            Just like the traditional economy, the tokenized economy also needs to rely on accurate and verified
+            economic data. Fact Finance provides seamless, secure on-chain access to economic indices, such as CDI
+            (interest rate) and IGP-M (inflation), directly from official sources. Our oracle infrastructure acts as a
+            data hub, integrating this information into tokenized assets like public bonds, private credit, and
+            long-term contracts.
+          </Text>
+          <br />
+          <Text fontSize="lg">
+            By bridging real-world economic data with asset tokenization, Fact Finance enables tokenized assets to
+            receive real-time price updates based on official data.
+          </Text>
+          <br />
+          <Text fontWeight="bold" fontSize="4xl" lineHeight="1">
+            Unlock the potential of tokenized capital markets
+          </Text>
+          <br />
+          <Text fontSize="lg">
+            Ready to see how Fact Finance’s data hub can power your tokenized assets solutions? Visit our data feeds
+            page today to learn more.
+          </Text>
+          <Text fontSize="lg" visibility="hidden">
+            Tokenized capital markets, private credit tokenization, oracle for economic indices, CDI, SELIC, IGPM IPCA
+            data feeds — economic data onchain: IPCA, IGPM for web3 applications
+          </Text>
         </VStack>
       </Container>
     </Box>
-  )
+  );
 }

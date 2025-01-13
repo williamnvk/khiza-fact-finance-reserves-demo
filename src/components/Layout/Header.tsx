@@ -66,6 +66,9 @@ export const Header: FC<HeaderProps> = () => {
             <Button as={NavLink} to="/about" variant="navbar">
               About Us
             </Button>
+            <Button as={NavLink} to="/use-cases" variant="navbar">
+              Use Cases
+            </Button>
             {/* <Button as={NavLink} to="/data-hub" variant="navbar" disabled>
               Data Hub
               <Badge px={3} variant="outline" ml={2}>
@@ -79,12 +82,7 @@ export const Header: FC<HeaderProps> = () => {
                 SOON
               </Badge>
             </Button> */}
-            {/* <Button as={NavLink} to="/use-cases" variant="navbar" disabled>
-              Use Cases
-              <Badge px={3} variant="outline" ml={2}>
-                SOON
-              </Badge>
-            </Button>
+            {/* 
             <Button as={NavLink} to="/data-providers" variant="navbar" disabled>
               Data Providers
               <Badge px={3} variant="outline" ml={2}>
@@ -161,6 +159,9 @@ export const Header: FC<HeaderProps> = () => {
           <Button as={NavLink} to="/" variant="navbar" onClick={onToggle}>
             Home
           </Button>
+          <Button as={NavLink} to="/use-cases" variant="navbar">
+            Use Cases
+          </Button>
           {/* <Button as={NavLink} to="/data-hub" variant="navbar" disabled>
             Data Hub
             <Badge px={3} variant="outline" ml={2}>
@@ -173,12 +174,7 @@ export const Header: FC<HeaderProps> = () => {
               SOON
             </Badge>
           </Button>
-          <Button as={NavLink} to="/use-cases" variant="navbar" disabled>
-            Use Cases{' '}
-            <Badge px={3} variant="outline" ml={2}>
-              SOON
-            </Badge>
-          </Button>
+       
           <Button as={NavLink} to="/data-providers" variant="navbar" disabled>
             Data Providers
             <Badge px={3} variant="outline" ml={2}>

@@ -10,6 +10,8 @@ import {
   HStack,
   AspectRatio,
   IconButton,
+  Badge,
+  Center,
 } from '@chakra-ui/react';
 import LinkedinIcon from '@/components/Icons/LinkedinIcon';
 import { teamMembers } from '@/data/team';
@@ -17,10 +19,22 @@ import { SEO } from '@/components/Common/SEO';
 import { Image } from '@chakra-ui/react';
 import XIcon from '@/components/Icons/XIcon';
 import BrazilianTesouroNacionalIcon from '@/components/Icons/BrazilianTesouroNacional';
+import { useState } from 'react';
 
 export default function AboutUs() {
   const cardBg = 'blackAlpha.500';
   const cardHoverBg = 'whiteAlpha.100';
+  const [hoveredAward, setHoveredAward] = useState<string | null>(null);
+
+  const handleAwardMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    card.style.setProperty('--x', `${x}px`);
+    card.style.setProperty('--y', `${y}px`);
+  };
 
   return (
     <Box pos="relative" w="full" h="full" pt={{ base: '72px', md: '144px' }}>
@@ -79,7 +93,7 @@ export default function AboutUs() {
             >
               Get to know us
             </Text>
-            
+
             <Text fontSize="lg" w="full" textAlign={{ base: 'left', md: 'center' }} lineHeight="moderate">
               We are driving the tokenized economy with trusted data infrastructure.
             </Text>
@@ -200,7 +214,7 @@ export default function AboutUs() {
           >
             <Box
               position="absolute"
-              bottom="-50%"
+              bottom="-25%"
               left="50%"
               transform="translate(-50%, -50%)"
               w="50vw"
@@ -221,39 +235,129 @@ export default function AboutUs() {
               information, unlocking the full potential of real-world asset tokenization
             </Text>
 
-            <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} id="awards" aria-label="Awards">
-              <HStack
-                as="a"
-                p={4}
-                gap={8}
-                borderRadius="2xl"
-                bg="whiteAlpha.100"
-                href="https://www.gov.br/tesouronacional/pt-br/noticias/hackathon-web3-tokenizacao-do-tesouro-nacional-anuncia-os-vencedores"
-                target="_blank"
-                rel="noopener noreferrer"
-                transition="transform 0.2s ease-in-out"
-                _hover={{ transform: 'rotate(-2deg)' }}
-              >
-                <Box flex={1}>
-                  <BrazilianTesouroNacionalIcon width={200} height={200} />
-                </Box>
-                <Text flex={1} fontSize="sm">
-                  3rd place overall in the Web3 Hackathon: National Treasury Tokenization, organized by the Brazilian
-                  Ministry of Finance in December 2023 (as team Vale das Araucárias).
-                </Text>
-              </HStack>
+            <Text
+              fontSize="sm"
+              bgGradient="to-r"
+              gradientFrom="brand.50"
+              gradientTo="brand.400"
+              bgClip="text"
+              textTransform="uppercase"
+              letterSpacing={2}
+              fontWeight="600"
+              w="full"
+              textAlign={{ base: 'left', md: 'center' }}
+            >
+              Awards
+            </Text>
+
+            <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} id="awards" aria-label="Awards" bg="bg">
               <VStack
                 as="a"
-                p={8}
+                p={{ base: 6, md: 12 }}
+                gap={4}
                 borderRadius="2xl"
-                bg="whiteAlpha.100"
+                bgGradient="to-br"
+                gradientFrom="whiteAlpha.300"
+                gradientTo="transparent"
                 href="https://www.gov.br/tesouronacional/pt-br/noticias/hackathon-web3-tokenizacao-do-tesouro-nacional-anuncia-os-vencedores"
                 target="_blank"
                 rel="noopener noreferrer"
-                transition="transform 0.2s ease-in-out"
-                _hover={{ transform: 'rotate(2deg)' }}
+                transition="all 0.2s ease-in-out"
+                position="relative"
+                _before={{
+                  content: '""',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  borderRadius: 'xl',
+                  background:
+                    hoveredAward === 'tesouro'
+                      ? 'radial-gradient(circle at var(--x) var(--y), rgba(255,255,255,0.15) 0%, transparent 80%)'
+                      : 'none',
+                  pointerEvents: 'none',
+                }}
+                onMouseEnter={() => setHoveredAward('tesouro')}
+                onMouseLeave={() => setHoveredAward(null)}
+                onMouseMove={handleAwardMouseMove}
+                _hover={{ transform: 'rotate(-1deg)' }}
               >
-                <Box flex={1}>
+                <Badge
+                  pos="absolute"
+                  top={4}
+                  left={0}
+                  bg="whiteAlpha.300"
+                  color="white"
+                  fontWeight="600"
+                  borderLeftRadius="0"
+                >
+                  3st Place
+                </Badge>
+                <Box
+                  w="full"
+                  h="140px"
+                  backgroundImage="url(/assets/about/tesouro-nacional.webp)"
+                  // bg="red"
+                  backgroundSize="auto 100%"
+                  backgroundPosition="auto 100%"
+                  backgroundRepeat="no-repeat"
+                />
+                <Text flex={1} fontSize="md">
+                  3rd place overall in the Web3 Hackathon: National Treasury Tokenization, organized by the Brazilian
+                  Ministry of Finance in December 2023.
+                  <br />
+                  <Text as="span" fontWeight="300" fontSize="xs">
+                    (as team Vale das Araucárias)
+                  </Text>
+                </Text>
+              </VStack>
+              <VStack
+                as="a"
+                p={{ base: 6, md: 12 }}
+                gap={4}
+                borderRadius="2xl"
+                bgGradient="to-br"
+                gradientFrom="brand.500"
+                gradientTo="brand.900"
+                borderRadius="2xl"
+                href="https://www.gov.br/tesouronacional/pt-br/noticias/hackathon-web3-tokenizacao-do-tesouro-nacional-anuncia-os-vencedores"
+                target="_blank"
+                rel="noopener noreferrer"
+                transition="all 0.2s ease-in-out"
+                position="relative"
+                _before={{
+                  content: '""',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  borderRadius: 'xl',
+                  background:
+                    hoveredAward === 'solana'
+                      ? 'radial-gradient(circle at var(--x) var(--y), rgba(255,255,255,0.15) 0%, transparent 80%)'
+                      : 'none',
+                  pointerEvents: 'none',
+                }}
+                onMouseEnter={() => setHoveredAward('solana')}
+                onMouseLeave={() => setHoveredAward(null)}
+                onMouseMove={handleAwardMouseMove}
+                _hover={{ transform: 'rotate(1deg)' }}
+              >
+                <Badge
+                  pos="absolute"
+                  top={4}
+                  right={0}
+                  bg="warning.500"
+                  color="white"
+                  fontWeight="600"
+                  borderRightRadius="0"
+                >
+                  1st Place
+                </Badge>
+
+                <Center w="full" h="140px">
                   <svg height="44" viewBox="0 0 646 96" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_1064_606)">
                       <path
@@ -306,11 +410,16 @@ export default function AboutUs() {
                       </clipPath>
                     </defs>
                   </svg>
-                </Box>
+                </Center>
 
-                <Text flex={1} fontSize="sm">
-                  1st place in the Brazilian stage of the Solana Renaissance Hackathon in 2024 (winner of the Solana
-                  Foundation Demo Day at Blockchain.RIO in the same year).{' '}
+                <Text flex={1} fontSize="md">
+                  Brazilian stage of the Solana Renaissance Hackathon
+                  <br />
+                  in 2024
+                  <br />
+                  <Text as="span" fontWeight="300" fontSize="xs">
+                    Winner of the Solana Foundation Demo Day at Blockchain.RIO
+                  </Text>
                 </Text>
               </VStack>
             </SimpleGrid>

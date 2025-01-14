@@ -5,6 +5,7 @@ import KhizaIcon from '@/components/Icons/KhizaIcon';
 import LiqiLogo from '@/components/Icons/Liqi';
 import LogoIcon from '@/components/Icons/LogoIcon';
 import { FC } from 'react';
+import XDCLogo from '../Icons/XDCLogo';
 
 export const Hero: FC = () => {
   const isMobile = useBreakpointValue({ base: true, md: false });
@@ -167,7 +168,7 @@ export const Hero: FC = () => {
               flexWrap={{ base: 'wrap', md: 'nowrap' }}
             >
               <VStack gap={0} align={{ base: 'center', md: 'flex-start' }} justify="center">
-                <HStack justify="center" flexWrap="wrap" gap={{ base: 2, md: 4 }} flex={1}>
+                <HStack justify="center" align="center" flexWrap="wrap" gap={{ base: 2, md: 4 }} flex={1}>
                   <MorganCreek {...partnerLogoSizes.morganCreek} />
                   <Image
                     src="/assets/outlier-ventures.webp"
@@ -189,6 +190,7 @@ export const Hero: FC = () => {
                     w={{ base: '84px', md: '122px' }}
                     h={{ base: '22px', md: '32px' }}
                   />
+                  <XDCLogo width={72} height={72} />
                 </HStack>
               </VStack>
             </HStack>

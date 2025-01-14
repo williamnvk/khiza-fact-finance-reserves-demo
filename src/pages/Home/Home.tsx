@@ -139,6 +139,7 @@ export const Home = () => {
           h="500px"
           bg="radial-gradient(circle, {colors.brand.800} 0%, {colors.brand.900} 25%, transparent 100%)"
           filter="blur(120px)"
+          opacity={0.5}
           zIndex={-1}
         />
       </Container>

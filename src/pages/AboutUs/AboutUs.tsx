@@ -117,7 +117,7 @@ export default function AboutUs() {
       <Container maxW="6xl" aria-label="About Us Section" zIndex={1}>
         <VStack gap={0} align="stretch">
           <TitleSection>
-            <Text
+            {/* <Text
               fontSize="sm"
               bgGradient="to-r"
               gradientFrom="brand.50"
@@ -130,9 +130,26 @@ export default function AboutUs() {
               textAlign={{ base: 'left', md: 'center' }}
             >
               Get to know us
-            </Text>
+            </Text> */}
+            <Heading
+              as="h2"
+              textStyle="title"
+              fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }}
+              w="full"
+              textAlign={{ base: 'left', md: 'center' }}
+            >
+              Get to know us
+            </Heading>
 
-            <Text fontSize="3xl" w="full" textAlign={{ base: 'left', md: 'center' }} lineHeight="moderate">
+            <Text
+              as="p"
+              textStyle="subtitle"
+              fontSize={{ base: 'sm', sm: 'xl' }}
+              maxW={{ base: '100%', md: '80%', lg: '70%' }}
+              mx={{ base: 0, md: 'auto' }}
+              w="full"
+              textAlign={{ base: 'left', md: 'center' }}
+            >
               We are driving the tokenized economy with trusted data infrastructure.
             </Text>
           </TitleSection>
@@ -319,12 +336,12 @@ export default function AboutUs() {
                 <VStack
                   w="full"
                   h="full"
-                  p={{ base: 6, md: 12 }}
+                  p={{ base: 6, md: 6 }}
                   gap={4}
                   borderRadius="2xl"
                   bgGradient="to-br"
-                  gradientFrom="brand.500"
-                  gradientTo="brand.900"
+                  gradientFrom="whiteAlpha.300"
+                  gradientTo="transparent"
                   transition="all 0.2s ease-in-out"
                   position="relative"
                   _before={{
@@ -421,13 +438,8 @@ export default function AboutUs() {
                   </Center>
 
                   <Text flex={1} fontSize="md">
-                    Brazilian stage of the Solana Renaissance Hackathon
-                    <br />
-                    in 2024
-                    <br />
-                    <Text as="span" fontWeight="300" fontSize="xs">
-                      Winner of the Solana Foundation Demo Day at Blockchain.RIO
-                    </Text>
+                    1st Place at Brazilian stage of the Solana Renaissance Hackathon in 2024. Winner of the Solana
+                    Foundation Demo Day at Blockchain.RIO.
                   </Text>
                 </VStack>
               </Link>
@@ -441,7 +453,7 @@ export default function AboutUs() {
                   flex={1}
                   w="full"
                   h="full"
-                  p={{ base: 6, md: 12 }}
+                  p={{ base: 6, md: 6 }}
                   gap={4}
                   borderRadius="2xl"
                   bgGradient="to-br"
@@ -472,8 +484,8 @@ export default function AboutUs() {
                     w="full"
                     h="140px"
                     backgroundImage="url(/assets/about/tesouro-nacional.webp)"
-                    backgroundSize="auto 100%"
-                    backgroundPosition="auto 100%"
+                    backgroundSize="auto 80px"
+                    backgroundPosition="center center"
                     backgroundRepeat="no-repeat"
                     role="img"
                     aria-label="Brazilian National Treasury Logo"
@@ -482,7 +494,7 @@ export default function AboutUs() {
                     3rd place overall in the Web3 Hackathon: National Treasury Tokenization, organized by the Brazilian
                     Ministry of Finance in December 2023.
                     <br />
-                    <Text as="span" fontWeight="300" fontSize="xs">
+                    <Text as="span" fontWeight="200" fontSize="xs">
                       (as team Vale das Araucárias)
                     </Text>
                   </Text>
@@ -666,11 +678,11 @@ export default function AboutUs() {
                 w="full"
                 textAlign={{ base: 'left', md: 'center' }}
               >
-                Learn More About Us
+                Learn more about us
               </Heading>
               <Text
                 fontSize={{ base: 'md', md: 'lg' }}
-                maxW="2xl"
+                maxW="3xl"
                 mx="auto"
                 w="full"
                 textAlign={{ base: 'left', md: 'center' }}
@@ -683,7 +695,7 @@ export default function AboutUs() {
             <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} mt={12}>
               {[
                 {
-                  url: 'https://www.youtube.com/embed/V2JulIYOQ6A',
+                  url: 'https://www.youtube.com/embed/zZGX-fMnJz0',
                   title: 'Fact Finance discusses blockchain data infrastructure and asset tokenization',
                 },
                 {

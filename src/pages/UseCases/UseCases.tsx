@@ -19,7 +19,7 @@ export default function UseCases() {
     if (useCase) {
       setCurrentUseCase(useCase as UseCase);
     } else {
-      setCurrentUseCase(USE_CASE_REAL_ESTATE);
+      setCurrentUseCase(USE_CASE_CAPITAL_MARKETS);
     }
   }, [useCase]);
 
@@ -166,7 +166,7 @@ export default function UseCases() {
               w="full"
               textAlign={{ base: 'left', md: 'center' }}
             >
-              Use Case
+              Use Cases
             </Text>
             <Heading
               as="h1"
@@ -201,21 +201,21 @@ export default function UseCases() {
             {[
               {
                 id: USE_CASE_CAPITAL_MARKETS,
-                title: 'Tokenized Capital Markets',
+                title: 'Tokenized capital markets',
                 description: 'Access official economic indices from authorized sources',
                 video: '/assets/what-we-do/capital-markets.mp4',
                 poster: '/assets/what-we-do/capital-markets-poster.webp',
               },
               {
                 id: USE_CASE_REAL_ESTATE,
-                title: 'Real Estate Tokenization',
+                title: 'Real estate tokenization',
                 description: 'Square meter price and proof of reserve for properties',
                 video: '/assets/what-we-do/real-estate.mp4',
                 poster: '/assets/what-we-do/real-estate-poster.webp',
               },
               {
                 id: USE_CASE_COMMODITIES,
-                title: 'Tokenized Commodities',
+                title: 'Tokenized commodities',
                 description: 'Qualitative data and monitoring for commodities',
                 video: '/assets/what-we-do/commodities.mp4',
                 poster: '/assets/what-we-do/commodities-poster.webp',
@@ -296,8 +296,8 @@ export default function UseCases() {
           >
             <Heading
               as="h2"
-              fontSize={{ base: '2xl', md: '8xl' }}
-              lineHeight="1"
+              fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }}
+              lineHeight="1.1"
               aria-label="Section heading about unlocking liquidity and transparency"
             >
               Unlocking liquidity and transparency
@@ -316,7 +316,7 @@ export default function UseCases() {
               ownership of their assets.
             </Text>
             <br />
-            <Text fontWeight="bold" fontSize="2xl">
+            <Text fontWeight="bold" fontSize="3xl">
               Reducing risk with verified data for commodity tokenization
             </Text>
             <br />
@@ -434,8 +434,8 @@ export default function UseCases() {
             data-use-case={USE_CASE_REAL_ESTATE}
             display={currentUseCase === USE_CASE_REAL_ESTATE ? 'block' : 'none'}
           >
-            <Text fontWeight="bold" fontSize={{ base: '2xl', md: '8xl' }} lineHeight="1">
-              Unlocking utility by reducing information asymmetry
+            <Text fontWeight="bold" fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }} lineHeight="1">
+              Unlocking value by reducing information asymmetry
             </Text>
             <br />
             <Text fontSize="lg">
@@ -469,7 +469,7 @@ export default function UseCases() {
               market value for that asset, transforming the token into a true digital twin.
             </Text>
             <br />
-            <Text fontWeight="bold" fontSize={{ base: 'lg', md: '2xl' }}>
+            <Text fontWeight="bold" fontSize={{ base: 'lg', md: '3xl' }}>
               What type of data?
             </Text>
             <br />
@@ -534,46 +534,44 @@ export default function UseCases() {
 
             <br />
 
-            <Text fontWeight="bold" fontSize="5xl" lineHeight="1">
-              Here's how Fact Finance
-              <br />
-              ensures a reliable connection:
+            <Text fontWeight="bold" fontSize="3xl" lineHeight="1">
+              Here's how Fact Finance ensures a reliable connection:
             </Text>
             <br />
             <SimpleGrid columns={{ base: 1, md: 3 }} w="full" gap={{ base: 4, md: 4 }}>
-              <VStack gap={4} w="full" p={{ base: 4, md: 12 }} bg="whiteAlpha.50" borderRadius="lg">
-                <Text color="brand.500">
+              <VStack gap={4} w="full" p={{ base: 4, md: 8 }} bg="whiteAlpha.50" borderRadius="lg">
+                <Text color="brand.500" textAlign="left" w="full">
                   <BadgeCheckIcon size={32} />
                 </Text>
                 <VStack gap={4} flex={1} align="flex-start">
                   <Heading fontSize="xl">Proof of Authenticity</Heading>
-                  <Text fontSize="lg">
+                  <Text fontSize="md">
                     On-chain wallet validation that the data comes directly from the official data provider, eliminating
                     risks of tampering.
                   </Text>
                 </VStack>
               </VStack>
 
-              <VStack gap={4} w="full" p={{ base: 4, md: 12 }} bg="whiteAlpha.50" borderRadius="lg">
-                <Text color="brand.500">
+              <VStack gap={4} w="full" p={{ base: 4, md: 8 }} bg="whiteAlpha.50" borderRadius="lg">
+                <Text color="brand.500" textAlign="left" w="full">
                   <SearchIcon size={32} />
                 </Text>
                 <VStack gap={4} flex={1} align="flex-start">
                   <Heading fontSize="xl">Confidence Index</Heading>
-                  <Text fontSize="lg">
+                  <Text fontSize="md">
                     Our system monitors data for anomalies using statistical and density-based detection techniques. Any
                     outlier data is flagged so the consumer contract can determine how to handle it.
                   </Text>
                 </VStack>
               </VStack>
 
-              <VStack gap={4} w="full" p={{ base: 4, md: 12 }} bg="whiteAlpha.50" borderRadius="lg">
-                <Text color="brand.500">
+              <VStack gap={4} w="full" p={{ base: 4, md: 8 }} bg="whiteAlpha.50" borderRadius="lg">
+                <Text color="brand.500" textAlign="left" w="full">
                   <ComponentIcon size={32} />
                 </Text>
                 <VStack gap={4} flex={1} align="flex-start">
                   <Heading fontSize="xl">External Auditors</Heading>
-                  <Text fontSize="lg">
+                  <Text fontSize="md">
                     A pool of independent auditors validates the integrity and accuracy of the data provided
                   </Text>
                 </VStack>
@@ -582,7 +580,7 @@ export default function UseCases() {
 
             <br />
 
-            <Text fontSize="xl" fontWeight="400">
+            <Text fontSize="lg" fontWeight="400">
               With Fact Finance's integration, tokenized real estate moves beyond static representation to become a
               dynamic financial asset. Tokens can now serve as collateral for loans or be used in DeFi applications,
               unlocking greater utility and liquidity for both issuers and investors.
@@ -594,6 +592,15 @@ export default function UseCases() {
             data-use-case={USE_CASE_CAPITAL_MARKETS}
             display={currentUseCase === USE_CASE_CAPITAL_MARKETS ? 'block' : 'none'}
           >
+            <Heading
+              as="h2"
+              fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }}
+              lineHeight="1.1"
+              aria-label="Section heading about unlocking liquidity and transparency"
+            >
+              Reshaping capital markets in Latin America
+            </Heading>
+            <br />
             <Text fontSize="lg">
               Tokenized capital markets are reshaping the financial landscape, especially in regions like Latin America,
               where high interest rates and inflation have historically shaped economic behavior. As investors seek to
@@ -614,7 +621,7 @@ export default function UseCases() {
               compliance while unlocking new efficiencies.
             </Text>
             <br />
-            <Text fontWeight="bold" fontSize={{ base: '2xl', md: '6xl' }} lineHeight="1">
+            <Text fontWeight="bold" fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }} lineHeight="1.1">
               Fact Finance role connecting official data and tokenized assets
             </Text>
             <br />
@@ -638,13 +645,13 @@ export default function UseCases() {
               receive real-time price updates based on official data.
             </Text>
             <br />
-            <Text fontWeight="bold" fontSize={{ base: '2xl', md: '4xl' }} lineHeight="1">
+            <Text fontWeight="bold" fontSize={{ base: 'xl', sm: '2xl' }} lineHeight="1.1">
               Unlock the potential of tokenized capital markets
             </Text>
             <br />
             <Text fontSize="lg">
-              Ready to see how Fact Finance's data hub can power your tokenized assets solutions? Visit our data feeds
-              page today to learn more.
+              Ready to see how Fact Finance’s data hub can power your tokenized assets solutions? Visit our docs page
+              today or contact us to learn more.
             </Text>
             <Text fontSize="lg" visibility="hidden">
               Tokenized capital markets, private credit tokenization, oracle for economic indices, CDI, SELIC, IGPM IPCA

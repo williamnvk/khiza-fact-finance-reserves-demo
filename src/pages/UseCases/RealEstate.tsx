@@ -11,17 +11,17 @@ export default function RealEstate({ currentUseCase }: { currentUseCase: UseCase
       data-use-case={USE_CASE_REAL_ESTATE}
       display={currentUseCase === USE_CASE_REAL_ESTATE ? 'block' : 'none'}
     >
-      <Heading
+     <Heading
         as="h2"
-        fontSize={{ base: '3xl', md: '3xl' }}
+        fontSize={{ base: '2xl', sm: '4xl', md: '4xl', lg: '4xl' }}
         lineHeight="1.1"
-        aria-label="Section heading about unlocking liquidity and transparency"
+        aria-label="Section heading about Unlocking value by reducing information asymmetry"
       >
         Unlocking value by reducing information asymmetry
       </Heading>
       <br />
       <Text fontSize={{ base: 'md', md: 'lg' }}>
-        The tokenization of real estate offers the advantages of{' '}
+        The tokenization of Real Estate offers the advantages of{' '}
         <Text as="span" fontWeight="bold">
           fractional ownership
         </Text>{' '}
@@ -31,7 +31,7 @@ export default function RealEstate({ currentUseCase }: { currentUseCase: UseCase
           information asymmetries
         </Text>{' '}
         between the token and the off-chain asset it represents still limit its full potential. To unlock greater
-        utility and liquidity, tokenized real estate assets must be enriched with{' '}
+        utility and liquidity, tokenized Real Estate assets must be enriched with{' '}
         <Text as="span" fontWeight="bold">
           verified, up-to-date data
         </Text>{' '}
@@ -45,7 +45,7 @@ export default function RealEstate({ currentUseCase }: { currentUseCase: UseCase
           current market conditions
         </Text>{' '}
         of the real-world asset they are tied to. Fact Finance bridges this gap by serving as the data layer between
-        tokenized assets and proprietary data sources. For example, a real estate company tokenizing a property needs
+        tokenized assets and proprietary data sources. For example, a Real Estate company tokenizing a property needs
         the token to reflect more than just ownership, it must also carry the information of the market value for that
         asset, transforming the token into a true digital twin.
       </Text>
@@ -162,14 +162,14 @@ export default function RealEstate({ currentUseCase }: { currentUseCase: UseCase
       <br />
 
       <Text fontSize={{ base: 'md', md: 'lg' }}>
-        With Fact Finance's integration, tokenized real estate moves beyond static representation to become a dynamic
+        With Fact Finance's integration, tokenized Real Estate moves beyond static representation to become a dynamic
         financial asset. Tokens can now serve as collateral for loans or be used in DeFi applications, unlocking greater
         utility and liquidity for both issuers and investors.
       </Text>
 
       <br />
 
-      <UseCasesCTA title="Unlock the potential of tokenized real estate" />
+      <UseCasesCTA title="Unlock the potential of tokenized Real Estate" />
     </VStack>
   );
 }

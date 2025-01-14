@@ -12,7 +12,7 @@ export default function Commodities({ currentUseCase }: { currentUseCase: UseCas
     >
       <Heading
         as="h2"
-        fontSize={{ base: '3xl', md: '3xl' }}
+        fontSize={{ base: '2xl', sm: '4xl', md: '4xl', lg: '4xl' }}
         lineHeight="1.1"
         aria-label="Section heading about unlocking liquidity and transparency"
       >
@@ -31,7 +31,7 @@ export default function Commodities({ currentUseCase }: { currentUseCase: UseCas
         assets.
       </Text>
       <br />
-      <Text fontWeight="bold" fontSize={{ base: '2xl', sm: '3xl' }} lineHeight="1.1">
+      <Text fontWeight="bold" fontSize={{ base: 'lg', md: '2xl' }}>
         Reducing risk with verified data for commodity tokenization
       </Text>
       <br />

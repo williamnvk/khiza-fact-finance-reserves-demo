@@ -51,7 +51,7 @@ const items = [
     icon: <UsersRoundIcon />,
     title: 'Why do tokenized assets need oracles?',
     content: [
-      'Oracles provide the real-world data that tokenized assets need to function accurately, such as property valuations for real estate tokens or interest rates  and inflation for private credit tokens. Without oracles, tokenized assets cannot reflect real-time changes or off-chain events.',
+      'Oracles provide the real-world data that tokenized assets need to function accurately, such as property valuations for Real Estate tokens or interest rates  and inflation for private credit tokens. Without oracles, tokenized assets cannot reflect real-time changes or off-chain events.',
     ],
   },
   {
@@ -59,7 +59,7 @@ const items = [
     icon: <HardDriveIcon />,
     title: 'What types of data Fact Finance can provide?',
     content: [
-      'We can provide various types of data, including market prices, economic indices, proof of reserves, square meter price for real estate, weather updates, and more, depending on the use case. Contact us if your project needs any other specifc data.',
+      'We can provide various types of data, including market prices, economic indices, proof of reserves, square meter price for Real Estate, weather updates, and more, depending on the use case. Contact us if your project needs any other specifc data.',
     ],
   },
   {

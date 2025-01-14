@@ -13,7 +13,7 @@ export default function CapitalMarkets({ currentUseCase }: { currentUseCase: Use
         as="h2"
         fontSize={{ base: '2xl', sm: '4xl', md: '4xl', lg: '4xl' }}
         lineHeight="1.1"
-        aria-label="Section heading about unlocking liquidity and transparency"
+        aria-label="Section heading about Reshaping capital markets in Latin America"
       >
         Reshaping capital markets in Latin America
       </Heading>
@@ -38,7 +38,7 @@ export default function CapitalMarkets({ currentUseCase }: { currentUseCase: Use
         unlocking new efficiencies.
       </Text>
       <br />
-      <Text fontWeight="bold" fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }} lineHeight="1.1">
+      <Text fontWeight="bold" fontSize={{ base: 'lg', md: '2xl' }}>
         Fact Finance role connecting official data and tokenized assets
       </Text>
       <br />
@@ -103,7 +103,7 @@ export default function CapitalMarkets({ currentUseCase }: { currentUseCase: Use
             </Text>
           </Text>
           <Text fontSize="sm">
-            Inflation-linked updates for sectors like real estate, enabling accurate rent adjustments and reliable
+            Inflation-linked updates for sectors like Real estate, enabling accurate rent adjustments and reliable
             pricing for tokenized assets.
           </Text>
         </VStack>

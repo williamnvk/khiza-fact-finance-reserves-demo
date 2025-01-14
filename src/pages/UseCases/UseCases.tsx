@@ -25,7 +25,7 @@ export default function UseCases() {
     '@type': 'WebPage',
     name: 'Use Cases | Fact Finance - Real World Asset Tokenization Platform',
     description:
-      'Discover how Fact Finance enables real estate tokenization, capital markets digitization, and commodities tokenization with secure blockchain infrastructure and verified data.',
+      'Discover how Fact Finance enables Real Estate, Capital Markets, and Commodities tokenization with secure blockchain infrastructure and verified data.',
     url: 'https://fact.finance/use-cases',
     breadcrumb: {
       '@type': 'BreadcrumbList',
@@ -50,21 +50,21 @@ export default function UseCases() {
         {
           '@type': 'ListItem',
           position: 1,
-          name: 'Tokenized Capital Markets',
+          name: 'Capital Markets',
           description: 'Access official economic indices and market data for tokenized financial instruments',
           url: 'https://fact.finance/use-cases/capital-markets',
         },
         {
           '@type': 'ListItem',
           position: 2,
-          name: 'Real Estate Tokenization',
-          description: 'Verified property data, square meter pricing, and proof of reserve for tokenized real estate',
+          name: 'Real Estate',
+          description: 'Verified property data, square meter pricing, and proof of reserve for tokenized Real Estate',
           url: 'https://fact.finance/use-cases/real-estate',
         },
         {
           '@type': 'ListItem',
           position: 3,
-          name: 'Tokenized Commodities',
+          name: 'Commodities',
           description:
             'Real-time commodity pricing, quality metrics, and environmental monitoring for tokenized assets',
           url: 'https://fact.finance/use-cases/commodities',
@@ -120,14 +120,14 @@ export default function UseCases() {
     <>
       <SEO
         title="Use Cases | Fact Finance - Enterprise Asset Tokenization Platform"
-        description="Explore how Fact Finance enables real estate tokenization, capital markets digitization, and commodities tokenization with secure blockchain infrastructure and verified data. Learn about our enterprise solutions."
-        keywords="real estate tokenization, asset tokenization platform, blockchain infrastructure, tokenized commodities, digital assets, capital markets blockchain, real estate DeFi, commodity tokenization, verified asset data, blockchain oracle"
+        description="Explore how Fact Finance enables Real Estate, Capital Markets, and Commodities tokenization with secure blockchain infrastructure and verified data. Learn about our enterprise solutions."
+        keywords="Real Estate tokenization, asset tokenization platform, blockchain infrastructure, tokenized commodities, digital assets, capital markets blockchain, Real Estate DeFi, commodity tokenization, verified asset data, blockchain oracle"
         structuredData={JSON.stringify(structuredData)}
         canonical="https://fact.finance/use-cases"
         openGraph={{
           title: 'Use Cases | Fact Finance - Enterprise Asset Tokenization Platform',
           description:
-            'Explore how Fact Finance enables real estate tokenization, capital markets digitization, and commodities tokenization with secure blockchain infrastructure and verified data.',
+            'Explore how Fact Finance enables Real Estate, Capital Markets, and Commodities tokenization with secure blockchain infrastructure and verified data.',
           url: 'https://fact.finance/use-cases',
           type: 'website',
           images: [
@@ -144,7 +144,7 @@ export default function UseCases() {
           site: '@FactFinance',
           title: 'Use Cases | Fact Finance - Enterprise Asset Tokenization Platform',
           description:
-            'Explore how Fact Finance enables real estate tokenization, capital markets digitization, and commodities tokenization with secure blockchain infrastructure and verified data.',
+            'Explore how Fact Finance enables Real Estate, Capital Markets, and Commodities tokenization with secure blockchain infrastructure and verified data.',
           image: 'https://fact.finance/twitter-image-use-cases.jpg',
         }}
       />
@@ -182,7 +182,7 @@ export default function UseCases() {
               textAlign={{ base: 'left', md: 'center' }}
               color="whiteAlpha.800"
             >
-              Discover practical applications of Fact Finance's data across industries, from real estate to commodities,
+              Discover practical applications of Fact Finance's data across industries, from Real Estate to Commodities,
               driving innovation in the tokenized economy.
             </Text>
           </TitleSection>
@@ -198,21 +198,21 @@ export default function UseCases() {
             {[
               {
                 id: USE_CASE_CAPITAL_MARKETS,
-                title: 'Tokenized capital markets',
+                title: 'Capital markets',
                 description: 'Access official economic indices from authorized sources',
                 video: '/assets/what-we-do/capital-markets.mp4',
                 poster: '/assets/what-we-do/capital-markets-poster.webp',
               },
               {
                 id: USE_CASE_REAL_ESTATE,
-                title: 'Real estate tokenization',
+                title: 'Real Estate',
                 description: 'Square meter price and proof of reserve for properties',
                 video: '/assets/what-we-do/real-estate.mp4',
                 poster: '/assets/what-we-do/real-estate-poster.webp',
               },
               {
                 id: USE_CASE_COMMODITIES,
-                title: 'Tokenized commodities',
+                title: 'Commodities',
                 description: 'Qualitative data and monitoring for commodities',
                 video: '/assets/what-we-do/commodities.mp4',
                 poster: '/assets/what-we-do/commodities-poster.webp',

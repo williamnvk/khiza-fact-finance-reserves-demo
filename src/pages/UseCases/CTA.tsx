@@ -1,4 +1,4 @@
-import { Button, Heading, Stack, Text, VStack } from '@chakra-ui/react';
+import { Box, Button, Heading, Stack, Text, VStack } from '@chakra-ui/react';
 import { ReactNode } from 'react';
 
 export default function UseCasesCTA({
@@ -10,6 +10,7 @@ export default function UseCasesCTA({
 }) {
   return (
     <VStack
+      mt={{ base: 4, md: 8 }}
       w="full"
       p={{ base: 8, sm: 24, md: 32 }}
       borderRadius="lg"
@@ -17,6 +18,8 @@ export default function UseCasesCTA({
       bgGradient="to-r"
       gradientFrom="whiteAlpha.50"
       gradientTo="bg"
+      position="relative"
+      boxShadow="2lg"
     >
       <Heading
         fontWeight="bold"
@@ -61,6 +64,17 @@ export default function UseCasesCTA({
           Contact us
         </Button>
       </Stack>
+      <Box
+        position="absolute"
+        top="75px"
+        left="50%"
+        transform="translate(-50%, -50%)"
+        w="500px"
+        h="150px"
+        bg="radial-gradient(circle, {colors.brand.800} 0%, {colors.brand.900} 25%, transparent 100%)"
+        filter="blur(60px)"
+        zIndex={-1}
+      />
     </VStack>
   );
 }

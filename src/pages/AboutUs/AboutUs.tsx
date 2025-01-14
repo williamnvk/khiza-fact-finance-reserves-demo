@@ -491,7 +491,7 @@ export default function AboutUs() {
                     aria-label="Brazilian National Treasury Logo"
                   />
                   <Text flex={1} fontSize="md">
-                    3rd place overall in the Web3 Hackathon: National Treasury Tokenization, organized by the Brazilian
+                    Winner of the Best Oracle on the Web3 Hackathon: National Treasury Tokenization, organized by the Brazilian
                     Ministry of Finance in December 2023.
                     <br />
                     <Text as="span" fontWeight="200" fontSize="xs">

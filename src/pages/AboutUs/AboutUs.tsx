@@ -132,7 +132,7 @@ export default function AboutUs() {
               Get to know us
             </Text>
 
-            <Text fontSize="lg" w="full" textAlign={{ base: 'left', md: 'center' }} lineHeight="moderate">
+            <Text fontSize="3xl" w="full" textAlign={{ base: 'left', md: 'center' }} lineHeight="moderate">
               We are driving the tokenized economy with trusted data infrastructure.
             </Text>
           </TitleSection>

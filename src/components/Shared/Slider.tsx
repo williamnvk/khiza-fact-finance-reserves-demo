@@ -12,6 +12,7 @@ export interface SliderProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const Slider = ({ alias, children, duration = 60, toRight = false, ...props }: SliderProps) => {
   const [items, setItems] = useState<ReactElement[]>([]);
+  const [isPaused, setIsPaused] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -39,7 +40,7 @@ const Slider = ({ alias, children, duration = 60, toRight = false, ...props }: S
     const content = contentRef.current;
     const speed = toRight ? duration * -1 : duration;
 
-    content.style.animation = `scroll-${alias} ${Math.abs(speed)}s linear infinite`;
+    content.style.animation = `scroll-${alias} ${Math.abs(speed)}s linear ${isPaused ? 'paused' : 'infinite'}`;
 
     const keyframes = `
       @keyframes scroll-${alias} {
@@ -59,7 +60,7 @@ const Slider = ({ alias, children, duration = 60, toRight = false, ...props }: S
     return () => {
       document.head.removeChild(styleSheet);
     };
-  }, [alias, duration, toRight]);
+  }, [alias, duration, toRight, isPaused]);
 
   return (
     <Box
@@ -103,6 +104,8 @@ const Slider = ({ alias, children, duration = 60, toRight = false, ...props }: S
           whiteSpace: 'nowrap',
           willChange: 'transform',
         }}
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
       >
         {items.map((child, i) => (
           <Box
@@ -112,6 +115,7 @@ const Slider = ({ alias, children, duration = 60, toRight = false, ...props }: S
             transition="opacity 0.3s ease"
             willChange="opacity"
             flexShrink={0}
+           
           >
             {React.cloneElement(child)}
           </Box>

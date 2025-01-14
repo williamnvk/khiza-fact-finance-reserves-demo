@@ -129,6 +129,18 @@ export const Home = () => {
             <CodeBlock aria-label="Code Example" />
           </Box>
         </HStack>
+
+        <Box
+          position="absolute"
+          top="-50%"
+          left="50%"
+          transform="translate(-50%, -50%)"
+          w="500px"
+          h="500px"
+          bg="radial-gradient(circle, {colors.brand.800} 0%, {colors.brand.900} 25%, transparent 100%)"
+          filter="blur(120px)"
+          zIndex={-1}
+        />
       </Container>
 
       <Container

@@ -35,6 +35,21 @@ export const Home = () => {
       </Suspense>
 
       <Container aria-labelledby="supported-chains-heading" as="section">
+        <Text
+          fontSize={{ base: 'xs', sm: 'sm' }}
+          bgGradient="to-r"
+          gradientFrom="brand.50"
+          gradientTo="brand.400"
+          bgClip="text"
+          textTransform="uppercase"
+          letterSpacing={2}
+          fontWeight="600"
+          w="full"
+          textAlign={{ base: 'left', md: 'center' }}
+          mb={{ base: 2, md: 4 }}
+        >
+          Supported Chains
+        </Text>
         <Chains aria-label="Supported Blockchain Networks" />
       </Container>
 
@@ -71,7 +86,7 @@ export const Home = () => {
                 fontSize={{ base: '2xl', sm: '3xl', md: '3xl', lg: '4xl' }}
                 maxW={{ base: 'full', md: 'xl', xl: 'full' }}
               >
-               Seamless data integration for blockchain developers
+                Seamless data integration for blockchain developers
               </Heading>
               <Text
                 fontSize="sm"

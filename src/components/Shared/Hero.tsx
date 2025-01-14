@@ -8,7 +8,7 @@ import { FC } from 'react';
 
 export const Hero: FC = () => {
   const isMobile = useBreakpointValue({ base: true, md: false });
-  const stackSpacing = useBreakpointValue({ base: 4, md: 8 });
+  const stackSpacing = useBreakpointValue({ base: 4, md: 4, lg: 4, xl: 8 });
   const logoSize = useBreakpointValue({ base: 24, md: 32 });
   const partnerLogoSizes = {
     morganCreek: useBreakpointValue({ base: { width: 80, height: 42 }, md: { width: 168, height: 88 } }),
@@ -88,7 +88,7 @@ export const Hero: FC = () => {
       >
         <VStack
           align="center"
-          h={{ base: 'full', md: 'calc(100vh - 144px)' }}
+          h={{ base: 'full', md: 'calc(100vh - 72px)' }}
           justify="center"
           gap={stackSpacing}
           mt={{ base: '72px', md: '72px' }}
@@ -138,7 +138,7 @@ export const Hero: FC = () => {
             justify="center"
             align="center"
             maxW={{ base: 'full', md: '4xl' }}
-            gap={{ base: 0, md: 2 }}
+            gap={0}
             pb={{ base: 32, md: 0 }}
             zIndex={5}
           >

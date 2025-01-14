@@ -1,7 +1,7 @@
 import { Box, Text, Heading, VStack, HStack, Container, useBreakpointValue } from '@chakra-ui/react';
 import { BadgeCheckIcon, ComponentIcon, SearchIcon } from 'lucide-react';
 import { TitleSection } from '../ui/title-sectiont';
-import { memo } from 'react';
+import { memo, useState } from 'react';
 
 const FeaturesSection = memo(() => {
   const isMobile = useBreakpointValue({ base: true, md: false });
@@ -21,20 +21,22 @@ const FeaturesSection = memo(() => {
     xl: '320px',
   });
 
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   const cards = [
     {
       icon: (size: number = 24) => <BadgeCheckIcon size={size} strokeWidth={1.5} aria-hidden="true" />,
       title: 'Proof of Authenticity',
       subtitle:
         'On-chain wallet validation that the data comes directly from the official data provider, eliminating risks of tampering.',
-      borderColor: 'white',
+      borderColor: 'brand.800',
     },
     {
       icon: (size: number = 24) => <SearchIcon size={size} strokeWidth={1.5} aria-hidden="true" />,
       title: 'Confidence Index',
       subtitle:
         'Our system monitors data for anomalies using statistical and density-based detection techniques. Any outlier data is flagged so the consumer contract can determine how to handle it.',
-      borderColor: 'brand.500',
+      borderColor: 'brand.800',
     },
     {
       icon: (size: number = 24) => <ComponentIcon size={size} strokeWidth={1.5} aria-hidden="true" />,
@@ -44,20 +46,22 @@ const FeaturesSection = memo(() => {
     },
   ];
 
-  const updateCardPositions = (hoveredIndex: number | null) => {
+  const updateCardPositions = (index: number | null) => {
     if (isMobile) return;
 
-    requestAnimationFrame(() => {
-      cards.forEach((_, index) => {
-        const cardElement = document.querySelector(`.card-${index}`) as HTMLElement;
-        if (cardElement) {
-          let yOffset = 100 * index;
+    setHoveredIndex(index);
 
-          if (hoveredIndex !== null) {
-            const distance = Math.abs(index - hoveredIndex);
-            if (index < hoveredIndex) {
+    requestAnimationFrame(() => {
+      cards.forEach((_, cardIndex) => {
+        const cardElement = document.querySelector(`.card-${cardIndex}`) as HTMLElement;
+        if (cardElement) {
+          let yOffset = 100 * cardIndex;
+
+          if (index !== null) {
+            const distance = Math.abs(cardIndex - index);
+            if (cardIndex < index) {
               yOffset -= 40 / (distance + 1);
-            } else if (index > hoveredIndex) {
+            } else if (cardIndex > index) {
               yOffset += 40 / (distance + 1);
             } else {
               yOffset -= 30;
@@ -104,6 +108,7 @@ const FeaturesSection = memo(() => {
         gap={{ base: 0, md: 20 }}
         flexDirection={stackDirection}
         align="stretch"
+        aria-label="Feature cards"
       >
         <VStack
           minH={{ base: '280px', md: 'auto' }}
@@ -127,12 +132,11 @@ const FeaturesSection = memo(() => {
                 isMobile ? '40px' : '100px'
               } * ${index})) rotate(40deg) skew(-20deg, -10deg)`}
               border="2px solid"
-              borderColor={card.borderColor}
+              borderColor={hoveredIndex === index ? 'white' : card.borderColor}
+              transition="all 0.3s ease-in-out"
               bg="transparent"
-              boxShadow="lg"
-              borderRadius="xl"
+              borderRadius="2xl"
               gap={8}
-              transition={isMobile ? 'none' : 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)'}
               className={`card-${index}`}
               align="center"
               backdropFilter="blur(2px)"
@@ -140,6 +144,9 @@ const FeaturesSection = memo(() => {
               overflow="hidden"
               onMouseEnter={() => !isMobile && updateCardPositions(index)}
               onMouseLeave={() => !isMobile && updateCardPositions(null)}
+              role="button"
+              tabIndex={0}
+              aria-controls={`card-info-${index}`}
             >
               <Box
                 position="absolute"
@@ -149,7 +156,7 @@ const FeaturesSection = memo(() => {
                 w="100%"
                 h="100%"
                 bg="radial-gradient(circle, {colors.brand.900} 0%, rgba(0,0,0,.5) 100%)"
-                filter="blur(60px)"
+                filter="blur(30px)"
                 opacity={0.25 * (index + 1)}
                 zIndex={1}
               />
@@ -165,7 +172,7 @@ const FeaturesSection = memo(() => {
                 opacity={0.25}
                 zIndex={1}
               />
-              <Text color={card.borderColor}>{card.icon(isMobile ? 32 : 48)}</Text>
+              <Text color={hoveredIndex === index ? 'white' : card.borderColor}>{card.icon(isMobile ? 32 : 48)}</Text>
             </VStack>
           ))}
         </VStack>
@@ -177,20 +184,14 @@ const FeaturesSection = memo(() => {
                 tabIndex={0}
                 aria-labelledby={`feature-title-${index}`}
                 id={`card-info-${index}`}
-                onMouseEnter={() => !isMobile && updateCardPositions(index)}
-                onMouseLeave={() => !isMobile && updateCardPositions(null)}
-                onKeyDown={(e) => {
-                  if (!isMobile && (e.key === 'Enter' || e.key === ' ')) {
-                    updateCardPositions(index);
-                  }
-                }}
-                onBlur={() => !isMobile && updateCardPositions(null)}
                 alignItems="flex-start"
                 px={{ base: 0, md: 8 }}
                 py={{ base: 4, md: 8 }}
                 borderRadius="md"
                 position="relative"
                 transition={isMobile ? 'none' : 'all 0.3s ease-in-out'}
+                onMouseEnter={() => !isMobile && updateCardPositions(index)}
+                onMouseLeave={() => !isMobile && updateCardPositions(null)}
                 _hover={
                   isMobile
                     ? {}
@@ -203,6 +204,16 @@ const FeaturesSection = memo(() => {
                         },
                       }
                 }
+                {...(!isMobile && hoveredIndex === index
+                  ? {
+                      py: 16,
+                      '& > .connector': {
+                        opacity: 1,
+                        width: '40px',
+                        left: '-12px',
+                      },
+                    }
+                  : {})}
               >
                 <VStack w="full" align="flex-start" gap={2}>
                   <Heading
@@ -226,7 +237,6 @@ const FeaturesSection = memo(() => {
                       top="50%"
                       height="2px"
                       w="0px"
-                      // bg={card.borderColor}
                       bg="white"
                       transformOrigin="left"
                       transition="width 0.3s ease-in-out"
@@ -239,7 +249,6 @@ const FeaturesSection = memo(() => {
                       left="-30px"
                       top="50%"
                       borderRadius="full"
-                      // color={card.borderColor}
                       color="white"
                       transform="translate(-50%, -50%)"
                       transition="all 0.3s ease-in-out"

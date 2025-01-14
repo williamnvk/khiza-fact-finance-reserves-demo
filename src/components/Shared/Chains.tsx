@@ -14,11 +14,10 @@ export default function Chains() {
             _hover={{ transform: 'scale(1.05)', opacity: 0.9 }}
             transition="all 0.2s ease-in-out"
             borderRadius="full"
-            bg="whiteAlpha.50"
+            // bg="whiteAlpha.50"
             gap={{ base: 2, sm: 3, md: 4 }}
             align="center"
             justify="center"
-            h={{ base: "60px", sm: "70px", md: "80px" }}
           >
             {chain.icon ? (
               <Image

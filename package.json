@@ -14,8 +14,6 @@
     "@chakra-ui/react": "^3.2.1",
     "@emotion/react": "^11.13.5",
     "@fontsource/lato": "^5.1.0",
-    "@rollup/rollup-linux-x64-gnu": "^4.30.1",
-    "@swc/core": "^1.10.4",
     "aos": "^2.3.4",
     "framer-motion": "^11.13.3",
     "lucide-react": "^0.462.0",

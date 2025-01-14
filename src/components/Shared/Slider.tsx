@@ -1,23 +1,32 @@
 import { Box, Flex } from '@chakra-ui/react';
-import React, { ReactElement, useEffect, useState, useCallback } from 'react';
+import React, { ReactElement, useEffect, useState, useCallback, useRef } from 'react';
 
 export interface SlideProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export interface SliderProps extends React.HTMLAttributes<HTMLDivElement> {
   children: ReactElement[];
-  width?: string;
   duration?: number;
   toRight?: boolean;
   alias: string;
 }
 
-const Slider = ({ alias, children, width = '200px', duration = 5, toRight = false, ...props }: SliderProps) => {
+const Slider = ({ alias, children, duration = 60, toRight = false, ...props }: SliderProps) => {
   const [items, setItems] = useState<ReactElement[]>([]);
+  const [isPaused, setIsPaused] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
-  // Memoize items creation
   const createItems = useCallback(() => {
-    // Create 4x items for smoother infinite scroll
-    const repeatedItems = Array(4).fill(children).flat();
+    const repeatedItems = [
+      ...children,
+      ...children,
+      ...children,
+      ...children,
+      ...children,
+      ...children,
+      ...children,
+      ...children,
+    ];
     setItems(repeatedItems);
   }, [children]);
 
@@ -26,31 +35,36 @@ const Slider = ({ alias, children, width = '200px', duration = 5, toRight = fals
   }, [createItems]);
 
   useEffect(() => {
-    const style = document.createElement('style');
-    const direction = toRight ? '' : '-';
+    if (!containerRef.current || !contentRef.current) return;
 
-    // Improved keyframes with transform3d for better performance
-    const keyFrames = `
-      @keyframes slider_${alias} {
+    const content = contentRef.current;
+    const speed = toRight ? duration * -1 : duration;
+
+    content.style.animation = `scroll-${alias} ${Math.abs(speed)}s linear ${isPaused ? 'paused' : 'infinite'}`;
+
+    const keyframes = `
+      @keyframes scroll-${alias} {
         0% {
-          transform: translate3d(0, 0, 0);
+          transform: translateX(${toRight ? '-100%' : '0'});
         }
         100% {
-          transform: translate3d(${direction}50%, 0, 0);
+          transform: translateX(${toRight ? '0' : '-100%'});
         }
       }
     `;
 
-    style.innerHTML = keyFrames;
-    document.head.appendChild(style);
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = keyframes;
+    document.head.appendChild(styleSheet);
 
     return () => {
-      document.head.removeChild(style);
+      document.head.removeChild(styleSheet);
     };
-  }, [toRight, width, alias]);
+  }, [alias, duration, toRight, isPaused]);
 
   return (
     <Box
+      ref={containerRef}
       as="section"
       pos="relative"
       w="full"
@@ -64,7 +78,7 @@ const Slider = ({ alias, children, width = '200px', duration = 5, toRight = fals
         top: 0,
         width: '15%',
         height: '100%',
-        background: 'linear-gradient(to right, {colors.black}, transparent)',
+        background: 'linear-gradient(to right, bg, transparent)',
         zIndex: 2,
         pointerEvents: 'none',
       }}
@@ -75,22 +89,23 @@ const Slider = ({ alias, children, width = '200px', duration = 5, toRight = fals
         top: 0,
         width: '15%',
         height: '100%',
-        background: 'linear-gradient(to left, {colors.black}, transparent)',
+        background: 'linear-gradient(to left, bg, transparent)',
         zIndex: 2,
         pointerEvents: 'none',
       }}
       {...props}
     >
       <Flex
+        ref={contentRef}
         gap={4}
         py={4}
-        h="120px"
         style={{
-          animation: `slider_${alias} ${duration}s linear infinite`,
+          display: 'inline-flex',
+          whiteSpace: 'nowrap',
           willChange: 'transform',
-          backfaceVisibility: 'hidden',
-          WebkitFontSmoothing: 'antialiased',
         }}
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
       >
         {items.map((child, i) => (
           <Box
@@ -100,8 +115,9 @@ const Slider = ({ alias, children, width = '200px', duration = 5, toRight = fals
             transition="opacity 0.3s ease"
             willChange="opacity"
             flexShrink={0}
+           
           >
-            {React.cloneElement(child, { width })}
+            {React.cloneElement(child)}
           </Box>
         ))}
       </Flex>

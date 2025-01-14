@@ -74,6 +74,27 @@ export const globalCss = defineGlobalStyles({
       zIndex: 5,
     },
   },
+  '.use-case-card': {
+    overflow: 'hidden',
+    flex: 1,
+    borderRadius: '2xl',
+    border: '1px solid',
+    borderColor: 'whiteAlpha.200',
+    position: 'relative',
+    justifyContent: 'flex-end',
+    '&::before': {
+      content: '""',
+      position: 'absolute',
+      left: 'var(--x)',
+      top: 'var(--y)',
+      width: 'var(--size)',
+      height: 'var(--size)',
+      transform: 'translate(-50%, -50%)',
+      background: 'radial-gradient(circle closest-side, rgba(255, 255, 255, 0.1), transparent)',
+      transition: '--size 0.2s ease',
+      zIndex: 5,
+    },
+  },
   '@keyframes connectAnimation': {
     '0%': {
       width: 0,

@@ -6,7 +6,6 @@ import { TitleSection } from '@/components/ui/title-sectiont';
 import { CodeBlock } from '@/components/Shared/CodeBlock';
 import { Hero } from '@/components/Shared/Hero';
 import { Suspense, lazy } from 'react';
-import { Link as RouterLink } from 'react-router';
 
 const LazyFaq = lazy(() => import('@/components/Shared/Faq').then((module) => ({ default: module.Faq })));
 const LazyFeaturesSection = lazy(() =>
@@ -36,10 +35,25 @@ export const Home = () => {
       </Suspense>
 
       <Container aria-labelledby="supported-chains-heading" as="section">
+        <Text
+          fontSize={{ base: 'xs', sm: 'sm' }}
+          bgGradient="to-r"
+          gradientFrom="brand.50"
+          gradientTo="brand.400"
+          bgClip="text"
+          textTransform="uppercase"
+          letterSpacing={2}
+          fontWeight="600"
+          w="full"
+          textAlign={{ base: 'left', md: 'center' }}
+          mb={{ base: 2, md: 4 }}
+        >
+          Supported Chains
+        </Text>
         <Chains aria-label="Supported Blockchain Networks" />
       </Container>
 
-      <Box pos="relative" aria-labelledby="features-section-heading" as="section">
+      <Box pos="relative" aria-labelledby="features-section-heading" as="section" pb={{ base: 8, md: 24 }}>
         <Suspense
           fallback={
             <Text role="status" textAlign="center" p={4}>
@@ -72,7 +86,7 @@ export const Home = () => {
                 fontSize={{ base: '2xl', sm: '3xl', md: '3xl', lg: '4xl' }}
                 maxW={{ base: 'full', md: 'xl', xl: 'full' }}
               >
-                Seamless Data Integration for Blockchain Developers
+                Seamless data integration for blockchain developers
               </Heading>
               <Text
                 fontSize="sm"
@@ -104,10 +118,10 @@ export const Home = () => {
                 aria-label="Explore Documentation"
                 w={{ base: 'full', md: 'auto' }}
               >
-                Explore Documentation
+                Explore documentation
               </Button>
               <Button variant="ghost" as="a" href="mailto:juvinski@fact.finance" aria-label="Contact Support">
-                Contact Support
+                Contact support
               </Button>
             </HStack>
           </VStack>
@@ -115,6 +129,19 @@ export const Home = () => {
             <CodeBlock aria-label="Code Example" />
           </Box>
         </HStack>
+
+        <Box
+          position="absolute"
+          top="-50%"
+          left="50%"
+          transform="translate(-50%, -50%)"
+          w="500px"
+          h="500px"
+          bg="radial-gradient(circle, {colors.brand.800} 0%, {colors.brand.900} 25%, transparent 100%)"
+          filter="blur(120px)"
+          opacity={0.5}
+          zIndex={-1}
+        />
       </Container>
 
       <Container
@@ -188,9 +215,9 @@ export const Home = () => {
               fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
               lineHeight={1.2}
             >
-              Unlock the Value of Your
+              Unlock the value of your
               <br />
-              Tokenized Asset with Official Data
+              tokenized asset with official data
             </Heading>
             <Text
               id="unlock-value-description"

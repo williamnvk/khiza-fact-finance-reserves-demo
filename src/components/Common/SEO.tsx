@@ -7,6 +7,8 @@ interface SEOProps {
   image?: string;
   url?: string;
   type?: string;
+  structuredData?: any;
+  canonical?: string;
 }
 
 export const SEO = ({
@@ -16,21 +18,23 @@ export const SEO = ({
   image = '/assets/post.png',
   url = 'https://fact.finance',
   type = 'website',
+  structuredData = {},
+  canonical = 'https://fact.finance',
 }: SEOProps) => {
-  const structuredData = {
-    '@context': 'https://schema.org',
-    '@type': type,
-    name: 'Fact Finance',
-    description,
-    url,
-    applicationCategory: '',
-    operatingSystem: 'Any',
-    keywords: keywords.split(','),
-    sameAs: [
-      'https://x.com/TheFactOracle',
-      'https://www.linkedin.com/company/fact-finance-oracle',
-    ],
-  };
+  const rawStructuredData =
+    JSON.stringify(structuredData) === JSON.stringify({})
+      ? {
+          '@context': 'https://schema.org',
+          '@type': type,
+          name: 'Fact Finance',
+          description,
+          url,
+          applicationCategory: '',
+          operatingSystem: 'Any',
+          keywords: keywords.split(','),
+          sameAs: ['https://x.com/TheFactOracle', 'https://www.linkedin.com/company/fact-finance-oracle'],
+        }
+      : structuredData;
 
   const baseUrl = 'https://fact.finance/';
 
@@ -54,9 +58,9 @@ export const SEO = ({
       <meta name="keywords" content={keywords} />
       <meta name="author" content="Fact Finance" />
       <meta name="robots" content="index, follow" />
-      <link rel="canonical" href={url} />
+      <link rel="canonical" href={canonical} />
 
-      <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+      <script type="application/ld+json">{JSON.stringify(rawStructuredData)}</script>
     </Helmet>
   );
 };

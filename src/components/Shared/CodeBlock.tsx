@@ -83,10 +83,10 @@ export const CodeBlock = () => {
         </ClipboardRoot>
       </HStack>
 
- {tab === 'evm' && (
+      {tab === 'evm' && (
         <Code w="full" bg="transparent">
           <Box as="pre" fontFamily="mono" fontSize="sm" py={4}>
-          <HStack gap={2} w="full">
+            <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
                 &nbsp;&nbsp;1
               </Text>
@@ -94,20 +94,22 @@ export const CodeBlock = () => {
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
-              &nbsp;&nbsp;2
+                &nbsp;&nbsp;2
               </Text>
-              <Text color="warning.400">FOInterfaceV1 </Text>
-              <Text as="span" color="white">public _fOracle; </Text>
+              <Text color="warning.400">FOInterfaceV1</Text>
+              <Text as="span" color="white">
+                public _fOracle;
+              </Text>
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
-              &nbsp;&nbsp;3
+                &nbsp;&nbsp;3
               </Text>
               <Text color="success.400"></Text>
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
-              &nbsp;&nbsp;4
+                &nbsp;&nbsp;4
               </Text>
               <Text color="success.400">/// Constructor to initialize the ConsumerFOracle contract</Text>
             </HStack>
@@ -116,24 +118,28 @@ export const CodeBlock = () => {
                 &nbsp;&nbsp;5
               </Text>
               <Text color="warning.400">constructor</Text>
-              <Text as="span" color="white">(address oracleAddress)  {`{`}  </Text>
+              <Text as="span" color="white">
+                (address oracleAddress) {`{`}
+              </Text>
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
-              &nbsp;&nbsp;6
+                &nbsp;&nbsp;6
               </Text>
               <Text color="warning.400">&nbsp;&nbsp;&nbsp;&nbsp;_fOracle = FOInterfaceV1</Text>
-              <Text as="span" color="white">(oracleAddress);</Text>
+              <Text as="span" color="white">
+                (oracleAddress);
+              </Text>
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
                 &nbsp;&nbsp;7
               </Text>
-              <Text color="warning.400">{`}`}</Text>
+              <Text color="white">{`}`}</Text>
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
-              &nbsp;&nbsp;8
+                &nbsp;&nbsp;8
               </Text>
               <Text color="success.400"></Text>
             </HStack>
@@ -141,34 +147,50 @@ export const CodeBlock = () => {
               <Text color="gray.500" w="10">
                 &nbsp;&nbsp;9
               </Text>
-              <Text color="success.400">/// Retrieves the latest data feed from the oracle and updates contract state variables</Text>
+              <Text color="success.400">
+                /// Retrieves the latest data feed from the oracle and updates contract state variables
+              </Text>
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
                 &nbsp;10
               </Text>
               <Text color="warning.400">function</Text>
-              <Text as="span" color="white">getFeed(uint16 code)</Text>
-              <Text color="warning.400">public {`{`} </Text>
+              <Text as="span" color="white">
+                getFeed(uint16 code)
+              </Text>
+              <Text color="warning.400">
+                public <Text color="white" as="span">{`{`}</Text>{' '}
+              </Text>
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
                 &nbsp;11
               </Text>
               <Text color="warning.400">&nbsp;&nbsp;&nbsp;&nbsp;DataFeed</Text>
-                <Text as="span" color="white">_data</Text>
-                <Text color="warning.400">=</Text>
-                <Text as="span" color="white" >_fOracle.getFeed</Text>
-                  <Text color="warning.400">(</Text>
-                    <Text as="span" color="white" >code</Text>
-                    <Text color="warning.400">)</Text>
-                    <Text as="span" color="white" >;</Text>
+              <Text as="span" color="white">
+                _data
+              </Text>
+              <Text color="warning.400">=</Text>
+              <Text as="span" color="white">
+                _fOracle.getFeed
+              </Text>
+              <Text color="warning.400">(</Text>
+              <Text as="span" color="white">
+                code
+              </Text>
+              <Text as="span" color="warning.400">
+                )
+              </Text>
+              <Text as="span" color="white">
+                ;
+              </Text>
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
                 &nbsp;12
               </Text>
-              <Text color="warning.400">{`}`}</Text>
+              <Text color="white">{`}`}</Text>
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
@@ -195,15 +217,10 @@ export const CodeBlock = () => {
               </Text>
               <Text color="success.400">/// @dev Used to store oracle data with an associated confidence score</Text>
             </HStack>
+           
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
                 &nbsp;17
-              </Text>
-              <Text color="white"></Text>
-            </HStack>
-            <HStack gap={2} w="full">
-              <Text color="gray.500" w="10">
-                &nbsp;18
               </Text>
               <Text>
                 <Text as="span" color="warning.400">
@@ -216,7 +233,7 @@ export const CodeBlock = () => {
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
-                &nbsp;19
+                &nbsp;18
               </Text>
               <Text>
                 <Text as="span" color="warning.400">
@@ -232,7 +249,7 @@ export const CodeBlock = () => {
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
-                &nbsp;20
+                &nbsp;19
               </Text>
               <Text>
                 <Text as="span" color="warning.400">
@@ -248,7 +265,7 @@ export const CodeBlock = () => {
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
-                &nbsp;21
+                &nbsp;20
               </Text>
               <Text>
                 <Text as="span" color="warning.400">
@@ -264,7 +281,7 @@ export const CodeBlock = () => {
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
-                &nbsp;22
+                &nbsp;21
               </Text>
               <Text>
                 <Text as="span" color="warning.400">
@@ -280,7 +297,7 @@ export const CodeBlock = () => {
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
-                &nbsp;23
+                &nbsp;22
               </Text>
               <Text>
                 <Text as="span" color="white">
@@ -293,7 +310,7 @@ export const CodeBlock = () => {
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
-                &nbsp;24
+                &nbsp;23
               </Text>
               <Text color="white">{`}`}</Text>
             </HStack>

@@ -1,23 +1,20 @@
 import { Box, Container, Heading, HStack, Image, Text, VStack, useBreakpointValue, Badge } from '@chakra-ui/react';
 import { Button } from '@/components/ui/button';
-import BrazilianTesouroNacionalIcon from '@/components/Icons/BrazilianTesouroNacional';
-import SolanaHorizontal from '@/components/Icons/SolanaHorizontal';
 import MorganCreek from '@/components/Icons/MorganCreek';
 import KhizaIcon from '@/components/Icons/KhizaIcon';
 import LiqiLogo from '@/components/Icons/Liqi';
 import LogoIcon from '@/components/Icons/LogoIcon';
 import { FC } from 'react';
+import XDCLogo from '../Icons/XDCLogo';
 
 export const Hero: FC = () => {
   const isMobile = useBreakpointValue({ base: true, md: false });
-  const stackSpacing = useBreakpointValue({ base: 4, md: 8 });
+  const stackSpacing = useBreakpointValue({ base: 4, md: 4, lg: 4, xl: 8 });
   const logoSize = useBreakpointValue({ base: 24, md: 32 });
   const partnerLogoSizes = {
     morganCreek: useBreakpointValue({ base: { width: 80, height: 42 }, md: { width: 168, height: 88 } }),
     khiza: useBreakpointValue({ base: { width: 52, height: 42 }, md: { width: 112, height: 88 } }),
-    liqi: useBreakpointValue({ base: { width: 76, height: 44 }, md: { width: 128, height: 72 } }),
-    solana: useBreakpointValue({ base: { width: 116, height: 47 }, md: { width: 195, height: 78 } }),
-    tesouro: useBreakpointValue({ base: { width: 64, height: 64 }, md: { width: 112, height: 112 } }),
+    liqi: useBreakpointValue({ base: { width: 76, height: 44 }, md: { width: 112, height: 54 } }),
   };
 
   return (
@@ -39,6 +36,10 @@ export const Hero: FC = () => {
           mixBlendMode="luminosity"
           loop
           src={`/assets/hero.mp4`}
+          loading="lazy"
+          preload="none"
+          poster="/assets/hero-poster.webp"
+          aria-hidden="true"
         />
 
         <Box
@@ -88,7 +89,7 @@ export const Hero: FC = () => {
       >
         <VStack
           align="center"
-          h={{ base: 'full', md: 'calc(100vh - 144px)' }}
+          h={{ base: 'full', md: 'calc(100vh - 72px)' }}
           justify="center"
           gap={stackSpacing}
           mt={{ base: '72px', md: '72px' }}
@@ -138,7 +139,7 @@ export const Hero: FC = () => {
             justify="center"
             align="center"
             maxW={{ base: 'full', md: '4xl' }}
-            gap={{ base: 0, md: 2 }}
+            gap={0}
             pb={{ base: 32, md: 0 }}
             zIndex={5}
           >
@@ -167,30 +168,31 @@ export const Hero: FC = () => {
               flexWrap={{ base: 'wrap', md: 'nowrap' }}
             >
               <VStack gap={0} align={{ base: 'center', md: 'flex-start' }} justify="center">
-                <HStack justify="center" flexWrap="wrap" gap={{ base: 2, md: 4 }} flex={1}>
+                <HStack justify="center" align="center" flexWrap="wrap" gap={{ base: 2, md: 4 }} flex={1}>
                   <MorganCreek {...partnerLogoSizes.morganCreek} />
                   <Image
                     src="/assets/outlier-ventures.webp"
                     alt="Outlier Ventures"
+                    width={192}
+                    height={22}
+                    loading="lazy"
+                    decoding="async"
                     filter="invert(1)"
                     w={{ base: '140px', md: '192px' }}
                     h={{ base: '16px', md: '22px' }}
                   />
                   <KhizaIcon {...partnerLogoSizes.khiza} />
-                </HStack>
-                <HStack justify="center" flexWrap="wrap" gap={{ base: 0, md: 4 }} mt={{ base: -2, md: -6 }}>
                   <LiqiLogo {...partnerLogoSizes.liqi} />
                   <Image
                     src="/assets/firmeza-token.avif"
                     alt="Firmeza Token"
                     filter="invert(1) brightness(2)"
-                    w={{ base: '84px', md: '163px' }}
-                    h={{ base: '22px', md: '42px' }}
+                    w={{ base: '84px', md: '122px' }}
+                    h={{ base: '22px', md: '32px' }}
                   />
-                  <SolanaHorizontal {...partnerLogoSizes.solana} />
+                  <XDCLogo width={72} height={72} />
                 </HStack>
               </VStack>
-              <BrazilianTesouroNacionalIcon {...partnerLogoSizes.tesouro} />
             </HStack>
           </VStack>
         </VStack>

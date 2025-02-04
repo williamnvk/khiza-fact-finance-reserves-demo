@@ -12,7 +12,7 @@ import { tokens } from './tokens';
 
 const themeConfig = defineConfig({
   preflight: true,
-  cssVarsPrefix: 'tf',
+  cssVarsPrefix: 'ff',
   cssVarsRoot: ':where(:root, :host)',
   globalCss,
   theme: {

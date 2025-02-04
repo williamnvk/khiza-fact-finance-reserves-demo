@@ -4,27 +4,31 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 4000",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "chakra:typegen": "npx @chakra-ui/cli typegen ./src/theme/index.ts --strict"
+    "chakra:typegen": "npx @chakra-ui/cli typegen ./src/theme/index.ts --strict",
+    "parse-csv": "node ./data/parse_csv_file.cjs"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.2.1",
     "@emotion/react": "^11.13.5",
     "@fontsource/lato": "^5.1.0",
     "aos": "^2.3.4",
+    "csv-parser": "^3.2.0",
     "framer-motion": "^11.13.3",
     "lucide-react": "^0.462.0",
     "next-themes": "^0.4.3",
     "react": "^18.3.1",
+    "react-circle-flags": "^0.0.23",
     "react-dom": "^18.3.1",
     "react-ga4": "^2.1.0",
     "react-helmet-async": "^2.0.5",
     "react-router": "^7.0.1",
     "swiper": "^11.1.15",
-    "viem": "^2.9.4"
+    "viem": "^2.9.4",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",

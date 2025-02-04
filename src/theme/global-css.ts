@@ -105,4 +105,15 @@ export const globalCss = defineGlobalStyles({
       opacity: 1,
     },
   },
+  '@keyframes floatAnimation': {
+    '0%': {
+      transform: 'translateY(0px)',
+    },
+    '50%': {
+      transform: 'translateY(-6px)',
+    },
+    '100%': {
+      transform: 'translateY(0px)',
+    },
+  },
 });

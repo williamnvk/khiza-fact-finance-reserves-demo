@@ -1,4 +1,4 @@
-import { Box, Center, Container, Heading, HStack, Link as ChakraLink, Text, VStack, Badge } from '@chakra-ui/react';
+import { Box, Center, Container, Heading, HStack, Link as ChakraLink, Text, VStack } from '@chakra-ui/react';
 import { SEO } from '@/components/Common/SEO';
 import { Button } from '@/components/ui/button';
 import Chains from '@/components/Shared/Chains';
@@ -6,6 +6,7 @@ import { TitleSection } from '@/components/ui/title-sectiont';
 import { CodeBlock } from '@/components/Shared/CodeBlock';
 import { Hero } from '@/components/Shared/Hero';
 import { Suspense, lazy } from 'react';
+import { Link } from 'react-router';
 
 const LazyFaq = lazy(() => import('@/components/Shared/Faq').then((module) => ({ default: module.Faq })));
 const LazyFeaturesSection = lazy(() =>
@@ -242,8 +243,8 @@ export const Home = () => {
             >
               Talk to an expert
             </Button>
-            <Button variant="plain" color="bg" disabled aria-disabled="true">
-              Data Hub <Badge opacity={0.3}>Soon</Badge>
+            <Button variant="plain" color="bg" as={Link} to="/data-hub">
+              Data Hub
             </Button>
           </HStack>
         </Center>

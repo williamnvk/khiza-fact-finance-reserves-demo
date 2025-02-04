@@ -1,0 +1,19 @@
+Region,Country,Código,Category,Sub Category,Name,Short Desc,Description,Source,Frequency,Decimal,License,Interfaces
+Latam,Argentina,1001,Economics,Inflation,CPI,Consumer Price Index,The IPC measures the inflation in Argentina's consumer market.,INDEC,Monthly,2,Free,"Push, dApp, Pull"
+Latam,Argentina,1002,Economics,Inflation,WPI,Wholesale Price Index,The IPIM measures wholesale price changes in Argentina.,INDEC,Monthly,2,Free,"Push, dApp, Pull"
+Latam,Argentina,1003,Economics,GDP,GDP,Gross Domestic Product,The GDP measures the total value of goods and services produced in the country.,INDEC,Quarterly / Annual,2,Free,"Push, dApp, Pull"
+Brazil,Brazil,1004,Economics,GDP,GDP,Gross Domestic Product,The GDP measures the total value of goods and services produced in the country.,IBGE,Annual,2,Free,"Push, dApp, Pull"
+Brazil,Brazil,1005,Economics,Inflation,IPCA,Inflation Rate Index,The IPCA measures the variation of prices in the consumer market.,IBGE,Monthly,2,Free,"Push, dApp, Pull"
+Brazil,Brazil,1006,Economics,Interest Rate,SELIC,Basic Interest Rate,The SELIC rate is the basic interest rate of the Brazilian economy.,Banco Central do Brasil,Daily,2,Free,dApp
+Brazil,Brazil,1007,Economics,Inflation,IGPM,General Price Index,"The IGPM measures inflation in the general economy, including wholesale and real estate prices.",FGV,Monthly,2,Free,"Push, dApp, Pull"
+Brazil,Brazil,1008,Economics,Inflation,INPC,National Consumer Price Index,The INPC measures inflation for families earning up to 5 minimum wages.,IBGE,Monthly,2,Free,"Push, dApp, Pull"
+Brazil,Brazil,1009,Economics,Inflation,IPCA,Broad Consumer Price Index,The IPCA measures the variation of prices in the consumer market for families earning 1-40 minimum wages.,IBGE,Monthly,2,Free,"Push, dApp, Pull"
+Brazil,Brazil,1010,Economics,Interest Rate,CDI,Interbank Deposit Certificate,"The CDI measures the interbank lending rate in Brazil, serving as a benchmark for fixed-income investments.",Brazilian Central Bank,Daily,2,Free,dApp
+Latam,Chile,1011,Economics,Inflation,CPI,Consumer Price Index,The CPI measures inflation in the Chilean consumer market.,INE,Monthly,2,Free,"Push, dApp, Pull"
+Latam,Chile,1012,Economics,Interest Rate,TPM,Monetary Policy Rate,The TPM is the monetary policy rate set by the Central Bank of Chile to influence economic stability.,Central Bank of Chile,Monthly,2,Free,"Push, dApp, Pull"
+Latam,Chile,1013,Economics,GDP,GDP,Gross Domestic Product,The GDP measures the total value of goods and services produced in the country.,Central Bank of Chile,Quarterly / Annual,2,Free,"Push, dApp, Pull"
+Latam,Colombia,1014,Economics,Inflation,CPI,Consumer Price Index,The CPI measures inflation in the Colombian consumer market.,DANE,Monthly,2,Free,"Push, dApp, Pull"
+Latam,Colombia,1015,Economics,Interest Rate,Policy Rate,Monetary Policy Rate,The policy rate is set by the Central Bank of Colombia to manage inflation and economic growth.,Central Bank of Colombia,Monthly,2,Free,"Push, dApp, Pull"
+Latam,Colombia,1016,Economics,GDP,GDP,Gross Domestic Product,The GDP measures the total value of goods and services produced in the country.,DANE,Quarterly / Annual,2,Free,"Push, dApp, Pull"
+Latam,Mexico,1017,Economics,Inflation,CPI,Consumer Price Index,The CPI measures inflation in the Mexican consumer market.,INEGI,Monthly,2,Free,"Push, dApp, Pull"
+Latam,Mexico,1018,Economics,Interest Rate,TIIE,Interbank Equilibrium Interest Rate,"The TIIE is the interbank equilibrium interest rate in Mexico, used as a benchmark for credit.",Mexican Central Bank,Daily,2,Free,dApp

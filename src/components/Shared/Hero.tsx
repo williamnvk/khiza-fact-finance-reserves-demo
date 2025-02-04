@@ -38,7 +38,6 @@ export const Hero: FC = () => {
           src={`/assets/hero.mp4`}
           loading="lazy"
           preload="none"
-          poster="/assets/hero-poster.webp"
           aria-hidden="true"
         />
 

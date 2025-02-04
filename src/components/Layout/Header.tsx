@@ -63,33 +63,18 @@ export const Header: FC<HeaderProps> = () => {
             <Button as={NavLink} to="/" variant="navbar">
               Home
             </Button>
-            <Button as={NavLink} to="/about" variant="navbar">
-              About Us
+            <Button as={NavLink} to="/features" variant="navbar">
+              Features
             </Button>
             <Button as={NavLink} to="/use-cases" variant="navbar">
               Use Cases
             </Button>
-            {/* <Button as={NavLink} to="/data-hub" variant="navbar" disabled>
+            <Button as={NavLink} to="/data-hub" variant="navbar">
               Data Hub
-              <Badge px={3} variant="outline" ml={2}>
-                SOON
-              </Badge>
-              <VisuallyHidden>Coming Soon</VisuallyHidden>
-            </Button> */}
-            {/* <Button as={NavLink} to="/features" variant="navbar" disabled>
-              Features
-              <Badge px={3} variant="outline" ml={2}>
-                SOON
-              </Badge>
-            </Button> */}
-            {/* 
-            <Button as={NavLink} to="/data-providers" variant="navbar" disabled>
-              Data Providers
-              <Badge px={3} variant="outline" ml={2}>
-                SOON
-              </Badge>
-              <VisuallyHidden>Coming Soon</VisuallyHidden>
-            </Button> */}
+            </Button>
+            <Button as={NavLink} to="/about" variant="navbar">
+              About Us
+            </Button>
           </HStack>
 
           <Button
@@ -160,27 +145,14 @@ export const Header: FC<HeaderProps> = () => {
             Home
           </Button>
           <Button as={NavLink} to="/use-cases" variant="navbar">
+            Features
+          </Button>
+          <Button as={NavLink} to="/use-cases" variant="navbar">
             Use Cases
           </Button>
-          {/* <Button as={NavLink} to="/data-hub" variant="navbar" disabled>
+          <Button as={NavLink} to="/data-hub" variant="navbar">
             Data Hub
-            <Badge px={3} variant="outline" ml={2}>
-              SOON
-            </Badge>
           </Button>
-          <Button as={NavLink} to="/features" variant="navbar" disabled>
-            Features{' '}
-            <Badge px={3} variant="outline" ml={2}>
-              SOON
-            </Badge>
-          </Button>
-       
-          <Button as={NavLink} to="/data-providers" variant="navbar" disabled>
-            Data Providers
-            <Badge px={3} variant="outline" ml={2}>
-              SOON
-            </Badge>
-          </Button> */}
           <Button as={NavLink} to="/about" variant="navbar" onClick={onToggle}>
             About Us
           </Button>

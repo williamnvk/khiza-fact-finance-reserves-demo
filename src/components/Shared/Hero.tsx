@@ -6,6 +6,7 @@ import LiqiLogo from '@/components/Icons/Liqi';
 import LogoIcon from '@/components/Icons/LogoIcon';
 import { FC } from 'react';
 import XDCLogo from '../Icons/XDCLogo';
+import { Link } from 'react-router';
 
 export const Hero: FC = () => {
   const isMobile = useBreakpointValue({ base: true, md: false });
@@ -125,11 +126,8 @@ export const Hero: FC = () => {
               >
                 Talk to an expert
               </Button>
-              <Button variant="ghost" size="xl" w={{ base: 'full', sm: 'auto' }} disabled>
+              <Button variant="ghost" size="xl" w={{ base: 'full', sm: 'auto' }} as={Link} to="/data-hub">
                 Data hub
-                <Badge mr={2} variant="outline">
-                  Soon
-                </Badge>
               </Button>
             </HStack>
           </VStack>

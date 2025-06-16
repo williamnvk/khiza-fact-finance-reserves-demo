@@ -5,8 +5,6 @@ import {
   IconButton,
   useDisclosure,
   Heading,
-  Badge,
-  VisuallyHidden,
   VStack,
 } from '@chakra-ui/react';
 import { FC } from 'react';
@@ -74,6 +72,9 @@ export const Header: FC<HeaderProps> = () => {
             </Button>
             <Button as={NavLink} to="/about" variant="navbar">
               About Us
+            </Button>
+            <Button as={NavLink} to="/reserves" variant="navbar">
+              Reserves
             </Button>
           </HStack>
 
@@ -155,6 +156,9 @@ export const Header: FC<HeaderProps> = () => {
           </Button>
           <Button as={NavLink} to="/about" variant="navbar" onClick={onToggle}>
             About Us
+          </Button>
+          <Button as={NavLink} to="/reserves" variant="navbar">
+            Reserves
           </Button>
           <Button as="a" href="https://docs.fact.finance/" target="_blank" rel="noopener noreferrer" variant="navbar">
             Documentation

@@ -37,8 +37,8 @@ export const toastSlotRecipe = defineSlotRecipe({
         "--toast-border-color": "{white/40}",
       },
       "&[data-type=success]": {
-        bg: "green.solid",
-        color: "green.contrast",
+        bg: "success.solid",
+        color: "success.contrast",
         "--toast-trigger-bg": "{white/10}",
         "--toast-border-color": "{white/40}",
       },

@@ -16,6 +16,9 @@ import DataHub from './pages/DataHub/DataHub.tsx';
 
 import ReactGA from 'react-ga4';
 import { dataHub } from './data/data-hub.ts';
+import Reserves from './pages/Reserves/index.tsx';
+import { Reports } from './pages/Reserves/reports.tsx';
+
 const TRACKING_ID = 'G-RJFBTSN4WT';
 ReactGA.initialize(TRACKING_ID);
 
@@ -34,6 +37,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               <Route path="/about" element={<AboutUs />} />
               <Route path="/data-providers" element={<DataProviders />} />
               <Route path="/data-hub" element={<DataHub data={dataHub} />} />
+              <Route path="/reserves" element={<Reserves />} />
+              <Route path="/reserves/:client" element={<Reports />} />
             </Route>
           </Routes>
         </BrowserRouter>

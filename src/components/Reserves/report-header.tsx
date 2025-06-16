@@ -1,6 +1,6 @@
 import { Card } from '@/components/ui/card';
-import { ThemeSwitch } from './theme-switch';
 import { Link } from 'react-router';
+import { Box, VStack, HStack, Text, Badge, Flex, Grid, GridItem, Link as ChakraLink } from '@chakra-ui/react';
 
 export function ReportHeader({
   currency,
@@ -32,97 +32,150 @@ export function ReportHeader({
   contractLink: string;
 }) {
   return (
-    <div className="space-y-6 ">
-      <div className="flex flex-col float-right absolute top-4 right-4">
-        <ThemeSwitch />
-      </div>
-      <div className="flex items-center justify-center gap-2 mb-4">
-        <div className="text-1xl tracking-tight flex items-center gap-1 absolute top-4 left-4">
-          <Link to="/">
-            <span className="secondary">Fact</span>
-            <span className="text-gray-300 dark:text-gray-400">&#10022;</span>
-            <span className="secondary">Finance</span>
-          </Link>
-        </div>
+    <VStack gap={6} position="relative">
+      <HStack justify="center" gap={2} mb={4}>
+        <Text
+          as={Link}
+          to="/"
+          fontSize="xl"
+          position="absolute"
+          top={4}
+          left={4}
+          display="flex"
+          alignItems="center"
+          gap={1}
+        >
+          <Text color="blue.500">Fact</Text>
+          <Text color="gray.300" _dark={{ color: 'gray.400' }}>
+            &#10022;
+          </Text>
+          <Text color="blue.500">Finance</Text>
+        </Text>
 
-        <h1 className="text-3xl font-bold text-center">Proof of Reserves Report </h1>
-      </div>
-      <Card className="p-6 border-0">
-        <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-4">
-          <div className="flex flex-col md:flex-row items-center md:items-start gap-4 mb-4 md:mb-0">
-            <div className="text-center  md:text-left">
-              <div className="mt-4">
-                <p className="text-xl font-medium text-gray-700 dark:text-gray-300 ">
-                  {companyName}
-                  <span className="inline-flex items-center rounded-md bg-green-50 dark:bg-gray-900 px-2 py-1 text-xs font-medium text-green-600 ring-1 ring-green-600/20 ring-inset ml-2">
-                    {' '}
-                    Verified{' '}
-                  </span>
-                </p>
-                <span className=" my-2 text-sm text-gray-400 dark:text-gray-500 ">
-                  {' '}
-                  {description}
-                  <br />
-                  {dappLink ? (
-                    <a href={dappLink} target="_blank" className="hover:underline text-xs  ">
+        <Text fontSize="3xl" fontWeight="bold" textAlign="center">
+          Proof of Reserves Report
+        </Text>
+      </HStack>
+
+      <Card p={6} border="none">
+        <Flex
+          direction={{ base: 'column', md: 'row' }}
+          align={{ base: 'center', md: 'start' }}
+          justify="space-between"
+          gap={4}
+        >
+          <VStack align={{ base: 'center', md: 'start' }} gap={4} mb={{ base: 4, md: 0 }}>
+            <Box textAlign={{ base: 'center', md: 'left' }}>
+              <Box mt={4}>
+                <HStack justify={{ base: 'center', md: 'start' }}>
+                  <Text fontSize="xl" fontWeight="medium" color="gray.700" _dark={{ color: 'gray.300' }}>
+                    {companyName}
+                  </Text>
+                  <Badge colorScheme="green" variant="outline" fontSize="xs">
+                    Verified
+                  </Badge>
+                </HStack>
+                <VStack
+                  align={{ base: 'center', md: 'start' }}
+                  mt={2}
+                  fontSize="sm"
+                  color="gray.400"
+                  _dark={{ color: 'gray.500' }}
+                >
+                  <Text>{description}</Text>
+                  {dappLink && (
+                    <Text as="a" href={dappLink} target="_blank" _hover={{ textDecoration: 'underline' }} fontSize="xs">
                       dApp: {dappLink}
-                    </a>
-                  ) : null}
-                  <br />
-                  {contract ? (
-                    <a
+                    </Text>
+                  )}
+                  {contract && (
+                    <Text
+                      as="a"
                       href={contractLink}
                       target="_blank"
-                      className="text-gray-400 dark:text-gray-500 text-xs hover:underline"
+                      color="gray.400"
+                      _dark={{ color: 'gray.500' }}
+                      fontSize="xs"
+                      _hover={{ textDecoration: 'underline' }}
                     >
                       Contract: {contract} &lt;/&gt;
-                    </a>
-                  ) : null}
-                </span>
-              </div>
-            </div>
-          </div>
+                    </Text>
+                  )}
+                </VStack>
+              </Box>
+            </Box>
+          </VStack>
 
-          <div className="flex flex-col items-end mt-8 whitespace-nowrap">
-            <div className="flex flex-col-2 align-center  flex-row with-full justify-center gap-10  ">
-              <div className="flex flex-col items-center">
-                <p className="subtitle whitespace-nowrap">Issued Tokens</p>
-                <h3 className="value-medium text-[hsl(var(--chart-navy))]">
-                  <span className="text-xs">{currency}&nbsp;</span>
+          <VStack align="end" mt={8} whiteSpace="nowrap">
+            <Grid templateColumns="repeat(3, 1fr)" gap={10} justify="center" w="full">
+              <GridItem display="flex" flexDirection="column" alignItems="center">
+                <Text
+                  fontSize="sm"
+                  color="gray.600"
+                  _dark={{ color: 'gray.400' }}
+                  fontWeight="medium"
+                  whiteSpace="nowrap"
+                >
+                  Issued Tokens
+                </Text>
+                <Text fontSize="lg" fontWeight="semibold" color="var(--chart-navy)">
+                  <Text as="span" fontSize="xs">
+                    {currency}&nbsp;
+                  </Text>
                   {circulation}
-                </h3>
-              </div>
-              <div className="flex flex-col items-center">
-                <p className="subtitle">Reserves</p>
-                <h3 className="value-medium text-[hsl(var(--chart-blue))]">
-                  <span className="text-xs">{currency}&nbsp;</span>
+                </Text>
+              </GridItem>
+              <GridItem display="flex" flexDirection="column" alignItems="center">
+                <Text fontSize="sm" color="gray.600" _dark={{ color: 'gray.400' }} fontWeight="medium">
+                  Reserves
+                </Text>
+                <Text fontSize="lg" fontWeight="semibold" color="var(--chart-blue)">
+                  <Text as="span" fontSize="xs">
+                    {currency}&nbsp;
+                  </Text>
                   {reserves}
-                </h3>
-              </div>
-              <div className="flex flex-col items-center">
-                <p className="subtitle whitespace-nowrap">Collateral Ratio</p>
-                <h3 className="value-medium text-green-500">{ratio}</h3>
-              </div>
-            </div>
+                </Text>
+              </GridItem>
+              <GridItem display="flex" flexDirection="column" alignItems="center">
+                <Text
+                  fontSize="sm"
+                  color="gray.600"
+                  _dark={{ color: 'gray.400' }}
+                  fontWeight="medium"
+                  whiteSpace="nowrap"
+                >
+                  Collateral Ratio
+                </Text>
+                <Text fontSize="lg" fontWeight="semibold" color="green.500">
+                  {ratio}
+                </Text>
+              </GridItem>
+            </Grid>
 
-            <span className="text-xs text-gray-400 dark:text-gray-400 mt-4 ">{dateAs}</span>
-            <span className="flex items-center gap-1 pb-4 text-gray-400 dark:text-gray-500 text-xs">
-              {heartbeat ? (
+            <Text fontSize="xs" color="gray.400" _dark={{ color: 'gray.400' }} mt={4}>
+              {dateAs}
+            </Text>
+            <HStack gap={1} pb={4} color="gray.400" _dark={{ color: 'gray.500' }} fontSize="xs">
+              {heartbeat && (
                 <>
-                  {' '}
-                  Heartbeat<sup>2</sup>: <b>{heartbeat}</b>
+                  <Text>
+                    Heartbeat<sup>2</sup>:
+                  </Text>
+                  <Text fontWeight="bold">{heartbeat}</Text>
                 </>
-              ) : null}
-              {threshold ? (
+              )}
+              {threshold && (
                 <>
-                  {' '}
-                  Deviation Threshold<sup>3</sup>: <b>{threshold}</b>{' '}
+                  <Text>
+                    Deviation Threshold<sup>3</sup>:
+                  </Text>
+                  <Text fontWeight="bold">{threshold}</Text>
                 </>
-              ) : null}
-            </span>
-          </div>
-        </div>
+              )}
+            </HStack>
+          </VStack>
+        </Flex>
       </Card>
-    </div>
+    </VStack>
   );
 }

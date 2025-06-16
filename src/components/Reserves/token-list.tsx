@@ -1,103 +1,146 @@
+import { Circle, Link, Hexagon, CircleCheck, Shield } from 'lucide-react';
+import { formatLargeNumber } from '@/lib/utils';
+import { Box, VStack, HStack, Text, Image, Flex, Grid, GridItem, Link as ChakraLink } from '@chakra-ui/react';
 
-import { 
-  Circle, 
-  Link, 
-  Hexagon, 
-  CircleCheck,  
-  Shield 
-} from "lucide-react";
-import { formatLargeNumber } from "@/lib/utils";
-import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from "react";
-
-export function TokenList({ currency, tokens, companyName, reserves, circulation,periodTotalTransfer }) {
+export function TokenList({
+  currency,
+  tokens,
+  companyName,
+  reserves,
+  circulation,
+  periodTotalTransfer,
+}: {
+  currency: string;
+  tokens: any[];
+  companyName: string;
+  reserves: number;
+  circulation: number;
+  periodTotalTransfer: number;
+}) {
   const chainIcons: Record<string, JSX.Element> = {
-    ethereum: <Circle size={18} className="text-gray-500" />, 
-    bitcoin: <Circle size={18} className="text-amber-600" />, 
-    moonbeam: <Circle size={18} className="text-amber-700" />, 
-    polygon: <Hexagon size={18} className="text-gray-600" />, 
-    gnosis: <Link size={18} className="text-gray-400" />, 
-    celo: <Link size={18} className="text-green-700" /> ,
-    other: <Link size={18} className="text-gray-600" /> 
+    ethereum: <Circle size={18} color="gray.500" />,
+    bitcoin: <Circle size={18} color="yellow.600" />,
+    moonbeam: <Circle size={18} color="yellow.700" />,
+    polygon: <Hexagon size={18} color="gray.600" />,
+    gnosis: <Link size={18} color="gray.400" />,
+    celo: <Link size={18} color="green.700" />,
+    other: <Link size={18} color="gray.600" />,
   };
-  
+
   // Function to get shortened contract address
   const getShortenedAddress = (address: string) => {
-    return address.length > 12 
-      ? `${address.substring(0, 6)}...${address.substring(address.length - 6)}`
-      : address;
+    return address.length > 12 ? `${address.substring(0, 6)}...${address.substring(address.length - 6)}` : address;
   };
 
   return (
-    <div className="mt-20">
-      <h3 className="text-2xl font-bold mb-4">Token Summary</h3>
-      <p className="text-sm text-muted-foreground mb-6">
-        These are the tokens backed by { companyName}'s verified reserves:
-      </p>
-      
-      <div className="space-y-4">
+    <Box mt={20}>
+      <Text fontSize="2xl" fontWeight="bold" mb={4}>
+        Token Summary
+      </Text>
+      <Text fontSize="sm" mb={6}>
+        These are the tokens backed by {companyName}'s verified reserves:
+      </Text>
+
+      <VStack gap={4} align="stretch">
         {tokens.map((token) => (
-          <div key={token.id} className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900  to-gray-200  rounded-lg border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
-            <div className="flex flex-col md:flex-row gap-6">
-              <div className="flex items-center">
-                <div className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 border-4 border-gray-200 dark:border-gray-600 flex items-center justify-center text-gray-700 dark:text-gray-300 font-bold mr-4">
-                  <img src={token.logo}/>
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100">{token.symbol}</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{token.name}</p>
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-2 ml-auto text-xs text-gray-800">Chains
-                {token.chains.map(chain => (
-                  <div key={chain} title={chain} className="bg-gray-100 dark:bg-gray-700 rounded-full p-1">
+          <Box key={token.id} rounded="lg" border="1px" p={6} shadow="sm">
+            <Flex direction={{ base: 'column', md: 'row' }} gap={6}>
+              <HStack>
+                <Box
+                  w={12}
+                  h={12}
+                  rounded="full"
+                  bg="gray.200"
+                  border="4px"
+                  borderColor="gray.200"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  color="gray.700"
+                  fontWeight="bold"
+                  mr={4}
+                >
+                  <Image src={token.logo} alt={token.symbol} />
+                </Box>
+                <Box>
+                  <Text fontSize="xl" fontWeight="bold">
+                    {token.symbol}
+                  </Text>
+                  <Text fontSize="sm">{token.name}</Text>
+                </Box>
+              </HStack>
+
+              <HStack gap={2} ml="auto" fontSize="xs" alignItems="center">
+                <Text>Chains</Text>
+                {token.chains.map((chain: string) => (
+                  <Box key={chain} title={chain} bg="gray.100" rounded="full" p={1} _dark={{ bg: 'gray.700' }}>
                     {chainIcons[chain.toLowerCase()] || chain}
-                    
-                  </div>
+                  </Box>
                 ))}
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
-              <div>
-                <p className="subtitle dark:text-gray-400">Total Supply</p>
-                <p className="value-medium text-gray-800 dark:text-gray-100">
-                  <span className="text-xs">{currency}</span>
-                  {formatLargeNumber(circulation*token.share/100)}</p>
-              </div>
-              <div>
-                <p className="subtitle dark:text-gray-400">30 Days Transfers </p>
-                <p className="value-medium text-gray-800 dark:text-gray-100">
-                  <span className="text-xs">{currency}</span>
-                  
-                  {formatLargeNumber(periodTotalTransfer*token.share/100)}</p>
-              </div>
-              <div>
-                <p className="subtitle dark:text-gray-400">Token Price<CircleCheck size={14} className="inline ml-1 text-gray-600 dark:text-gray-400" /></p>
-                <p className="value-medium text-gray-800 dark:text-gray-100">
-                  <span className="text-xs">{currency}</span>
-                  {token.tokenPrice.toFixed(2)}</p>
-              </div>
-              <div className="flex flex-col items-start md:items-end">
-                <p className="subtitle dark:text-gray-400">Reserve utilization</p>
-                <div className="flex items-center">
-                  <p className="value-medium mr-2 text-gray-800 dark:text-gray-100">{((circulation*token.share/100)/reserves*100).toFixed(2)}%</p>
-                  <Shield size={20} className="text-gray-500 dark:text-gray-400" />
-                </div>
-                
-                <a 
-                  href={`https://etherscan.io/address/${token.oracleContract}`} 
-                  target="_blank" 
+              </HStack>
+            </Flex>
+
+            <Grid templateColumns={{ base: '1fr', md: 'repeat(4, 1fr)' }} gap={4} mt={6}>
+              <GridItem>
+                <Text fontSize="sm" fontWeight="medium">
+                  Total Supply
+                </Text>
+                <Text fontSize="lg" fontWeight="semibold">
+                  <Text as="span" fontSize="xs">
+                    {currency}
+                  </Text>
+                  {formatLargeNumber((circulation * token.share) / 100)}
+                </Text>
+              </GridItem>
+              <GridItem>
+                <Text fontSize="sm" fontWeight="medium">
+                  30 Days Transfers
+                </Text>
+                <Text fontSize="lg" fontWeight="semibold">
+                  <Text as="span" fontSize="xs">
+                    {currency}
+                  </Text>
+                  {formatLargeNumber((periodTotalTransfer * token.share) / 100)}
+                </Text>
+              </GridItem>
+              <GridItem>
+                <HStack fontSize="sm" fontWeight="medium">
+                  <Text>Token Price</Text>
+                  <CircleCheck size={14} color="gray.600" />
+                </HStack>
+                <Text fontSize="lg" fontWeight="semibold">
+                  <Text as="span" fontSize="xs">
+                    {currency}
+                  </Text>
+                  {token.tokenPrice.toFixed(2)}
+                </Text>
+              </GridItem>
+              <GridItem display="flex" flexDirection="column" alignItems={{ base: 'start', md: 'end' }}>
+                <Text fontSize="sm" fontWeight="medium">
+                  Reserve utilization
+                </Text>
+                <HStack>
+                  <Text fontSize="lg" fontWeight="semibold" mr={2}>
+                    {(((circulation * token.share) / 100 / reserves) * 100).toFixed(2)}%
+                  </Text>
+                  <Shield size={20} color="gray.500" />
+                </HStack>
+
+                <ChakraLink
+                  href={`https://etherscan.io/address/${token.oracleContract}`}
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-gray-600 dark:text-gray-400 hover:underline mt-1"
+                  fontSize="xs"
+                  _hover={{ textDecoration: 'underline' }}
+                  mt={1}
                 >
                   On-chain Reserve {getShortenedAddress(token.oracleContract)}
-                </a>
-              </div>
-            </div>
-          </div>
+                </ChakraLink>
+              </GridItem>
+            </Grid>
+          </Box>
         ))}
-      </div>
-    </div>
+      </VStack>
+    </Box>
   );
 }

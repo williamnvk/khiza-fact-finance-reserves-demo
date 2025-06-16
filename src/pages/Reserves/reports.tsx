@@ -10,6 +10,7 @@ import { formatLargeNumber } from '@/lib/utils';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
+import { Box, Container, Grid, Text } from '@chakra-ui/react';
 
 const FOOTNOTES = [
   {
@@ -204,8 +205,8 @@ export const Reports = () => {
   return (
     <>
       {loaded ? (
-        <div className="min-h-screen bg-background">
-          <div className="max-w-7xl mx-auto px-4 py-8">
+        <Box minH="100vh" bg="bg">
+          <Container maxW="7xl" px={4} py={8}>
             <ReportHeader
               companyName={data.companyFullName}
               contractLink=""
@@ -216,13 +217,13 @@ export const Reports = () => {
               currency={data.currency}
               reserves={formatLargeNumber(data.last.reserves)}
               ratio={((data.last.reserves / data.last.circulation) * 100).toFixed(1) + '%'}
-              dateAs={data.historicalData?.[data.historicalData.length - 1]?.date}
+              dateAs={data.historicalData?.[data.historicalData.length - 1]?.date || ''}
               heartbeat={data.heartbeat}
               threshold={data.threshold}
               dappLink="https://tokeniza.com.br"
             />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+            <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6} mt={12}>
               <BalancesChart
                 circulation={data.last.circulation}
                 reserves={data.last.reserves}
@@ -242,7 +243,7 @@ export const Reports = () => {
                 avgcolateral1={data.average1?.avgcolateral ?? '-'}
                 currency={data.currency}
               />
-            </div>
+            </Grid>
 
             <ReservesBreakdown
               companyName={data.companyName}
@@ -253,7 +254,7 @@ export const Reports = () => {
               assetDistribution={data.assetDistribution}
             />
 
-            <div className=" pt-0 p-6 shadow-sm rounded-md">
+            <Box pt={0} p={6} shadow="sm" rounded="md">
               <TokenList
                 tokens={data.tokens}
                 currency={data.currency}
@@ -269,16 +270,16 @@ export const Reports = () => {
                 totalValue={formatLargeNumber(data.last.circulation)}
                 chainDistribution={data.chainDistribution}
               />
-            </div>
+            </Box>
 
             <AuditReport reportsList={data.reportList} companyName={data.companyName} />
 
             <Footnotes notes={FOOTNOTES} />
-          </div>
-          <div className="text-center text-muted-foreground pb-8 text-sm">
+          </Container>
+          <Text textAlign="center" color="fg.muted" pb={8} fontSize="sm">
             © 2025 Fact Finance. All rights reserved.
-          </div>
-        </div>
+          </Text>
+        </Box>
       ) : null}
     </>
   );

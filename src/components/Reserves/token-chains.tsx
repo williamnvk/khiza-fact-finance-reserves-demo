@@ -1,62 +1,78 @@
+import { Box, VStack, Text, HStack, Grid, GridItem, Flex } from '@chakra-ui/react';
 
-
-
-export function TokenChainBreakdown({ totalChains, totalTokens, totalValue, chainDistribution }) {
+export function TokenChainBreakdown({
+  totalChains,
+  totalTokens,
+  totalValue,
+  chainDistribution,
+}: {
+  totalChains: number;
+  totalTokens: number;
+  totalValue: number;
+  chainDistribution: any[];
+}) {
   const formatPercent = (value: number) => `${value.toFixed(2)}%`;
-  const chainNames = Object.keys(chainDistribution);
+
   return (
-    <div className="mt-6">
+    <Box mt={6}>
+      <Flex direction={{ base: 'column', md: 'row' }} justify="space-between" align="center" gap={8}>
+        <VStack align="start" gap={4}>
+          <Text fontSize="xl" fontWeight="bold">
+            Blockchain Distribution
+          </Text>
+          <Text fontSize="sm">
+            This section shows how the token supply is distributed across different blockchains.
+          </Text>
+        </VStack>
+        <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={8} my={16}>
+          <GridItem display="flex" flexDirection="column" alignItems="center">
+            <Text fontSize="sm" fontWeight="medium" whiteSpace="nowrap">
+              Total Chains
+            </Text>
+            <Text fontSize="lg" fontWeight="semibold">
+              {chainDistribution.length}
+            </Text>
+          </GridItem>
+          <GridItem display="flex" flexDirection="column" alignItems="center">
+            <Text fontSize="sm" fontWeight="medium" whiteSpace="nowrap">
+              Total Tokens
+            </Text>
+            <Text fontSize="lg" fontWeight="semibold">
+              {totalTokens}
+            </Text>
+          </GridItem>
+          <GridItem display="flex" flexDirection="column" alignItems="center">
+            <Text fontSize="sm" fontWeight="medium" whiteSpace="nowrap">
+              Total Value
+            </Text>
+            <Text fontSize="lg" fontWeight="semibold">
+              {totalValue}
+            </Text>
+          </GridItem>
+        </Grid>
+      </Flex>
 
-      <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-        <div>
-          <h3 className="text-xl font-bold mb-4">Blockchain Distribution</h3>
-          <p className=" text-muted-foreground">
-             This section shows how the token supply is distributed across different blockchains.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-16">
-          <div className="flex flex-col items-center">
-            <p className="subtitle whitespace-nowrap">Total Chains</p>
-            <p className="value-medium text-sm6">{chainDistribution.length}</p>
-          </div>
-          <div className="flex flex-col items-center">
-            <p className="subtitle whitespace-nowrap">Total Tokens</p>
-            <p className="value-medium">{totalTokens}</p>
-          </div>
-          <div className="flex flex-col items-center">
-            <p className="subtitle whitespace-nowrap">Total Value</p>
-            <p className="value-medium">{totalValue}</p>
-          </div>
-        </div>
-      </div>
+      <HStack h={2} w="full" rounded="full" overflow="hidden" mb={6}>
+        {chainDistribution.map((chain: { name: string; value: number }) => (
+          <Box key={chain.name} h="full" bg={`var(--chain-${chain.name})`} width={`${Number(chain.value)}%`} />
+        ))}
+      </HStack>
 
-      <div className="h-2 flex w-full rounded-full overflow-hidden mb-6">
-
-    {chainDistribution.map((chain: { name: any; value: any; }) => (
-        <div className={`chain-${chain.name}`} key={Math.random()} style={{ width: `${Number(chain.value)}%` }}></div>
-      ))
-    }
-
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 text-xs">
-      {chainDistribution.map((chain: { name: any; value: number; }) => (
-    
-
-      <div className="flex items-center gap-2" key={Math.random()} >
-        <div className={`h-3 w-3 chain-${chain.name} mr-2 rounded-sm`}></div>
-        <div>
-          <p>{formatPercent(chain.value)}</p>
-          <p>{chain.name.charAt(0).toUpperCase() + chain.name.slice(1)}</p>
-        </div>
-      </div>
-    ))
-  }
-  </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 text-xs">
-
-      </div>
-    </div>
+      <Grid
+        templateColumns={{ base: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(6, 1fr)' }}
+        gap={4}
+        fontSize="xs"
+      >
+        {chainDistribution.map((chain: { name: string; value: number }) => (
+          <HStack key={chain.name} gap={2}>
+            <Box h={3} w={3} bg={`var(--chain-${chain.name})`} mr={2} rounded="sm" />
+            <VStack align="start" gap={0}>
+              <Text fontWeight="medium">{formatPercent(chain.value)}</Text>
+              <Text fontSize="xs">{chain.name.charAt(0).toUpperCase() + chain.name.slice(1)}</Text>
+            </VStack>
+          </HStack>
+        ))}
+      </Grid>
+    </Box>
   );
 }

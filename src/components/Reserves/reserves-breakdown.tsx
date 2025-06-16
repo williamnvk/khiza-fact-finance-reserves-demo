@@ -1,68 +1,91 @@
-import { Key } from "react";
-import { formatLargeNumber } from "@/lib/utils";
+import { formatLargeNumber } from '@/lib/utils';
+import { Box, VStack, Text, Grid, GridItem, HStack, Flex } from '@chakra-ui/react';
 
-export function ReservesBreakdown({ reserves, issued, balance, assetDistribution, currency, companyName }) {
-
-
+export function ReservesBreakdown({
+  reserves,
+  issued,
+  balance,
+  assetDistribution,
+  currency,
+  companyName,
+}: {
+  reserves: number;
+  issued: number;
+  balance: number;
+  assetDistribution: any[];
+  currency: string;
+  companyName: string;
+}) {
   return (
-    <div className="mt-6  p-6 shadow-sm rounded-md">
-      <h3 className="text-xl font-bold mb-4">Monthly Reserves Report</h3>
+    <Box mt={6} p={6} shadow="sm" rounded="md">
+      <Text fontSize="xl" fontWeight="bold" mb={4}>
+        Monthly Reserves Report
+      </Text>
 
-      <div className=" text-muted-foreground mb-6">
-        <p>
-          This report<sup>1</sup> is prepared by Fact Finance to promote transparency in {companyName}'s  asset reserves. It includes selected financial information based on data available at the time of publication. For more details, consult the complete reserve report available for download.
-        </p>
-      </div>
+      <Text fontSize="sm" mb={6}>
+        This report<sup>1</sup> is prepared by Fact Finance to promote transparency in {companyName}'s asset reserves.
+        It includes selected financial information based on data available at the time of publication. For more details,
+        consult the complete reserve report available for download.
+      </Text>
 
+      <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={4} mb={8} my={16}>
+        <GridItem>
+          <Text fontSize="sm" fontWeight="medium">
+            Collateral Reserves<sup>4</sup>
+          </Text>
+          <Text fontSize="lg" fontWeight="semibold">
+            <Text as="span" fontSize="xs">
+              {currency}&nbsp;
+            </Text>
+            {formatLargeNumber(reserves)}
+          </Text>
+        </GridItem>
+        <GridItem>
+          <Text fontSize="sm" fontWeight="medium">
+            Tokens Issued<sup>5</sup>
+          </Text>
+          <Text fontSize="lg" fontWeight="semibold">
+            <Text as="span" fontSize="xs">
+              {currency}&nbsp;
+            </Text>
+            {formatLargeNumber(issued)}
+          </Text>
+        </GridItem>
+        <GridItem>
+          <Text fontSize="sm" fontWeight="medium">
+            Available Balance<sup>6</sup>
+          </Text>
+          <Text fontSize="lg" fontWeight="semibold">
+            <Text as="span" fontSize="xs">
+              {currency}&nbsp;
+            </Text>
+            {formatLargeNumber(balance)}
+          </Text>
+        </GridItem>
+      </Grid>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 my-16">
-        <div>
-          <p className="subtitle">Collateral Reserves<sup>4</sup></p>
-          <p className="value-medium text-sm6">
-            <span className="text-xs">{currency}&nbsp;</span>
-            {formatLargeNumber(reserves)}</p>
-        </div>
-        <div>
-          <p className="subtitle">Tokens Issued<sup>5</sup></p>
-          <p className="value-medium">
-            <span className="text-xs">{currency}&nbsp;</span>
-            {formatLargeNumber(issued)}</p>
-        </div>
-        <div>
-          <p className="subtitle">Available Balance<sup>6</sup></p>
-          <p className="value-medium">
-            <span className="text-xs">{currency}&nbsp;</span>
-            {formatLargeNumber(balance)}</p>
-        </div>
-      </div>
-
-      <div className="h-2 flex w-full rounded-full overflow-hidden mb-6">
-        {assetDistribution.map((asset: { type: any; name: Key; value: any; }) => (
-          <div
+      <HStack h={2} w="full" rounded="full" overflow="hidden" mb={6}>
+        {assetDistribution.map((asset: { type: any; name: string; value: any }) => (
+          <Box
             key={asset.name}
-            className={`asset-${asset.type}`}
-            style={{ width: `${asset.value / reserves * 100}%` }}
-          ></div>
+            h="full"
+            bg={`var(--asset-${asset.type})`}
+            width={`${(asset.value / reserves) * 100}%`}
+          />
         ))}
-      </div>
+      </HStack>
 
-
-      <div className="md:flex gap-4 text-xs w-full "> 
-        {assetDistribution.map((asset, index) => (
-          <div 
-            key={asset.name}
-            className="flex items-center gap-2 " 
-          >
-            <div className={`h-3 w-3 asset-${asset.type} mr-2 rounded-sm`}> </div>
-            <div >
-              <p>{asset.value.toLocaleString()}</p>
-              <p className="hidden">{asset.type}</p>
-              <span>{asset.name}</span>
-            </div>
-          </div>
+      <Flex direction={{ base: 'column', md: 'row' }} gap={4} fontSize="xs" w="full" flexWrap="wrap">
+        {assetDistribution.map((asset: { type: any; name: string; value: any }, index: number) => (
+          <HStack key={asset.name} gap={2}>
+            <Box h={3} w={3} bg={`var(--asset-${asset.type})`} mr={2} rounded="sm" />
+            <VStack align="start" gap={0}>
+              <Text fontWeight="medium">{asset.value.toLocaleString()}</Text>
+              <Text fontSize="xs">{asset.name}</Text>
+            </VStack>
+          </HStack>
         ))}
-
-      </div>
-    </div>
+      </Flex>
+    </Box>
   );
 }

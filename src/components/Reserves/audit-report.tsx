@@ -1,75 +1,66 @@
+import { Download, ChevronDown } from 'lucide-react';
+import { useState } from 'react';
+import { Box, HStack, VStack, Text, Button, Menu, Icon } from '@chakra-ui/react';
 
-import { Download } from "lucide-react";
-import { useState } from "react";
-
-import { ChevronDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
-
-
-
-
-export function AuditReport({reportsList, companyName }) {
-  const [isOpen, setIsOpen] = useState(false);
-  
-
-  
+export function AuditReport({
+  reportsList,
+  companyName,
+}: {
+  reportsList: Array<{ date: string; file: string }>;
+  companyName: string;
+}) {
   const [selectedDate, setSelectedDate] = useState(reportsList[0].date);
 
-  const handleDownload = (file) => {
+  const handleDownload = (file: string) => {
     // Simulate file download
-    const link = document.createElement("a");
+    const link = document.createElement('a');
     link.href = file;
     link.download = file;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
-  
-  return (
-    <div className="bg-secondary rounded-lg p-6 mt-10 flex items-center gap-6">
-      <div className="bg-background rounded-full p-4">
-        <Download size={40} />
-      </div>
-      <div className="flex-1">
-        <h3 className="text-xl font-bold">Download Full Report</h3>
-  
-          
-        <div className="relative" >
-          
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="flex items-center px-1 py-2  bg-secondary rounded-md"
-          >
-           {selectedDate} <ChevronDown size={16} className="ml-2" />
-          </button>
 
-          {isOpen && (
-            <div className="absolute bg-card border rounded-md shadow-lg z-10 w-44">
+  return (
+    <Box bg="gray.100" _dark={{ bg: 'gray.800' }} rounded="lg" p={6} mt={10}>
+      <HStack gap={6} align="center">
+        <Box bg="white" _dark={{ bg: 'gray.700' }} rounded="full" p={4}>
+          <Icon as={Download} boxSize={10} />
+        </Box>
+        <VStack flex={1} align="start" gap={3}>
+          <Text fontSize="xl" fontWeight="bold">
+            Download Full Report
+          </Text>
+
+          <Menu.Root>
+            <Menu.Trigger asChild>
+              <Button variant="outline" size="sm" bg="gray.100" _dark={{ bg: 'gray.800' }}>
+                <ChevronDown size={16} />
+                {selectedDate}
+              </Button>
+            </Menu.Trigger>
+            <Menu.Content>
               {reportsList.map((item) => (
-                <button
+                <Menu.Item
                   key={item.date}
-                  className="block w-full text-left px-4 py-2 hover:bg-secondary text-sm"
+                  value={item.date}
                   onClick={() => {
                     setSelectedDate(item.date);
-                    setIsOpen(false);
                     handleDownload(item.file);
                   }}
                 >
                   {item.date}
-                </button>
+                </Menu.Item>
               ))}
-            </div>
-          )}
-        
-   
-        </div>
-        <p className="mt-2">
-          Access the full version of this report, published quarterly to maintain transparency for investors and users of {companyName}-issued tokens.
-        </p>
-      </div>
+            </Menu.Content>
+          </Menu.Root>
 
-
-
-    </div>
+          <Text fontSize="sm">
+            Access the full version of this report, published quarterly to maintain transparency for investors and users
+            of {companyName}-issued tokens.
+          </Text>
+        </VStack>
+      </HStack>
+    </Box>
   );
 }

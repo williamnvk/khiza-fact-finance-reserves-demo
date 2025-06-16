@@ -1,148 +1,186 @@
-
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
-import { useState } from "react";
-import { formatLargeNumber } from "@/lib/utils";
+import { useState } from 'react';
+import { formatLargeNumber } from '@/lib/utils';
+import { Box, VStack, Text, HStack, Button, ButtonGroup, Grid, GridItem } from '@chakra-ui/react';
 
-export function HistoryChart({ heartbeat, historicalData, historicalData1, periodTotalTransfer,periodTotalTransfer1, periodTransactions, periodTransactions1, avgcolateral, avgcolateral1, currency = "$" }) {
-  // Format for the tooltip
-  //  const formatValue = (value: number) => `${value}`;
-
+export function HistoryChart({
+  heartbeat,
+  historicalData,
+  historicalData1,
+  periodTotalTransfer,
+  periodTotalTransfer1,
+  periodTransactions,
+  periodTransactions1,
+  avgcolateral,
+  avgcolateral1,
+  currency = '$',
+}: {
+  heartbeat: string;
+  historicalData: any[];
+  historicalData1: any[];
+  periodTotalTransfer: number;
+  periodTotalTransfer1: number;
+  periodTransactions: number;
+  periodTransactions1: number;
+  avgcolateral: number;
+  avgcolateral1: number;
+  currency: string;
+}) {
   // Custom tooltip
   const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-card border p-3 shadow-sm rounded-md">
-          <p className="text-sm font-medium">Date {payload[0].payload.date}</p>
-          <p className="text-sm text-blue-500">Collateral: {formatLargeNumber(payload[0].value, currency)}</p>
-          <p className="text-sm text-cyan-500">Issued: {formatLargeNumber(payload[1].value, currency)}</p>
-         {payload[0].payload?.transactions>0?(<>
-          <p className="text-sm text-cyan-600">Transactions: {payload[0].payload.transactions}</p>
-          <p className="text-sm text-cyan-600">Transfer: {formatLargeNumber(payload[0].payload.totalTransfer, currency)}</p>
-          <p className="text-sm text-cyan-600">Burned: {formatLargeNumber(payload[0].payload.totalBurned, currency)}</p>
-         </>):null}
-          </div>
+        <Box p={3} shadow="sm" rounded="md">
+          <Text fontSize="sm" fontWeight="medium">
+            Date {payload[0].payload.date}
+          </Text>
+          <Text fontSize="sm" color="blue.500">
+            Collateral: {formatLargeNumber(payload[0].value, currency)}
+          </Text>
+          <Text fontSize="sm" color="cyan.500">
+            Issued: {formatLargeNumber(payload[1].value, currency)}
+          </Text>
+          {payload[0].payload?.transactions > 0 ? (
+            <>
+              <Text fontSize="sm" color="cyan.600">
+                Transactions: {payload[0].payload.transactions}
+              </Text>
+              <Text fontSize="sm" color="cyan.600">
+                Transfer: {formatLargeNumber(payload[0].payload.totalTransfer, currency)}
+              </Text>
+              <Text fontSize="sm" color="cyan.600">
+                Burned: {formatLargeNumber(payload[0].payload.totalBurned, currency)}
+              </Text>
+            </>
+          ) : null}
+        </Box>
       );
     }
     return null;
   };
 
-  let periods = heartbeat == '1 hour' ? ["Hour", "Day"] : ["Month", "Year"]
-  const [selected, setSelected] = useState(periods[0])
-  const [historicalDataChart, setHistoricalDataChart] = useState(historicalData1?.length? historicalData1: historicalData)
-  const [averageIndex,setAverageIndex]=useState(historicalData1?.length? avgcolateral1: avgcolateral)
-  const [totalIssued, setTotalIssued]=useState(historicalData1?.length? periodTotalTransfer1: periodTotalTransfer)
-  const [totalTransactions, setTotalTransactions]=useState(historicalData1?.length? periodTransactions1: periodTransactions)
+  let periods = heartbeat == '1 hour' ? ['Hour', 'Day'] : ['Month', 'Year'];
+  const [selected, setSelected] = useState(periods[0]);
+  const [historicalDataChart, setHistoricalDataChart] = useState(
+    historicalData1?.length ? historicalData1 : historicalData,
+  );
+  const [averageIndex, setAverageIndex] = useState(historicalData1?.length ? avgcolateral1 : avgcolateral);
+  const [totalIssued, setTotalIssued] = useState(historicalData1?.length ? periodTotalTransfer1 : periodTotalTransfer);
+  const [totalTransactions, setTotalTransactions] = useState(
+    historicalData1?.length ? periodTransactions1 : periodTransactions,
+  );
 
   const handlePeriod = () => {
-    if ( selected === periods[0] ) {
-      setSelected(periods[1])
-      setHistoricalDataChart(historicalData)
-      setAverageIndex(avgcolateral)
-      setTotalIssued(periodTotalTransfer)
-      setTotalTransactions(periodTransactions)
+    if (selected === periods[0]) {
+      setSelected(periods[1]);
+      setHistoricalDataChart(historicalData);
+      setAverageIndex(avgcolateral);
+      setTotalIssued(periodTotalTransfer);
+      setTotalTransactions(periodTransactions);
     } else {
-      setHistoricalDataChart(historicalData1)
-      setAverageIndex(avgcolateral1)
-      setTotalIssued(periodTotalTransfer1)
-      setTotalTransactions(periodTransactions1)
+      setHistoricalDataChart(historicalData1);
+      setAverageIndex(avgcolateral1);
+      setTotalIssued(periodTotalTransfer1);
+      setTotalTransactions(periodTransactions1);
+      setSelected(periods[0]);
+    }
+  };
 
-      setSelected(periods[0])
-    } 
-  }
-  
   return (
-    <div className=" p-6 shadow-sm rounded-md">
-      <div>
-        <div>
-          <div className="flex w-full justify-between items-center mb-6">
-            <div className='flex flex-col'>
-              <span className="text-2xl font-bold ">Historical Reserve Coverage</span>
-              <span className='text-sm text-gray-400 dark:text-gray-500 mr-4'>Track cumulative balances versus tokens issued over time. Use filters to explore data by a different period.</span>
-            </div>
-            {historicalData1?.length ?
-            <div className="mb-5 inline-flex items-center rounded-full bg-muted p-1 text-xs shadow-inner">
+    <Box p={6} shadow="sm" rounded="md">
+      <VStack align="stretch" gap={6}>
+        <HStack justify="space-between" align="start">
+          <VStack align="start" gap={2}>
+            <Text fontSize="2xl" fontWeight="bold">
+              Historical Reserve Coverage
+            </Text>
+            <Text fontSize="sm">
+              Track cumulative balances versus tokens issued over time. Use filters to explore data by a different
+              period.
+            </Text>
+          </VStack>
+          {historicalData1?.length ? (
+            <ButtonGroup size="sm" attached variant="outline">
               {periods.map((period) => (
-                <button
+                <Button
                   key={period}
                   onClick={handlePeriod}
-                  className={`px-4 py-1 rounded-full transition-colors ${selected === period
-                    ? "bg-primary text-white"
-                    : "text-muted-foreground hover:bg-accent"
-                    }`}
+                  colorScheme={selected === period ? 'blue' : 'gray'}
+                  variant={selected === period ? 'solid' : 'outline'}
                 >
                   {period}
-                </button>
+                </Button>
               ))}
-            </div>
-            : null }
-          </div>
-        </div>
-        <div className="gap-4 mt-2  flex justify-between items-center m-4 whitespace-nowrap">
-          <div>
-            <p className="subtitle">Issued</p>
+            </ButtonGroup>
+          ) : null}
+        </HStack>
 
-            <p className="value-medium">
-              <span className="text-xs">{currency}</span>
-              {formatLargeNumber(totalIssued | 0)}</p>
-          </div>
-          <div>
-            <p className="subtitle">N. Transactions</p>
-            <p className="value-medium">{formatLargeNumber(totalTransactions | 0)}</p>
-          </div>
-          <div>
-            <p className="subtitle">Average Col.</p>
-            <p className="value-medium text-primary">{averageIndex}</p>
-          </div>
-        </div>
-      </div>
+        <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={4}>
+          <GridItem>
+            <Text fontSize="sm" fontWeight="medium">
+              Issued
+            </Text>
+            <Text fontSize="lg" fontWeight="semibold">
+              <Text as="span" fontSize="xs">
+                {currency}
+              </Text>
+              {formatLargeNumber(totalIssued | 0)}
+            </Text>
+          </GridItem>
+          <GridItem>
+            <Text fontSize="sm" fontWeight="medium">
+              N. Transactions
+            </Text>
+            <Text fontSize="lg" fontWeight="semibold">
+              {formatLargeNumber(totalTransactions | 0)}
+            </Text>
+          </GridItem>
+          <GridItem>
+                    <Text fontSize="sm" fontWeight="medium">
+              Average Col.
+            </Text>
+            <Text fontSize="lg" fontWeight="semibold" color="blue.500">
+              {averageIndex}
+            </Text>
+          </GridItem>
+        </Grid>
 
+        <Box>
+          <ResponsiveContainer width="100%" height={200}>
+            <LineChart data={historicalDataChart} margin={{ top: 0, right: 10, left: 10, bottom: 10 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--secondary))" />
+              <XAxis dataKey="Date" axisLine={false} tickLine={false} />
+              <YAxis
+                domain={[
+                  `dataMin - ${Math.max(historicalDataChart[0]?.circulation || 0, historicalDataChart[0]?.reserves || 0) * 2.5}`,
+                  `dataMax + ${Math.min(historicalDataChart[0]?.circulation || 0, historicalDataChart[0]?.reserves || 0) * 1.5}`,
+                ]}
+                hide
+              />
+              <Tooltip content={<CustomTooltip />} />
+              <Line type="monotone" dataKey="reserves" stroke="hsl(var(--primary))" dot={false} strokeWidth={2} />
+              <Line
+                type="monotone"
+                dataKey="circulation"
+                stroke="hsl(var(--chart-light-blue))"
+                dot={false}
+                strokeWidth={2}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </Box>
 
-      <div className="chart-container">
-        <ResponsiveContainer width="100%" height={200}>
-          <LineChart
-            data={historicalDataChart}
-            margin={{ top: 0, right: 10, left: 10, bottom: 10 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--secondary))" />
-
-            <XAxis
-              dataKey="Date"
-              axisLine={false}
-              tickLine={false}
-            />
-            <YAxis
-              domain={[`dataMin - ${Math.max(historicalDataChart[0].circulation,historicalDataChart[0].reserves)*2.5}`, `dataMax + ${Math.min(historicalDataChart[0].circulation,historicalDataChart[0].reserves)*1.5}`]}
-              hide
-            />
-            <Tooltip content={<CustomTooltip />} />
-            <Line
-              type="monotone"
-              dataKey="reserves"
-              stroke="hsl(var(--primary))"
-              dot={false}
-              strokeWidth={2}
-            />
-            <Line
-              type="monotone"
-              dataKey="circulation"
-              stroke="hsl(var(--chart-light-blue))"
-              dot={false}
-              strokeWidth={2}
-            />
-          </LineChart>
-        </ResponsiveContainer>
-      </div>
-
-      <div className="chart-legend">
-        <div className="flex items-center">
-          <div className="h-0.5 w-4 bg-[hsl(var(--chart-light-blue))] mr-1"></div>
-          <span className="text-xs">Issued Tokens</span>
-        </div>
-        <div className="flex items-center">
-          <div className="h-0.5 w-4 bg-primary mr-1"></div>
-          <span className="text-xs">Collateral Reserves</span>
-        </div>
-      </div>
-    </div>
+        <HStack gap={6} justify="center" flexWrap="wrap">
+          <HStack>
+            <Box h="2px" w={4} bg="var(--chart-light-blue)" />
+            <Text fontSize="xs">Issued Tokens</Text>
+          </HStack>
+          <HStack>
+            <Box h="2px" w={4} bg="var(--primary)" />
+            <Text fontSize="xs">Collateral Reserves</Text>
+          </HStack>
+        </HStack>
+      </VStack>
+    </Box>
   );
 }

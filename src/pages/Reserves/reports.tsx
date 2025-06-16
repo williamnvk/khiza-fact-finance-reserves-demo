@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
 import { Box, Container, Grid, Text } from '@chakra-ui/react';
+import { ColorModeButton, ColorModeProvider } from '@/components/ui/color-mode';
 
 const FOOTNOTES = [
   {
@@ -87,6 +88,7 @@ type Data = {
   chainDistribution: ChainItem[];
   assetDistribution: AssettItem[];
   logo: string;
+  dapp: string;
   chart_history_change: number;
   chart_history_new_reserves: number;
   chart_history_new_tokens_issued: number;
@@ -112,6 +114,7 @@ export const Reports = () => {
   const [data, setData] = useState<Data>({
     companyName: '',
     logo: '',
+    dapp: '',
     chart_history_change: 0,
     chart_history_new_reserves: 0,
     chart_history_new_tokens_issued: 0,
@@ -203,9 +206,10 @@ export const Reports = () => {
   }, []);
 
   return (
-    <>
+    <ColorModeProvider>
+    
       {loaded ? (
-        <Box minH="100vh" bg="bg">
+        <Box mt="72px">  <ColorModeButton />
           <Container maxW="7xl" px={4} py={8}>
             <ReportHeader
               companyName={data.companyFullName}
@@ -220,7 +224,7 @@ export const Reports = () => {
               dateAs={data.historicalData?.[data.historicalData.length - 1]?.date || ''}
               heartbeat={data.heartbeat}
               threshold={data.threshold}
-              dappLink="https://tokeniza.com.br"
+              dappLink={data.dapp}
             />
 
             <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6} mt={12}>
@@ -281,7 +285,7 @@ export const Reports = () => {
           </Text>
         </Box>
       ) : null}
-    </>
+    </ColorModeProvider>
   );
 };
 

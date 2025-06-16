@@ -232,7 +232,7 @@ const Home = () => {
                       <Grid templateColumns="repeat(2, 1fr)" gap={6}>
                         <Box>
                           <Stat.Root>
-                            <Stat.Label color="fg.muted" fontSize="sm">
+                              <Stat.Label color="fg.muted" fontSize="sm">
                               Total reserves
                             </Stat.Label>
                             <Stat.ValueText fontSize="2xl" fontWeight="bold" color="success.600">
@@ -261,7 +261,7 @@ const Home = () => {
                             <Stat.ValueText fontSize="2xl" fontWeight="bold" color="brand.500">
                               {reserveRatio}%
                             </Stat.ValueText>
-                            <Stat.HelpText color="fg.muted" fontSize="xs">
+                              <Stat.HelpText color="fg.muted" fontSize="xs">
                               <Shield size={12} style={{ display: 'inline', marginRight: '4px' }} />
                               Fully backed
                             </Stat.HelpText>

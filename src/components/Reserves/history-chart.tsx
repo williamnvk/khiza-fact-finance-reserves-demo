@@ -105,7 +105,7 @@ export function HistoryChart({
                 <Button
                   key={period}
                   onClick={handlePeriod}
-                  colorScheme={selected === period ? 'blue' : 'gray'}
+                  colorPalette={selected === period ? 'brand' : 'gray'}
                   variant={selected === period ? 'solid' : 'outline'}
                 >
                   {period}

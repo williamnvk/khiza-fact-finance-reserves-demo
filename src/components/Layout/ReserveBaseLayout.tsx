@@ -7,7 +7,7 @@ import { useLayoutEffect } from 'react';
 import { useLocation } from 'react-router';
 import { ColorModeProvider } from '../ui/color-mode';
 
-export function BaseLayout() {
+export function ReserveBaseLayout() {
   const location = useLocation();
 
   useLayoutEffect(() => {
@@ -15,13 +15,13 @@ export function BaseLayout() {
   }, [location.pathname]);
 
   return (
-    <ColorModeProvider forcedTheme="dark"> 
+    <ColorModeProvider>
       <AOSInit />
       <Header />
       <Box as="main" maxW="100vw" role="main" aria-label="Main Content">
         <Outlet />
       </Box>
       <Footer />
-    </ColorModeProvider >
+    </ColorModeProvider>
   );
 }

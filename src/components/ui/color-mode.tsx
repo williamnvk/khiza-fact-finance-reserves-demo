@@ -9,8 +9,8 @@ import * as React from 'react';
 
 export interface ColorModeProviderProps extends ThemeProviderProps {}
 
-export function ColorModeProvider(props: ColorModeProviderProps) {
-  return <ThemeProvider attribute="class" forcedTheme="dark" disableTransitionOnChange {...props} />;
+export function ColorModeProvider({ forcedTheme, ...props }: ColorModeProviderProps) {
+  return <ThemeProvider attribute="class" forcedTheme={forcedTheme} disableTransitionOnChange {...props} />;
 }
 
 export function useColorMode() {
@@ -37,29 +37,28 @@ export function ColorModeIcon() {
 
 interface ColorModeButtonProps extends Omit<IconButtonProps, 'aria-label'> {}
 
-export const ColorModeButton = React.forwardRef<HTMLButtonElement, ColorModeButtonProps>(function ColorModeButton(
-  props,
-  ref,
-) {
-  const { toggleColorMode } = useColorMode();
-  return (
-    <ClientOnly fallback={<Skeleton boxSize="8" />}>
-      <IconButton
-        onClick={toggleColorMode}
-        variant="ghost"
-        aria-label="Toggle color mode"
-        size="sm"
-        ref={ref}
-        {...props}
-        css={{
-          _icon: {
-            width: '5',
-            height: '5',
-          },
-        }}
-      >
-        <ColorModeIcon />
-      </IconButton>
-    </ClientOnly>
-  );
-});
+export const ColorModeButton = React.forwardRef<HTMLButtonElement, ColorModeButtonProps>(
+  function ColorModeButton(props, ref) {
+    const { toggleColorMode } = useColorMode();
+    return (
+      <ClientOnly fallback={<Skeleton boxSize="8" />}>
+        <IconButton
+          onClick={toggleColorMode}
+          variant="ghost"
+          aria-label="Toggle color mode"
+          size="sm"
+          ref={ref}
+          {...props}
+          css={{
+            _icon: {
+              width: '5',
+              height: '5',
+            },
+          }}
+        >
+          <ColorModeIcon />
+        </IconButton>
+      </ClientOnly>
+    );
+  },
+);

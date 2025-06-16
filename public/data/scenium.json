@@ -5,6 +5,7 @@
   "logo": "/logos/scenium.webp",
   "description":"Scenium is a digital asset platform offering tokenized stocks, private funds, and cryptocurrencies. It is incorporated in Ontario, Canada.",
   "heartbeat":"1 month",
+  "dapp": "https://scenium.io",
   "assetDistribution": [
     {
       "type": "funds",

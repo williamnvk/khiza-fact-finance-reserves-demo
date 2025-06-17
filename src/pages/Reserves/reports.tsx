@@ -225,81 +225,76 @@ export const Reports = () => {
       />
 
       {loaded ? (
-        <Box mt="72px">
-          <Container maxW="7xl" px={4} py={8}>
-            <VStack w="full" gap={{ base: 4, md: 6 }} align="stretch">
-              <ReportHeader
-                client={client}
-                companyName={data.companyFullName}
-                contractLink={data.contractLink}
-                contract={data.contract}
-                description={data.description}
-                circulation={formatLargeNumber(data.last.circulation)}
-                currency={data.currency}
-                reserves={formatLargeNumber(data.last.reserves)}
-                ratio={((data.last.reserves / data.last.circulation) * 100).toFixed(1) + '%'}
-                dateAs={data.historicalData?.[data.historicalData.length - 1]?.date || ''}
-                heartbeat={data.heartbeat}
-                threshold={data.threshold}
-                dappLink={data.dapp}
-              />
+        <Container maxW="8xl" px={4} py={8} mt="72px">
+          <VStack w="full" gap={{ base: 4, md: 6 }} align="stretch">
+            <ReportHeader
+              client={client}
+              companyName={data.companyFullName}
+              contractLink={data.contractLink}
+              contract={data.contract}
+              description={data.description}
+              circulation={formatLargeNumber(data.last.circulation)}
+              currency={data.currency}
+              reserves={formatLargeNumber(data.last.reserves)}
+              ratio={((data.last.reserves / data.last.circulation) * 100).toFixed(1) + '%'}
+              dateAs={data.historicalData?.[data.historicalData.length - 1]?.date || ''}
+              heartbeat={data.heartbeat}
+              threshold={data.threshold}
+              dappLink={data.dapp}
+            />
 
-              <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6}>
-                <BalancesChart
-                  circulation={data.last.circulation}
-                  reserves={data.last.reserves}
-                  over={data.last.reserves - data.last.circulation}
-                  currency={data.currency}
-                />
-
-                <HistoryChart
-                  heartbeat={data.heartbeat}
-                  historicalData={data.historicalData}
-                  historicalData1={data.historicalData1}
-                  periodTotalTransfer={data.total?.periodTotalTransfer ?? 0}
-                  periodTotalTransfer1={data.total1?.periodTotalTransfer ?? 0}
-                  periodTransactions={data.total?.periodTransactions ?? 0}
-                  periodTransactions1={data.total1?.periodTransactions ?? 0}
-                  avgcolateral={data.average?.avgcolateral ?? '-'}
-                  avgcolateral1={data.average1?.avgcolateral ?? '-'}
-                  currency={data.currency}
-                />
-              </Grid>
-
-              <ReservesBreakdown
-                companyName={data.companyName}
-                currency={data.currency}
-                reserves={data.last.reserves}
-                issued={data.last.circulation}
-                balance={data.last.reserves - data.last.circulation}
-                assetDistribution={data.assetDistribution}
-              />
-
-              <TokenList
-                tokens={data.tokens}
-                currency={data.currency}
-                companyName={data.companyName}
-                reserves={data.last.reserves}
+            <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6}>
+              <BalancesChart
                 circulation={data.last.circulation}
-                periodTotalTransfer={data.total?.periodTotalTransfer}
+                reserves={data.last.reserves}
+                over={data.last.reserves - data.last.circulation}
+                currency={data.currency}
               />
 
-              <TokenChainBreakdown
-                totalChains={3}
-                totalTokens={1}
-                totalValue={formatLargeNumber(data.last.circulation)}
-                chainDistribution={data.chainDistribution}
+              <HistoryChart
+                heartbeat={data.heartbeat}
+                historicalData={data.historicalData}
+                historicalData1={data.historicalData1}
+                periodTotalTransfer={data.total?.periodTotalTransfer ?? 0}
+                periodTotalTransfer1={data.total1?.periodTotalTransfer ?? 0}
+                periodTransactions={data.total?.periodTransactions ?? 0}
+                periodTransactions1={data.total1?.periodTransactions ?? 0}
+                avgcolateral={data.average?.avgcolateral ?? '-'}
+                avgcolateral1={data.average1?.avgcolateral ?? '-'}
+                currency={data.currency}
               />
+            </Grid>
 
-              <AuditReport reportsList={data.reportList} companyName={data.companyName} />
+            <ReservesBreakdown
+              companyName={data.companyName}
+              currency={data.currency}
+              reserves={data.last.reserves}
+              issued={data.last.circulation}
+              balance={data.last.reserves - data.last.circulation}
+              assetDistribution={data.assetDistribution}
+            />
 
-              <Footnotes notes={FOOTNOTES} />
-            </VStack>
-          </Container>
-          <Text textAlign="center" color="fg.muted" pb={8} fontSize="sm">
-            © 2025 Fact Finance. All rights reserved.
-          </Text>
-        </Box>
+            <TokenList
+              tokens={data.tokens}
+              currency={data.currency}
+              companyName={data.companyName}
+              reserves={data.last.reserves}
+              circulation={data.last.circulation}
+              periodTotalTransfer={data.total?.periodTotalTransfer}
+            />
+
+            <TokenChainBreakdown
+              totalChains={3}
+              totalTokens={1}
+              totalValue={formatLargeNumber(data.last.circulation)}
+              chainDistribution={data.chainDistribution}
+            />
+
+            <AuditReport reportsList={data.reportList} companyName={data.companyName} />
+
+            {/* <Footnotes notes={FOOTNOTES} /> */}
+          </VStack>
+        </Container>
       ) : null}
     </ColorModeProvider>
   );

@@ -211,14 +211,12 @@ const Home = () => {
                 >
                   <Card.Header>
                     <Flex justify="space-between" align="flex-start">
-                      {client.logo === 'avenia' && <AveniaLogo width={100} height={50} />}
-                      {client.logo === 'tokeniza' && <TokenizaLogo width={100} height={50} />}
-                      {client.logo === 'scenium' && (
-                        <Image src="/logos/scenium.png" alt="Scenium" width={200} height={50} />
-                      )}
+                      {client.logo === 'avenia' && <AveniaLogo width={100} height={80} />}
+                      {client.logo === 'tokeniza' && <TokenizaLogo width={100} height={80} />}
+                      {client.logo === 'scenium' && <Image src="/assets/logos/scenium.png" alt="Scenium" />}
 
-                      <Tag.Root colorPalette="success" variant="subtle">
-                        <Tag.Label>Verified</Tag.Label>
+                      <Tag.Root bg="success.200" color="success.800" variant="subtle" rounded="full" px={2.5}>
+                        <Tag.Label fontSize="sm">Verified</Tag.Label>
                         <Tag.EndElement>
                           <CheckCircle size={12} style={{ marginRight: '4px' }} />
                         </Tag.EndElement>
@@ -232,7 +230,7 @@ const Home = () => {
                       <Grid templateColumns="repeat(2, 1fr)" gap={6}>
                         <Box>
                           <Stat.Root>
-                              <Stat.Label color="fg.muted" fontSize="sm">
+                            <Stat.Label color="fg.muted" fontSize="sm">
                               Total reserves
                             </Stat.Label>
                             <Stat.ValueText fontSize="2xl" fontWeight="bold" color="success.600">
@@ -261,7 +259,7 @@ const Home = () => {
                             <Stat.ValueText fontSize="2xl" fontWeight="bold" color="brand.500">
                               {reserveRatio}%
                             </Stat.ValueText>
-                              <Stat.HelpText color="fg.muted" fontSize="xs">
+                            <Stat.HelpText color="fg.muted" fontSize="xs">
                               <Shield size={12} style={{ display: 'inline', marginRight: '4px' }} />
                               Fully backed
                             </Stat.HelpText>

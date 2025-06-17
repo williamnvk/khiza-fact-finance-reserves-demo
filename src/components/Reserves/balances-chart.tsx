@@ -228,12 +228,12 @@ export function BalancesChart({
             <Bar dataKey="circulation" stackId="a" fill={colors.circulation} radius={[6, 6, 6, 6]} maxBarSize={120} />
 
             {/* Reserves bars */}
-            <Bar dataKey="reserves" stackId="b" fill={colors.reserves} radius={[6, 6, 6, 6]} maxBarSize={120} />
+            <Bar dataKey="reserves" stackId="b" fill={colors.reserves} radius={[0, 0, 6, 6]} maxBarSize={120} />
             <Bar
               dataKey="overCollateral"
               stackId="b"
               fill={colors.overCollateral}
-              radius={[0, 0, 6, 6]}
+              radius={[6, 6, 0, 0]}
               maxBarSize={120}
             />
           </BarChart>

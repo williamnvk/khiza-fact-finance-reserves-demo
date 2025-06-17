@@ -1,10 +1,10 @@
-import { 
-  Box, 
-  VStack, 
-  Text, 
-  HStack, 
-  Grid, 
-  GridItem, 
+import {
+  Box,
+  VStack,
+  Text,
+  HStack,
+  Grid,
+  GridItem,
   Flex,
   Card,
   Stat,
@@ -14,18 +14,9 @@ import {
   Progress,
   Separator,
   SimpleGrid,
-  Icon
+  Icon,
 } from '@chakra-ui/react';
-import { 
-  Network, 
-  Layers, 
-  TrendingUp, 
-  Shield, 
-  Activity, 
-  BarChart3,
-  Globe,
-  Zap
-} from 'lucide-react';
+import { Network, Layers, TrendingUp, Shield, Activity, BarChart3, Globe, Zap } from 'lucide-react';
 import { useColorModeValue } from '../ui/color-mode';
 
 export function TokenChainBreakdown({
@@ -63,15 +54,18 @@ export function TokenChainBreakdown({
   };
 
   // Calculate comprehensive metrics
-  const averageChainDistribution = chainDistribution.length > 0 ? 
-    chainDistribution.reduce((sum, chain) => sum + chain.value, 0) / chainDistribution.length : 0;
-  
-  const dominantChain = chainDistribution.reduce((max, chain) => 
-    chain.value > max.value ? chain : max, chainDistribution[0] || { name: 'N/A', value: 0 });
-  
-  const networkDiversityScore = chainDistribution.length > 0 ? 
-    (chainDistribution.length / 15) * 100 : 0; // Assuming 15 as max supported chains
-  
+  const averageChainDistribution =
+    chainDistribution.length > 0
+      ? chainDistribution.reduce((sum, chain) => sum + chain.value, 0) / chainDistribution.length
+      : 0;
+
+  const dominantChain = chainDistribution.reduce(
+    (max, chain) => (chain.value > max.value ? chain : max),
+    chainDistribution[0] || { name: 'N/A', value: 0 },
+  );
+
+  const networkDiversityScore = chainDistribution.length > 0 ? (chainDistribution.length / 15) * 100 : 0; // Assuming 15 as max supported chains
+
   const totalNetworkCoverage = chainDistribution.length;
   const averageTokensPerChain = totalNetworkCoverage > 0 ? totalTokens / totalNetworkCoverage : 0;
 
@@ -111,8 +105,8 @@ export function TokenChainBreakdown({
                 </Badge>
               </HStack>
               <Text fontSize="md" color="fg.muted" lineHeight="tall">
-                Comprehensive overview of token distribution across supported blockchain networks, 
-                showcasing cross-chain interoperability and network diversification strategy.
+                Comprehensive overview of token distribution across supported blockchain networks, showcasing
+                cross-chain interoperability and network diversification strategy.
               </Text>
             </VStack>
           </Flex>
@@ -213,11 +207,11 @@ export function TokenChainBreakdown({
                 <Stat.Root>
                   <Stat.Label fontSize="xs" color="fg.muted">
                     <HStack gap={1}>
-                      <Icon as={Shield} boxSize={5} color="purple.500" />
+                      <Icon as={Shield} boxSize={5} color="brand.500" />
                       <Text>Diversity Score</Text>
                     </HStack>
                   </Stat.Label>
-                  <Stat.ValueText fontSize="xl" fontWeight="bold" color="purple.500">
+                  <Stat.ValueText fontSize="xl" fontWeight="bold" color="brand.500">
                     {networkDiversityScore.toFixed(0)}%
                   </Stat.ValueText>
                   <Stat.HelpText fontSize="xs" color="fg.muted">
@@ -249,9 +243,9 @@ export function TokenChainBreakdown({
           <Box>
             <HStack h={4} w="full" rounded="full" overflow="hidden" mb={4} shadow="inner">
               {enhancedChainData.map((chain) => (
-                <Box 
-                  key={chain.name} 
-                  h="full" 
+                <Box
+                  key={chain.name}
+                  h="full"
                   bg={chain.color}
                   width={`${Number(chain.value)}%`}
                   _hover={{
@@ -274,182 +268,264 @@ export function TokenChainBreakdown({
             </HStack>
           </Box>
 
-          {/* Detailed Chain Information */}
-          <Grid
-            templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }}
-            gap={4}
-          >
-            {enhancedChainData.map((chain) => (
-              <Card.Root key={chain.name} size="sm" variant="subtle">
-                <Card.Body>
-                  <VStack align="stretch" gap={3}>
-                    <HStack justify="space-between">
-                      <HStack gap={3}>
-                        <ColorSwatch boxSize="4" value={chain.color} />
+          {/* Enhanced Detailed Chain Information */}
+          <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }} gap={4}>
+            {enhancedChainData.map((chain, index) => (
+              <Card.Root
+                key={chain.name}
+                size="sm"
+                boxShadow="none"
+                position="relative"
+                overflow="hidden"
+                cursor="pointer"
+                transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+                _before={{
+                  content: '""',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: '3px',
+                  bg: `linear-gradient(90deg, ${chain.color}, ${chain.color}88)`,
+                  opacity: 0.7,
+                  transition: 'opacity 0.3s ease',
+                }}
+                borderWidth="1px"
+                borderColor="blackAlpha.200"
+                _dark={{
+                  borderColor: 'whiteAlpha.200',
+                  bg: 'whiteAlpha.50',
+                }}
+                bg="white"
+              >
+                <Card.Body p={5}>
+                  <VStack align="stretch" gap={4}>
+                    {/* Enhanced Header */}
+                    <HStack justify="space-between" align="start">
+                      <HStack gap={3} align="center">
+                        <Box
+                          position="relative"
+                          _hover={{
+                            transform: 'scale(1.1)',
+                            transition: 'transform 0.2s ease',
+                          }}
+                        >
+                          <ColorSwatch boxSize="6" value={chain.color} borderRadius="full" shadow="lg" />
+                          <Box
+                            position="absolute"
+                            top="-1"
+                            right="-1"
+                            boxSize="3"
+                            bg={chain.color}
+                            borderRadius="full"
+                            shadow="sm"
+                            opacity={0.8}
+                          />
+                        </Box>
                         <VStack align="start" gap={0}>
-                          <Text fontSize="sm" fontWeight="semibold" color="fg">
+                          <Text fontSize="md" fontWeight="bold" color="fg">
                             {chain.name.charAt(0).toUpperCase() + chain.name.slice(1)}
                           </Text>
-                          <Text fontSize="xs" color="fg.muted">
-                            Rank #{chain.rank}
-                          </Text>
+                          <HStack gap={2}>
+                            <Badge
+                              colorPalette={chain.rank <= 3 ? 'success' : chain.rank <= 6 ? 'warning' : 'gray'}
+                              size="xs"
+                              variant="subtle"
+                            >
+                              #{chain.rank}
+                            </Badge>
+                            <Text fontSize="xs" color="fg.muted">
+                              Network
+                            </Text>
+                          </HStack>
                         </VStack>
                       </HStack>
-                      <Badge colorPalette="gray" size="sm">
+                      <Badge
+                        colorPalette="brand"
+                        size="md"
+                        variant="solid"
+                        fontWeight="bold"
+                        px={3}
+                        py={1}
+                        borderRadius="full"
+                      >
                         {formatPercent(chain.value)}
                       </Badge>
                     </HStack>
 
-                    <Separator />
+                    {/* Visual Separator with Gradient */}
+                    <Box h="1px" bg={`linear-gradient(90deg, transparent, ${chain.color}44, transparent)`} my={1} />
 
-                    <SimpleGrid columns={2} gap={3}>
-                      <VStack align="start" gap={1}>
-                        <Text fontSize="xs" color="fg.muted">
-                          Estimated Tokens
-                        </Text>
-                        <Text fontSize="sm" fontWeight="medium" color="brand.500">
-                          <FormatNumber value={chain.tokensOnChain} notation="compact" />
-                        </Text>
-                      </VStack>
-                      <VStack align="start" gap={1}>
-                        <Text fontSize="xs" color="fg.muted">
-                          Network Share
-                        </Text>
-                        <Text fontSize="sm" fontWeight="medium" color="success.500">
-                          {formatPercent(chain.value)}
-                        </Text>
-                      </VStack>
+                    {/* Enhanced Metrics Grid */}
+                    <SimpleGrid columns={2} gap={4}>
+                      <Box
+                        p={3}
+                        borderRadius="lg"
+                        bg="blackAlpha.50"
+                        _dark={{ bg: 'whiteAlpha.100' }}
+                        transition="all 0.2s ease"
+                        _hover={{
+                          bg: 'blackAlpha.100',
+                          _dark: { bg: 'whiteAlpha.200' },
+                        }}
+                      >
+                        <VStack align="start" gap={1}>
+                          <HStack gap={1}>
+                            <Icon as={Layers} boxSize={3} color={chain.color} />
+                            <Text fontSize="xs" color="fg.muted" fontWeight="medium">
+                              Est. Tokens
+                            </Text>
+                          </HStack>
+                          <Text fontSize="lg" fontWeight="bold" color="brand.500">
+                            <FormatNumber value={chain.tokensOnChain} notation="compact" />
+                          </Text>
+                        </VStack>
+                      </Box>
+
+                      <Box
+                        p={3}
+                        borderRadius="lg"
+                        bg="blackAlpha.50"
+                        _dark={{ bg: 'whiteAlpha.100' }}
+                        transition="all 0.2s ease"
+                        _hover={{
+                          bg: 'blackAlpha.100',
+                          _dark: { bg: 'whiteAlpha.200' },
+                        }}
+                      >
+                        <VStack align="start" gap={1}>
+                          <HStack gap={1}>
+                            <Icon as={TrendingUp} boxSize={3} color={chain.color} />
+                            <Text fontSize="xs" color="fg.muted" fontWeight="medium">
+                              Share
+                            </Text>
+                          </HStack>
+                          <Text fontSize="lg" fontWeight="bold" color="success.500">
+                            {formatPercent(chain.value)}
+                          </Text>
+                        </VStack>
+                      </Box>
                     </SimpleGrid>
 
-                    <Progress.Root 
-                      value={chain.percentage} 
-                      size="sm" 
-                      colorPalette="gray"
-                    >
-                      <Progress.Track>
-                        <Progress.Range style={{ backgroundColor: chain.color }} />
-                      </Progress.Track>
-                    </Progress.Root>
+                    {/* Enhanced Progress Bar */}
+                    <VStack align="stretch" gap={2}>
+                      <HStack justify="space-between">
+                        <Text fontSize="xs" color="fg.muted">
+                          Network Allocation
+                        </Text>
+                        <Text fontSize="xs" fontWeight="medium" color={chain.color}>
+                          {chain.percentage > averageChainDistribution ? '↗' : '↘'}
+                          {((chain.percentage / averageChainDistribution) * 100).toFixed(0)}% vs avg
+                        </Text>
+                      </HStack>
+                      <Progress.Root
+                        value={chain.percentage}
+                        size="md"
+                        colorPalette="gray"
+                        borderRadius="full"
+                        overflow="hidden"
+                        bg="blackAlpha.100"
+                        _dark={{ bg: 'whiteAlpha.200' }}
+                      >
+                        <Progress.Track>
+                          <Progress.Range
+                            style={{
+                              background: `linear-gradient(90deg, ${chain.color}, ${chain.color}CC)`,
+                              transition: 'all 0.3s ease',
+                            }}
+                          />
+                        </Progress.Track>
+                      </Progress.Root>
+                    </VStack>
+
+                    {/* Network Status Indicator */}
+                    <HStack justify="space-between" align="center">
+                      <HStack gap={2}>
+                        <Box boxSize="2" bg="success.500" borderRadius="full" />
+                        <Text fontSize="xs" color="success.500" fontWeight="medium">
+                          Active
+                        </Text>
+                      </HStack>
+                      <HStack gap={1}>
+                        <Icon as={Shield} boxSize={3} color="success.500" />
+                        <Text fontSize="xs" color="fg.muted">
+                          Secure
+                        </Text>
+                      </HStack>
+                    </HStack>
                   </VStack>
                 </Card.Body>
+
+                {/* Hover Effect Overlay */}
+                <Box
+                  position="absolute"
+                  top={0}
+                  left={0}
+                  right={0}
+                  bottom={0}
+                  bg={`linear-gradient(135deg, ${chain.color}08, transparent)`}
+                  opacity={0}
+                  transition="opacity 0.3s ease"
+                  _groupHover={{ opacity: 1 }}
+                  pointerEvents="none"
+                />
               </Card.Root>
             ))}
           </Grid>
         </VStack>
 
-        {/* Network Analytics */}
-        <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6}>
-          <GridItem>
-            <Card.Root variant="subtle">
-              <Card.Body>
-                <VStack align="start" gap={4}>
-                  <HStack gap={3}>
-                    <Icon as={Activity} boxSize={6} color="success.500" />
-                    <Text fontSize="lg" fontWeight="semibold" color="fg">
-                      Network Performance
-                    </Text>
-                  </HStack>
-                  
-                  <VStack align="stretch" gap={3} w="full">
-                    <HStack justify="space-between">
-                      <Text fontSize="sm" color="fg.muted">
-                        Average Distribution:
-                      </Text>
-                      <Text fontSize="sm" fontWeight="medium" color="fg">
-                        {formatPercent(averageChainDistribution)}
-                      </Text>
-                    </HStack>
-                    
-                    <HStack justify="space-between">
-                      <Text fontSize="sm" color="fg.muted">
-                        Tokens per Network:
-                      </Text>
-                      <Text fontSize="sm" fontWeight="medium" color="fg">
-                        <FormatNumber value={averageTokensPerChain} maximumFractionDigits={0} />
-                      </Text>
-                    </HStack>
-                    
-                    <HStack justify="space-between">
-                      <Text fontSize="sm" color="fg.muted">
-                        Network Coverage:
-                      </Text>
-                      <Text fontSize="sm" fontWeight="medium" color="success.500">
-                        {((totalNetworkCoverage / 15) * 100).toFixed(0)}% of major chains
-                      </Text>
-                    </HStack>
-                  </VStack>
-                </VStack>
-              </Card.Body>
-            </Card.Root>
-          </GridItem>
+        <VStack align="start" gap={4}>
+          <HStack gap={3}>
+            <Icon as={Activity} boxSize={6} color="brand.500" />
+            <Text fontSize="lg" fontWeight="semibold" color="fg">
+              Network Summary
+            </Text>
+          </HStack>
 
-          <GridItem>
-            <Card.Root variant="subtle">
-              <Card.Body>
-                <VStack align="start" gap={4}>
-                  <HStack gap={3}>
-                    <Icon as={Zap} boxSize={6} color="warning.500" />
-                    <Text fontSize="lg" fontWeight="semibold" color="fg">
-                      Cross-Chain Benefits
-                    </Text>
-                  </HStack>
-                  
-                  <Text fontSize="sm" color="fg.muted" lineHeight="relaxed">
-                    • Enhanced liquidity across {chainDistribution.length} networks
-                    <br />
-                    • Reduced single-point-of-failure risk
-                    <br />
-                    • Optimized transaction costs and speeds
-                    <br />
-                    • Greater accessibility for global users
-                    <br />
-                    • Future-proof blockchain technology adoption
+          <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6} w="full">
+            <VStack align="start" gap={3}>
+              <Text fontSize="sm" fontWeight="medium" color="fg">
+                Key Metrics
+              </Text>
+              <VStack align="stretch" gap={2} w="full">
+                <HStack justify="space-between">
+                  <Text fontSize="sm" color="fg.muted">
+                    Active Networks:
                   </Text>
-                </VStack>
-              </Card.Body>
-            </Card.Root>
-          </GridItem>
-        </Grid>
+                  <Text fontSize="sm" fontWeight="medium" color="brand.500">
+                    {chainDistribution.length}
+                  </Text>
+                </HStack>
 
-        {/* Enhanced Footer */}
-        <Card.Root variant="subtle">
-          <Card.Body>
-            <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={6}>
-              <GridItem>
-                <VStack align="start" gap={2}>
-                  <Text fontSize="sm" fontWeight="semibold" color="fg">
-                    Network Security
+                <HStack justify="space-between">
+                  <Text fontSize="sm" color="fg.muted">
+                    Largest Network:
                   </Text>
-                  <Text fontSize="xs" color="fg.muted" lineHeight="relaxed">
-                    All supported networks undergo rigorous security assessments and maintain high standards for decentralization, consensus mechanisms, and validator integrity.
+                  <Text fontSize="sm" fontWeight="medium" color="fg">
+                    {dominantChain.name} ({formatPercent(dominantChain.value)})
                   </Text>
-                </VStack>
-              </GridItem>
+                </HStack>
+              </VStack>
+            </VStack>
 
-              <GridItem>
-                <VStack align="start" gap={2}>
-                  <Text fontSize="sm" fontWeight="semibold" color="fg">
-                    Interoperability
-                  </Text>
-                  <Text fontSize="xs" color="fg.muted" lineHeight="relaxed">
-                    Cross-chain bridges and protocols enable seamless asset transfers, providing users with flexibility while maintaining reserve backing across all networks.
-                  </Text>
-                </VStack>
-              </GridItem>
-
-              <GridItem>
-                <VStack align="start" gap={2}>
-                  <Text fontSize="sm" fontWeight="semibold" color="fg">
-                    Future Expansion
-                  </Text>
-                  <Text fontSize="xs" color="fg.muted" lineHeight="relaxed">
-                    Network selection is continuously evaluated based on adoption, security, and user demand to ensure optimal coverage and performance.
-                  </Text>
-                </VStack>
-              </GridItem>
-            </Grid>
-          </Card.Body>
-        </Card.Root>
+            <VStack align="start" gap={3}>
+              <Text fontSize="sm" fontWeight="medium" color="fg">
+                Benefits
+              </Text>
+              <VStack align="start" gap={1}>
+                <Text fontSize="sm" color="fg.muted">
+                  • Diversified risk across multiple chains
+                </Text>
+                <Text fontSize="sm" color="fg.muted">
+                  • Lower transaction costs
+                </Text>
+                <Text fontSize="sm" color="fg.muted">
+                  • Global accessibility
+                </Text>
+              </VStack>
+            </VStack>
+          </Grid>
+        </VStack>
       </VStack>
     </Box>
   );

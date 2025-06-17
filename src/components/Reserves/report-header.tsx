@@ -14,16 +14,17 @@ import {
   Image,
 } from '@chakra-ui/react';
 import AveniaLogo from '../Icons/Avenia';
-import { ArrowUpRightIcon, ChartLineIcon, CheckIcon, CoinsIcon, DatabaseBackupIcon } from 'lucide-react';
+import { ArrowUpRightIcon, ChartLineIcon, CheckIcon, CoinsIcon, DatabaseBackupIcon, InfoIcon } from 'lucide-react';
 import { ColorModeButton, useColorMode } from '../ui/color-mode';
 import TokenizaLogo from '../Icons/Tokeniza';
+import { Tooltip } from '../ui/tooltip';
 
 interface ReportHeaderProps {
   client: any;
   currency: string;
   companyName: string;
   dateAs: string;
-  heartbeat: string;
+  heartbeat?: string;
   dappLink: string;
   threshold: string;
   circulation: string;
@@ -41,7 +42,6 @@ export function ReportHeader({
   dateAs,
   heartbeat,
   dappLink,
-  threshold,
   circulation,
   reserves,
   ratio,
@@ -329,11 +329,13 @@ export function ReportHeader({
                   </Text>
 
                   {heartbeat && (
+                    <Tooltip content="The heartbeat is a timing rule that ensures updates happen at regular intervals. For example, with a 5-minute heartbeat, the system will attempt an update at least every 5 minutes—even without major changes. This prevents data staleness and detects delays or outages quickly.">  
                     <VStack align="start" gap={1}>
                       <Text fontSize="xs" fontWeight="medium">
-                        Heartbeat: {heartbeat}
+                        Heartbeat: {heartbeat} <Icon as={InfoIcon} boxSize={4} />
                       </Text>
                     </VStack>
+                    </Tooltip>
                   )}
                 </VStack>
               </VStack>

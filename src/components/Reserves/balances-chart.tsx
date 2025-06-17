@@ -1,21 +1,7 @@
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { formatLargeNumber } from '@/lib/utils';
-import {
-  Box,
-  VStack,
-  Text,
-  HStack,
-  Card,
-  Flex,
-  Badge,
-  Stat,
-  Progress,
-  useToken,
-  Separator,
-  Tag,
-} from '@chakra-ui/react';
+import { Box, VStack, Text, HStack, Card, Flex, Stat, Progress, Separator } from '@chakra-ui/react';
 import { useColorModeValue } from '../ui/color-mode';
-import { useTheme } from 'next-themes';
 
 export function BalancesChart({
   circulation,
@@ -178,7 +164,7 @@ export function BalancesChart({
             {((circulation / totalReserves) * 100).toFixed(1)}%
           </Text>
         </HStack>
-        <Progress.Root value={(circulation / totalReserves) * 100} colorPalette="brand" size="sm" colorPalette="brand">
+        <Progress.Root value={(circulation / totalReserves) * 100} colorPalette="brand" size="sm">
           <Progress.Track rounded="full">
             <Progress.Range rounded="full" />
           </Progress.Track>
@@ -187,19 +173,29 @@ export function BalancesChart({
 
       {/* Chart */}
       <Box h={300} w="full">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 20 }} barCategoryGap="25%">
-            <XAxis dataKey="name" axisLine={false} tickLine={false} fontSize={12} color="fg.muted" interval={0} />
+        <ResponsiveContainer width="100%" height="100%" minHeight="280px">
+          <BarChart data={data} margin={{ top: 40, right: 20, left: 20, bottom: 40 }} barCategoryGap="0%">
+            <XAxis
+              dataKey="name"
+              axisLine={false}
+              tickLine={false}
+              fontSize={12}
+              color="var(--ff-colors-gray-500)"
+              tick={{ fill: 'var(--ff-colors-gray-500)' }}
+              tickMargin={20}
+              interval={0}
+            />
             <YAxis
               tickFormatter={(value) => formatLargeNumber(value)}
               domain={[0, Math.max(circulation, totalReserves) * 1.1]}
               axisLine={false}
               tickLine={false}
               fontSize={12}
-              color="fg.muted"
+              color="var(--ff-colors-gray-500)"
+              tick={{ fill: 'var(--ff-colors-gray-500)' }}
               width={80}
             />
-            <Tooltip content={<CustomTooltip />} cursor={{ fill: 'gray.100', fillOpacity: 0.3 }} />
+            <Tooltip content={<CustomTooltip />} cursor={{ fill: 'black', fillOpacity: 0.1 }} />
 
             {/* Circulation bar */}
             <Bar dataKey="circulation" stackId="a" fill={colors.circulation} radius={[6, 6, 6, 6]} maxBarSize={120} />
@@ -218,7 +214,7 @@ export function BalancesChart({
       </Box>
 
       {/* Enhanced Legend */}
-      <Flex justify="center" gap={{ base: 4, md: 8 }} mt={6} wrap="wrap">
+      <Flex justify="center" gap={{ base: 4, md: 8 }} wrap="wrap">
         <HStack gap={2}>
           <Box w={3} h={3} rounded="full" bg={colors.circulation} shadow="sm" />
           <VStack align="start" gap={0}>

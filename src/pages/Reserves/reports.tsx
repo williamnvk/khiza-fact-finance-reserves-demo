@@ -227,7 +227,7 @@ export const Reports = () => {
       {loaded ? (
         <Box mt="72px">
           <Container maxW="7xl" px={4} py={8}>
-            <VStack w="full" gap={{ base: 4, md: 6 }}>
+            <VStack w="full" gap={{ base: 4, md: 6 }} align="stretch">
               <ReportHeader
                 client={client}
                 companyName={data.companyFullName}

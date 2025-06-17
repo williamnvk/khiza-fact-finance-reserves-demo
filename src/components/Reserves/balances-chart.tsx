@@ -182,7 +182,7 @@ export function BalancesChart({
       </VStack>
 
       {/* Progress indicator */}
-      <Box my={6} p={4} bg="whiteAlpha.50" borderRadius="lg" borderWidth="1px">
+      <Box mt={4} p={4} bg="whiteAlpha.50" borderRadius="lg" borderWidth="1px">
         <HStack justify="space-between" mb={2}>
           <Text fontSize="xs" color="fg.muted">
             Reserve Utilization

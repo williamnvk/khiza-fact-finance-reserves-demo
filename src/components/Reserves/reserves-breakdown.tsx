@@ -105,302 +105,6 @@ export function ReservesBreakdown({
     );
   };
 
-  const renderOverviewMode = () => (
-    <>
-      {/* Enhanced Key Metrics */}
-      <Grid templateColumns={{ base: '1fr', md: 'repeat(4, 1fr)' }} gap={4}>
-        <GridItem>
-          <Card.Root
-            size="sm"
-            bg="transparent"
-            borderWidth="1px"
-            borderColor="blackAlpha.200"
-            _dark={{
-              borderColor: 'whiteAlpha.200',
-            }}
-          >
-            <Card.Body>
-              <Stat.Root>
-                <Stat.Label fontSize="xs" color="fg.muted">
-                  Total Reserves<sup>4</sup>
-                </Stat.Label>
-                <Stat.ValueText fontSize="xl" fontWeight="bold" color="success.500">
-                  <FormatNumber value={reserves} style="currency" currency="USD" notation="compact" />
-                </Stat.ValueText>
-                <Stat.HelpText fontSize="xs" color="fg.muted">
-                  Fully Backed
-                </Stat.HelpText>
-              </Stat.Root>
-            </Card.Body>
-          </Card.Root>
-        </GridItem>
-
-        <GridItem>
-          <Card.Root
-            size="sm"
-            bg="transparent"
-            borderWidth="1px"
-            borderColor="blackAlpha.200"
-            _dark={{
-              borderColor: 'whiteAlpha.200',
-            }}
-          >
-            <Card.Body>
-              <Stat.Root>
-                <Stat.Label fontSize="xs" color="fg.muted">
-                  Tokens Issued<sup>5</sup>
-                </Stat.Label>
-                <Stat.ValueText fontSize="xl" fontWeight="bold" color="brand.500">
-                  <FormatNumber value={issued} style="currency" currency="USD" notation="compact" />
-                </Stat.ValueText>
-                <Stat.HelpText fontSize="xs" color="fg.muted">
-                  In Circulation
-                </Stat.HelpText>
-              </Stat.Root>
-            </Card.Body>
-          </Card.Root>
-        </GridItem>
-
-        <GridItem>
-          <Card.Root
-            size="sm"
-            bg="transparent"
-            borderWidth="1px"
-            borderColor="blackAlpha.200"
-            _dark={{
-              borderColor: 'whiteAlpha.200',
-            }}
-          >
-            <Card.Body>
-              <Stat.Root>
-                <Stat.Label fontSize="xs" color="fg.muted">
-                  Available Balance<sup>6</sup>
-                </Stat.Label>
-                <Stat.ValueText fontSize="xl" fontWeight="bold" color={balance >= 0 ? 'success.500' : 'error.500'}>
-                  <FormatNumber value={Math.abs(balance)} style="currency" currency="USD" notation="compact" />
-                </Stat.ValueText>
-                <Stat.HelpText fontSize="xs" color="fg.muted">
-                  {balance >= 0 ? 'Surplus' : 'Deficit'}
-                </Stat.HelpText>
-              </Stat.Root>
-            </Card.Body>
-          </Card.Root>
-        </GridItem>
-
-        <GridItem>
-          <Card.Root
-            size="sm"
-            bg="transparent"
-            borderWidth="1px"
-            borderColor="blackAlpha.200"
-            _dark={{
-              borderColor: 'whiteAlpha.200',
-            }}
-          >
-            <Card.Body>
-              <Stat.Root>
-                <Stat.Label fontSize="xs" color="fg.muted">
-                  Collateral Ratio
-                </Stat.Label>
-                <Stat.ValueText
-                  fontSize="xl"
-                  fontWeight="bold"
-                  color={isOverCollateralized ? 'success.500' : 'error.500'}
-                >
-                  <FormatNumber value={collateralizationRatio} style="percent" maximumFractionDigits={1} />
-                </Stat.ValueText>
-                <Stat.HelpText fontSize="xs" color="fg.muted">
-                  {isOverCollateralized ? 'Over-collateralized' : 'Under-collateralized'}
-                </Stat.HelpText>
-              </Stat.Root>
-            </Card.Body>
-          </Card.Root>
-        </GridItem>
-      </Grid>
-
-      {/* Collateralization Progress */}
-      <Card.Root>
-        <Card.Body>
-          <VStack align="stretch" gap={4}>
-            <HStack justify="space-between">
-              <Text fontSize="lg" fontWeight="semibold">
-                Reserve Health
-              </Text>
-              <Badge colorPalette={collateralizationRatio >= 100 ? 'success' : 'error'}>
-                {collateralizationRatio >= 100 ? 'Healthy' : 'Needs Attention'}
-              </Badge>
-            </HStack>
-
-            <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6}>
-              <GridItem>
-                <VStack align="stretch" gap={3}>
-                  <Text fontSize="sm" color="fg.muted">
-                    Collateralization Progress
-                  </Text>
-                  <Progress.Root
-                    value={Math.min(collateralizationRatio, 150)}
-                    max={150}
-                    colorPalette={collateralizationRatio >= 100 ? 'success' : 'error'}
-                    size="lg"
-                  >
-                    <Progress.Track rounded="full">
-                      <Progress.Range rounded="full" />
-                    </Progress.Track>
-                  </Progress.Root>
-                  <HStack justify="space-between" fontSize="xs" color="fg.muted">
-                    <Text>0%</Text>
-                    <Text fontWeight="medium" color="fg">
-                      {collateralizationRatio.toFixed(1)}%
-                    </Text>
-                    <Text>150%+</Text>
-                  </HStack>
-                </VStack>
-              </GridItem>
-
-              <GridItem>
-                <VStack align="stretch" gap={3}>
-                  <Text fontSize="sm" color="fg.muted">
-                    Reserve Utilization
-                  </Text>
-                  <Progress.Root value={(issued / reserves) * 100} colorPalette="brand" size="lg">
-                    <Progress.Track rounded="full">
-                      <Progress.Range rounded="full" />
-                    </Progress.Track>
-                  </Progress.Root>
-                  <HStack justify="space-between" fontSize="xs" color="fg.muted">
-                    <Text>0%</Text>
-                    <Text fontWeight="medium" color="fg">
-                      {((issued / reserves) * 100).toFixed(1)}%
-                    </Text>
-                    <Text>100%</Text>
-                  </HStack>
-                </VStack>
-              </GridItem>
-            </Grid>
-          </VStack>
-        </Card.Body>
-      </Card.Root>
-    </>
-  );
-
-  const renderDistributionMode = () => (
-    <>
-      <Grid templateColumns={{ base: '1fr', lg: '1fr 1fr' }} gap={6}>
-        {/* Pie Chart */}
-        <GridItem>
-          <Card.Root variant="elevated">
-            <Card.Header>
-              <Card.Title>Asset Distribution</Card.Title>
-            </Card.Header>
-            <Card.Body>
-              <Box h={300}>
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie
-                      data={chartData}
-                      cx="50%"
-                      cy="50%"
-                      innerRadius={60}
-                      outerRadius={120}
-                      dataKey="value"
-                      stroke="none"
-                    >
-                      {chartData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.color} />
-                      ))}
-                    </Pie>
-                    <Tooltip content={<CustomTooltip />} />
-                  </PieChart>
-                </ResponsiveContainer>
-              </Box>
-            </Card.Body>
-          </Card.Root>
-        </GridItem>
-
-        {/* Asset Details */}
-        <GridItem>
-          <Card.Root variant="elevated">
-            <Card.Header>
-              <Card.Title>Asset Breakdown</Card.Title>
-            </Card.Header>
-            <Card.Body>
-              <VStack align="stretch" gap={4}>
-                {chartData.map((asset, index) => (
-                  <Box key={asset.name}>
-                    <HStack justify="space-between" mb={2}>
-                      <HStack gap={3}>
-                        <ColorSwatch boxSize="4" value={asset.color} />
-                        <VStack align="start" gap={0}>
-                          <Text fontSize="sm" fontWeight="medium">
-                            {asset.name}
-                          </Text>
-                          <Text fontSize="xs" color="fg.muted">
-                            {asset.type}
-                          </Text>
-                        </VStack>
-                      </HStack>
-                      <VStack align="end" gap={0}>
-                        <Text fontSize="sm" fontWeight="semibold">
-                          <FormatNumber value={asset.value} style="currency" currency="USD" />
-                        </Text>
-                        <Text fontSize="xs" color="fg.muted">
-                          {asset.percentage}%
-                        </Text>
-                      </VStack>
-                    </HStack>
-                    <Progress.Root value={parseFloat(asset.percentage)} size="sm" colorPalette="gray">
-                      <Progress.Track>
-                        <Progress.Range style={{ backgroundColor: asset.color }} />
-                      </Progress.Track>
-                    </Progress.Root>
-                    {index < chartData.length - 1 && <Separator mt={3} />}
-                  </Box>
-                ))}
-              </VStack>
-            </Card.Body>
-          </Card.Root>
-        </GridItem>
-      </Grid>
-    </>
-  );
-
-  const renderTrendsMode = () => (
-    <Card.Root variant="elevated">
-      <Card.Header>
-        <Card.Title>Asset Performance Trends</Card.Title>
-      </Card.Header>
-      <Card.Body>
-        <Box h={400}>
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-              <XAxis
-                dataKey="name"
-                axisLine={false}
-                tickLine={false}
-                fontSize={12}
-                angle={-45}
-                textAnchor="end"
-                height={100}
-              />
-              <YAxis
-                axisLine={false}
-                tickLine={false}
-                fontSize={12}
-                tickFormatter={(value) => formatLargeNumber(value)}
-              />
-              <Tooltip content={<CustomTooltip />} />
-              <Bar dataKey="value" radius={[4, 4, 0, 0]}>
-                {chartData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={entry.color} />
-                ))}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
-        </Box>
-      </Card.Body>
-    </Card.Root>
-  );
-
   return (
     <Box
       position="relative"
@@ -412,44 +116,238 @@ export function ReservesBreakdown({
       overflow="hidden"
       p={{ base: 4, md: 6, lg: 8 }}
     >
-      <VStack align="stretch" gap={6}>
-        {/* Enhanced Header */}
-        <Flex justify="space-between" align="start" direction={{ base: 'column', md: 'row' }} gap={4}>
-          <VStack align="start" gap={2} flex={1} w="full">
-            <HStack gap={3}>
-              <Text fontSize="2xl" fontWeight="bold" color="fg">
-                Monthly Reserves Report
-              </Text>
-              <Badge colorPalette="brand" size="sm">
-                {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
-              </Badge>
-            </HStack>
-            <Text fontSize="sm" color="fg.muted" lineHeight="tall">
-              This comprehensive report<sup>1</sup> provides transparency into {companyName}'s asset reserves, including
-              real-time metrics, distribution analysis, and regulatory compliance data.
+      <VStack align="stretch" gap={4}>
+        <VStack align="start" gap={2} flex={1} w="full">
+          <HStack gap={3}>
+            <Text fontSize="2xl" fontWeight="bold" color="fg">
+              Monthly Reserves Report
             </Text>
-          </VStack>
+            <Badge colorPalette="brand" size="sm">
+              {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+            </Badge>
+          </HStack>
+          <Text fontSize="sm" color="fg.muted" lineHeight="tall">
+            This comprehensive report<sup>1</sup> provides transparency into {companyName}'s asset reserves, including
+            real-time metrics, distribution analysis, and regulatory compliance data.
+          </Text>
+        </VStack>
 
-          {/* View Mode Selector */}
-          <ButtonGroup size="sm" attached variant="outline">
-            {(['overview', 'distribution', 'trends'] as ViewMode[]).map((mode) => (
-              <Button
-                key={mode}
-                onClick={() => setViewMode(mode)}
-                colorPalette={viewMode === mode ? 'brand' : 'gray'}
-                variant={viewMode === mode ? 'solid' : 'outline'}
-                textTransform="capitalize"
+        <Card.Root>
+          <Card.Header>
+            <Card.Title>Asset Breakdown</Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <VStack align="stretch" gap={4}>
+              {chartData.map((asset, index) => (
+                <Box key={asset.name}>
+                  <HStack justify="space-between" mb={2}>
+                    <HStack gap={3}>
+                      <ColorSwatch boxSize="4" value={asset.color} />
+                      <VStack align="start" gap={0}>
+                        <Text fontSize="sm" fontWeight="medium">
+                          {asset.name}
+                        </Text>
+                        <Text fontSize="xs" color="fg.muted">
+                          {asset.type}
+                        </Text>
+                      </VStack>
+                    </HStack>
+                    <VStack align="end" gap={0}>
+                      <Text fontSize="sm" fontWeight="semibold">
+                        <FormatNumber value={asset.value} style="currency" currency="USD" />
+                      </Text>
+                      <Text fontSize="xs" color="fg.muted">
+                        {asset.percentage}%
+                      </Text>
+                    </VStack>
+                  </HStack>
+                  <Progress.Root value={parseFloat(asset.percentage)} size="sm" colorPalette="gray">
+                    <Progress.Track>
+                      <Progress.Range style={{ backgroundColor: asset.color }} />
+                    </Progress.Track>
+                  </Progress.Root>
+                  {index < chartData.length - 1 && <Separator mt={3} />}
+                </Box>
+              ))}
+            </VStack>
+          </Card.Body>
+        </Card.Root>
+
+        <>
+          {/* Enhanced Key Metrics */}
+          <Grid templateColumns={{ base: '1fr', md: 'repeat(4, 1fr)' }} gap={4}>
+            <GridItem>
+              <Card.Root
+                size="sm"
+                bg="transparent"
+                borderWidth="1px"
+                borderColor="blackAlpha.200"
+                _dark={{
+                  borderColor: 'whiteAlpha.200',
+                }}
               >
-                {mode}
-              </Button>
-            ))}
-          </ButtonGroup>
-        </Flex>
+                <Card.Body>
+                  <Stat.Root>
+                    <Stat.Label fontSize="xs" color="fg.muted">
+                      Total Reserves<sup>4</sup>
+                    </Stat.Label>
+                    <Stat.ValueText fontSize="xl" fontWeight="bold" color="success.500">
+                      <FormatNumber value={reserves} style="currency" currency="USD" notation="compact" />
+                    </Stat.ValueText>
+                    <Stat.HelpText fontSize="xs" color="fg.muted">
+                      Fully Backed
+                    </Stat.HelpText>
+                  </Stat.Root>
+                </Card.Body>
+              </Card.Root>
+            </GridItem>
 
-        {/* Dynamic Content Based on View Mode */}
-        {viewMode === 'overview' && renderOverviewMode()}
-        {viewMode === 'distribution' && renderDistributionMode()}
-        {viewMode === 'trends' && renderTrendsMode()}
+            <GridItem>
+              <Card.Root
+                size="sm"
+                bg="transparent"
+                borderWidth="1px"
+                borderColor="blackAlpha.200"
+                _dark={{
+                  borderColor: 'whiteAlpha.200',
+                }}
+              >
+                <Card.Body>
+                  <Stat.Root>
+                    <Stat.Label fontSize="xs" color="fg.muted">
+                      Tokens Issued<sup>5</sup>
+                    </Stat.Label>
+                    <Stat.ValueText fontSize="xl" fontWeight="bold" color="brand.500">
+                      <FormatNumber value={issued} style="currency" currency="USD" notation="compact" />
+                    </Stat.ValueText>
+                    <Stat.HelpText fontSize="xs" color="fg.muted">
+                      In Circulation
+                    </Stat.HelpText>
+                  </Stat.Root>
+                </Card.Body>
+              </Card.Root>
+            </GridItem>
+
+            <GridItem>
+              <Card.Root
+                size="sm"
+                bg="transparent"
+                borderWidth="1px"
+                borderColor="blackAlpha.200"
+                _dark={{
+                  borderColor: 'whiteAlpha.200',
+                }}
+              >
+                <Card.Body>
+                  <Stat.Root>
+                    <Stat.Label fontSize="xs" color="fg.muted">
+                      Available Balance<sup>6</sup>
+                    </Stat.Label>
+                    <Stat.ValueText fontSize="xl" fontWeight="bold" color={balance >= 0 ? 'success.500' : 'error.500'}>
+                      <FormatNumber value={Math.abs(balance)} style="currency" currency="USD" notation="compact" />
+                    </Stat.ValueText>
+                    <Stat.HelpText fontSize="xs" color="fg.muted">
+                      {balance >= 0 ? 'Surplus' : 'Deficit'}
+                    </Stat.HelpText>
+                  </Stat.Root>
+                </Card.Body>
+              </Card.Root>
+            </GridItem>
+
+            <GridItem>
+              <Card.Root
+                size="sm"
+                bg="transparent"
+                borderWidth="1px"
+                borderColor="blackAlpha.200"
+                _dark={{
+                  borderColor: 'whiteAlpha.200',
+                }}
+              >
+                <Card.Body>
+                  <Stat.Root>
+                    <Stat.Label fontSize="xs" color="fg.muted">
+                      Collateral Ratio
+                    </Stat.Label>
+                    <Stat.ValueText
+                      fontSize="xl"
+                      fontWeight="bold"
+                      color={isOverCollateralized ? 'success.500' : 'error.500'}
+                    >
+                      <FormatNumber value={collateralizationRatio} style="percent" maximumFractionDigits={1} />
+                    </Stat.ValueText>
+                    <Stat.HelpText fontSize="xs" color="fg.muted">
+                      {isOverCollateralized ? 'Over-collateralized' : 'Under-collateralized'}
+                    </Stat.HelpText>
+                  </Stat.Root>
+                </Card.Body>
+              </Card.Root>
+            </GridItem>
+          </Grid>
+
+          {/* Collateralization Progress */}
+          <Card.Root>
+            <Card.Body>
+              <VStack align="stretch" gap={4}>
+                <HStack justify="space-between">
+                  <Text fontSize="lg" fontWeight="semibold">
+                    Reserve Health
+                  </Text>
+                  <Badge colorPalette={collateralizationRatio >= 100 ? 'success' : 'error'}>
+                    {collateralizationRatio >= 100 ? 'Healthy' : 'Needs Attention'}
+                  </Badge>
+                </HStack>
+
+                <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6}>
+                  <GridItem>
+                    <VStack align="stretch" gap={3}>
+                      <Text fontSize="sm" color="fg.muted">
+                        Collateralization Progress
+                      </Text>
+                      <Progress.Root
+                        value={Math.min(collateralizationRatio, 150)}
+                        max={150}
+                        colorPalette={collateralizationRatio >= 100 ? 'success' : 'error'}
+                        size="lg"
+                      >
+                        <Progress.Track rounded="full">
+                          <Progress.Range rounded="full" />
+                        </Progress.Track>
+                      </Progress.Root>
+                      <HStack justify="space-between" fontSize="xs" color="fg.muted">
+                        <Text>0%</Text>
+                        <Text fontWeight="medium" color="fg">
+                          {collateralizationRatio.toFixed(1)}%
+                        </Text>
+                        <Text>150%+</Text>
+                      </HStack>
+                    </VStack>
+                  </GridItem>
+
+                  <GridItem>
+                    <VStack align="stretch" gap={3}>
+                      <Text fontSize="sm" color="fg.muted">
+                        Reserve Utilization
+                      </Text>
+                      <Progress.Root value={(issued / reserves) * 100} colorPalette="brand" size="lg">
+                        <Progress.Track rounded="full">
+                          <Progress.Range rounded="full" />
+                        </Progress.Track>
+                      </Progress.Root>
+                      <HStack justify="space-between" fontSize="xs" color="fg.muted">
+                        <Text>0%</Text>
+                        <Text fontWeight="medium" color="fg">
+                          {((issued / reserves) * 100).toFixed(1)}%
+                        </Text>
+                        <Text>100%</Text>
+                      </HStack>
+                    </VStack>
+                  </GridItem>
+                </Grid>
+              </VStack>
+            </Card.Body>
+          </Card.Root>
+        </>
 
         {/* Enhanced Footer */}
         <Card.Root variant="subtle">

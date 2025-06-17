@@ -11,7 +11,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
 import { Box, Container, Grid, Text } from '@chakra-ui/react';
-import { ColorModeButton, ColorModeProvider } from '@/components/ui/color-mode';
+import { ColorModeProvider } from '@/components/ui/color-mode';
 
 const FOOTNOTES = [
   {
@@ -85,6 +85,8 @@ type average = {
 type Data = {
   threshold: string;
   heartbeat: string;
+  contractLink?: string;
+  contract?: string;
   chainDistribution: ChainItem[];
   assetDistribution: AssettItem[];
   logo: string;
@@ -207,15 +209,29 @@ export const Reports = () => {
 
   return (
     <ColorModeProvider>
-    
+      <Box
+        position="absolute"
+        top="0%"
+        left="0%"
+        transform="translate(-50%, -50%)"
+        w="100vw"
+        h="100vh"
+        bg="radial-gradient(circle, {colors.brand.300} 0%, {colors.brand.200} 25%, rgba(0,0,0,.1) 100%)"
+        _dark={{
+          bg: 'radial-gradient(circle, {colors.brand.900} 0%, {colors.brand.900} 25%, rgba(0,0,0,.5) 100%)',
+        }}
+        filter="blur(200px)"
+        zIndex={0}
+      />
+
       {loaded ? (
-        <Box mt="72px">  <ColorModeButton />
+        <Box mt="72px">
           <Container maxW="7xl" px={4} py={8}>
             <ReportHeader
+              client={client}
               companyName={data.companyFullName}
-              contractLink=""
-              contract=""
-              logo={data.logo}
+              contractLink={data.contractLink}
+              contract={data.contract}
               description={data.description}
               circulation={formatLargeNumber(data.last.circulation)}
               currency={data.currency}

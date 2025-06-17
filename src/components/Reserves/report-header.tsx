@@ -1,5 +1,3 @@
-import { Card } from '@/components/ui/card';
-import { Link } from 'react-router';
 import {
   Box,
   VStack,
@@ -10,14 +8,18 @@ import {
   Grid,
   GridItem,
   Link as ChakraLink,
-  Container,
   Heading,
-  Separator,
   Icon,
+  Tag,
+  Image,
 } from '@chakra-ui/react';
 import AveniaLogo from '../Icons/Avenia';
+import { ArrowUpRightIcon, ChartLineIcon, CheckIcon, CoinsIcon, DatabaseBackupIcon } from 'lucide-react';
+import { ColorModeButton, useColorMode } from '../ui/color-mode';
+import TokenizaLogo from '../Icons/Tokeniza';
 
 interface ReportHeaderProps {
+  client: any;
   currency: string;
   companyName: string;
   dateAs: string;
@@ -28,12 +30,12 @@ interface ReportHeaderProps {
   reserves: string;
   ratio: string;
   description: string;
-  logo: string;
-  contract: string;
-  contractLink: string;
+  contract?: string;
+  contractLink?: string;
 }
 
 export function ReportHeader({
+  client,
   currency,
   companyName,
   dateAs,
@@ -44,548 +46,299 @@ export function ReportHeader({
   reserves,
   ratio,
   description,
-  logo,
   contract,
   contractLink,
 }: ReportHeaderProps) {
+  // Calculate ratio as percentage for progress bar
+  const ratioPercentage = parseFloat(ratio.replace('%', ''));
+  const isHealthy = ratioPercentage >= 100;
+  const { colorMode } = useColorMode();
+
   return (
     <Box
       position="relative"
+      bg={client === 'scenium' ? 'whiteAlpha.600' : 'whiteAlpha.50'}
+      _dark={{ bg: 'whiteAlpha.50' }}
+      borderRadius="3xl"
+      shadow="2xl"
+      borderWidth="1px"
+      borderColor="whiteAlpha.200"
       overflow="hidden"
-      bgGradient="to-br"
-      gradientFrom="gray.50"
-      gradientTo="gray.100"
-      _dark={{
-        bgGradient: 'to-br',
-        gradientFrom: 'gray.900',
-        gradientTo: 'gray.800',
-      }}
-      rounded="2xl"
-      shadow="xl"
-      _before={{
-        content: '""',
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        bgGradient: 'to-br',
-        gradientFrom: 'brand.500/5',
-        gradientTo: 'brand.600/10',
-        _dark: {
-          gradientFrom: 'brand.400/10',
-          gradientTo: 'brand.500/20',
-        },
-        zIndex: 0,
-      }}
     >
-      {/* Animated Background Pattern */}
-      <Box
-        position="absolute"
-        top={0}
-        right={0}
-        width="200px"
-        height="200px"
-        bgGradient="to-br"
-        gradientFrom="brand.400/20"
-        gradientTo="brand.600/30"
-        rounded="full"
-        filter="blur(40px)"
-        transform="translate(50%, -50%)"
-        zIndex={0}
-      />
-
-      <Box position="relative" zIndex={1} p={{ base: 6, md: 8, lg: 10 }}>
-        <Grid
-          templateColumns={{ base: '1fr', lg: '1fr 1.5fr' }}
-          gap={{ base: 8, lg: 12 }}
-          alignItems="start"
+      <Box position="relative" p={{ base: 4, md: 6, lg: 8 }}>
+        <Box position="absolute" top={6} right={6}>
+          <ColorModeButton />
+        </Box>
+        <Flex
+          direction={{ base: 'column', lg: 'row' }}
+          justify="space-between"
+          align={{ base: 'start', lg: 'center' }}
+          gap={12}
+          mb={{ base: 4, md: 6, lg: 8 }}
         >
-          {/* Company Information */}
-          <VStack align="start" gap={6}>
-            <Box>
-              <Box 
-                transform="scale(1)"
-                transition="all 0.3s ease"
-                _hover={{ transform: 'scale(1.02)' }}
+          <Box>
+            {client === 'avenia' && (
+              <AveniaLogo fill={colorMode === 'dark' ? 'white' : 'black'} width={180} height={45} />
+            )}
+            {client === 'tokeniza' && (
+              <TokenizaLogo fill={colorMode === 'dark' ? 'white' : 'black'} width={180} height={45} />
+            )}
+            {client === 'scenium' && <Image src="/assets/logos/scenium.png" alt="Scenium" width={180} height={45} />}
+          </Box>
+
+          <VStack align="start" gap={4}>
+            <HStack gap={3} align="center" flexWrap="wrap">
+              <Heading size="2xl" color="gray.900" _dark={{ color: 'white' }} fontWeight="800" letterSpacing="-0.03em">
+                {companyName}
+              </Heading>
+              <Badge
+                colorPalette="success"
+                variant="solid"
+                size="sm"
+                rounded="full"
+                display="flex"
+                alignItems="center"
+                gap={2}
+                fontWeight="bold"
+                fontSize="xs"
               >
-                <AveniaLogo width={200} height={50} />
-              </Box>
-              
-              <HStack mt={4} align="center" gap={3} flexWrap="wrap">
-                <Heading 
-                  size="xl" 
-                  color="gray.800" 
-                  _dark={{ color: 'gray.100' }}
-                  fontWeight="bold"
-                  letterSpacing="-0.02em"
-                >
-                  {companyName}
-                </Heading>
-                <Badge
-                  colorPalette="green"
-                  variant="subtle"
-                  fontSize="xs"
-                  px={3}
-                  py={1}
-                  rounded="full"
+                <Box width={2} height={2} bg="white" rounded="full" animation="pulse 2s infinite" />
+                LIVE
+              </Badge>
+            </HStack>
+
+            <Text fontSize="sm">{description}</Text>
+
+            {/* Action Buttons */}
+            <HStack gap={3} align="stretch" minW="200px">
+              {dappLink && (
+                <ChakraLink
+                  href={dappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   display="flex"
                   alignItems="center"
-                  gap={1}
-                  fontWeight="semibold"
-                  shadow="sm"
                 >
-                  <Box
-                    width={2}
-                    height={2}
-                    bg="green.500"
-                    rounded="full"
-                    animation="pulse 2s infinite"
-                  />
-                  Verified
-                </Badge>
-              </HStack>
-            </Box>
+                  <Text>Launch dApp</Text>
+                  <Icon as={ArrowUpRightIcon} />
+                </ChakraLink>
+              )}
 
-            <VStack align="start" gap={4} maxW="400px">
-              <Text 
-                color="gray.700" 
-                _dark={{ color: 'gray.300' }} 
-                lineHeight="1.7"
-                fontSize="sm"
-                fontWeight="medium"
-              >
-                {description}
-              </Text>
-
-              <VStack align="start" gap={3} width="full">
-                {dappLink && (
-                  <ChakraLink
-                    href={dappLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    display="flex"
-                    alignItems="center"
-                    gap={2}
-                    px={4}
-                    py={2}
-                    bg="brand.50"
-                    color="brand.600"
-                    rounded="lg"
-                    fontSize="sm"
-                    fontWeight="semibold"
-                    transition="all 0.2s ease"
-                    border="1px solid"
-                    borderColor="brand.200"
-                    _dark={{ 
-                      bg: 'brand.900/30', 
-                      color: 'brand.300', 
-                      borderColor: 'brand.700' 
-                    }}
-                    _hover={{
-                      bg: 'brand.100',
-                      transform: 'translateY(-1px)',
-                      shadow: 'md',
-                      _dark: { bg: 'brand.800/50' },
-                    }}
-                  >
-                    <Text>🚀</Text>
-                    <Text>Access dApp</Text>
-                    <Box
-                      transition="transform 0.2s ease"
-                      _groupHover={{ transform: 'translate(2px, -2px)' }}
-                    >
-                      ↗
-                    </Box>
-                  </ChakraLink>
-                )}
-
-                {contract && (
-                  <ChakraLink
-                    href={contractLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    display="flex"
-                    alignItems="center"
-                    gap={2}
-                    px={4}
-                    py={2}
-                    bg="gray.50"
-                    color="gray.600"
-                    rounded="lg"
-                    fontSize="xs"
-                    transition="all 0.2s ease"
-                    border="1px solid"
-                    borderColor="gray.200"
-                    _dark={{ 
-                      bg: 'gray.800', 
-                      color: 'gray.400', 
-                      borderColor: 'gray.700' 
-                    }}
-                    _hover={{
-                      bg: 'gray.100',
-                      color: 'brand.600',
-                      transform: 'translateY(-1px)',
-                      shadow: 'sm',
-                      _dark: { 
-                        bg: 'gray.700', 
-                        color: 'brand.400' 
-                      },
-                    }}
-                  >
-                    <Text>📄</Text>
-                    <Text fontWeight="medium">Contract: {contract.slice(0, 8)}...{contract.slice(-6)}</Text>
-                    <Box fontSize="xs">↗</Box>
-                  </ChakraLink>
-                )}
-              </VStack>
-            </VStack>
+              {contract && (
+                <ChakraLink href={contractLink} target="_blank" rel="noopener noreferrer">
+                  View Contract
+                </ChakraLink>
+              )}
+            </HStack>
           </VStack>
+        </Flex>
 
-          {/* Metrics Section */}
-          <VStack align="stretch" gap={6}>
-            {/* Key Metrics Grid */}
-            <Grid templateColumns="repeat(3, 1fr)" gap={4}>
-              {/* Issued Tokens */}
-              <GridItem>
-                <Box
-                  p={5}
-                  bg="white/60"
-                  backdropFilter="blur(10px)"
-                  borderRadius="xl"
-                  border="1px solid"
-                  borderColor="gray.200/50"
-                  shadow="lg"
-                  transition="all 0.3s ease"
-                  position="relative"
-                  overflow="hidden"
-                  _dark={{ 
-                    bg: 'gray.800/60',
-                    borderColor: 'gray.700/50' 
-                  }}
-                  _hover={{
-                    transform: 'translateY(-2px)',
-                    shadow: 'xl',
-                    bg: 'white/80',
-                    _dark: { bg: 'gray.700/80' },
-                  }}
-                >
-                  {/* Icon background */}
-                  <Box
-                    position="absolute"
-                    top={-2}
-                    right={-2}
-                    fontSize="3xl"
-                    opacity={0.1}
-                    color="blue.500"
-                  >
-                    🪙
-                  </Box>
-                  
-                  <VStack align="center" gap={3} position="relative">
-                    <HStack gap={2} align="center">
-                      <Text fontSize="lg">💎</Text>
-                      <Text 
-                        fontSize="xs" 
-                        fontWeight="bold" 
-                        color="gray.600" 
-                        textAlign="center" 
-                        textTransform="uppercase" 
-                        letterSpacing="wider"
-                        _dark={{ color: 'gray.400' }}
-                      >
-                        Issued Tokens
-                      </Text>
-                    </HStack>
-                    <VStack gap={1}>
-                      <Text 
-                        fontSize="2xl" 
-                        fontWeight="bold" 
-                        color="blue.600"
-                        _dark={{ color: 'blue.400' }}
-                      >
-                        {circulation}
-                      </Text>
-                      <Text 
-                        fontSize="xs" 
-                        color="gray.500" 
-                        fontWeight="medium"
-                        _dark={{ color: 'gray.500' }}
-                      >
-                        {currency}
-                      </Text>
-                    </VStack>
-                  </VStack>
-                </Box>
-              </GridItem>
-
-              {/* Total Reserves */}
-              <GridItem>
-                <Box
-                  p={5}
-                  bg="white/60"
-                  backdropFilter="blur(10px)"
-                  borderRadius="xl"
-                  border="1px solid"
-                  borderColor="gray.200/50"
-                  shadow="lg"
-                  transition="all 0.3s ease"
-                  position="relative"
-                  overflow="hidden"
-                  _dark={{ 
-                    bg: 'gray.800/60',
-                    borderColor: 'gray.700/50' 
-                  }}
-                  _hover={{
-                    transform: 'translateY(-2px)',
-                    shadow: 'xl',
-                    bg: 'white/80',
-                    _dark: { bg: 'gray.700/80' },
-                  }}
-                >
-                  {/* Icon background */}
-                  <Box
-                    position="absolute"
-                    top={-2}
-                    right={-2}
-                    fontSize="3xl"
-                    opacity={0.1}
-                    color="purple.500"
-                  >
-                    🏦
-                  </Box>
-                  
-                  <VStack align="center" gap={3} position="relative">
-                    <HStack gap={2} align="center">
-                      <Text fontSize="lg">🔒</Text>
-                      <Text 
-                        fontSize="xs" 
-                        fontWeight="bold" 
-                        color="gray.600" 
-                        textAlign="center" 
-                        textTransform="uppercase" 
-                        letterSpacing="wider"
-                        _dark={{ color: 'gray.400' }}
-                      >
-                        Total Reserves
-                      </Text>
-                    </HStack>
-                    <VStack gap={1}>
-                      <Text 
-                        fontSize="2xl" 
-                        fontWeight="bold" 
-                        color="purple.600"
-                        _dark={{ color: 'purple.400' }}
-                      >
-                        {reserves}
-                      </Text>
-                      <Text 
-                        fontSize="xs" 
-                        color="gray.500" 
-                        fontWeight="medium"
-                        _dark={{ color: 'gray.500' }}
-                      >
-                        {currency}
-                      </Text>
-                    </VStack>
-                  </VStack>
-                </Box>
-              </GridItem>
-
-              {/* Collateral Ratio */}
-              <GridItem>
-                <Box
-                  p={5}
-                  bgGradient="to-br"
-                  gradientFrom="green.50"
-                  gradientTo="green.100"
-                  backdropFilter="blur(10px)"
-                  borderRadius="xl"
-                  border="1px solid"
-                  borderColor="green.200"
-                  shadow="lg"
-                  transition="all 0.3s ease"
-                  position="relative"
-                  overflow="hidden"
-                  _dark={{
-                    gradientFrom: 'green.900/30',
-                    gradientTo: 'green.800/50',
-                    borderColor: 'green.700/50'
-                  }}
-                  _hover={{
-                    transform: 'translateY(-2px)',
-                    shadow: 'xl',
-                    gradientFrom: 'green.100',
-                    gradientTo: 'green.200',
-                    _dark: {
-                      gradientFrom: 'green.800/50',
-                      gradientTo: 'green.700/70',
-                    },
-                  }}
-                >
-                  {/* Success glow effect */}
-                  <Box
-                    position="absolute"
-                    top={0}
-                    left={0}
-                    right={0}
-                    bottom={0}
-                    bg="green.400/10"
-                    rounded="xl"
-                    filter="blur(20px)"
-                  />
-                  
-                  {/* Icon background */}
-                  <Box
-                    position="absolute"
-                    top={-2}
-                    right={-2}
-                    fontSize="3xl"
-                    opacity={0.1}
-                    color="green.500"
-                  >
-                    📊
-                  </Box>
-                  
-                  <VStack align="center" gap={3} position="relative">
-                    <HStack gap={2} align="center">
-                      <Text fontSize="lg">⚡</Text>
-                      <Text 
-                        fontSize="xs" 
-                        fontWeight="bold" 
-                        color="green.700" 
-                        textAlign="center" 
-                        textTransform="uppercase" 
-                        letterSpacing="wider"
-                        _dark={{ color: 'green.300' }}
-                      >
-                        Collateral Ratio
-                      </Text>
-                    </HStack>
-                    <Text 
-                      fontSize="2xl" 
-                      fontWeight="bold" 
-                      color="green.600"
-                      _dark={{ color: 'green.400' }}
-                    >
-                      {ratio}
-                    </Text>
-                  </VStack>
-                </Box>
-              </GridItem>
-            </Grid>
-
-            {/* Enhanced Metadata Section */}
+        {/* Metrics Dashboard */}
+        <Grid
+          templateColumns={{
+            base: '1fr',
+            md: 'repeat(2, 1fr)',
+            lg: 'repeat(4, 1fr)',
+          }}
+          gap={6}
+          mb={8}
+        >
+          {/* Issued Tokens Card */}
+          <GridItem>
             <Box
-              p={5}
-              bg="white/40"
-              backdropFilter="blur(10px)"
-              borderRadius="xl"
-              border="1px solid"
-              borderColor="gray.200/50"
-              shadow="sm"
-              _dark={{ 
-                bg: 'gray.800/40',
-                borderColor: 'gray.700/50' 
+              height="full"
+              bg="linear-gradient(135deg, {colors.whiteAlpha.100} 0%, transparent 100%)"
+              borderWidth="1px"
+              borderColor="blackAlpha.200"
+              borderRadius="2xl"
+              _dark={{
+                borderColor: 'whiteAlpha.200',
+              }}
+              p={6}
+            >
+              <VStack align="start" gap={4} height="full">
+                <HStack justify="space-between" width="full">
+                  <Box p={3} bg="brand.500" rounded="xl" _dark={{ bg: 'brand.500' }}>
+                    <Icon as={CoinsIcon} boxSize={6} color="white" />
+                  </Box>
+                  <Tag.Root colorPalette="brand" variant="subtle" size="sm">
+                    <Tag.Label>Issued</Tag.Label>
+                  </Tag.Root>
+                </HStack>
+                <VStack align="start" gap={2} flex={1}>
+                  <Text
+                    fontSize="xs"
+                    fontWeight="bold"
+                    color="brand.600"
+                    textTransform="uppercase"
+                    letterSpacing="wider"
+                    _dark={{ color: 'brand.400' }}
+                  >
+                    Total Tokens
+                  </Text>
+                  <Heading fontSize="2xl" lineHeight="1">
+                    {currency} {circulation}
+                  </Heading>
+                </VStack>
+              </VStack>
+            </Box>
+          </GridItem>
+
+          <GridItem>
+            <Box
+              height="full"
+              bg="linear-gradient(135deg, {colors.whiteAlpha.100} 0%, transparent 100%)"
+              borderWidth="1px"
+              borderColor="blackAlpha.200"
+              borderRadius="2xl"
+              p={6}
+              _dark={{
+                borderColor: 'whiteAlpha.200',
               }}
             >
-              <VStack gap={4}>
-                <HStack justify="space-between" align="center" width="full">
-                  <HStack gap={2} color="gray.600" fontSize="sm" _dark={{ color: 'gray.400' }}>
-                    <Box
-                      p={2}
-                      bg="blue.50"
-                      rounded="lg"
-                      display="flex"
-                      alignItems="center"
-                      justifyContent="center"
-                      _dark={{ bg: 'blue.900/30' }}
-                    >
-                      <Text fontSize="sm">🕒</Text>
-                    </Box>
-                    <Text fontWeight="semibold">Last Updated:</Text>
-                  </HStack>
-                  <Box
-                    px={3}
-                    py={1}
-                    bg="gray.100"
-                    rounded="lg"
-                    border="1px solid"
-                    borderColor="gray.200"
-                    _dark={{ 
-                      bg: 'gray.700',
-                      borderColor: 'gray.600' 
-                    }}
-                  >
-                    <Text 
-                      fontSize="sm" 
-                      fontWeight="bold" 
-                      color="gray.800"
-                      _dark={{ color: 'gray.200' }}
-                    >
-                      {dateAs}
-                    </Text>
+              <VStack align="start" gap={4} height="full">
+                <HStack justify="space-between" width="full">
+                  <Box p={3} bg="brand.500" rounded="xl" _dark={{ bg: 'brand.500' }}>
+                    <DatabaseBackupIcon color="white" size={24} />
                   </Box>
+                  <Badge colorPalette="brand" variant="subtle" size="sm">
+                    Secured
+                  </Badge>
                 </HStack>
 
-                <Separator />
-
-                <HStack justify="space-between" align="center" width="full" fontSize="sm" flexWrap="wrap" gap={4}>
-                  {heartbeat && (
-                    <HStack gap={2} color="gray.600" _dark={{ color: 'gray.400' }}>
-                      <Box
-                        p={1.5}
-                        bg="orange.50"
-                        rounded="md"
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="center"
-                        _dark={{ bg: 'orange.900/30' }}
-                      >
-                        <Text fontSize="xs">💓</Text>
-                      </Box>
-                      <Text fontWeight="medium">
-                        Heartbeat<sup>2</sup>:
-                      </Text>
-                      <Text 
-                        fontWeight="bold" 
-                        color="orange.600"
-                        _dark={{ color: 'orange.400' }}
-                      >
-                        {heartbeat}
-                      </Text>
-                    </HStack>
-                  )}
-
-                  {threshold && (
-                    <HStack gap={2} color="gray.600" _dark={{ color: 'gray.400' }}>
-                      <Box
-                        p={1.5}
-                        bg="red.50"
-                        rounded="md"
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="center"
-                        _dark={{ bg: 'red.900/30' }}
-                      >
-                        <Text fontSize="xs">🎯</Text>
-                      </Box>
-                      <Text fontWeight="medium">
-                        Deviation Threshold<sup>3</sup>:
-                      </Text>
-                      <Text 
-                        fontWeight="bold" 
-                        color="red.600"
-                        _dark={{ color: 'red.400' }}
-                      >
-                        {threshold}
-                      </Text>
-                    </HStack>
-                  )}
-                </HStack>
+                <VStack align="start" gap={2} flex={1}>
+                  <Text
+                    fontSize="xs"
+                    fontWeight="bold"
+                    color="brand.600"
+                    textTransform="uppercase"
+                    letterSpacing="wider"
+                    _dark={{ color: 'brand.400' }}
+                  >
+                    Total Reserves
+                  </Text>
+                  <Heading size="xl" color="brand.700" _dark={{ color: 'brand.300' }} lineHeight="1">
+                    {reserves}
+                  </Heading>
+                  <Text fontSize="sm" color="gray.600" fontWeight="medium" _dark={{ color: 'gray.400' }}>
+                    {currency}
+                  </Text>
+                </VStack>
               </VStack>
             </Box>
-          </VStack>
+          </GridItem>
+
+          {/* Collateral Ratio Card */}
+          <GridItem>
+            <Box
+              height="full"
+              bg="linear-gradient(135deg, {colors.whiteAlpha.100} 0%, transparent 100%)"
+              borderWidth="1px"
+              borderColor="blackAlpha.200"
+              borderRadius="2xl"
+              p={6}
+              _dark={{
+                borderColor: 'whiteAlpha.200',
+              }}
+            >
+              <VStack align="start" gap={4} height="full">
+                <HStack justify="space-between" width="full">
+                  <Box p={3} bg="brand.500" rounded="xl" _dark={{ bg: 'brand.500' }}>
+                    <CheckIcon color="white" size={24} />
+                  </Box>
+                  <Badge colorPalette={isHealthy ? 'success' : 'warning'} variant="subtle" size="sm">
+                    {isHealthy ? 'Healthy' : 'Watch'}
+                  </Badge>
+                </HStack>
+
+                <VStack align="start" gap={2} flex={1}>
+                  <Text
+                    fontSize="xs"
+                    fontWeight="bold"
+                    color={isHealthy ? 'success.600' : 'warning.600'}
+                    textTransform="uppercase"
+                    letterSpacing="wider"
+                    _dark={{ color: isHealthy ? 'success.400' : 'warning.400' }}
+                  >
+                    Collateral Ratio
+                  </Text>
+                  <Heading
+                    size="xl"
+                    color={isHealthy ? 'success.700' : 'warning.700'}
+                    _dark={{ color: isHealthy ? 'success.300' : 'warning.300' }}
+                    lineHeight="1"
+                  >
+                    {ratio}
+                  </Heading>
+                  <Box
+                    width="full"
+                    height={2}
+                    bg="gray.200"
+                    rounded="full"
+                    overflow="hidden"
+                    _dark={{ bg: 'gray.700' }}
+                  >
+                    <Box
+                      height="full"
+                      width={`${Math.min((ratioPercentage / 150) * 100, 100)}%`}
+                      bg={isHealthy ? 'success.500' : 'warning.500'}
+                      transition="all 0.3s ease"
+                    />
+                  </Box>
+                </VStack>
+              </VStack>
+            </Box>
+          </GridItem>
+
+          {/* System Status Card */}
+          <GridItem>
+            <Box
+              height="full"
+              bg="linear-gradient(135deg, {colors.whiteAlpha.100} 0%, transparent 100%)"
+              borderWidth="1px"
+              borderColor="blackAlpha.200"
+              borderRadius="2xl"
+              p={6}
+              _dark={{
+                borderColor: 'whiteAlpha.200',
+              }}
+            >
+              <VStack align="start" gap={4} height="full">
+                <HStack justify="space-between" width="full">
+                  <Box p={3} bg="brand.500" rounded="xl" _dark={{ bg: 'brand.500' }}>
+                    <ChartLineIcon color="white" size={24} />
+                  </Box>
+                  <Badge colorPalette="brand" variant="subtle" size="sm">
+                    Updated
+                  </Badge>
+                </HStack>
+
+                <VStack align="start" gap={3} flex={1}>
+                  <Text
+                    fontSize="xs"
+                    fontWeight="bold"
+                    color="brand.600"
+                    textTransform="uppercase"
+                    letterSpacing="wider"
+                    _dark={{ color: 'brand.400' }}
+                  >
+                    Last Update
+                  </Text>
+                  <Text fontSize="lg" fontWeight="bold" color="brand.800" _dark={{ color: 'brand.200' }}>
+                    {dateAs}
+                  </Text>
+
+                  {heartbeat && (
+                    <VStack align="start" gap={1}>
+                      <Text fontSize="xs" fontWeight="medium">
+                        Heartbeat: {heartbeat}
+                      </Text>
+                    </VStack>
+                  )}
+                </VStack>
+              </VStack>
+            </Box>
+          </GridItem>
         </Grid>
       </Box>
     </Box>

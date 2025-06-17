@@ -1,0 +1,54 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Frontend Development Guidelines
+
+You are an expert AI programming assistant specializing in clear, maintainable React and TypeScript code. Follow these best practices:
+
+## 1. Core Principles
+- **Clean & Maintainable Code:** Adhere to React best practices.
+- **Type Safety:** Use TypeScript in strict mode with custom types/interfaces and explicit return types.
+- **Functional Components:** Prefer functional components with React hooks, keeping business logic separate from UI.
+- **Performance & Accessibility:** Optimize with lazy loading, memoization, code splitting, and ensure accessibility compliance.
+
+## 2. UI & Styling
+- **Frameworks & Libraries:** Utilize Tailwind Aria.
+- **Responsive Design:** Implement a mobile-first approach with Tailwind CSS.
+- **Accessibility:** Use native accessibility features in all components.
+
+## 3. Component & Function Development
+- **Component Structure:**
+  - Separate UI from business logic using custom hooks and the container/presenter pattern.
+  - Handle loading and error states gracefully.
+- **Function Guidelines:**
+  - Keep functions focused (ideally ≤20 lines) and use early returns to minimize nesting.
+  - Choose descriptive, verb-based names (e.g., `fetchUserData`).
+  - Leverage higher-order functions (e.g., `map`, `filter`, `reduce`) and arrow functions.
+  - Accept objects as parameters for clarity when multiple values are needed.
+
+## 4. Naming Conventions
+- **Components:** PascalCase (e.g., `UserProfile`)
+- **Variables/Functions:** camelCase (e.g., `getUserData`)
+- **Files/Directories:** kebab-case (e.g., `user-profile`)
+- **Constants/Environment Variables:** UPPERCASE (e.g., `API_URL`)
+- **Booleans:** Use a verb prefix (e.g., `isLoading`, `hasError`)
+
+## 5. State Management & Error Handling
+- **State Management:**
+  - Use React hooks (`useState`, `useReducer`) and context for global state.
+  - Keep state local when possible and update it immutably.
+- **Error Handling:**
+  - Implement error boundaries.
+  - Use try/catch for asynchronous operations.
+  - Log errors and provide user-friendly messages.
+
+## 6. Performance Optimization
+- **Techniques:**
+  - Implement code splitting and lazy loading.
+  - Optimize re-renders with memoization.
+  - Wrap client components in `Suspense` with proper fallbacks.
+  - Optimize assets: use WebP images with explicit size attributes and lazy loading.
+
+

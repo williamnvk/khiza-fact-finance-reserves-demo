@@ -1,6 +1,21 @@
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 import { formatLargeNumber } from '@/lib/utils';
-import { Box, VStack, Text, HStack } from '@chakra-ui/react';
+import {
+  Box,
+  VStack,
+  Text,
+  HStack,
+  Card,
+  Flex,
+  Badge,
+  Stat,
+  Progress,
+  useToken,
+  Separator,
+  Tag,
+} from '@chakra-ui/react';
+import { useColorModeValue } from '../ui/color-mode';
+import { useTheme } from 'next-themes';
 
 export function BalancesChart({
   circulation,
@@ -13,106 +28,233 @@ export function BalancesChart({
   over: number;
   currency: string;
 }) {
+  const totalReserves = reserves + over;
+  const collateralizationRatio = (totalReserves / circulation) * 100;
+  const excessReserve = totalReserves - circulation;
+  const isOverCollateralized = totalReserves > circulation;
+
   const data = [
     {
-      name: 'Circulation',
-      value: circulation,
+      name: 'Tokens\nIn Circulation',
+      circulation: circulation,
+      isEmpty: false,
     },
     {
-      name: 'Reserves',
-      cashFunds: reserves - over,
-      cashBanks: over,
+      name: 'Reserves\nAvailable',
+      reserves: reserves - over,
+      overCollateral: over,
+      isEmpty: false,
     },
   ];
 
-  // Format for the tooltip
-  const formatValue = (value: number) => `${currency}${value}`;
+  // Chart colors that work for both light and dark modes
+  const colors = {
+    circulation: useColorModeValue('var(--ff-colors-brand-600)', 'var(--ff-colors-brand-400)'),
+    reserves: useColorModeValue('var(--ff-colors-success-500)', 'var(--ff-colors-success-400)'),
+    overCollateral: useColorModeValue('var(--ff-colors-warning-400)', 'var(--ff-colors-warning-300)'),
+  };
 
-  // Custom tooltip with safety checks to avoid accessing undefined properties
-  const CustomTooltip = ({ active, payload }: any) => {
-    if (active && payload && payload.length) {
-      if (payload[0].name === 'value') {
-        return (
-          <Box bg="white" border="1px" borderColor="gray.200" p={3} shadow="sm" rounded="md" _dark={{ bg: "gray.800", borderColor: "gray.600" }}>
-            <Text fontSize="sm" fontWeight="medium">Circulation</Text>
-            <Text fontSize="sm" color="blue.500">{formatLargeNumber(payload[0].value, currency)}</Text>
-          </Box>
-        );
-      } else {
-        // Safety check for the reserves data
-        const cashFundsValue = payload[0]?.value || 0;
-        const cashBanksValue = payload[1]?.value || 0;
-        const totalReserves = cashFundsValue + cashBanksValue;
+  // Enhanced tooltip with better formatting and design
+  const CustomTooltip = ({ active, payload, label }: any) => {
+    if (!active || !payload || !payload.length) return null;
 
-        return (
-          <Box bg="white" border="1px" borderColor="gray.200" p={3} shadow="sm" rounded="md" _dark={{ bg: "gray.800", borderColor: "gray.600" }}>
-            <Text fontSize="sm" fontWeight="medium">Reserves</Text>
-            <Text fontSize="sm" color="blue.500">{formatLargeNumber(totalReserves, currency)}</Text>
-            <Text fontSize="xs" color="gray.600" _dark={{ color: "gray.400" }} mt={1}>Funds: {formatLargeNumber(cashFundsValue, currency)}</Text>
-            <Text fontSize="xs" color="gray.600" _dark={{ color: "gray.400" }}>
-              Over collateral: {formatLargeNumber(cashBanksValue, currency)}
-            </Text>
-          </Box>
-        );
-      }
-    }
-    return null;
+    const isCirculation = label?.includes('Tokens');
+
+    return (
+      <Card.Root borderWidth="1px" shadow="lg" p={4} maxW="280px" _dark={{ shadow: 'dark-lg' }}>
+        <Card.Body p={0}>
+          {isCirculation ? (
+            <VStack align="start" gap={2}>
+              <Text fontSize="sm" fontWeight="semibold" color="fg">
+                Tokens in Circulation
+              </Text>
+              <Text fontSize="lg" fontWeight="bold" color={colors.circulation}>
+                {formatLargeNumber(payload[0].value, currency)}
+              </Text>
+              <Text fontSize="xs" color="fg.muted">
+                Total of tokens issued on the blockchain
+              </Text>
+            </VStack>
+          ) : (
+            <VStack align="start" gap={3}>
+              <Text fontSize="sm" fontWeight="semibold" color="fg">
+                Total Reserves
+              </Text>
+
+              <Box w="full">
+                <HStack justify="space-between" mb={1}>
+                  <Text fontSize="xs" color="fg.muted">
+                    Main Collateral
+                  </Text>
+                  <Text fontSize="sm" fontWeight="medium" color={colors.reserves}>
+                    {formatLargeNumber(payload[0]?.value || 0, currency)}
+                  </Text>
+                </HStack>
+
+                <HStack justify="space-between" mb={2}>
+                  <Text fontSize="xs" color="fg.muted">
+                    Over-collateral
+                  </Text>
+                  <Text fontSize="sm" fontWeight="medium" color={colors.overCollateral}>
+                    {formatLargeNumber(payload[1]?.value || 0, currency)}
+                  </Text>
+                </HStack>
+
+                <Separator my={2} />
+
+                <HStack justify="space-between">
+                  <Text fontSize="sm" fontWeight="semibold" color="fg">
+                    Total
+                  </Text>
+                  <Text fontSize="lg" fontWeight="bold" color="brand.500">
+                    {formatLargeNumber((payload[0]?.value || 0) + (payload[1]?.value || 0), currency)}
+                  </Text>
+                </HStack>
+              </Box>
+            </VStack>
+          )}
+        </Card.Body>
+      </Card.Root>
+    );
   };
 
   return (
-    <Box bg="white" _dark={{ bg: "gray.800" }} p={6} shadow="sm" rounded="md">
-      <VStack align="start" mb={5} gap={2}>
-        <Text fontSize="2xl" fontWeight="bold">Current Balances</Text>
-        <Text fontSize="sm" color="gray.400" _dark={{ color: "gray.500" }}>
-          Displays the current circulation of issued tokens and their corresponding reserves. The bar also visualizes
-          any excess reserve available for minting new tokens.
-        </Text>
-      </VStack>
-      <Box flex="none">
-        <ResponsiveContainer width="100%" height={280}>
-          <BarChart data={data} margin={{ top: 10, right: 0, left: 0, bottom: 10 }} barCategoryGap="0%" barGap={0}>
-            <XAxis dataKey="name" tickLine={false} axisLine={false} />
-            <YAxis
-              tickFormatter={(value) => `${formatLargeNumber(value)}`}
-              domain={[0, reserves + over]}
-              ticks={[0, circulation, reserves]}
-              width={90}
-            />
-            <Tooltip content={<CustomTooltip />} cursor={{ fill: 'transparent' }} />
+    <Box
+      position="relative"
+      bg="whiteAlpha.50"
+      borderRadius="3xl"
+      shadow="2xl"
+      borderWidth="1px"
+      borderColor="whiteAlpha.200"
+      overflow="hidden"
+      p={{ base: 4, md: 6, lg: 8 }}
+    >
+      <VStack align="start" gap={3} w="full">
+        <Box>
+          <Text fontSize="2xl" fontWeight="bold" color="fg" mb={1}>
+            Current Balances
+          </Text>
+          <Text fontSize="sm" color="fg.muted" lineHeight="tall">
+            Displays the current circulation of issued tokens and their corresponding reserves. The bar also visualizes
+            any excess reserve available for minting new tokens.
+          </Text>
+        </Box>
 
-            <Bar dataKey="value" stackId="aligned" fill="hsl(var(--chart-navy))" radius={[8, 8, 0, 0]} barSize={150} />
-            <Bar
-              dataKey="cashFunds"
-              stackId="aligned"
-              fill="hsl(var(--chart-blue))"
-              radius={[0, 0, 0, 0]}
-              barSize={150}
+        {/* Key Metrics */}
+        <Flex direction={{ base: 'column', md: 'row' }} gap={4} w="full" justify="space-between">
+          <Stat.Root size="sm">
+            <Stat.Label fontSize="xs" color="fg.muted">
+              Collateralization Ratio
+            </Stat.Label>
+            <Stat.ValueText fontSize="lg" fontWeight="bold">
+              {collateralizationRatio.toFixed(1)}%{' '}
+            </Stat.ValueText>
+            <Stat.HelpText color="fg.muted" fontSize="xs">
+              {isOverCollateralized ? 'Over-collateralized' : 'Under-collateralized'}
+            </Stat.HelpText>
+          </Stat.Root>
+
+          <Stat.Root size="sm">
+            <Stat.Label fontSize="xs" color="fg.muted">
+              Excess Reserve
+            </Stat.Label>
+            <Stat.ValueText fontSize="lg" fontWeight="bold" color={excessReserve > 0 ? 'success.500' : 'warning.500'}>
+              {formatLargeNumber(excessReserve, currency)}
+            </Stat.ValueText>
+            <Stat.HelpText color="fg.muted" fontSize="xs">
+              {excessReserve > 0 ? 'Available for minting' : 'Reserve deficit'}
+            </Stat.HelpText>
+          </Stat.Root>
+        </Flex>
+      </VStack>
+
+      {/* Progress indicator */}
+      <Box my={6} p={4} bg="whiteAlpha.50" borderRadius="lg" borderWidth="1px">
+        <HStack justify="space-between" mb={2}>
+          <Text fontSize="xs" color="fg.muted">
+            Reserve Utilization
+          </Text>
+          <Text fontSize="xs" fontWeight="medium" color="fg">
+            {((circulation / totalReserves) * 100).toFixed(1)}%
+          </Text>
+        </HStack>
+        <Progress.Root value={(circulation / totalReserves) * 100} colorPalette="brand" size="sm" colorPalette="brand">
+          <Progress.Track rounded="full">
+            <Progress.Range rounded="full" />
+          </Progress.Track>
+        </Progress.Root>
+      </Box>
+
+      {/* Chart */}
+      <Box h={300} w="full">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 20 }} barCategoryGap="25%">
+            <XAxis dataKey="name" axisLine={false} tickLine={false} fontSize={12} color="fg.muted" interval={0} />
+            <YAxis
+              tickFormatter={(value) => formatLargeNumber(value)}
+              domain={[0, Math.max(circulation, totalReserves) * 1.1]}
+              axisLine={false}
+              tickLine={false}
+              fontSize={12}
+              color="fg.muted"
+              width={80}
             />
+            <Tooltip content={<CustomTooltip />} cursor={{ fill: 'gray.100', fillOpacity: 0.3 }} />
+
+            {/* Circulation bar */}
+            <Bar dataKey="circulation" stackId="a" fill={colors.circulation} radius={[6, 6, 6, 6]} maxBarSize={120} />
+
+            {/* Reserves bars */}
+            <Bar dataKey="reserves" stackId="b" fill={colors.reserves} radius={[6, 6, 6, 6]} maxBarSize={120} />
             <Bar
-              dataKey="cashBanks"
-              stackId="aligned"
-              fill="hsl(var(--chart-light-blue))"
-              radius={[8, 8, 0, 0]}
-              barSize={150}
+              dataKey="overCollateral"
+              stackId="b"
+              fill={colors.overCollateral}
+              radius={[0, 0, 6, 6]}
+              maxBarSize={120}
             />
           </BarChart>
         </ResponsiveContainer>
       </Box>
 
-      <HStack gap={6} mt={4} justify="center" flexWrap="wrap">
-        <HStack>
-          <Box w={3} h={3} rounded="full" bg="var(--chart-navy)" />
-          <Text fontSize="xs">Issued Tokens</Text>
+      {/* Enhanced Legend */}
+      <Flex justify="center" gap={{ base: 4, md: 8 }} mt={6} wrap="wrap">
+        <HStack gap={2}>
+          <Box w={3} h={3} rounded="full" bg={colors.circulation} shadow="sm" />
+          <VStack align="start" gap={0}>
+            <Text fontSize="xs" fontWeight="medium" color="fg">
+              Tokens in Circulation
+            </Text>
+            <Text fontSize="xs" color="fg.muted">
+              {formatLargeNumber(circulation, currency)}
+            </Text>
+          </VStack>
         </HStack>
-        <HStack>
-          <Box w={3} h={3} rounded="full" bg="var(--chart-blue)" />
-          <Text fontSize="xs">Collateral Reserve</Text>
+
+        <HStack gap={2}>
+          <Box w={3} h={3} rounded="full" bg={colors.reserves} shadow="sm" />
+          <VStack align="start" gap={0}>
+            <Text fontSize="xs" fontWeight="medium" color="fg">
+              Main Collateral
+            </Text>
+            <Text fontSize="xs" color="fg.muted">
+              {formatLargeNumber(reserves - over, currency)}
+            </Text>
+          </VStack>
         </HStack>
-        <HStack>
-          <Box w={3} h={3} rounded="full" bg="var(--chart-light-blue)" />
-          <Text fontSize="xs">Over Collateral</Text>
+
+        <HStack gap={2}>
+          <Box w={3} h={3} rounded="full" bg={colors.overCollateral} shadow="sm" />
+          <VStack align="start" gap={0}>
+            <Text fontSize="xs" fontWeight="medium" color="fg">
+              Over-collateral
+            </Text>
+            <Text fontSize="xs" color="fg.muted">
+              {formatLargeNumber(over, currency)}
+            </Text>
+          </VStack>
         </HStack>
-      </HStack>
+      </Flex>
     </Box>
   );
 }

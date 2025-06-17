@@ -1,8 +1,6 @@
 import { Box, Container, Heading, HStack, Text, VStack, useBreakpointValue } from '@chakra-ui/react';
-import { Button } from '@/components/ui/button';
 import { TitleSection } from '@/components/ui/title-sectiont';
 import { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
 import { StackDirection } from 'node_modules/@chakra-ui/react/dist/types/components/stack/get-separator-style';
 
 export const WhatWeDo = () => {
@@ -17,7 +15,6 @@ export const WhatWeDo = () => {
   // Responsive layout
   const stackDirection = useBreakpointValue({ base: 'column', lg: 'row' });
   const headingSize = useBreakpointValue({ base: '2xl', md: '3xl', lg: '4xl' });
-  const containerMaxW = useBreakpointValue({ base: '100%', lg: '7xl' });
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -91,7 +88,6 @@ export const WhatWeDo = () => {
         </TitleSection>
 
         <HStack
-          as={motion.div}
           gap={{ base: 4, md: 6, lg: 8 }}
           w="full"
           align="stretch"

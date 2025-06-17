@@ -127,30 +127,33 @@ export function BalancesChart({
         </Box>
 
         {/* Key Metrics */}
-        <Flex direction={{ base: 'column', md: 'row' }} gap={4} w="full" justify="space-between">
-          <Stat.Root size="sm">
-            <Stat.Label fontSize="xs" color="fg.muted">
-              Collateralization Ratio
-            </Stat.Label>
-            <Stat.ValueText fontSize="lg" fontWeight="bold">
-              {collateralizationRatio.toFixed(1)}%{' '}
-            </Stat.ValueText>
-            <Stat.HelpText color="fg.muted" fontSize="xs">
-              {isOverCollateralized ? 'Over-collateralized' : 'Under-collateralized'}
-            </Stat.HelpText>
-          </Stat.Root>
-
-          <Stat.Root size="sm">
-            <Stat.Label fontSize="xs" color="fg.muted">
-              Excess Reserve
-            </Stat.Label>
-            <Stat.ValueText fontSize="lg" fontWeight="bold" color={excessReserve > 0 ? 'success.500' : 'warning.500'}>
-              {formatLargeNumber(excessReserve, currency)}
-            </Stat.ValueText>
-            <Stat.HelpText color="fg.muted" fontSize="xs">
-              {excessReserve > 0 ? 'Available for minting' : 'Reserve deficit'}
-            </Stat.HelpText>
-          </Stat.Root>
+        <Flex direction={{ base: 'column', md: 'row' }} gap={4} w="full">
+          <Box p={4} bg="whiteAlpha.50" borderRadius="lg" borderWidth="1px" flex={1}>
+            <Stat.Root size="sm">
+              <Stat.Label fontSize="xs" color="fg.muted">
+                Collateralization Ratio
+              </Stat.Label>
+              <Stat.ValueText fontSize="lg" fontWeight="bold">
+                {collateralizationRatio.toFixed(1)}%{' '}
+              </Stat.ValueText>
+              <Stat.HelpText color="fg.muted" fontSize="xs">
+                {isOverCollateralized ? 'Over-collateralized' : 'Under-collateralized'}
+              </Stat.HelpText>
+            </Stat.Root>
+          </Box>
+          <Box p={4} bg="whiteAlpha.50" borderRadius="lg" borderWidth="1px" flex={1}>
+            <Stat.Root size="sm">
+              <Stat.Label fontSize="xs" color="fg.muted">
+                Excess Reserve
+              </Stat.Label>
+              <Stat.ValueText fontSize="lg" fontWeight="bold" color={excessReserve > 0 ? 'success.500' : 'warning.500'}>
+                {formatLargeNumber(excessReserve, currency)}
+              </Stat.ValueText>
+              <Stat.HelpText color="fg.muted" fontSize="xs">
+                {excessReserve > 0 ? 'Available for minting' : 'Reserve deficit'}
+              </Stat.HelpText>
+            </Stat.Root>
+          </Box>
         </Flex>
       </VStack>
 

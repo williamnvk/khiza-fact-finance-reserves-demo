@@ -1,7 +1,20 @@
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
 import { useState } from 'react';
 import { formatLargeNumber } from '@/lib/utils';
-import { Box, VStack, Text, HStack, Button, ButtonGroup, Grid, GridItem, Card, Flex, Stat, Separator } from '@chakra-ui/react';
+import {
+  Box,
+  VStack,
+  Text,
+  HStack,
+  Button,
+  ButtonGroup,
+  Grid,
+  GridItem,
+  Card,
+  Flex,
+  Stat,
+  Separator,
+} from '@chakra-ui/react';
 import { useColorModeValue } from '../ui/color-mode';
 
 export function HistoryChart({
@@ -68,7 +81,7 @@ export function HistoryChart({
               {payload[0].payload?.transactions > 0 && (
                 <>
                   <Separator my={2} />
-                  
+
                   <HStack justify="space-between" mb={1}>
                     <Text fontSize="xs" color="fg.muted">
                       Transactions
@@ -172,52 +185,82 @@ export function HistoryChart({
         {/* Key Metrics */}
         <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={4}>
           <GridItem>
-            <Box p={4} bg="whiteAlpha.50" borderRadius="lg" borderWidth="1px">
-              <Stat.Root size="sm">
-                <Stat.Label fontSize="xs" color="fg.muted">
-                  Total Issued
-                </Stat.Label>
-                <Stat.ValueText fontSize="lg" fontWeight="bold" color="brand.500">
-                  <Text as="span" fontSize="xs" color="fg.muted">
-                    {currency}
-                  </Text>
-                  {formatLargeNumber(totalIssued | 0)}
-                </Stat.ValueText>
-                <Stat.HelpText fontSize="xs" color="fg.muted">
-                  Tokens in circulation
-                </Stat.HelpText>
-              </Stat.Root>
-            </Box>
+            <Card.Root
+              size="sm"
+              bg="transparent"
+              borderWidth="1px"
+              borderColor="blackAlpha.200"
+              _dark={{
+                borderColor: 'whiteAlpha.200',
+              }}
+            >
+              <Card.Body>
+                <Stat.Root size="sm">
+                  <Stat.Label fontSize="xs" color="fg.muted">
+                    Total Issued
+                  </Stat.Label>
+                  <Stat.ValueText fontSize="lg" fontWeight="bold" color="brand.500">
+                    <Text as="span" fontSize="xs" color="fg.muted">
+                      {currency}
+                    </Text>
+                    {formatLargeNumber(totalIssued | 0)}
+                  </Stat.ValueText>
+                  <Stat.HelpText fontSize="xs" color="fg.muted">
+                    Tokens in circulation
+                  </Stat.HelpText>
+                </Stat.Root>
+              </Card.Body>
+            </Card.Root>
           </GridItem>
           <GridItem>
-            <Box p={4} bg="whiteAlpha.50" borderRadius="lg" borderWidth="1px">
-              <Stat.Root size="sm">
-                <Stat.Label fontSize="xs" color="fg.muted">
-                  Total Transactions
-                </Stat.Label>
-                <Stat.ValueText fontSize="lg" fontWeight="bold" color="success.500">
-                  {formatLargeNumber(totalTransactions | 0)}
-                </Stat.ValueText>
-                <Stat.HelpText fontSize="xs" color="fg.muted">
-                  Network activity
-                </Stat.HelpText>
-              </Stat.Root>
-            </Box>
+            <Card.Root
+              size="sm"
+              bg="transparent"
+              borderWidth="1px"
+              borderColor="blackAlpha.200"
+              _dark={{
+                borderColor: 'whiteAlpha.200',
+              }}
+            >
+              <Card.Body>
+                <Stat.Root size="sm">
+                  <Stat.Label fontSize="xs" color="fg.muted">
+                    Total Transactions
+                  </Stat.Label>
+                  <Stat.ValueText fontSize="lg" fontWeight="bold" color="success.500">
+                    {formatLargeNumber(totalTransactions | 0)}
+                  </Stat.ValueText>
+                  <Stat.HelpText fontSize="xs" color="fg.muted">
+                    Network activity
+                  </Stat.HelpText>
+                </Stat.Root>
+              </Card.Body>
+            </Card.Root>
           </GridItem>
           <GridItem>
-            <Box p={4} bg="whiteAlpha.50" borderRadius="lg" borderWidth="1px">
-              <Stat.Root size="sm">
-                <Stat.Label fontSize="xs" color="fg.muted">
-                  Average Collateral
-                </Stat.Label>
-                <Stat.ValueText fontSize="lg" fontWeight="bold" color="cyan.500">
-                  {averageIndex}
-                </Stat.ValueText>
-                <Stat.HelpText fontSize="xs" color="fg.muted">
-                  Coverage ratio
-                </Stat.HelpText>
-              </Stat.Root>
-            </Box>
+            <Card.Root
+              size="sm"
+              bg="transparent"
+              borderWidth="1px"
+              borderColor="blackAlpha.200"
+              _dark={{
+                borderColor: 'whiteAlpha.200',
+              }}
+            >
+              <Card.Body>
+                <Stat.Root size="sm">
+                  <Stat.Label fontSize="xs" color="fg.muted">
+                    Average Collateral
+                  </Stat.Label>
+                  <Stat.ValueText fontSize="lg" fontWeight="bold" color="cyan.500">
+                    {averageIndex}
+                  </Stat.ValueText>
+                  <Stat.HelpText fontSize="xs" color="fg.muted">
+                    Coverage ratio
+                  </Stat.HelpText>
+                </Stat.Root>
+              </Card.Body>
+            </Card.Root>
           </GridItem>
         </Grid>
 
@@ -226,9 +269,9 @@ export function HistoryChart({
           <ResponsiveContainer width="100%" height="100%" minHeight="280px">
             <LineChart data={historicalDataChart} margin={{ top: 20, right: 20, left: 20, bottom: 20 }}>
               <CartesianGrid strokeDasharray="3 3" stroke={colors.grid} />
-              <XAxis 
-                dataKey="Date" 
-                axisLine={false} 
+              <XAxis
+                dataKey="Date"
+                axisLine={false}
                 tickLine={false}
                 fontSize={12}
                 tick={{ fill: useColorModeValue('var(--ff-colors-gray-600)', 'var(--ff-colors-gray-400)') }}
@@ -241,11 +284,11 @@ export function HistoryChart({
                 hide
               />
               <Tooltip content={<CustomTooltip />} />
-              <Line 
-                type="monotone" 
-                dataKey="reserves" 
-                stroke={colors.reserves} 
-                dot={false} 
+              <Line
+                type="monotone"
+                dataKey="reserves"
+                stroke={colors.reserves}
+                dot={false}
                 strokeWidth={3}
                 strokeLinecap="round"
               />

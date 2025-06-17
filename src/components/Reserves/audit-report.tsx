@@ -1,6 +1,6 @@
-import { Download, ChevronDown, FileText, Calendar } from 'lucide-react';
+import { Download, ChevronDown, FileText, Calendar, Shield, CheckCircle, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
-import { Box, HStack, VStack, Text, Button, Menu, Icon, Badge, Flex } from '@chakra-ui/react';
+import { Box, HStack, VStack, Text, Button, Menu, Icon, Badge, Flex, Card, Grid, Separator } from '@chakra-ui/react';
 
 export function AuditReport({
   reportsList,
@@ -11,6 +11,7 @@ export function AuditReport({
 }) {
   const [selectedDate, setSelectedDate] = useState(reportsList[0].date);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleDownload = async (file: string) => {
     setIsDownloading(true);
@@ -21,233 +22,335 @@ export function AuditReport({
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    
+
     // Simulate download delay for better UX
     setTimeout(() => {
       setIsDownloading(false);
-    }, 1000);
+    }, 1500);
   };
 
   return (
-    <Box 
-      position="relative"
-      overflow="hidden"
-      bgGradient="linear(to-br, blue.50, indigo.50)"
-      _dark={{ 
-        bgGradient: "linear(to-br, gray.800, gray.900)",
-        borderColor: "gray.700"
-      }}
-      borderWidth="1px"
-      borderColor="blue.100"
-      rounded="2xl" 
-      p={{ base: 6, md: 8 }} 
-      mt={10}
-      shadow="xl"
-      _hover={{
-        shadow: "2xl",
-        transform: "translateY(-2px)",
-        transition: "all 0.3s ease"
-      }}
-      transition="all 0.3s ease"
-    >
-      {/* Background decoration */}
-      <Box
-        position="absolute"
-        top="-20"
-        right="-20"
-        w="40"
-        h="40"
-        bg="blue.500"
-        opacity="0.03"
-        _dark={{ opacity: "0.05" }}
-        rounded="full"
-        pointerEvents="none"
-      />
-      
-      <Flex
-        direction={{ base: "column", md: "row" }}
-        gap={{ base: 6, md: 8 }}
-        align={{ base: "start", md: "center" }}
-      >
-        {/* Icon section with improved styling */}
-        <Box
-          bgGradient="linear(to-br, blue.500, blue.600)"
-          rounded="2xl"
-          p={5}
-          shadow="lg"
-          position="relative"
-          _hover={{
-            transform: "scale(1.05)",
-            transition: "transform 0.2s ease"
-          }}
-          transition="transform 0.2s ease"
+    <Box mt={16} mb={8}>
+      {/* Header Section */}
+      <VStack gap={4} mb={12} textAlign="center">
+        <Badge
+          colorScheme="brand"
+          variant="subtle"
+          fontSize="sm"
+          px={4}
+          py={2}
+          rounded="full"
+          textTransform="uppercase"
+          letterSpacing="wider"
+          fontWeight="semibold"
         >
-          <Icon 
-            as={Download} 
-            boxSize={8} 
-            color="white"
-            filter="drop-shadow(0 2px 4px rgba(0,0,0,0.1))"
-          />
-          
-          {/* Badge for quarterly reports */}
-          <Badge
-            position="absolute"
-            top="-2"
-            right="-2"
-            colorScheme="green"
-            variant="solid"
-            fontSize="xs"
-            px={2}
-            py={1}
-            rounded="full"
-          >
-            Q4
-          </Badge>
-        </Box>
+          Transparency Report
+        </Badge>
+        <Text
+          fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
+          fontWeight="bold"
+          bgGradient="linear-gradient(35deg, {colors.brand.600}, {colors.brand.600})"
+          bgClip="text"
+          letterSpacing="tight"
+          lineHeight="shorter"
+        >
+          Audit & Compliance Documentation
+        </Text>
+        <Text
+          fontSize={{ base: 'md', md: 'lg' }}
+          color="gray.600"
+          _dark={{ color: 'gray.400' }}
+          maxW="2xl"
+          lineHeight="relaxed"
+        >
+          Access comprehensive quarterly reports featuring detailed financial audits, compliance verification, and
+          transparency documentation for {companyName} digital assets.
+        </Text>
+      </VStack>
 
-        {/* Content section */}
-        <VStack flex={1} align="start" gap={4}>
-          <VStack align="start" gap={2}>
-            <Flex align="center" gap={3}>
-              <Text 
-                fontSize={{ base: "xl", md: "2xl" }} 
-                fontWeight="bold"
-                color="gray.800"
-                _dark={{ color: "white" }}
-                letterSpacing="tight"
+      {/* Main Card */}
+      <Card.Root
+        size="lg"
+        variant="elevated"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        transform={isHovered ? 'translateY(-8px)' : 'translateY(0)'}
+        transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+        shadow={isHovered ? '2xl' : 'xl'}
+        borderWidth="1px"
+        borderColor="gray.200"
+        _dark={{
+          borderColor: 'gray.700',
+          bg: 'gray.800',
+        }}
+        overflow="hidden"
+        position="relative"
+      >
+        {/* Background Pattern */}
+        <Box
+          position="absolute"
+          top="0"
+          right="0"
+          w="full"
+          h="full"
+          bgGradient="linear(135deg, brand.50 0%, transparent 50%)"
+          _dark={{
+            bgGradient: 'linear(135deg, brand.900/20 0%, transparent 50%)',
+          }}
+          opacity="0.5"
+        />
+
+        {/* Floating Elements */}
+        <Box
+          position="absolute"
+          top="6"
+          right="8"
+          w="24"
+          h="24"
+          bgGradient="radial(brand.400/20, transparent 70%)"
+          rounded="full"
+        />
+
+        <Card.Body p={{ base: 8, md: 12 }}>
+          <Grid templateColumns={{ base: '1fr', lg: 'auto 1fr auto' }} gap={{ base: 8, lg: 12 }} alignItems="center">
+            {/* Icon Section */}
+            <VStack gap={4}>
+              <Box
+                position="relative"
+                bg="white"
+                _dark={{
+                  bg: 'gray.700',
+                  borderColor: 'gray.600',
+                }}
+                rounded="3xl"
+                p={6}
+                shadow="lg"
+                borderWidth="1px"
+                borderColor="gray.100"
               >
-                Download Full Report
+                <Box
+                  position="absolute"
+                  inset="0"
+                  bgGradient="linear(135deg, brand.500, purple.600)"
+                  rounded="3xl"
+                  opacity="0.1"
+                />
+                <Icon as={Shield} boxSize={10} color="brand.600" _dark={{ color: 'brand.400' }} />
+              </Box>
+
+              <VStack gap={1}>
+                <HStack gap={1}>
+                  <Icon as={CheckCircle} boxSize={4} color="green.500" />
+                  <Text fontSize="sm" fontWeight="medium" color="green.600" _dark={{ color: 'green.400' }}>
+                    Verified
+                  </Text>
+                </HStack>
+                <Text fontSize="xs" color="gray.500" textAlign="center">
+                  Audited by Third Party
+                </Text>
+              </VStack>
+            </VStack>
+
+            {/* Content Section */}
+            <VStack align="start" gap={6} flex="1">
+              <VStack align="start" gap={3}>
+                <HStack gap={3}>
+                  <Text
+                    fontSize={{ base: 'xl', md: '2xl' }}
+                    fontWeight="bold"
+                    color="gray.900"
+                    _dark={{ color: 'white' }}
+                  >
+                    Download Audit Report
+                  </Text>
+                  <Icon as={FileText} boxSize={5} color="brand.500" />
+                </HStack>
+
+                <Text fontSize="md" color="gray.600" _dark={{ color: 'gray.300' }} lineHeight="relaxed">
+                  Comprehensive quarterly transparency documentation including asset verification, compliance status,
+                  and detailed financial audits.
+                </Text>
+              </VStack>
+
+              {/* Features Grid */}
+              <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={4} w="full">
+                {[
+                  { icon: Shield, label: 'Security Audit', desc: 'Third-party verified' },
+                  { icon: FileText, label: 'Financial Data', desc: 'Detailed breakdown' },
+                  { icon: CheckCircle, label: 'Compliance', desc: 'Regulatory approved' },
+                ].map((feature, index) => (
+                  <Box
+                    key={index}
+                    bg="bg.subtle"
+                    _dark={{
+                      bg: 'gray.700',
+                      borderColor: 'gray.600',
+                    }}
+                    rounded="xl"
+                    p={4}
+                    borderWidth="1px"
+                    borderColor="gray.200"
+                  >
+                    <HStack gap={3}>
+                      <Icon as={feature.icon} boxSize={5} color="brand.500" />
+                      <VStack align="start" gap={0}>
+                        <Text fontSize="sm" fontWeight="semibold">
+                          {feature.label}
+                        </Text>
+                        <Text fontSize="xs" color="fg.muted">
+                          {feature.desc}
+                        </Text>
+                      </VStack>
+                    </HStack>
+                  </Box>
+                ))}
+              </Grid>
+            </VStack>
+
+            {/* Action Section */}
+            <VStack gap={4} minW={{ base: 'full', lg: '280px' }}>
+              {/* Date Selector */}
+              <Box w="full">
+                <Text fontSize="sm" fontWeight="medium" mb={2} color="gray.700" _dark={{ color: 'gray.300' }}>
+                  Select Report Period
+                </Text>
+                <Menu.Root>
+                  <Menu.Trigger asChild>
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      w="full"
+                      justifyContent="space-between"
+                      bg="white"
+                      _dark={{
+                        bg: 'gray.700',
+                        borderColor: 'gray.600',
+                      }}
+                      borderColor="gray.300"
+                      _hover={{
+                        borderColor: 'brand.400',
+                        shadow: 'md',
+                      }}
+                      transition="all 0.2s ease"
+                    >
+                      <HStack>
+                        <Icon as={Calendar} boxSize={4} color="brand.500" />
+                        <Text fontWeight="medium">{selectedDate}</Text>
+                      </HStack>
+                      <Icon as={ChevronDown} boxSize={4} />
+                    </Button>
+                  </Menu.Trigger>
+                  <Menu.Content
+                    bg="white"
+                    _dark={{
+                      bg: 'gray.700',
+                      borderColor: 'gray.600',
+                    }}
+                    borderColor="gray.200"
+                    shadow="2xl"
+                    rounded="xl"
+                    py={2}
+                    minW="280px"
+                  >
+                    {reportsList.map((item) => (
+                      <Menu.Item
+                        key={item.date}
+                        value={item.date}
+                        onClick={() => setSelectedDate(item.date)}
+                        _hover={{
+                          bg: 'brand.50',
+                          _dark: { bg: 'gray.600' },
+                        }}
+                        px={4}
+                        py={3}
+                        rounded="lg"
+                        mx={2}
+                        cursor="pointer"
+                      >
+                        <HStack justify="space-between" w="full">
+                          <HStack>
+                            <Icon as={Calendar} boxSize={4} color="brand.500" />
+                            <Text fontWeight="medium">{item.date}</Text>
+                          </HStack>
+                          {item.date === selectedDate && <Icon as={CheckCircle} boxSize={4} color="green.500" />}
+                        </HStack>
+                      </Menu.Item>
+                    ))}
+                  </Menu.Content>
+                </Menu.Root>
+              </Box>
+
+              {/* Download Button */}
+              <Button
+                size="lg"
+                w="full"
+                bgGradient="linear(to-r, brand.500, brand.600)"
+                _hover={{
+                  bgGradient: 'linear(to-r, brand.600, brand.700)',
+                  transform: 'translateY(-2px)',
+                  shadow: 'lg',
+                }}
+                color="white"
+                loading={isDownloading}
+                loadingText="Downloading..."
+                onClick={() => {
+                  const selectedReport = reportsList.find((report) => report.date === selectedDate);
+                  if (selectedReport) {
+                    handleDownload(selectedReport.file);
+                  }
+                }}
+                transition="all 0.3s ease"
+                shadow="md"
+                fontWeight="semibold"
+                _active={{
+                  transform: 'translateY(0)',
+                }}
+              >
+                <HStack gap={2}>
+                  <Icon as={Download} boxSize={5} />
+                  <Text>Download Report</Text>
+                  <Icon as={ArrowRight} boxSize={4} />
+                </HStack>
+              </Button>
+
+              {/* Info Text */}
+              <Text fontSize="xs" color="gray.500" textAlign="center" lineHeight="relaxed">
+                PDF format • ~2.5MB
+                <br />
+                Updated quarterly
               </Text>
-              <Icon as={FileText} boxSize={5} color="blue.500" />
-            </Flex>
-            
-            <Text 
-              fontSize="sm" 
-              color="gray.600"
-              _dark={{ color: "gray.300" }}
-              maxW={{ base: "full", md: "md" }}
-              lineHeight="relaxed"
-            >
-              Access the comprehensive quarterly transparency report for {companyName}-issued tokens, 
-              including detailed financial data and audit information.
+            </VStack>
+          </Grid>
+        </Card.Body>
+      </Card.Root>
+
+      {/* Bottom Info Section */}
+      <Box
+        mt={8}
+        p={6}
+        bg="brand.50"
+        _dark={{
+          bg: 'brand.900/20',
+          borderColor: 'brand.800',
+        }}
+        rounded="2xl"
+        borderWidth="1px"
+        borderColor="brand.200"
+      >
+        <HStack gap={4}>
+          <Icon as={FileText} boxSize={6} color="brand.600" _dark={{ color: 'brand.400' }} />
+          <VStack align="start" gap={1} flex="1">
+            <Text fontWeight="semibold" color="brand.900" _dark={{ color: 'brand.100' }}>
+              About Our Transparency Reports
+            </Text>
+            <Text fontSize="sm" color="brand.700" _dark={{ color: 'brand.300' }} lineHeight="relaxed">
+              These comprehensive reports are published quarterly and include detailed asset breakdowns, third-party
+              audit results, compliance verification, and reserve attestations. Each report undergoes rigorous review to
+              ensure complete transparency for our stakeholders.
             </Text>
           </VStack>
-
-          {/* Action section */}
-          <HStack gap={4} wrap="wrap">
-            <Menu.Root>
-              <Menu.Trigger asChild>
-                <Button 
-                  variant="outline" 
-                  size="md"
-                  bg="white"
-                  _dark={{ 
-                    bg: "gray.700",
-                    borderColor: "gray.600"
-                  }}
-                  borderColor="blue.200"
-                  color="gray.700"
-                  _hover={{
-                    bg: "blue.50",
-                    _dark: { bg: "gray.600" },
-                    borderColor: "blue.300",
-                    transform: "translateY(-1px)",
-                  }}
-                  shadow="sm"
-                  transition="all 0.2s ease"
-                >
-                  <Icon as={Calendar} boxSize={4} mr={2} />
-                  {selectedDate}
-                  <Icon as={ChevronDown} boxSize={4} ml={2} />
-                </Button>
-              </Menu.Trigger>
-              <Menu.Content
-                bg="white"
-                _dark={{ 
-                  bg: "gray.700",
-                  borderColor: "gray.600"
-                }}
-                borderColor="blue.100"
-                shadow="xl"
-                rounded="xl"
-                py={2}
-              >
-                {reportsList.map((item) => (
-                  <Menu.Item
-                    key={item.date}
-                    value={item.date}
-                    onClick={() => {
-                      setSelectedDate(item.date);
-                      handleDownload(item.file);
-                    }}
-                    _hover={{
-                      bg: "blue.50",
-                      _dark: { bg: "gray.600" }
-                    }}
-                    px={4}
-                    py={3}
-                    rounded="lg"
-                    mx={2}
-                    fontSize="sm"
-                    fontWeight="medium"
-                  >
-                    <HStack>
-                      <Icon as={Calendar} boxSize={4} color="blue.500" />
-                      <Text>{item.date}</Text>
-                    </HStack>
-                  </Menu.Item>
-                ))}
-              </Menu.Content>
-            </Menu.Root>
-
-            <Button
-              colorScheme="blue"
-              size="md"
-              loading={isDownloading}
-              loadingText="Downloading..."
-              onClick={() => {
-                const selectedReport = reportsList.find(report => report.date === selectedDate);
-                if (selectedReport) {
-                  handleDownload(selectedReport.file);
-                }
-              }}
-              shadow="md"
-              _hover={{
-                shadow: "lg",
-                transform: "translateY(-1px)",
-              }}
-              transition="all 0.2s ease"
-              px={6}
-            >
-              <Icon as={Download} boxSize={4} mr={2} />
-              Download Report
-            </Button>
-          </HStack>
-
-          {/* Additional info */}
-          <Box
-            bg="blue.50"
-            _dark={{ bg: "gray.700" }}
-            rounded="lg"
-            p={4}
-            borderLeft="4px"
-            borderLeftColor="blue.400"
-            w="full"
-            maxW={{ base: "full", md: "lg" }}
-          >
-            <HStack gap={2} mb={2}>
-              <Icon as={FileText} boxSize={4} color="blue.500" />
-              <Text fontSize="sm" fontWeight="semibold" color="blue.700" _dark={{ color: "blue.300" }}>
-                Report Information
-              </Text>
-            </HStack>
-            <Text fontSize="xs" color="gray.600" _dark={{ color: "gray.400" }} lineHeight="relaxed">
-              Published quarterly to maintain complete transparency for investors and token holders. 
-              Each report includes asset breakdowns, reserve verification, and third-party audit results.
-            </Text>
-          </Box>
-        </VStack>
-      </Flex>
+        </HStack>
+      </Box>
     </Box>
   );
 }

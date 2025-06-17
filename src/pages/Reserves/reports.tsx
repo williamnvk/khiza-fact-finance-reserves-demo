@@ -275,23 +275,21 @@ export const Reports = () => {
                 assetDistribution={data.assetDistribution}
               />
 
-              <Box pt={0} p={6} shadow="sm" rounded="md">
-                <TokenList
-                  tokens={data.tokens}
-                  currency={data.currency}
-                  companyName={data.companyName}
-                  reserves={data.last.reserves}
-                  circulation={data.last.circulation}
-                  periodTotalTransfer={data.total?.periodTotalTransfer}
-                />
+              <TokenList
+                tokens={data.tokens}
+                currency={data.currency}
+                companyName={data.companyName}
+                reserves={data.last.reserves}
+                circulation={data.last.circulation}
+                periodTotalTransfer={data.total?.periodTotalTransfer}
+              />
 
-                <TokenChainBreakdown
-                  totalChains={3}
-                  totalTokens={1}
-                  totalValue={formatLargeNumber(data.last.circulation)}
-                  chainDistribution={data.chainDistribution}
-                />
-              </Box>
+              <TokenChainBreakdown
+                totalChains={3}
+                totalTokens={1}
+                totalValue={formatLargeNumber(data.last.circulation)}
+                chainDistribution={data.chainDistribution}
+              />
 
               <AuditReport reportsList={data.reportList} companyName={data.companyName} />
 

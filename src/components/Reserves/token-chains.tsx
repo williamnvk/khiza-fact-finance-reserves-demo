@@ -105,8 +105,7 @@ export function TokenChainBreakdown({
                 </Badge>
               </HStack>
               <Text fontSize="md" color="fg.muted" lineHeight="tall">
-                Comprehensive overview of token distribution across supported blockchain networks, showcasing
-                cross-chain interoperability and network diversification strategy.
+                This section shows how the token supply is distributed across different blockchains
               </Text>
             </VStack>
           </Flex>
@@ -471,59 +470,6 @@ export function TokenChainBreakdown({
                 />
               </Card.Root>
             ))}
-          </Grid>
-        </VStack>
-
-        <VStack align="start" gap={4}>
-          <HStack gap={3}>
-            <Icon as={Activity} boxSize={6} color="brand.500" />
-            <Text fontSize="lg" fontWeight="semibold" color="fg">
-              Network Summary
-            </Text>
-          </HStack>
-
-          <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6} w="full">
-            <VStack align="start" gap={3}>
-              <Text fontSize="sm" fontWeight="medium" color="fg">
-                Key Metrics
-              </Text>
-              <VStack align="stretch" gap={2} w="full">
-                <HStack justify="space-between">
-                  <Text fontSize="sm" color="fg.muted">
-                    Active Networks:
-                  </Text>
-                  <Text fontSize="sm" fontWeight="medium" color="brand.500">
-                    {chainDistribution.length}
-                  </Text>
-                </HStack>
-
-                <HStack justify="space-between">
-                  <Text fontSize="sm" color="fg.muted">
-                    Largest Network:
-                  </Text>
-                  <Text fontSize="sm" fontWeight="medium" color="fg">
-                    {dominantChain.name} ({formatPercent(dominantChain.value)})
-                  </Text>
-                </HStack>
-              </VStack>
-            </VStack>
-
-            <VStack align="start" gap={3}>
-              <Text fontSize="sm" fontWeight="medium" color="fg">
-                Benefits
-              </Text>
-              <VStack align="start" gap={1}>
-                <Text fontSize="sm" color="fg.muted">
-                  • Diversified risk across multiple chains
-                </Text>
-                <Text fontSize="sm" color="fg.muted">
-                  • Lower transaction costs
-                </Text>
-                <Text fontSize="sm" color="fg.muted">
-                  • Global accessibility
-                </Text>
-              </VStack>
-            </VStack>
           </Grid>
         </VStack>
       </VStack>

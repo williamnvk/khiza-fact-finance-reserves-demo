@@ -1,23 +1,10 @@
-import {
-  Circle,
-  Link,
-  Hexagon,
-  CircleCheck,
-  Shield,
-  TrendingUp,
-  Eye,
-  PieChart,
-  BarChart3,
-  Activity,
-  Wallet,
-} from 'lucide-react';
+import { CircleCheck, Shield, TrendingUp, Eye, PieChart, BarChart3, Activity, Wallet } from 'lucide-react';
 import { formatLargeNumber } from '@/lib/utils';
 import {
   Box,
   VStack,
   HStack,
   Text,
-  Image,
   Flex,
   Grid,
   GridItem,
@@ -26,21 +13,17 @@ import {
   Stat,
   Badge,
   FormatNumber,
-  ColorSwatch,
   Progress,
-  Separator,
-  Button,
   Stack,
   SimpleGrid,
-  Tabs,
   Icon,
+  Image,
 } from '@chakra-ui/react';
-import { useColorModeValue } from '../ui/color-mode';
+import { chains, reportChains } from '@/data/chains';
 
 export function TokenList({
   currency,
   tokens,
-  companyName,
   reserves,
   circulation,
   periodTotalTransfer,
@@ -52,27 +35,6 @@ export function TokenList({
   circulation: number;
   periodTotalTransfer: number;
 }) {
-  // Enhanced chain icons with better colors and accessibility
-  const chainIconColors = {
-    ethereum: useColorModeValue('#627EEA', '#8B9FFF'),
-    bitcoin: useColorModeValue('#F7931A', '#FFB84D'),
-    moonbeam: useColorModeValue('#E1147B', '#FF4D9F'),
-    polygon: useColorModeValue('#8247E5', '#A66BFF'),
-    gnosis: useColorModeValue('#00A59C', '#33C4BC'),
-    celo: useColorModeValue('#35D07F', '#5DDBAB'),
-    other: useColorModeValue('#6B7280', '#9CA3AF'),
-  };
-
-  const chainIcons: Record<string, JSX.Element> = {
-    ethereum: <Circle size={16} color={chainIconColors.ethereum} fill={chainIconColors.ethereum} />,
-    bitcoin: <Circle size={16} color={chainIconColors.bitcoin} fill={chainIconColors.bitcoin} />,
-    moonbeam: <Circle size={16} color={chainIconColors.moonbeam} fill={chainIconColors.moonbeam} />,
-    polygon: <Hexagon size={16} color={chainIconColors.polygon} fill={chainIconColors.polygon} />,
-    gnosis: <Link size={16} color={chainIconColors.gnosis} />,
-    celo: <Link size={16} color={chainIconColors.celo} />,
-    other: <Link size={16} color={chainIconColors.other} />,
-  };
-
   // Function to get shortened contract address
   const getShortenedAddress = (address: string) => {
     return address.length > 12 ? `${address.substring(0, 6)}...${address.substring(address.length - 6)}` : address;
@@ -243,7 +205,7 @@ export function TokenList({
           </HStack>
 
           <Stack gap={6}>
-            {tokens.map((token, index) => {
+            {tokens.map((token) => {
               const tokenSupply = (circulation * token.share) / 100;
               const tokenTransfers = (periodTotalTransfer * token.share) / 100;
               const reserveUtilization = (tokenSupply / reserves) * 100;
@@ -272,7 +234,7 @@ export function TokenList({
                         {/* Chain Support */}
                         <Box>
                           <Text fontSize="sm" fontWeight="medium" color="fg" mb={2}>
-                            Supported Networks ({token.chains.length})
+                            Token Contracts ({token.chains.length})
                           </Text>
                           <HStack gap={2} flexWrap="wrap">
                             {token.chains.map((chain: string) => (
@@ -280,40 +242,39 @@ export function TokenList({
                                 key={chain}
                                 title={chain}
                                 bg="gray.100"
-                                rounded="lg"
+                                rounded="full"
                                 p={2}
                                 shadow="sm"
                                 _hover={{ shadow: 'md', transform: 'translateY(-1px)' }}
                                 transition="all 0.2s"
                                 _dark={{ bg: 'gray.700' }}
                               >
-                                {chainIcons[chain.toLowerCase()] || chainIcons.other}
+                                <Image src={reportChains.find((c) => c.name === chain)?.icon} alt={chain} boxSize={4} />
                               </Box>
                             ))}
                           </HStack>
                         </Box>
 
-                        {/* Oracle Contract */}
-                        <Box bg="gray.50" rounded="lg" p={3} _dark={{ bg: 'gray.800' }}>
-                          <VStack align="start" gap={2}>
-                            <Text fontSize="sm" fontWeight="medium" color="fg">
-                              Reserve Oracle Contract
-                            </Text>
-                            <ChakraLink
-                              href={`https://etherscan.io/address/${token.oracleContract}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              _hover={{ textDecoration: 'none' }}
-                            >
-                              <Button size="sm" variant="outline" w="full">
+                        {token.oracleContract && (
+                          <Box bg="gray.50" rounded="lg" p={3} _dark={{ bg: 'gray.800' }}>
+                            <VStack align="start" gap={2}>
+                              <Text fontSize="sm" fontWeight="medium" color="fg">
+                                Onchain reserves data
+                              </Text>
+                              <ChakraLink
+                                href={`https://etherscan.io/address/${token.oracleContract}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                _hover={{ textDecoration: 'none' }}
+                              >
                                 <HStack gap={2}>
                                   <Text>{getShortenedAddress(token.oracleContract)}</Text>
                                   <Eye size={14} />
                                 </HStack>
-                              </Button>
-                            </ChakraLink>
-                          </VStack>
-                        </Box>
+                              </ChakraLink>
+                            </VStack>
+                          </Box>
+                        )}
                       </VStack>
                     </GridItem>
 
@@ -495,7 +456,7 @@ export function TokenList({
         {/* Enhanced Footer with Additional Insights */}
         <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={6}>
           <GridItem>
-            <Card.Root variant="subtle">
+            <Card.Root variant="subtle" bg="whiteAlpha.50">
               <Card.Body>
                 <VStack align="start" gap={3}>
                   <Text fontSize="md" fontWeight="semibold" color="fg">
@@ -515,7 +476,7 @@ export function TokenList({
           </GridItem>
 
           <GridItem>
-            <Card.Root variant="subtle">
+            <Card.Root variant="subtle" bg="whiteAlpha.50">
               <Card.Body>
                 <VStack align="start" gap={3}>
                   <Text fontSize="md" fontWeight="semibold" color="fg">
@@ -534,7 +495,7 @@ export function TokenList({
           </GridItem>
 
           <GridItem>
-            <Card.Root variant="subtle">
+            <Card.Root variant="subtle" bg="whiteAlpha.50">
               <Card.Body>
                 <VStack align="start" gap={3}>
                   <Text fontSize="md" fontWeight="semibold" color="fg">

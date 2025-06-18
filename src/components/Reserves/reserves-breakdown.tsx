@@ -54,7 +54,7 @@ export function ReservesBreakdown({
     <Box
       position="relative"
       bg="whiteAlpha.50"
-      borderRadius="2xl"
+      borderRadius="3xl"
       shadow="lg"
       borderWidth="1px"
       borderColor="whiteAlpha.200"

@@ -35,6 +35,7 @@ export function AuditReport({
       <Card.Root
         size="lg"
         variant="elevated"
+        rounded="3xl"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         transform={isHovered ? 'translateY(-8px)' : 'translateY(0)'}
@@ -56,22 +57,11 @@ export function AuditReport({
           right="0"
           w="full"
           h="full"
-          bgGradient="linear(135deg, brand.50 0%, transparent 50%)"
+          bgGradient="linear-gradient(135deg, {colors.brand.50} 0%, transparent 70%)"
           _dark={{
-            bgGradient: 'linear(135deg, brand.900/20 0%, transparent 50%)',
+            bgGradient: 'linear-gradient(135deg, {colors.brand.900/20} 0%, transparent 70%)',
           }}
           opacity="0.5"
-        />
-
-        {/* Floating Elements */}
-        <Box
-          position="absolute"
-          top="6"
-          right="8"
-          w="24"
-          h="24"
-          bgGradient="radial(brand.400/20, transparent 70%)"
-          rounded="full"
         />
 
         <Card.Body p={{ base: 8, md: 12 }}>

@@ -80,13 +80,11 @@ export function ReportHeader({
             {client === 'avenia' && (
               <AveniaLogo fill={colorMode === 'dark' ? 'white' : 'black'} width={180} height={45} />
             )}
-            {client === 'tokeniza' && (
-              <TokenizaLogo fill={colorMode === 'dark' ? 'white' : 'black'} width={180} height={45} />
-            )}
+            {client === 'tokeniza' && <Image src="/assets/logos/tbrl.png" alt="tBRl" width={120} height={120} />}
             {client === 'scenium' && <Image src="/assets/logos/scenium.png" alt="Scenium" width={180} height={45} />}
           </Box>
 
-          <VStack align="start" gap={4}>
+          <VStack align="start" gap={4} flex={1}>
             <HStack gap={3} align="center" flexWrap="wrap">
               <Heading size="2xl" color="gray.900" _dark={{ color: 'white' }} fontWeight="800" letterSpacing="-0.03em">
                 {companyName}
@@ -141,7 +139,6 @@ export function ReportHeader({
             lg: 'repeat(4, 1fr)',
           }}
           gap={6}
-          mb={8}
         >
           {/* Issued Tokens Card */}
           <GridItem>
@@ -150,7 +147,7 @@ export function ReportHeader({
               bg="linear-gradient(135deg, {colors.whiteAlpha.100} 0%, transparent 100%)"
               borderWidth="1px"
               borderColor="blackAlpha.200"
-              borderRadius="2xl"
+              borderRadius="lg"
               _dark={{
                 borderColor: 'whiteAlpha.200',
               }}
@@ -161,9 +158,6 @@ export function ReportHeader({
                   <Box p={3} bg="brand.500" rounded="xl" _dark={{ bg: 'brand.500' }}>
                     <Icon as={CoinsIcon} boxSize={6} color="white" />
                   </Box>
-                  <Tag.Root colorPalette="brand" variant="subtle" size="sm">
-                    <Tag.Label>Issued</Tag.Label>
-                  </Tag.Root>
                 </HStack>
                 <VStack align="start" gap={2} flex={1}>
                   <Text
@@ -174,11 +168,16 @@ export function ReportHeader({
                     letterSpacing="wider"
                     _dark={{ color: 'brand.400' }}
                   >
-                    Total Tokens
+                    Circulating Token Supply
                   </Text>
-                  <Heading fontSize="2xl" lineHeight="1">
-                    {currency} {circulation}
-                  </Heading>
+                  <Flex align="center" gap={2}>
+                    <Text fontSize="sm" color="gray.600" fontWeight="medium" _dark={{ color: 'gray.400' }}>
+                      {currency}
+                    </Text>
+                    <Heading fontSize="2xl" lineHeight="1">
+                      {circulation}
+                    </Heading>
+                  </Flex>
                 </VStack>
               </VStack>
             </Box>
@@ -190,7 +189,7 @@ export function ReportHeader({
               bg="linear-gradient(135deg, {colors.whiteAlpha.100} 0%, transparent 100%)"
               borderWidth="1px"
               borderColor="blackAlpha.200"
-              borderRadius="2xl"
+              borderRadius="lg"
               p={6}
               _dark={{
                 borderColor: 'whiteAlpha.200',
@@ -217,12 +216,14 @@ export function ReportHeader({
                   >
                     Total Reserves
                   </Text>
-                  <Heading size="xl" color="brand.700" _dark={{ color: 'brand.300' }} lineHeight="1">
-                    {reserves}
-                  </Heading>
-                  <Text fontSize="sm" color="gray.600" fontWeight="medium" _dark={{ color: 'gray.400' }}>
-                    {currency}
-                  </Text>
+                  <Flex align="center" gap={2}>
+                    <Text fontSize="sm" color="gray.600" fontWeight="medium" _dark={{ color: 'gray.400' }}>
+                      {currency}
+                    </Text>
+                    <Heading fontSize="2xl" color="brand.700" _dark={{ color: 'brand.300' }} lineHeight="1">
+                      {reserves}
+                    </Heading>
+                  </Flex>
                 </VStack>
               </VStack>
             </Box>
@@ -235,7 +236,7 @@ export function ReportHeader({
               bg="linear-gradient(135deg, {colors.whiteAlpha.100} 0%, transparent 100%)"
               borderWidth="1px"
               borderColor="blackAlpha.200"
-              borderRadius="2xl"
+              borderRadius="lg"
               p={6}
               _dark={{
                 borderColor: 'whiteAlpha.200',
@@ -263,14 +264,14 @@ export function ReportHeader({
                     Collateral Ratio
                   </Text>
                   <Heading
-                    size="xl"
+                    fontSize="2xl"
                     color={isHealthy ? 'success.700' : 'warning.700'}
                     _dark={{ color: isHealthy ? 'success.300' : 'warning.300' }}
                     lineHeight="1"
                   >
                     {ratio}
                   </Heading>
-                  <Box
+                  {/* <Box
                     width="full"
                     height={2}
                     bg="gray.200"
@@ -284,7 +285,7 @@ export function ReportHeader({
                       bg={isHealthy ? 'success.500' : 'warning.500'}
                       transition="all 0.3s ease"
                     />
-                  </Box>
+                  </Box> */}
                 </VStack>
               </VStack>
             </Box>
@@ -297,7 +298,7 @@ export function ReportHeader({
               bg="linear-gradient(135deg, {colors.whiteAlpha.100} 0%, transparent 100%)"
               borderWidth="1px"
               borderColor="blackAlpha.200"
-              borderRadius="2xl"
+              borderRadius="lg"
               p={6}
               _dark={{
                 borderColor: 'whiteAlpha.200',
@@ -313,7 +314,7 @@ export function ReportHeader({
                   </Badge>
                 </HStack>
 
-                <VStack align="start" gap={3} flex={1}>
+                <VStack align="start" gap={0} flex={1}>
                   <Text
                     fontSize="xs"
                     fontWeight="bold"
@@ -329,12 +330,12 @@ export function ReportHeader({
                   </Text>
 
                   {heartbeat && (
-                    <Tooltip content="The heartbeat is a timing rule that ensures updates happen at regular intervals. For example, with a 5-minute heartbeat, the system will attempt an update at least every 5 minutes—even without major changes. This prevents data staleness and detects delays or outages quickly.">  
-                    <VStack align="start" gap={1}>
-                      <Text fontSize="xs" fontWeight="medium">
-                        Heartbeat: {heartbeat} <Icon as={InfoIcon} boxSize={4} />
-                      </Text>
-                    </VStack>
+                    <Tooltip content="The heartbeat is a timing rule that ensures updates happen at regular intervals. For example, with a 5-minute heartbeat, the system will attempt an update at least every 5 minutes—even without major changes. This prevents data staleness and detects delays or outages quickly.">
+                      <VStack align="start" gap={1}>
+                        <Text fontSize="xs" fontWeight="medium">
+                          Heartbeat: {heartbeat} <Icon as={InfoIcon} boxSize={4} />
+                        </Text>
+                      </VStack>
                     </Tooltip>
                   )}
                 </VStack>

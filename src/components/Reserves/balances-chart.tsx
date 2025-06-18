@@ -181,23 +181,6 @@ export function BalancesChart({
         </Flex>
       </VStack>
 
-      {/* Progress indicator */}
-      <Box mt={4} p={4} bg="whiteAlpha.50" borderRadius="lg" borderWidth="1px">
-        <HStack justify="space-between" mb={2}>
-          <Text fontSize="xs" color="fg.muted">
-            Reserve Utilization
-          </Text>
-          <Text fontSize="xs" fontWeight="medium" color="fg">
-            {((circulation / totalReserves) * 100).toFixed(1)}%
-          </Text>
-        </HStack>
-        <Progress.Root value={(circulation / totalReserves) * 100} colorPalette="brand" size="sm">
-          <Progress.Track rounded="full">
-            <Progress.Range rounded="full" />
-          </Progress.Track>
-        </Progress.Root>
-      </Box>
-
       {/* Chart */}
       <Box h={300} w="full">
         <ResponsiveContainer width="100%" height="100%" minHeight="280px">

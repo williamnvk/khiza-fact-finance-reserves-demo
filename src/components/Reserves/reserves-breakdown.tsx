@@ -19,9 +19,10 @@ import {
   Progress,
   Stack,
 } from '@chakra-ui/react';
+import { Tooltip } from '@/components/ui/tooltip';
 import { useColorModeValue } from '../ui/color-mode';
 // import { Chart, useChart } from '@chakra-ui/charts'; // Will be used for future enhancements
-import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip } from 'recharts';
+import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from 'recharts';
 
 type ViewMode = 'overview' | 'distribution' | 'trends';
 
@@ -135,7 +136,7 @@ export function ReservesBreakdown({
           </Text>
         </VStack>
 
-        {/* Simplified Asset Breakdown */}
+        {/* Asset Distribution Bar */}
         <Card.Root>
           <Card.Header>
             <Card.Title fontSize="lg" fontWeight="semibold">
@@ -143,46 +144,38 @@ export function ReservesBreakdown({
             </Card.Title>
           </Card.Header>
           <Card.Body>
-            <VStack align="stretch" gap={5}>
-              {chartData.map((asset, index) => (
-                <Box key={asset.name}>
-                  <HStack justify="space-between" mb={3}>
-                    <HStack gap={4}>
-                      <ColorSwatch boxSize="5" value={asset.color} borderRadius="md" shadow="sm" />
-                      <VStack align="start" gap={1}>
-                        <Text fontSize="md" fontWeight="semibold" color="fg">
-                          {asset.name}
-                        </Text>
-                        <Text fontSize="sm" color="fg.muted" textTransform="capitalize">
-                          {asset.type.replace('_', ' ')}
-                        </Text>
-                      </VStack>
-                    </HStack>
-                    <VStack align="end" gap={1}>
-                      <Text fontSize="lg" fontWeight="bold" color="fg">
-                        <FormatNumber value={asset.value} style="currency" currency="USD" notation="compact" />
+            <VStack align="stretch" gap={4}>
+              {/* Stacked progress bar */}
+              <HStack width="100%" height="2rem" gap={0} borderRadius="md" overflow="hidden" shadow="sm">
+                {chartData.map(asset => (
+                  <Tooltip key={asset.name} content={`${asset.name}: ${asset.percentage}%`}>
+                    <Box
+                      height="100%"
+                      width={`${asset.percentage}%`}
+                      bg={asset.color}
+                      transition="all 0.2s ease-in-out"
+                      _hover={{ transform: 'scale(1.05)', zIndex: 1, shadow: 'lg' }}
+                    />
+                  </Tooltip>
+                ))}
+              </HStack>
+
+              {/* Legend */}
+              <Grid templateColumns={{ base: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }} gap={4} pt={4}>
+                {chartData.map(asset => (
+                  <HStack key={asset.name} gap={3}>
+                    <ColorSwatch boxSize="4" value={asset.color} borderRadius="sm" />
+                    <VStack align="start" gap={0}>
+                      <Text fontSize="sm" fontWeight="medium" color="fg">
+                        {asset.name}
                       </Text>
-                      <Text fontSize="md" fontWeight="semibold" color={asset.color}>
+                      <Text fontSize="sm" fontWeight="semibold" color={asset.color}>
                         {asset.percentage}%
                       </Text>
                     </VStack>
                   </HStack>
-
-                  <Progress.Root
-                    value={parseFloat(asset.percentage)}
-                    size="md"
-                    colorPalette="gray"
-                    bg="whiteAlpha.400"
-                    _dark={{ bg: 'blackAlpha.400' }}
-                  >
-                    <Progress.Track borderRadius="full">
-                      <Progress.Range borderRadius="full" style={{ backgroundColor: asset.color }} />
-                    </Progress.Track>
-                  </Progress.Root>
-
-                  {index < chartData.length - 1 && <Separator mt={4} />}
-                </Box>
-              ))}
+                ))}
+              </Grid>
             </VStack>
           </Card.Body>
         </Card.Root>

@@ -47,22 +47,19 @@ export function BalancesChart({
     return (
       <Card.Root borderWidth="1px" shadow="lg" p={4} maxW="320px" _dark={{ shadow: 'dark-lg' }}>
         <Card.Body p={0}>
-          <VStack align="start" gap={3}>
+          <VStack align="start" gap={1}>
             <Text fontSize="md" fontWeight="bold" color="fg">
               Reserves vs. Circulation
             </Text>
 
             {/* Reserves Section */}
             <VStack align="start" gap={2} w="full">
-              <Text fontSize="sm" fontWeight="semibold" color="fg">
-                Total Reserves
-              </Text>
               <Box w="full">
                 <HStack justify="space-between" mb={1}>
                   <HStack>
                     <Box w={2} h={2} rounded="full" bg={colors.reserves} />
                     <Text fontSize="xs" color="fg.muted">
-                      Main Collateral
+                      Circulating Token Supply
                     </Text>
                   </HStack>
                   <Text fontSize="sm" fontWeight="medium" color={colors.reserves}>
@@ -86,7 +83,7 @@ export function BalancesChart({
 
                 <HStack justify="space-between">
                   <Text fontSize="sm" fontWeight="semibold" color="fg">
-                    Total
+                    Total Reserves
                   </Text>
                   <Text fontSize="lg" fontWeight="bold" color="brand.500">
                     {formatLargeNumber(totalReservesValue, currency)}
@@ -99,9 +96,6 @@ export function BalancesChart({
 
             {/* Circulation Section */}
             <VStack align="start" gap={2} w="full">
-              <Text fontSize="sm" fontWeight="semibold" color="fg">
-                Tokens in Circulation
-              </Text>
               <HStack justify="space-between" w="full">
                 <HStack>
                   <Box w={2} h={2} rounded="full" bg={colors.circulation} />
@@ -203,7 +197,7 @@ export function BalancesChart({
       {/* Chart */}
       <Box h={{ base: 200, md: 150 }} w="full" mt={8}>
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart layout="vertical" data={data} margin={{ top: 20, right: 30, left: 10, bottom: 20 }}>
+          <BarChart layout="vertical" data={data} margin={{ top: 20, right: 60, left: 10, bottom: 20 }}>
             <XAxis
               type="number"
               domain={[0, Math.max(circulation, reserves) * 1.1]}
@@ -217,15 +211,27 @@ export function BalancesChart({
             <YAxis type="category" dataKey="name" hide />
             <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(0,0,0,0.05)' }} />
 
-            <Bar dataKey="Main Collateral" stackId="a" fill={colors.reserves} barSize={60} />
-            <Bar dataKey="Over-collateral" stackId="a" fill={colors.overCollateral} radius={[0, 6, 6, 0]} barSize={60} />
+            <Bar
+              dataKey="Main Collateral"
+              stackId="a"
+              fill={colors.reserves}
+              barSize={60}
+              radius={excessReserve > 0 ? [6, 0, 0, 6] : [6, 6, 6, 6]}
+            />
+            <Bar
+              dataKey="Over-collateral"
+              stackId="a"
+              fill={colors.overCollateral}
+              radius={excessReserve > 0 ? [0, 6, 6, 0] : [0, 0, 0, 0]}
+              barSize={60}
+            />
 
-            <ReferenceLine x={circulation} stroke={colors.circulation} strokeWidth={2} strokeDasharray="3 3">
+            <ReferenceLine x={circulation} stroke={colors.circulation} strokeWidth={3} strokeDasharray="8 0">
               <Label
-                value="Tokens in Circulation"
+                value="Circulating Token Supply"
                 position="top"
                 fill={useColorModeValue('gray.800', 'white')}
-                fontSize={12}
+                fontSize={10}
                 fontWeight="bold"
               />
             </ReferenceLine>
@@ -239,7 +245,7 @@ export function BalancesChart({
           <Box w={3} h={3} rounded="full" bg={colors.reserves} shadow="sm" />
           <VStack align="start" gap={0}>
             <Text fontSize="xs" fontWeight="medium" color="fg">
-              Main Collateral
+              Circulating Token Supply
             </Text>
           </VStack>
         </HStack>
@@ -248,15 +254,9 @@ export function BalancesChart({
           <Box w={3} h={3} rounded="full" bg={colors.overCollateral} shadow="sm" />
           <VStack align="start" gap={0}>
             <Text fontSize="xs" fontWeight="medium" color="fg">
-              Over-collateral
+              Total Reserves
             </Text>
           </VStack>
-        </HStack>
-        <HStack gap={2}>
-          <Box as="span" borderTop="2px dashed" borderColor={colors.circulation} w={4} h={0} />
-          <Text fontSize="xs" fontWeight="medium" color="fg">
-            Tokens in Circulation
-          </Text>
         </HStack>
       </Flex>
     </Box>

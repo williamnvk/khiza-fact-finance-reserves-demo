@@ -130,8 +130,8 @@ export function ReservesBreakdown({
             </Badge>
           </HStack>
           <Text fontSize="md" color="fg.muted" lineHeight="relaxed">
-            This comprehensive report provides transparency into {companyName}'s asset reserves, including
-            real-time metrics, distribution analysis, and regulatory compliance data.
+            This comprehensive report provides transparency into {companyName}'s asset reserves, including real-time
+            metrics, distribution analysis, and regulatory compliance data.
           </Text>
         </VStack>
 
@@ -148,12 +148,7 @@ export function ReservesBreakdown({
                 <Box key={asset.name}>
                   <HStack justify="space-between" mb={3}>
                     <HStack gap={4}>
-                      <ColorSwatch 
-                        boxSize="5" 
-                        value={asset.color}
-                        borderRadius="md"
-                        shadow="sm"
-                      />
+                      <ColorSwatch boxSize="5" value={asset.color} borderRadius="md" shadow="sm" />
                       <VStack align="start" gap={1}>
                         <Text fontSize="md" fontWeight="semibold" color="fg">
                           {asset.name}
@@ -165,34 +160,26 @@ export function ReservesBreakdown({
                     </HStack>
                     <VStack align="end" gap={1}>
                       <Text fontSize="lg" fontWeight="bold" color="fg">
-                        <FormatNumber 
-                          value={asset.value} 
-                          style="currency" 
-                          currency="USD" 
-                          notation="compact"
-                        />
+                        <FormatNumber value={asset.value} style="currency" currency="USD" notation="compact" />
                       </Text>
                       <Text fontSize="md" fontWeight="semibold" color={asset.color}>
                         {asset.percentage}%
                       </Text>
                     </VStack>
                   </HStack>
-                  
-                  <Progress.Root 
-                    value={parseFloat(asset.percentage)} 
-                    size="md" 
+
+                  <Progress.Root
+                    value={parseFloat(asset.percentage)}
+                    size="md"
                     colorPalette="gray"
                     bg="whiteAlpha.400"
                     _dark={{ bg: 'blackAlpha.400' }}
                   >
                     <Progress.Track borderRadius="full">
-                      <Progress.Range 
-                        borderRadius="full"
-                        style={{ backgroundColor: asset.color }}
-                      />
+                      <Progress.Range borderRadius="full" style={{ backgroundColor: asset.color }} />
                     </Progress.Track>
                   </Progress.Root>
-                  
+
                   {index < chartData.length - 1 && <Separator mt={4} />}
                 </Box>
               ))}
@@ -329,8 +316,8 @@ export function ReservesBreakdown({
                 Compliance & Auditing
               </Text>
               <Text fontSize="sm" color="fg.muted" lineHeight="relaxed">
-                Reports are audited monthly by certified third-party auditors. Reserves include cash equivalents, 
-                government securities, and approved digital assets. Token issuance tracked across all supported 
+                Reports are audited monthly by certified third-party auditors. Reserves include cash equivalents,
+                government securities, and approved digital assets. Token issuance tracked across all supported
                 blockchain networks.
               </Text>
             </VStack>

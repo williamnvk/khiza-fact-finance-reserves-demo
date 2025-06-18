@@ -167,13 +167,13 @@ export function HistoryChart({
             </Text>
           </VStack>
           {historicalData1?.length ? (
-            <ButtonGroup size="sm" attached variant="outline">
+            <ButtonGroup size="xs" attached variant="ghost">
               {periods.map((period) => (
                 <Button
                   key={period}
                   onClick={handlePeriod}
                   colorPalette={selected === period ? 'brand' : 'gray'}
-                  variant={selected === period ? 'solid' : 'outline'}
+                  variant={selected === period ? 'solid' : 'subtle'}
                 >
                   {period}
                 </Button>
@@ -197,17 +197,11 @@ export function HistoryChart({
               <Card.Body>
                 <Stat.Root size="sm">
                   <Stat.Label fontSize="xs" color="fg.muted">
-                    Total Issued
+                    Transaction volume
                   </Stat.Label>
                   <Stat.ValueText fontSize="lg" fontWeight="bold" color="brand.500">
-                    <Text as="span" fontSize="xs" color="fg.muted">
-                      {currency}
-                    </Text>
                     {formatLargeNumber(totalIssued | 0)}
                   </Stat.ValueText>
-                  <Stat.HelpText fontSize="xs" color="fg.muted">
-                    Tokens in circulation
-                  </Stat.HelpText>
                 </Stat.Root>
               </Card.Body>
             </Card.Root>
@@ -225,14 +219,11 @@ export function HistoryChart({
               <Card.Body>
                 <Stat.Root size="sm">
                   <Stat.Label fontSize="xs" color="fg.muted">
-                    Total Transactions
+                    Number of transactions
                   </Stat.Label>
                   <Stat.ValueText fontSize="lg" fontWeight="bold" color="success.500">
                     {formatLargeNumber(totalTransactions | 0)}
                   </Stat.ValueText>
-                  <Stat.HelpText fontSize="xs" color="fg.muted">
-                    Network activity
-                  </Stat.HelpText>
                 </Stat.Root>
               </Card.Body>
             </Card.Root>
@@ -250,14 +241,11 @@ export function HistoryChart({
               <Card.Body>
                 <Stat.Root size="sm">
                   <Stat.Label fontSize="xs" color="fg.muted">
-                    Average Collateral
+                    Average collateral
                   </Stat.Label>
                   <Stat.ValueText fontSize="lg" fontWeight="bold" color="cyan.500">
                     {averageIndex}
                   </Stat.ValueText>
-                  <Stat.HelpText fontSize="xs" color="fg.muted">
-                    Coverage ratio
-                  </Stat.HelpText>
                 </Stat.Root>
               </Card.Body>
             </Card.Root>
@@ -265,9 +253,9 @@ export function HistoryChart({
         </Grid>
 
         {/* Chart */}
-        <Box h={300} w="full">
-          <ResponsiveContainer width="100%" height="100%" minHeight="280px">
-            <LineChart data={historicalDataChart} margin={{ top: 20, right: 20, left: 20, bottom: 20 }}>
+        <Box h={240} w="full">
+          <ResponsiveContainer width="100%" height="100%" minHeight="240px">
+            <LineChart data={historicalDataChart} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" stroke={colors.grid} />
               <XAxis
                 dataKey="Date"
@@ -310,10 +298,7 @@ export function HistoryChart({
             <Box w={3} h={3} rounded="full" bg={colors.circulation} shadow="sm" />
             <VStack align="start" gap={0}>
               <Text fontSize="xs" fontWeight="medium" color="fg">
-                Issued Tokens
-              </Text>
-              <Text fontSize="xs" color="fg.muted">
-                Tokens in circulation
+                Circulating token supply
               </Text>
             </VStack>
           </HStack>
@@ -322,10 +307,7 @@ export function HistoryChart({
             <Box w={3} h={3} rounded="full" bg={colors.reserves} shadow="sm" />
             <VStack align="start" gap={0}>
               <Text fontSize="xs" fontWeight="medium" color="fg">
-                Collateral Reserves
-              </Text>
-              <Text fontSize="xs" color="fg.muted">
-                Backing collateral
+                Total Reserves
               </Text>
             </VStack>
           </HStack>

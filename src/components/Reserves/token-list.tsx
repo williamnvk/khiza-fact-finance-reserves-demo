@@ -105,15 +105,15 @@ export function TokenList({
             <VStack align="start" gap={2} flex={1}>
               <HStack gap={3}>
                 <Text fontSize="3xl" fontWeight="bold" color="fg">
-                  Token Portfolio
+                  Token Overview
                 </Text>
                 <Badge colorPalette="brand" size="md">
                   {tokens.length} Asset{tokens.length !== 1 ? 's' : ''}
                 </Badge>
               </HStack>
               <Text fontSize="md" color="fg.muted" lineHeight="tall">
-                Comprehensive portfolio overview of digital assets backed by {companyName}'s verified reserves,
-                featuring real-time valuations, cross-chain distribution, and detailed performance metrics.
+                This section provides key onchain metrics to track the token's issuance, market activity, and reserve
+                dynamics.
               </Text>
             </VStack>
           </Flex>

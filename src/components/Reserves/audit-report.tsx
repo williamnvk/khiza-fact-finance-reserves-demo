@@ -30,44 +30,7 @@ export function AuditReport({
   };
 
   return (
-    <Box mt={16} mb={8}>
-      {/* Header Section */}
-      <VStack gap={4} mb={12} textAlign="center">
-        <Badge
-          colorScheme="brand"
-          variant="subtle"
-          fontSize="sm"
-          px={4}
-          py={2}
-          rounded="full"
-          textTransform="uppercase"
-          letterSpacing="wider"
-          fontWeight="semibold"
-        >
-          Transparency Report
-        </Badge>
-        <Text
-          fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
-          fontWeight="bold"
-          bgGradient="linear-gradient(35deg, {colors.brand.600}, {colors.brand.600})"
-          bgClip="text"
-          letterSpacing="tight"
-          lineHeight="shorter"
-        >
-          Audit & Compliance Documentation
-        </Text>
-        <Text
-          fontSize={{ base: 'md', md: 'lg' }}
-          color="gray.600"
-          _dark={{ color: 'gray.400' }}
-          maxW="2xl"
-          lineHeight="relaxed"
-        >
-          Access comprehensive quarterly reports featuring detailed financial audits, compliance verification, and
-          transparency documentation for {companyName} digital assets.
-        </Text>
-      </VStack>
-
+    <>
       {/* Main Card */}
       <Card.Root
         size="lg"
@@ -145,9 +108,6 @@ export function AuditReport({
                     Verified
                   </Text>
                 </HStack>
-                <Text fontSize="xs" color="gray.500" textAlign="center">
-                  Audited by Third Party
-                </Text>
               </VStack>
             </VStack>
 
@@ -351,6 +311,6 @@ export function AuditReport({
           </VStack>
         </HStack>
       </Box>
-    </Box>
+    </>
   );
 }

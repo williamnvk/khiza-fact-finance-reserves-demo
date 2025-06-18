@@ -83,8 +83,8 @@ export function ReservesBreakdown({
         </VStack>
 
         {/* Asset Distribution Bar */}
-        <Card.Root>
-          <Card.Header>
+        <Card.Root size="sm" variant="outline" bg="transparent">
+          <Card.Header> 
             <Card.Title fontSize="lg" fontWeight="semibold">
               Asset Distribution
             </Card.Title>
@@ -127,13 +127,13 @@ export function ReservesBreakdown({
         </Card.Root>
 
         {/* Key Metrics - Simplified */}
-        <Grid templateColumns={{ base: '1fr', md: 'repeat(4, 1fr)' }} gap={4}>
+        <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={4}>
           <GridItem>
-            <Card.Root size="sm" variant="subtle">
+            <Card.Root size="sm" variant="outline" bg="transparent">
               <Card.Body>
                 <Stat.Root>
                   <Stat.Label fontSize="sm" color="fg.muted">
-                    Total Reserves
+                    Total Collateral Reserves
                   </Stat.Label>
                   <Stat.ValueText fontSize="xl" fontWeight="bold" color="success.500">
                     <FormatNumber value={reserves} style="currency" currency="USD" notation="compact" />
@@ -145,7 +145,7 @@ export function ReservesBreakdown({
               </Card.Body>
             </Card.Root>
           </GridItem>
-
+          {/* 
           <GridItem>
             <Card.Root size="sm" variant="subtle">
               <Card.Body>
@@ -162,10 +162,10 @@ export function ReservesBreakdown({
                 </Stat.Root>
               </Card.Body>
             </Card.Root>
-          </GridItem>
+          </GridItem> */}
 
           <GridItem>
-            <Card.Root size="sm" variant="subtle">
+            <Card.Root size="sm" variant="outline" bg="transparent">
               <Card.Body>
                 <Stat.Root>
                   <Stat.Label fontSize="sm" color="fg.muted">
@@ -183,7 +183,7 @@ export function ReservesBreakdown({
           </GridItem>
 
           <GridItem>
-            <Card.Root size="sm" variant="subtle">
+            <Card.Root size="sm" variant="outline" bg="transparent">
               <Card.Body>
                 <Stat.Root>
                   <Stat.Label fontSize="sm" color="fg.muted">

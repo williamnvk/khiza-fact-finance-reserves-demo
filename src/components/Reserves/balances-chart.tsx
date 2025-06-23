@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine, Cell } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { formatLargeNumber } from '@/lib/utils';
 import {
   Box,
@@ -71,9 +71,18 @@ export function BalancesChart({
         ];
       case 'comparative':
         return [
-          { name: 'Main Collateral', value: mainCollateral, type: 'collateral' },
-          { name: 'Over Collateral', value: over, type: 'over' },
-          { name: 'Circulation', value: circulation, type: 'circulation' },
+          {
+            name: 'Tokens in\nCirculation',
+            Circulation: circulation,
+            'Main Collateral': 0,
+            'Over Collateral': 0,
+          },
+          {
+            name: 'Collateral\nReserves',
+            Circulation: 0,
+            'Main Collateral': mainCollateral,
+            'Over Collateral': over,
+          },
         ];
       case 'ratio':
         return [
@@ -172,21 +181,69 @@ export function BalancesChart({
             )}
 
             {chartView === 'comparative' && (
-              <SimpleGrid columns={1} gap={2} w="full">
-                {payload.map((entry: any, index: number) => (
-                  <HStack key={index} justify="space-between" w="full">
-                    <HStack gap={2}>
-                      <Box w={3} h={3} rounded="full" bg={entry.payload.fill} />
-                      <Text fontSize="sm" color="fg">
-                        {entry.payload.name}
+              <VStack align="start" gap={2} w="full">
+                {payload.map((entry: any, index: number) => {
+                  const value = entry.value;
+                  const dataKey = entry.dataKey;
+                  let description = '';
+                  let icon = null;
+
+                  switch (dataKey) {
+                    case 'Main Collateral':
+                      description = 'Primary reserve backing';
+                      icon = <Shield size={12} />;
+                      break;
+                    case 'Over Collateral':
+                      description = 'Additional security buffer';
+                      icon = <TrendingUp size={12} />;
+                      break;
+                    case 'Circulation':
+                      description = 'Tokens in circulation';
+                      icon = <Activity size={12} />;
+                      break;
+                  }
+
+                  // Skip entries with value 0
+                  if (value === 0) return null;
+
+                  return (
+                    <HStack key={index} justify="space-between" w="full">
+                      <HStack gap={2}>
+                        <Box w={3} h={3} rounded="full" bg={entry.color} />
+                        <Icon>{icon}</Icon>
+                        <VStack align="start" gap={0}>
+                          <Text fontSize="xs" fontWeight="medium" color="fg">
+                            {dataKey}
+                          </Text>
+                          <Text fontSize="xs" color="fg.muted">
+                            {description}
+                          </Text>
+                        </VStack>
+                      </HStack>
+                      <Text fontSize="sm" fontWeight="bold" color={entry.color}>
+                        <FormatNumber value={value} style="currency" currency="USD" />
                       </Text>
                     </HStack>
-                    <Text fontSize="sm" fontWeight="bold">
-                      <FormatNumber value={entry.value} style="currency" currency="USD" />
+                  );
+                })}
+
+                <Separator />
+
+                <VStack align="start" gap={1} w="full">
+                  <HStack justify="space-between" w="full">
+                    <Text fontSize="xs" color="fg.muted">
+                      Collateralization Ratio
                     </Text>
+                    <Badge
+                      variant={isOverCollateralized ? 'solid' : 'outline'}
+                      colorPalette={isOverCollateralized ? 'green' : 'orange'}
+                      size="sm"
+                    >
+                      {collateralizationRatio.toFixed(1)}%
+                    </Badge>
                   </HStack>
-                ))}
-              </SimpleGrid>
+                </VStack>
+              </VStack>
             )}
           </VStack>
         </Card.Body>
@@ -417,22 +474,30 @@ export function BalancesChart({
                   />
                   <Tooltip content={<CustomTooltip />} />
 
-                  <Bar dataKey="value" radius={8}>
-                    {getChartData().map((entry, index) => (
-                      <Cell
-                        key={`cell-${index}`}
-                        fill={
-                          // @ts-ignore
-                          entry.type === 'collateral'
-                            ? colors.mainCollateral
-                            : // @ts-ignore
-                              entry.type === 'over'
-                              ? colors.overCollateral
-                              : colors.circulation
-                        }
-                      />
-                    ))}
-                  </Bar>
+                  <Bar
+                    dataKey="Circulation"
+                    stackId="stack"
+                    fill={colors.circulation}
+                    radius={8}
+                    name="Circulation"
+                    maxBarSize={120}
+                  />
+                  <Bar
+                    dataKey="Main Collateral"
+                    stackId="stack"
+                    fill={colors.mainCollateral}
+                    radius={isOverCollateralized ? [0, 0, 8, 8] : [8, 8, 8, 8]}
+                    name="Main Collateral"
+                    maxBarSize={120}
+                  />
+                  <Bar
+                    dataKey="Over Collateral"
+                    stackId="stack"
+                    fill={colors.overCollateral}
+                    radius={isOverCollateralized ? [8, 8, 0, 0] : [0, 0, 8, 8]}
+                    name="Over Collateral"
+                    maxBarSize={120}
+                  />
                 </BarChart>
               ) : (
                 <BarChart data={getChartData()} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>

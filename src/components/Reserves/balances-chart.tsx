@@ -302,7 +302,7 @@ export function BalancesChart({
                 Current Balances
               </Heading>
 
-              <ButtonGroup size="xs" attached gap={0} colorPalette="brand">
+              {/* <ButtonGroup size="xs" attached gap={0} colorPalette="brand">
                 <Button
                   variant={chartView === 'comparative' ? 'solid' : 'plain'}
                   onClick={() => setChartView('comparative')}
@@ -325,7 +325,7 @@ export function BalancesChart({
                   </Icon>
                   Ratio
                 </Button>
-              </ButtonGroup>
+              </ButtonGroup> */}
             </Flex>
 
             <Text fontSize="sm" color="fg.muted" lineHeight="tall" maxW="2xl">

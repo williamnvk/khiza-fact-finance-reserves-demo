@@ -49,9 +49,7 @@ export function TokenList({
   const mostSupportedChains = tokens.reduce((max, token) => (token.chains.length > max ? token.chains.length : max), 0);
 
   return (
-    <Box
-     
-    >
+    <Box>
       <VStack align="stretch" gap={8}>
         {/* Enhanced Header Section */}
         <VStack align="stretch" gap={4}>
@@ -71,141 +69,28 @@ export function TokenList({
               </Text>
             </VStack>
           </Flex>
-
-          {/* Portfolio Overview Dashboard */}
-          <SimpleGrid columns={{ base: 2, md: 4 }} gap={4}>
-            <Card.Root
-              size="sm"
-              bg="transparent"
-              borderWidth="1px"
-              borderColor="blackAlpha.200"
-              _dark={{
-                borderColor: 'whiteAlpha.200',
-              }}
-            >
-              <Card.Body>
-                <Stat.Root>
-                  <Stat.Label fontSize="xs" color="fg.muted">
-                    <HStack gap={1}>
-                      <Icon as={Wallet} boxSize={5} color="brand.500" />
-                      <Text>Total Portfolio Value</Text>
-                    </HStack>
-                  </Stat.Label>
-                  <Stat.ValueText fontSize="xl" fontWeight="bold" color="brand.500">
-                    <FormatNumber value={totalPortfolioValue} style="currency" currency="USD" notation="compact" />
-                  </Stat.ValueText>
-                  <Stat.HelpText fontSize="xs" color="success.500">
-                    100% Reserve Backed
-                  </Stat.HelpText>
-                </Stat.Root>
-              </Card.Body>
-            </Card.Root>
-
-            <Card.Root
-              size="sm"
-              bg="transparent"
-              borderWidth="1px"
-              borderColor="blackAlpha.200"
-              _dark={{
-                borderColor: 'whiteAlpha.200',
-              }}
-            >
-              <Card.Body>
-                <Stat.Root>
-                  <Stat.Label fontSize="xs" color="fg.muted">
-                    <HStack gap={1}>
-                      <Icon as={PieChart} boxSize={5} color="brand.500" />
-                      <Text>Market Cap</Text>
-                    </HStack>
-                  </Stat.Label>
-                  <Stat.ValueText fontSize="xl" fontWeight="bold" color="brand.500">
-                    <FormatNumber value={totalMarketCap} style="currency" currency="USD" notation="compact" />
-                  </Stat.ValueText>
-                  <Stat.HelpText fontSize="xs" color="fg.muted">
-                    Combined Value
-                  </Stat.HelpText>
-                </Stat.Root>
-              </Card.Body>
-            </Card.Root>
-
-            <Card.Root
-              size="sm"
-              bg="transparent"
-              borderWidth="1px"
-              borderColor="blackAlpha.200"
-              _dark={{
-                borderColor: 'whiteAlpha.200',
-              }}
-            >
-              <Card.Body>
-                <Stat.Root>
-                  <Stat.Label fontSize="xs" color="fg.muted">
-                    <HStack gap={1}>
-                      <Icon as={Activity} boxSize={5} color="success.500" />
-                      <Text>30-Day Volume</Text>
-                    </HStack>
-                  </Stat.Label>
-                  <Stat.ValueText fontSize="xl" fontWeight="bold" color="success.500">
-                    <FormatNumber value={periodTotalTransfer} style="currency" currency="USD" notation="compact" />
-                  </Stat.ValueText>
-                  <Stat.HelpText fontSize="xs" color="fg.muted">
-                    Transaction Volume
-                  </Stat.HelpText>
-                </Stat.Root>
-              </Card.Body>
-            </Card.Root>
-
-            <Card.Root
-              size="sm"
-              bg="transparent"
-              borderWidth="1px"
-              borderColor="blackAlpha.200"
-              _dark={{
-                borderColor: 'whiteAlpha.200',
-              }}
-            >
-              <Card.Body>
-                <Stat.Root>
-                  <Stat.Label fontSize="xs" color="fg.muted">
-                    <HStack gap={1}>
-                      <Icon as={BarChart3} boxSize={5} color="warning.500" />
-                      <Text>Reserve Utilization</Text>
-                    </HStack>
-                  </Stat.Label>
-                  <Stat.ValueText fontSize="xl" fontWeight="bold" color="warning.500">
-                    {highestUtilization.toFixed(1)}%
-                  </Stat.ValueText>
-                  <Stat.HelpText fontSize="xs" color="fg.muted">
-                    Peak Usage
-                  </Stat.HelpText>
-                </Stat.Root>
-              </Card.Body>
-            </Card.Root>
-          </SimpleGrid>
         </VStack>
 
         {/* Token Details Section */}
         <VStack align="stretch" gap={6}>
-          <HStack justify="space-between">
-            <Text fontSize="xl" fontWeight="semibold" color="fg">
-              Asset Details
-            </Text>
-            <HStack gap={2} fontSize="sm" color="fg.muted">
-              <Text>Chains Supported:</Text>
-              <Badge colorPalette="gray">{totalChainsSupported}</Badge>
-            </HStack>
-          </HStack>
-
           <Stack gap={6}>
             {tokens.map((token) => {
               const tokenSupply = (circulation * token.share) / 100;
               const tokenTransfers = (periodTotalTransfer * token.share) / 100;
               const reserveUtilization = (tokenSupply / reserves) * 100;
+              const totalTransferVolume = tokenTransfers * 12; // Assuming monthly data for yearly estimate
               const marketCap = tokenSupply * token.tokenPrice;
 
               return (
                 <>
-                  <Grid templateColumns={{ base: '1fr', lg: '300px 1fr' }} gap={6} borderTop="1px solid" borderColor="gray.200" _dark={{ borderColor: 'gray.700' }} pt={8}>
+                  <Grid
+                    templateColumns={{ base: '1fr', lg: '300px 1fr' }}
+                    gap={6}
+                    borderTop="1px solid"
+                    borderColor="gray.200"
+                    _dark={{ borderColor: 'gray.700' }}
+                    pt={8}
+                  >
                     {/* Token Identity Section */}
                     <GridItem>
                       <VStack align="stretch" gap={4}>
@@ -217,9 +102,6 @@ export function TokenList({
                             <Text fontSize="md" color="fg.muted">
                               {token.name}
                             </Text>
-                            <Badge colorPalette="brand" size="sm">
-                              {token.share.toFixed(1)}% Portfolio Share
-                            </Badge>
                           </VStack>
                         </HStack>
 
@@ -273,17 +155,17 @@ export function TokenList({
                     {/* Metrics and Performance Section */}
                     <GridItem>
                       <VStack align="stretch" gap={6}>
-                        {/* Financial Metrics */}
+                        {/* Token Metrics */}
                         <Box>
                           <Text fontSize="lg" fontWeight="semibold" color="fg" mb={4}>
-                            Financial Metrics
+                            Token Metrics
                           </Text>
-                          <SimpleGrid columns={{ base: 2, md: 3 }} gap={4}>
+                          <SimpleGrid columns={{ base: 2, md: 3, lg: 5 }} gap={4}>
                             <Card.Root size="sm" variant="subtle">
                               <Card.Body>
                                 <Stat.Root size="sm">
                                   <Stat.Label fontSize="xs" color="fg.muted">
-                                    Token Supply
+                                    Token Circulating Supply
                                   </Stat.Label>
                                   <Stat.ValueText fontSize="lg" fontWeight="semibold" color="brand.500">
                                     <FormatNumber
@@ -293,9 +175,6 @@ export function TokenList({
                                       notation="compact"
                                     />
                                   </Stat.ValueText>
-                                  <Stat.HelpText fontSize="xs" color="fg.muted">
-                                    {((tokenSupply / totalPortfolioValue) * 100).toFixed(1)}% of total
-                                  </Stat.HelpText>
                                 </Stat.Root>
                               </Card.Body>
                             </Card.Root>
@@ -318,9 +197,6 @@ export function TokenList({
                                       maximumFractionDigits={4}
                                     />
                                   </Stat.ValueText>
-                                  <Stat.HelpText fontSize="xs" color="fg.muted">
-                                    Live Market Rate
-                                  </Stat.HelpText>
                                 </Stat.Root>
                               </Card.Body>
                             </Card.Root>
@@ -329,19 +205,47 @@ export function TokenList({
                               <Card.Body>
                                 <Stat.Root size="sm">
                                   <Stat.Label fontSize="xs" color="fg.muted">
-                                    Market Cap
+                                    Reserves Utilization
+                                  </Stat.Label>
+                                  <Stat.ValueText fontSize="lg" fontWeight="semibold" color="success.500">
+                                    {reserveUtilization.toFixed(2)}%
+                                  </Stat.ValueText>
+                                </Stat.Root>
+                              </Card.Body>
+                            </Card.Root>
+
+                            <Card.Root size="sm" variant="subtle">
+                              <Card.Body>
+                                <Stat.Root size="sm">
+                                  <Stat.Label fontSize="xs" color="fg.muted">
+                                    30-Day Transfer Volume
                                   </Stat.Label>
                                   <Stat.ValueText fontSize="lg" fontWeight="semibold" color="purple.500">
                                     <FormatNumber
-                                      value={marketCap}
+                                      value={tokenTransfers}
                                       style="currency"
                                       currency="USD"
                                       notation="compact"
                                     />
                                   </Stat.ValueText>
-                                  <Stat.HelpText fontSize="xs" color="fg.muted">
-                                    Supply × Price
-                                  </Stat.HelpText>
+                                </Stat.Root>
+                              </Card.Body>
+                            </Card.Root>
+
+                            <Card.Root size="sm" variant="subtle">
+                              <Card.Body>
+                                <Stat.Root size="sm">
+                                  <Stat.Label fontSize="xs" color="fg.muted">
+                                    Total Transfer Volume
+                                  </Stat.Label>
+                                  <Stat.ValueText fontSize="lg" fontWeight="semibold" color="teal.500">
+                                    <FormatNumber
+                                      value={totalTransferVolume}
+                                      style="currency"
+                                      currency="USD"
+                                      notation="compact"
+                                    />
+                                  </Stat.ValueText>
                                 </Stat.Root>
                               </Card.Body>
                             </Card.Root>
@@ -349,7 +253,7 @@ export function TokenList({
                         </Box>
 
                         {/* Activity Metrics */}
-                        <Box>
+                        {/* <Box>
                           <Text fontSize="lg" fontWeight="semibold" color="fg" mb={4}>
                             Activity & Performance
                           </Text>
@@ -396,7 +300,7 @@ export function TokenList({
                               </Card.Body>
                             </Card.Root>
                           </SimpleGrid>
-                        </Box>
+                        </Box> */}
 
                         {/* Reserve Utilization */}
                         {/* <Box>

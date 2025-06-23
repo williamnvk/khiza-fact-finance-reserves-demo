@@ -51,29 +51,26 @@ export function ReservesBreakdown({
   }));
 
   return (
-    <Box
-      
-    >
+    <Box>
       <VStack align="stretch" gap={6}>
         {/* Simple Header */}
         <VStack align="start" gap={3} w="full">
           <HStack gap={3} flexWrap="wrap">
             <Text fontSize={{ base: '2xl', md: '3xl' }} fontWeight="bold" color="fg">
-              Monthly Reserves Report
+              Reserves Overview
             </Text>
             <Badge colorPalette="brand" size="md">
               {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
             </Badge>
           </HStack>
           <Text fontSize="md" color="fg.muted" lineHeight="relaxed">
-            This comprehensive report provides transparency into {companyName}'s asset reserves, including real-time
-            metrics, distribution analysis, and regulatory compliance data.
+            This section provides transparency into {companyName} asset reserves.
           </Text>
         </VStack>
 
         {/* Asset Distribution Bar */}
         <Card.Root size="sm" variant="outline" bg="transparent">
-          <Card.Header> 
+          <Card.Header>
             <Card.Title fontSize="lg" fontWeight="semibold">
               Asset Distribution
             </Card.Title>

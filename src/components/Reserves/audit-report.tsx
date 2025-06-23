@@ -231,6 +231,7 @@ export function AuditReport({
 
               {/* Download Button */}
               <Button
+              mt={7}
                 size="lg"
                 w="full"
                 bgGradient="linear(to-r, brand.500, brand.600)"
@@ -249,7 +250,7 @@ export function AuditReport({
                   }
                 }}
                 transition="all 0.3s ease"
-                shadow="md"
+               
                 fontWeight="semibold"
                 _active={{
                   transform: 'translateY(0)',

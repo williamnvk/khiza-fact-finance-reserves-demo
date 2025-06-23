@@ -1,180 +1,322 @@
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine, Label } from 'recharts';
+import { useState } from 'react';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine, Cell } from 'recharts';
 import { formatLargeNumber } from '@/lib/utils';
-import { Box, VStack, Text, HStack, Card, Flex, Stat, Progress, Separator } from '@chakra-ui/react';
+import {
+  Box,
+  VStack,
+  Text,
+  HStack,
+  Card,
+  Flex,
+  Stat,
+  Separator,
+  Badge,
+  Button,
+  ButtonGroup,
+  Icon,
+  Grid,
+  SimpleGrid,
+  FormatNumber,
+  Heading,
+} from '@chakra-ui/react';
 import { useColorModeValue } from '../ui/color-mode';
+import { TrendingUp, TrendingDown, Shield, BarChart3, PieChart, Activity } from 'lucide-react';
+
+type ChartView = 'stacked' | 'comparative' | 'ratio';
 
 export function BalancesChart({
   circulation,
   reserves,
   over,
-  currency,
 }: {
   circulation: number;
   reserves: number;
   over: number;
   currency: string;
 }) {
+  const [chartView, setChartView] = useState<ChartView>('comparative');
+  const [showDetails, setShowDetails] = useState(false);
+
   const totalReserves = reserves + over;
+  const mainCollateral = reserves - over;
   const collateralizationRatio = (totalReserves / circulation) * 100;
   const excessReserve = totalReserves - circulation;
   const isOverCollateralized = totalReserves > circulation;
+  const reserveUtilization = (circulation / totalReserves) * 100;
 
-  const data = [
-    {
-      name: 'Reserves',
-      'Main Collateral': reserves - over,
-      'Over-collateral': over,
-      circulation: circulation,
-    },
-  ];
-
-  // Chart colors that work for both light and dark modes
+  // Enhanced color system with semantic meaning
   const colors = {
-    circulation: useColorModeValue('var(--ff-colors-brand-600)', 'var(--ff-colors-brand-400)'),
-    reserves: useColorModeValue('var(--ff-colors-success-500)', 'var(--ff-colors-success-400)'),
-    overCollateral: useColorModeValue('var(--ff-colors-warning-400)', 'var(--ff-colors-warning-300)'),
+    circulation: useColorModeValue(`var(--ff-colors-brand-500)`, 'var(--ff-colors-brand-500)'), // Blue - represents demand/usage
+    mainCollateral: useColorModeValue(`var(--ff-colors-success-500)`, 'var(--ff-colors-success-500)'), // Green - represents base security
+    overCollateral: useColorModeValue(`var(--ff-colors-warning-500)`, 'var(--ff-colors-warning-500)'), // Orange - represents excess security
+    background: useColorModeValue(`var(--ff-colors-bg-subtle)`, 'var(--ff-colors-bg-subtle)'),
+    border: useColorModeValue(`var(--ff-colors-border-subtle)`, 'var(--ff-colors-border-subtle)'),
+    grid: useColorModeValue(`var(--ff-colors-bg-subtle)`, 'var(--ff-colors-bg-subtle)'),
+    success: useColorModeValue(`var(--ff-colors-success-500)`, 'var(--ff-colors-success-500)'),
+    warning: useColorModeValue(`var(--ff-colors-warning-500)`, 'var(--ff-colors-warning-500)'),
+    danger: useColorModeValue(`var(--ff-colors-danger-500)`, 'var(--ff-colors-danger-500)'),
   };
 
-  // Enhanced tooltip with better formatting and design
-  const CustomTooltip = ({ active, payload }: any) => {
+  // Prepare data based on selected view
+  const getChartData = () => {
+    switch (chartView) {
+      case 'stacked':
+        return [
+          {
+            name: 'Current State',
+            'Main Collateral': mainCollateral,
+            'Over Collateral': over,
+            Circulation: circulation,
+          },
+        ];
+      case 'comparative':
+        return [
+          { name: 'Main Collateral', value: mainCollateral, type: 'collateral' },
+          { name: 'Over Collateral', value: over, type: 'over' },
+          { name: 'Circulation', value: circulation, type: 'circulation' },
+        ];
+      case 'ratio':
+        return [
+          {
+            name: 'Reserve Ratio',
+            'Available Reserve': totalReserves,
+            'Used Reserve': circulation,
+            Excess: Math.max(0, totalReserves - circulation),
+          },
+        ];
+      default:
+        return [];
+    }
+  };
+
+  // Enhanced tooltip with comprehensive information
+  const CustomTooltip = ({ active, payload, label }: any) => {
     if (!active || !payload || !payload.length) return null;
 
-    const mainCollateral = payload[0].payload['Main Collateral'];
-    const overCollateral = payload[0].payload['Over-collateral'];
-    const totalReservesValue = mainCollateral + overCollateral;
-    const circulationValue = payload[0].payload.circulation;
-
     return (
-      <Card.Root borderWidth="1px" shadow="lg" p={4} maxW="320px" _dark={{ shadow: 'dark-lg' }}>
+      <Card.Root borderWidth="1px" shadow="xl" p={4} maxW="360px">
         <Card.Body p={0}>
-          <VStack align="start" gap={1}>
-            <Text fontSize="md" fontWeight="bold" color="fg">
-              Reserves vs. Circulation
-            </Text>
-
-            {/* Reserves Section */}
-            <VStack align="start" gap={2} w="full">
-              <Box w="full">
-                <HStack justify="space-between" mb={1}>
-                  <HStack>
-                    <Box w={2} h={2} rounded="full" bg={colors.reserves} />
-                    <Text fontSize="xs" color="fg.muted">
-                      Circulating Token Supply
-                    </Text>
-                  </HStack>
-                  <Text fontSize="sm" fontWeight="medium" color={colors.reserves}>
-                    {formatLargeNumber(mainCollateral, currency)}
-                  </Text>
-                </HStack>
-
-                <HStack justify="space-between" mb={2}>
-                  <HStack>
-                    <Box w={2} h={2} rounded="full" bg={colors.overCollateral} />
-                    <Text fontSize="xs" color="fg.muted">
-                      Over-collateral
-                    </Text>
-                  </HStack>
-                  <Text fontSize="sm" fontWeight="medium" color={colors.overCollateral}>
-                    {formatLargeNumber(overCollateral, currency)}
-                  </Text>
-                </HStack>
-
-                <Separator my={2} />
-
-                <HStack justify="space-between">
-                  <Text fontSize="sm" fontWeight="semibold" color="fg">
-                    Total Reserves
-                  </Text>
-                  <Text fontSize="lg" fontWeight="bold" color="brand.500">
-                    {formatLargeNumber(totalReservesValue, currency)}
-                  </Text>
-                </HStack>
-              </Box>
-            </VStack>
+          <VStack align="start" gap={3}>
+            <Box>
+              <Text fontSize="md" fontWeight="bold" color="fg">
+                Reserve Analysis
+              </Text>
+              <Text fontSize="xs" color="fg.muted" mt={1}>
+                Real-time collateralization status
+              </Text>
+            </Box>
 
             <Separator />
 
-            {/* Circulation Section */}
-            <VStack align="start" gap={2} w="full">
-              <HStack justify="space-between" w="full">
-                <HStack>
-                  <Box w={2} h={2} rounded="full" bg={colors.circulation} />
-                  <Text fontSize="xs" color="fg.muted">
-                    Circulation
-                  </Text>
-                </HStack>
-                <Text fontSize="lg" fontWeight="bold" color={colors.circulation}>
-                  {formatLargeNumber(circulationValue, currency)}
-                </Text>
-              </HStack>
-              <Text fontSize="xs" color="fg.muted">
-                Total of tokens issued on the blockchain
-              </Text>
-            </VStack>
+            {chartView === 'stacked' && (
+              <VStack align="start" gap={2} w="full">
+                {payload.map((entry: any, index: number) => {
+                  const value = entry.value;
+                  const dataKey = entry.dataKey;
+                  let description = '';
+                  let icon = null;
+
+                  switch (dataKey) {
+                    case 'Main Collateral':
+                      description = 'Primary reserve backing';
+                      icon = <Shield size={12} />;
+                      break;
+                    case 'Over Collateral':
+                      description = 'Additional security buffer';
+                      icon = <TrendingUp size={12} />;
+                      break;
+                    case 'Circulation':
+                      description = 'Tokens in circulation';
+                      icon = <Activity size={12} />;
+                      break;
+                  }
+
+                  return (
+                    <HStack key={index} justify="space-between" w="full">
+                      <HStack gap={2}>
+                        <Box w={3} h={3} rounded="full" bg={entry.color} />
+                        <Icon>{icon}</Icon>
+                        <VStack align="start" gap={0}>
+                          <Text fontSize="xs" fontWeight="medium" color="fg">
+                            {dataKey}
+                          </Text>
+                          <Text fontSize="xs" color="fg.muted">
+                            {description}
+                          </Text>
+                        </VStack>
+                      </HStack>
+                      <Text fontSize="sm" fontWeight="bold" color={entry.color}>
+                        <FormatNumber value={value} style="currency" currency="USD" />
+                      </Text>
+                    </HStack>
+                  );
+                })}
+
+                <Separator />
+
+                <VStack align="start" gap={1} w="full">
+                  <HStack justify="space-between" w="full">
+                    <Text fontSize="xs" color="fg.muted">
+                      Collateralization Ratio
+                    </Text>
+                    <Badge
+                      variant={isOverCollateralized ? 'solid' : 'outline'}
+                      colorPalette={isOverCollateralized ? 'green' : 'orange'}
+                      size="sm"
+                    >
+                      {collateralizationRatio.toFixed(1)}%
+                    </Badge>
+                  </HStack>
+                </VStack>
+              </VStack>
+            )}
+
+            {chartView === 'comparative' && (
+              <SimpleGrid columns={1} gap={2} w="full">
+                {payload.map((entry: any, index: number) => (
+                  <HStack key={index} justify="space-between" w="full">
+                    <HStack gap={2}>
+                      <Box w={3} h={3} rounded="full" bg={entry.payload.fill} />
+                      <Text fontSize="sm" color="fg">
+                        {entry.payload.name}
+                      </Text>
+                    </HStack>
+                    <Text fontSize="sm" fontWeight="bold">
+                      <FormatNumber value={entry.value} style="currency" currency="USD" />
+                    </Text>
+                  </HStack>
+                ))}
+              </SimpleGrid>
+            )}
           </VStack>
         </Card.Body>
       </Card.Root>
     );
   };
 
+  // Risk assessment component
+  // const RiskAssessment = () => {
+  //   const riskLevel = collateralizationRatio < 100 ? 'high' : collateralizationRatio < 120 ? 'medium' : 'low';
+
+  //   const riskColor = riskLevel === 'high' ? 'red' : riskLevel === 'medium' ? 'orange' : 'green';
+
+  //   return (
+  //     <Card.Root size="sm" borderColor={`${riskColor}.200`} borderWidth="2px">
+  //       <Card.Body>
+  //         <VStack align="start" gap={2}>
+  //           <HStack gap={2}>
+  //             <Icon color={`${riskColor}.500`}>
+  //               {riskLevel === 'high' ? (
+  //                 <AlertTriangle size={16} />
+  //               ) : riskLevel === 'medium' ? (
+  //                 <Info size={16} />
+  //               ) : (
+  //                 <Shield size={16} />
+  //               )}
+  //             </Icon>
+  //             <Text fontSize="sm" fontWeight="semibold" color={`${riskColor}.600`}>
+  //               {riskLevel.charAt(0).toUpperCase() + riskLevel.slice(1)} Risk
+  //             </Text>
+  //           </HStack>
+  //           <Text fontSize="xs" color="fg.muted">
+  //             {riskLevel === 'high' && 'Under-collateralized. Immediate action required.'}
+  //             {riskLevel === 'medium' && 'Moderate collateralization. Monitor closely.'}
+  //             {riskLevel === 'low' && 'Well-collateralized. System is stable.'}
+  //           </Text>
+  //         </VStack>
+  //       </Card.Body>
+  //     </Card.Root>
+  //   );
+  // };
+
   return (
     <Box>
       <VStack align="stretch" gap={6}>
-        <VStack align="start" gap={2} flex={1}>
-          <Text fontSize="2xl" fontWeight="bold" color="fg">
-            Current Balances
-          </Text>
-          <Text fontSize="sm" color="fg.muted" lineHeight="tall">
-            Displays the current circulation of issued tokens and their corresponding reserves. The bar also visualizes
-            any excess reserve available for minting new tokens.
-          </Text>
-        </VStack>
+        {/* Header Section */}
+        <Flex
+          direction={{ base: 'column', lg: 'row' }}
+          justify="space-between"
+          align={{ base: 'start', lg: 'center' }}
+          gap={4}
+        >
+          <VStack align="start" gap={2} flex={1}>
+            <Flex w="full" justify="space-between" align="center">
+              <Heading fontSize="2xl" fontWeight="bold" color="fg">
+                Current Balances
+              </Heading>
 
-        {/* Key Metrics */}
-        <Flex direction={{ base: 'column', md: 'row' }} gap={4} w="full">
-          <Card.Root
-            size="sm"
-            bg="transparent"
-            borderWidth="1px"
-            borderColor="blackAlpha.200"
-            _dark={{
-              borderColor: 'whiteAlpha.200',
-            }}
-          >
+              <ButtonGroup size="xs" attached gap={0} colorPalette="brand">
+                <Button
+                  variant={chartView === 'comparative' ? 'solid' : 'plain'}
+                  onClick={() => setChartView('comparative')}
+                >
+                  <Icon>
+                    <PieChart size={14} />
+                  </Icon>
+                  Compare
+                </Button>
+                <Button variant={chartView === 'stacked' ? 'solid' : 'plain'} onClick={() => setChartView('stacked')}>
+                  <Icon>
+                    <BarChart3 size={14} />
+                  </Icon>
+                  Stacked
+                </Button>
+
+                <Button variant={chartView === 'ratio' ? 'solid' : 'plain'} onClick={() => setChartView('ratio')}>
+                  <Icon>
+                    <Activity size={14} />
+                  </Icon>
+                  Ratio
+                </Button>
+              </ButtonGroup>
+            </Flex>
+
+            <Text fontSize="sm" color="fg.muted" lineHeight="tall" maxW="2xl">
+              Real-time visualization of token circulation versus backing reserves. Monitors collateralization ratio and
+              excess reserve capacity for new token minting.
+            </Text>
+          </VStack>
+        </Flex>
+
+        {/* Key Metrics Grid */}
+        <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)', lg: 'repeat(3, 1fr)' }} gap={4}>
+          <Card.Root size="sm" bg="transparent" borderWidth="1px">
             <Card.Body>
               <Stat.Root size="sm">
                 <Stat.Label fontSize="xs" color="fg.muted">
                   Collateralization Ratio
                 </Stat.Label>
-                <Stat.ValueText fontSize="lg" fontWeight="bold">
-                  {collateralizationRatio.toFixed(1)}%{' '}
+                <Stat.ValueText
+                  fontSize="xl"
+                  fontWeight="bold"
+                  color={isOverCollateralized ? 'success.500' : 'warning.500'}
+                >
+                  {collateralizationRatio.toFixed(1)}%
                 </Stat.ValueText>
                 <Stat.HelpText color="fg.muted" fontSize="xs">
-                  {isOverCollateralized ? 'Over-collateralized' : 'Under-collateralized'}
+                  <HStack gap={1}>
+                    <Icon color={isOverCollateralized ? 'success.500' : 'warning.500'}>
+                      {isOverCollateralized ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
+                    </Icon>
+                    {isOverCollateralized ? 'Over-collateralized' : 'Under-collateralized'}
+                  </HStack>
                 </Stat.HelpText>
               </Stat.Root>
             </Card.Body>
           </Card.Root>
-          <Card.Root
-            size="sm"
-            bg="transparent"
-            borderWidth="1px"
-            borderColor="blackAlpha.200"
-            _dark={{
-              borderColor: 'whiteAlpha.200',
-            }}
-          >
+
+          <Card.Root size="sm" bg="transparent" borderWidth="1px">
             <Card.Body>
               <Stat.Root size="sm">
                 <Stat.Label fontSize="xs" color="fg.muted">
                   Excess Reserve
                 </Stat.Label>
                 <Stat.ValueText
-                  fontSize="lg"
+                  fontSize="xl"
                   fontWeight="bold"
-                  color={excessReserve > 0 ? 'success.500' : 'warning.500'}
+                  color={excessReserve > 0 ? 'success.500' : 'danger.500'}
                 >
-                  {formatLargeNumber(excessReserve, currency)}
+                  <FormatNumber value={Math.abs(excessReserve)} style="currency" currency="USD" />
                 </Stat.ValueText>
                 <Stat.HelpText color="fg.muted" fontSize="xs">
                   {excessReserve > 0 ? 'Available for minting' : 'Reserve deficit'}
@@ -182,74 +324,263 @@ export function BalancesChart({
               </Stat.Root>
             </Card.Body>
           </Card.Root>
-        </Flex>
+
+          <Card.Root size="sm" bg="transparent" borderWidth="1px">
+            <Card.Body>
+              <Stat.Root size="sm">
+                <Stat.Label fontSize="xs" color="fg.muted">
+                  Reserve Utilization
+                </Stat.Label>
+                <Stat.ValueText fontSize="xl" fontWeight="bold">
+                  {reserveUtilization.toFixed(1)}%
+                </Stat.ValueText>
+                <Stat.HelpText color="fg.muted" fontSize="xs">
+                  Reserve efficiency
+                </Stat.HelpText>
+              </Stat.Root>
+            </Card.Body>
+          </Card.Root>
+          {/* <RiskAssessment /> */}
+        </Grid>
+
+        <VStack gap={4}>
+          {/* Chart Controls */}
+          <Flex justify="space-between" align="center" w="full">
+            <Text fontSize="lg" fontWeight="semibold" color="fg">
+              {chartView === 'stacked' && 'Stacked Reserve View'}
+              {chartView === 'comparative' && 'Comparative Analysis'}
+              {chartView === 'ratio' && 'Reserve Ratio Analysis'}
+            </Text>
+
+            <Button size="xs" variant="ghost" onClick={() => setShowDetails(!showDetails)}>
+              {showDetails ? 'Hide' : 'Show'} Details
+            </Button>
+          </Flex>
+
+          {/* Chart Container */}
+          <Box h={300} w="full">
+            <ResponsiveContainer width="100%" height="100%">
+              {chartView === 'stacked' ? (
+                <BarChart data={getChartData()} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
+                  <XAxis
+                    dataKey="name"
+                    tickLine={false}
+                    axisLine={false}
+                    tick={{ fontSize: 12, fill: useColorModeValue('#64748B', '#94A3B8') }}
+                  />
+                  <YAxis
+                    tickFormatter={(value) => formatLargeNumber(value)}
+                    tick={{ fontSize: 12, fill: useColorModeValue('#64748B', '#94A3B8') }}
+                    axisLine={false}
+                    tickLine={false}
+                    width={80}
+                  />
+                  <Tooltip content={<CustomTooltip />} />
+                  <ReferenceLine
+                    y={circulation}
+                    stroke={colors.circulation}
+                    strokeDasharray="5 5"
+                    label={{ value: 'Circulation Level', position: 'insideBottomRight' }}
+                  />
+
+                  <Bar
+                    dataKey="Main Collateral"
+                    stackId="reserves"
+                    fill={colors.mainCollateral}
+                    radius={[0, 0, 8, 8]}
+                    name="Main Collateral"
+                    maxBarSize={240}
+                  />
+                  <Bar
+                    dataKey="Over Collateral"
+                    stackId="reserves"
+                    fill={colors.overCollateral}
+                    radius={[8, 8, 0, 0]}
+                    name="Over Collateral"
+                    maxBarSize={240}
+                  />
+                </BarChart>
+              ) : chartView === 'comparative' ? (
+                <BarChart data={getChartData()} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
+                  <XAxis
+                    dataKey="name"
+                    tickLine={false}
+                    axisLine={false}
+                    tick={{ fontSize: 12, fill: useColorModeValue('#64748B', '#94A3B8') }}
+                  />
+                  <YAxis
+                    tickFormatter={(value) => formatLargeNumber(value)}
+                    tick={{ fontSize: 12, fill: useColorModeValue('#64748B', '#94A3B8') }}
+                    axisLine={false}
+                    tickLine={false}
+                    width={80}
+                  />
+                  <Tooltip content={<CustomTooltip />} />
+
+                  <Bar dataKey="value" radius={8}>
+                    {getChartData().map((entry, index) => (
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={
+                          // @ts-ignore
+                          entry.type === 'collateral'
+                            ? colors.mainCollateral
+                            : // @ts-ignore
+                              entry.type === 'over'
+                              ? colors.overCollateral
+                              : colors.circulation
+                        }
+                      />
+                    ))}
+                  </Bar>
+                </BarChart>
+              ) : (
+                <BarChart data={getChartData()} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
+                  <XAxis
+                    dataKey="name"
+                    tickLine={false}
+                    axisLine={false}
+                    tick={{ fontSize: 12, fill: useColorModeValue('#64748B', '#94A3B8') }}
+                  />
+                  <YAxis
+                    tickFormatter={(value) => formatLargeNumber(value)}
+                    tick={{ fontSize: 12, fill: useColorModeValue('#64748B', '#94A3B8') }}
+                    axisLine={false}
+                    tickLine={false}
+                    width={80}
+                  />
+                  <Tooltip content={<CustomTooltip />} />
+
+                  <Bar dataKey="Used Reserve" stackId="ratio" fill={colors.circulation} radius={[0, 0, 8, 8]} />
+                  <Bar dataKey="Excess" stackId="ratio" fill={colors.overCollateral} radius={[8, 8, 0, 0]} />
+                </BarChart>
+              )}
+            </ResponsiveContainer>
+          </Box>
+
+          {/* Enhanced Legend */}
+          <Flex justify="center" gap={6} wrap="wrap" mt={4}>
+            <HStack gap={2}>
+              <Box w={3} h={3} rounded="full" bg={colors.mainCollateral} />
+              <Text fontSize="sm" fontWeight="medium" color="fg">
+                Main Collateral
+              </Text>
+              {/* <Badge size="sm" variant="subtle" colorPalette="green">
+                    <FormatNumber value={mainCollateral} style="currency" currency="USD" />
+                  </Badge> */}
+            </HStack>
+
+            <HStack gap={2}>
+              <Box w={3} h={3} rounded="full" bg={colors.overCollateral} />
+              <Text fontSize="sm" fontWeight="medium" color="fg">
+                Over Collateral
+              </Text>
+              {/* <Badge size="sm" variant="subtle" colorPalette="orange">
+                    <FormatNumber value={over} style="currency" currency="USD" />
+                  </Badge> */}
+            </HStack>
+
+            <HStack gap={2}>
+              <Box w={3} h={3} rounded="full" bg={colors.circulation} />
+              <Text fontSize="sm" fontWeight="medium" color="fg">
+                Circulation
+              </Text>
+              {/* <Badge size="sm" variant="subtle" colorPalette="blue">
+                    <FormatNumber value={circulation} style="currency" currency="USD" />
+                  </Badge> */}
+            </HStack>
+          </Flex>
+
+          {/* Detailed Analysis */}
+          {showDetails && (
+            <Card.Root mt={6} borderWidth="1px" bg="bg.subtle" w="full">
+              <Card.Body pt={6}>
+                <SimpleGrid columns={{ base: 1, lg: 2 }} gap={6} w="full">
+                  <VStack align="start" gap={4}>
+                    <HStack align="center" gap={2}>
+                      <Icon color="success.500">
+                        <Shield size={14} />
+                      </Icon>
+                      <Text fontSize="sm" fontWeight="semibold" color="fg">
+                        Reserve Breakdown
+                      </Text>
+                    </HStack>
+
+                    <VStack align="start" gap={3} w="full">
+                      <Flex justify="space-between" w="full" align="center">
+                        <Text fontSize="xs" color="fg.muted">
+                          Total Reserves
+                        </Text>
+                        <Text fontSize="sm" fontWeight="medium" color="fg">
+                          <FormatNumber value={totalReserves} style="currency" currency="USD" />
+                        </Text>
+                      </Flex>
+
+                      <Flex justify="space-between" w="full" align="center">
+                        <Text fontSize="xs" color="fg.muted">
+                          Reserve Coverage
+                        </Text>
+                        <Badge size="sm" variant="subtle" colorPalette={isOverCollateralized ? 'success' : 'warning'}>
+                          {((totalReserves / circulation) * 100).toFixed(1)}%
+                        </Badge>
+                      </Flex>
+
+                      <Flex justify="space-between" w="full" align="center">
+                        <Text fontSize="xs" color="fg.muted">
+                          Safety Buffer
+                        </Text>
+                        <Text fontSize="sm" fontWeight="medium" color="success.500">
+                          <FormatNumber value={over} style="currency" currency="USD" />
+                        </Text>
+                      </Flex>
+                    </VStack>
+                  </VStack>
+
+                  <VStack align="start" gap={4}>
+                    <HStack align="center" gap={2}>
+                      <Icon color="brand.500">
+                        <Activity size={14} />
+                      </Icon>
+                      <Text fontSize="sm" fontWeight="semibold" color="fg">
+                        Circulation Metrics
+                      </Text>
+                    </HStack>
+
+                    <VStack align="start" gap={3} w="full">
+                      <Flex justify="space-between" w="full" align="center">
+                        <Text fontSize="xs" color="fg.muted">
+                          Active Circulation
+                        </Text>
+                        <Text fontSize="sm" fontWeight="medium" color="fg">
+                          <FormatNumber value={circulation} style="currency" currency="USD" />
+                        </Text>
+                      </Flex>
+
+                      <Flex justify="space-between" w="full" align="center">
+                        <Text fontSize="xs" color="fg.muted">
+                          Mintable Amount
+                        </Text>
+                        <Text fontSize="sm" fontWeight="medium" color="warning.500">
+                          <FormatNumber value={Math.max(0, excessReserve)} style="currency" currency="USD" />
+                        </Text>
+                      </Flex>
+
+                      <Flex justify="space-between" w="full" align="center">
+                        <Text fontSize="xs" color="fg.muted">
+                          Utilization Rate
+                        </Text>
+                        <Badge size="sm" variant="outline" colorPalette="brand">
+                          {reserveUtilization.toFixed(1)}%
+                        </Badge>
+                      </Flex>
+                    </VStack>
+                  </VStack>
+                </SimpleGrid>
+              </Card.Body>
+            </Card.Root>
+          )}
+        </VStack>
       </VStack>
-
-      {/* Chart */}
-      <Box h={{ base: 200, md: 150 }} w="full" mt={8}>
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart layout="vertical" data={data} margin={{ top: 20, right: 60, left: 10, bottom: 20 }}>
-            <XAxis
-              type="number"
-              domain={[0, Math.max(circulation, reserves) * 1.1]}
-              tickFormatter={(value) => formatLargeNumber(value)}
-              axisLine={false}
-              tickLine={false}
-              fontSize={10}
-              color="var(--ff-colors-gray-500)"
-              tick={{ fill: 'var(--ff-colors-gray-500)' }}
-            />
-            <YAxis type="category" dataKey="name" hide />
-            <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(0,0,0,0.05)' }} />
-
-            <Bar
-              dataKey="Main Collateral"
-              stackId="a"
-              fill={colors.reserves}
-              barSize={60}
-              radius={excessReserve > 0 ? [6, 0, 0, 6] : [6, 6, 6, 6]}
-            />
-            <Bar
-              dataKey="Over-collateral"
-              stackId="a"
-              fill={colors.overCollateral}
-              radius={excessReserve > 0 ? [0, 6, 6, 0] : [0, 0, 0, 0]}
-              barSize={60}
-            />
-
-            <ReferenceLine x={circulation} stroke={colors.circulation} strokeWidth={3} strokeDasharray="8 0">
-              <Label
-                value="Circulating Token Supply"
-                position="top"
-                fill={useColorModeValue('gray.800', 'white')}
-                fontSize={10}
-                fontWeight="bold"
-              />
-            </ReferenceLine>
-          </BarChart>
-        </ResponsiveContainer>
-      </Box>
-
-      {/* Enhanced Legend */}
-      <Flex justify="center" gap={{ base: 4, md: 8 }} wrap="wrap" mt={4}>
-        <HStack gap={2}>
-          <Box w={3} h={3} rounded="full" bg={colors.reserves} shadow="sm" />
-          <VStack align="start" gap={0}>
-            <Text fontSize="xs" fontWeight="medium" color="fg">
-              Circulating Token Supply
-            </Text>
-          </VStack>
-        </HStack>
-
-        <HStack gap={2}>
-          <Box w={3} h={3} rounded="full" bg={colors.overCollateral} shadow="sm" />
-          <VStack align="start" gap={0}>
-            <Text fontSize="xs" fontWeight="medium" color="fg">
-              Total Reserves
-            </Text>
-          </VStack>
-        </HStack>
-      </Flex>
     </Box>
   );
 }

@@ -111,7 +111,7 @@ export function AuditReport({
                     color="gray.900"
                     _dark={{ color: 'white' }}
                   >
-                    Download Audit Report
+                    Download Report
                   </Text>
                   <Icon as={FileText} boxSize={5} color="brand.500" />
                 </HStack>
@@ -123,7 +123,7 @@ export function AuditReport({
               </VStack>
 
               {/* Features Grid */}
-              <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={4} w="full">
+              {/* <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={4} w="full">
                 {[
                   { icon: Shield, label: 'Security Audit', desc: 'Third-party verified' },
                   { icon: FileText, label: 'Financial Data', desc: 'Detailed breakdown' },
@@ -154,11 +154,10 @@ export function AuditReport({
                     </HStack>
                   </Box>
                 ))}
-              </Grid>
-            </VStack>
+              </Grid> */}
 
-            {/* Action Section */}
-            <VStack gap={4} minW={{ base: 'full', lg: '280px' }}>
+                {/* Action Section */}
+            <HStack gap={4} minW={{ base: 'full', lg: '280px' }}>
               {/* Date Selector */}
               <Box w="full">
                 <Text fontSize="sm" fontWeight="medium" mb={2} color="gray.700" _dark={{ color: 'gray.300' }}>
@@ -263,13 +262,13 @@ export function AuditReport({
                 </HStack>
               </Button>
 
-              {/* Info Text */}
-              <Text fontSize="xs" color="gray.500" textAlign="center" lineHeight="relaxed">
-                PDF format • ~2.5MB
-                <br />
-                Updated quarterly
-              </Text>
+           
+            </HStack>
+
+
             </VStack>
+
+          
           </Grid>
         </Card.Body>
       </Card.Root>

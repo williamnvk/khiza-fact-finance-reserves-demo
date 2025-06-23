@@ -145,16 +145,7 @@ export function HistoryChart({
   };
 
   return (
-    <Box
-      position="relative"
-      bg="whiteAlpha.50"
-      borderRadius="3xl"
-      shadow="2xl"
-      borderWidth="1px"
-      borderColor="whiteAlpha.200"
-      overflow="hidden"
-      p={{ base: 4, md: 6, lg: 8 }}
-    >
+    <Box>
       <VStack align="stretch" gap={6}>
         <Flex justify="space-between" align="start" direction={{ base: 'column', md: 'row' }} gap={4}>
           <VStack align="start" gap={2} flex={1}>

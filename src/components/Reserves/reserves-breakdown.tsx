@@ -52,18 +52,7 @@ export function ReservesBreakdown({
 
   return (
     <Box
-      position="relative"
-      bg="whiteAlpha.50"
-      borderRadius="3xl"
-      shadow="lg"
-      borderWidth="1px"
-      borderColor="whiteAlpha.200"
-      overflow="hidden"
-      p={{ base: 6, md: 8 }}
-      _dark={{
-        bg: 'blackAlpha.50',
-        borderColor: 'whiteAlpha.100',
-      }}
+      
     >
       <VStack align="stretch" gap={6}>
         {/* Simple Header */}

@@ -50,15 +50,7 @@ export function TokenList({
 
   return (
     <Box
-      position="relative"
-      bg="whiteAlpha.50"
-      borderRadius="3xl"
-      shadow="2xl"
-      borderWidth="1px"
-      borderColor="whiteAlpha.200"
-      overflow="hidden"
-      p={{ base: 4, md: 6, lg: 8 }}
-      w="full"
+     
     >
       <VStack align="stretch" gap={8}>
         {/* Enhanced Header Section */}
@@ -213,7 +205,7 @@ export function TokenList({
 
               return (
                 <>
-                  <Grid templateColumns={{ base: '1fr', lg: '300px 1fr' }} gap={6}>
+                  <Grid templateColumns={{ base: '1fr', lg: '300px 1fr' }} gap={6} borderTop="1px solid" borderColor="gray.200" _dark={{ borderColor: 'gray.700' }} pt={8}>
                     {/* Token Identity Section */}
                     <GridItem>
                       <VStack align="stretch" gap={4}>
@@ -407,7 +399,7 @@ export function TokenList({
                         </Box>
 
                         {/* Reserve Utilization */}
-                        <Box>
+                        {/* <Box>
                           <HStack justify="space-between" mb={3}>
                             <VStack align="start" gap={0}>
                               <HStack gap={2}>
@@ -443,7 +435,7 @@ export function TokenList({
                             </Text>
                             <Text>100% (Maximum)</Text>
                           </HStack>
-                        </Box>
+                        </Box> */}
                       </VStack>
                     </GridItem>
                   </Grid>
@@ -454,7 +446,7 @@ export function TokenList({
         </VStack>
 
         {/* Enhanced Footer with Additional Insights */}
-        <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={6}>
+        {/* <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={6}>
           <GridItem>
             <Card.Root variant="subtle" bg="whiteAlpha.50">
               <Card.Body>
@@ -512,7 +504,7 @@ export function TokenList({
               </Card.Body>
             </Card.Root>
           </GridItem>
-        </Grid>
+        </Grid> */}
       </VStack>
     </Box>
   );

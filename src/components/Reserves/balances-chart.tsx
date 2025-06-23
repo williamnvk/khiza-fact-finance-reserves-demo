@@ -118,26 +118,17 @@ export function BalancesChart({
   };
 
   return (
-    <Box
-      position="relative"
-      bg="whiteAlpha.50"
-      borderRadius="3xl"
-      shadow="2xl"
-      borderWidth="1px"
-      borderColor="whiteAlpha.200"
-      overflow="hidden"
-      p={{ base: 4, md: 6, lg: 8 }}
-    >
-      <VStack align="start" gap={3} w="full">
-        <Box>
-          <Text fontSize="2xl" fontWeight="bold" color="fg" mb={1}>
+    <Box>
+      <VStack align="stretch" gap={6}>
+        <VStack align="start" gap={2} flex={1}>
+          <Text fontSize="2xl" fontWeight="bold" color="fg">
             Current Balances
           </Text>
           <Text fontSize="sm" color="fg.muted" lineHeight="tall">
             Displays the current circulation of issued tokens and their corresponding reserves. The bar also visualizes
             any excess reserve available for minting new tokens.
           </Text>
-        </Box>
+        </VStack>
 
         {/* Key Metrics */}
         <Flex direction={{ base: 'column', md: 'row' }} gap={4} w="full">

@@ -4,13 +4,12 @@ import { HistoryChart } from '@/components/Reserves/history-chart';
 import { ReservesBreakdown } from '@/components/Reserves/reserves-breakdown';
 import { AuditReport } from '@/components/Reserves/audit-report';
 import { TokenList } from '@/components/Reserves/token-list';
-import { Footnotes } from '@/components/Reserves/footnotes';
 import { TokenChainBreakdown } from '@/components/Reserves/token-chains';
 import { formatLargeNumber } from '@/lib/utils';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
-import { Box, Container, Grid, Text, VStack } from '@chakra-ui/react';
+import { Box, Container, Grid, VStack } from '@chakra-ui/react';
 import { ColorModeProvider } from '@/components/ui/color-mode';
 
 const FOOTNOTES = [
@@ -226,7 +225,7 @@ export const Reports = () => {
 
       {loaded ? (
         <Container maxW="8xl" px={4} py={8} mt="72px">
-          <VStack w="full" gap={{ base: 4, md: 6 }} align="stretch">
+          <VStack w="full" gap={{ base: 4, md: 12 }} align="stretch">
             <ReportHeader
               client={client}
               companyName={data.companyFullName}
@@ -242,7 +241,6 @@ export const Reports = () => {
               threshold={data.threshold}
               dappLink={data.dapp}
             />
-
             <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6}>
               <BalancesChart
                 circulation={data.last.circulation}
@@ -253,18 +251,17 @@ export const Reports = () => {
 
               <HistoryChart
                 heartbeat={data.heartbeat}
-                historicalData={data.historicalData}
-                historicalData1={data.historicalData1}
+                historicalData={data.historicalData || []}
+                historicalData1={data.historicalData1 || []}
                 periodTotalTransfer={data.total?.periodTotalTransfer ?? 0}
                 periodTotalTransfer1={data.total1?.periodTotalTransfer ?? 0}
                 periodTransactions={data.total?.periodTransactions ?? 0}
                 periodTransactions1={data.total1?.periodTransactions ?? 0}
-                avgcolateral={data.average?.avgcolateral ?? '-'}
-                avgcolateral1={data.average1?.avgcolateral ?? '-'}
+                avgcolateral={Number(data.average?.avgcolateral) || 0}
+                avgcolateral1={Number(data.average1?.avgcolateral) || 0}
                 currency={data.currency}
               />
             </Grid>
-
             <ReservesBreakdown
               companyName={data.companyName}
               currency={data.currency}
@@ -273,7 +270,6 @@ export const Reports = () => {
               balance={data.last.reserves - data.last.circulation}
               assetDistribution={data.assetDistribution}
             />
-
             <TokenList
               tokens={data.tokens}
               currency={data.currency}
@@ -282,17 +278,13 @@ export const Reports = () => {
               circulation={data.last.circulation}
               periodTotalTransfer={data.total?.periodTotalTransfer}
             />
-
             <TokenChainBreakdown
               totalChains={3}
               totalTokens={1}
-              totalValue={formatLargeNumber(data.last.circulation)}
+              totalValue={Number(data.last.circulation)}
               chainDistribution={data.chainDistribution}
             />
-
-            <AuditReport reportsList={data.reportList} companyName={data.companyName} />
-
-            {/* <Footnotes notes={FOOTNOTES} /> */}
+            <AuditReport reportsList={data.reportList} companyName={data.companyName} />{' '}
           </VStack>
         </Container>
       ) : null}

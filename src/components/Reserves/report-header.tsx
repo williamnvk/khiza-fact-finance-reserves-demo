@@ -86,7 +86,13 @@ export function ReportHeader({
 
           <VStack align="start" gap={4} flex={1}>
             <HStack gap={3} align="center" flexWrap="wrap">
-              <Heading size="2xl" color="gray.900" _dark={{ color: 'white' }} fontWeight="800" letterSpacing="-0.03em">
+              <Heading
+                fontSize="3xl"
+                color="gray.900"
+                _dark={{ color: 'white' }}
+                fontWeight="800"
+                letterSpacing="-0.03em"
+              >
                 {companyName}
               </Heading>
               <Badge
@@ -147,18 +153,16 @@ export function ReportHeader({
               bg="linear-gradient(135deg, {colors.whiteAlpha.100} 0%, transparent 100%)"
               borderWidth="1px"
               borderColor="blackAlpha.200"
-              borderRadius="lg"
+              borderRadius="2xl"
               _dark={{
                 borderColor: 'whiteAlpha.200',
               }}
               p={6}
             >
-              <VStack align="start" gap={4} height="full">
-                <HStack justify="space-between" width="full">
-                  <Box p={3} bg="brand.500" rounded="xl" _dark={{ bg: 'brand.500' }}>
-                    <Icon as={CoinsIcon} boxSize={6} color="white" />
-                  </Box>
-                </HStack>
+              <HStack align="start" gap={4} height="full">
+                <Box p={3} bg="brand.500" rounded="xl" _dark={{ bg: 'brand.500' }}>
+                  <Icon as={CoinsIcon} boxSize={6} color="white" />
+                </Box>
                 <VStack align="start" gap={2} flex={1}>
                   <Text
                     fontSize="xs"
@@ -179,7 +183,7 @@ export function ReportHeader({
                     </Heading>
                   </Flex>
                 </VStack>
-              </VStack>
+              </HStack>
             </Box>
           </GridItem>
 
@@ -189,22 +193,16 @@ export function ReportHeader({
               bg="linear-gradient(135deg, {colors.whiteAlpha.100} 0%, transparent 100%)"
               borderWidth="1px"
               borderColor="blackAlpha.200"
-              borderRadius="lg"
-              p={6}
+              borderRadius="2xl"
               _dark={{
                 borderColor: 'whiteAlpha.200',
               }}
+              p={6}
             >
-              <VStack align="start" gap={4} height="full">
-                <HStack justify="space-between" width="full">
-                  <Box p={3} bg="brand.500" rounded="xl" _dark={{ bg: 'brand.500' }}>
-                    <DatabaseBackupIcon color="white" size={24} />
-                  </Box>
-                  <Badge colorPalette="brand" variant="subtle" size="sm">
-                    Secured
-                  </Badge>
-                </HStack>
-
+              <HStack align="start" gap={4} height="full">
+                <Box p={3} bg="brand.500" rounded="xl" _dark={{ bg: 'brand.500' }}>
+                  <DatabaseBackupIcon color="white" size={24} />
+                </Box>
                 <VStack align="start" gap={2} flex={1}>
                   <Text
                     fontSize="xs"
@@ -225,7 +223,7 @@ export function ReportHeader({
                     </Heading>
                   </Flex>
                 </VStack>
-              </VStack>
+              </HStack>
             </Box>
           </GridItem>
 
@@ -236,21 +234,16 @@ export function ReportHeader({
               bg="linear-gradient(135deg, {colors.whiteAlpha.100} 0%, transparent 100%)"
               borderWidth="1px"
               borderColor="blackAlpha.200"
-              borderRadius="lg"
-              p={6}
+              borderRadius="2xl"
               _dark={{
                 borderColor: 'whiteAlpha.200',
               }}
+              p={6}
             >
-              <VStack align="start" gap={4} height="full">
-                <HStack justify="space-between" width="full">
-                  <Box p={3} bg="brand.500" rounded="xl" _dark={{ bg: 'brand.500' }}>
-                    <CheckIcon color="white" size={24} />
-                  </Box>
-                  <Badge colorPalette={isHealthy ? 'success' : 'warning'} variant="subtle" size="sm">
-                    {isHealthy ? 'Healthy' : 'Watch'}
-                  </Badge>
-                </HStack>
+              <HStack align="start" gap={4} height="full">
+                <Box p={3} bg="brand.500" rounded="xl" _dark={{ bg: 'brand.500' }}>
+                  <CheckIcon color="white" size={24} />
+                </Box>
 
                 <VStack align="start" gap={2} flex={1}>
                   <Text
@@ -271,23 +264,8 @@ export function ReportHeader({
                   >
                     {ratio}
                   </Heading>
-                  {/* <Box
-                    width="full"
-                    height={2}
-                    bg="gray.200"
-                    rounded="full"
-                    overflow="hidden"
-                    _dark={{ bg: 'gray.700' }}
-                  >
-                    <Box
-                      height="full"
-                      width={`${Math.min((ratioPercentage / 150) * 100, 100)}%`}
-                      bg={isHealthy ? 'success.500' : 'warning.500'}
-                      transition="all 0.3s ease"
-                    />
-                  </Box> */}
                 </VStack>
-              </VStack>
+              </HStack>
             </Box>
           </GridItem>
 
@@ -298,21 +276,16 @@ export function ReportHeader({
               bg="linear-gradient(135deg, {colors.whiteAlpha.100} 0%, transparent 100%)"
               borderWidth="1px"
               borderColor="blackAlpha.200"
-              borderRadius="lg"
-              p={6}
+              borderRadius="2xl"
               _dark={{
                 borderColor: 'whiteAlpha.200',
               }}
+              p={6}
             >
-              <VStack align="start" gap={4} height="full">
-                <HStack justify="space-between" width="full">
-                  <Box p={3} bg="brand.500" rounded="xl" _dark={{ bg: 'brand.500' }}>
-                    <ChartLineIcon color="white" size={24} />
-                  </Box>
-                  <Badge colorPalette="brand" variant="subtle" size="sm">
-                    Updated
-                  </Badge>
-                </HStack>
+              <HStack align="start" gap={4} height="full">
+                <Box p={3} bg="brand.500" rounded="xl" _dark={{ bg: 'brand.500' }}>
+                  <ChartLineIcon color="white" size={24} />
+                </Box>
 
                 <VStack align="start" gap={0} flex={1}>
                   <Text
@@ -339,7 +312,7 @@ export function ReportHeader({
                     </Tooltip>
                   )}
                 </VStack>
-              </VStack>
+              </HStack>
             </Box>
           </GridItem>
         </Grid>

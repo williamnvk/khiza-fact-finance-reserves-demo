@@ -82,7 +82,7 @@ export function TokenChainBreakdown({
     <Box
     
     >
-      <VStack align="stretch" gap={8}>
+      <VStack align="stretch" gap={4}>
         {/* Enhanced Header Section */}
         <VStack align="stretch" gap={4}>
           <Flex justify="space-between" align="start" direction={{ base: 'column', md: 'row' }} gap={4}>
@@ -215,7 +215,7 @@ export function TokenChainBreakdown({
         </VStack>
 
         {/* Enhanced Visual Distribution */}
-        <VStack align="stretch" gap={6}>
+        <VStack align="stretch" gap={6} bg="whiteAlpha.50" rounded="lg" p={6} borderWidth="1px" borderColor="gray.200" _dark={{ bg: 'gray.900' }}>
           <HStack justify="space-between">
             <Text fontSize="xl" fontWeight="semibold" color="fg">
               Network Distribution

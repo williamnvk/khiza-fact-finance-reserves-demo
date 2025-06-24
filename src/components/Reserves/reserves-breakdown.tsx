@@ -10,6 +10,7 @@ import {
   Badge,
   FormatNumber,
   ColorSwatch,
+  Tag,
 } from '@chakra-ui/react';
 import { Tooltip } from '@/components/ui/tooltip';
 import { useColorModeValue } from '../ui/color-mode';
@@ -20,23 +21,24 @@ export function ReservesBreakdown({
   balance,
   assetDistribution,
   companyName,
+  currency,
 }: {
   reserves: number;
   issued: number;
   balance: number;
   assetDistribution: any[];
-  currency: string;
   companyName: string;
+  currency: string;
 }) {
   // Enhanced asset colors with better accessibility
   const assetColors = {
-    cash: useColorModeValue('#10B981', '#34D399'), // Green
-    securities: useColorModeValue('#3B82F6', '#60A5FA'), // Blue
-    crypto: useColorModeValue('#8B5CF6', '#A78BFA'), // Purple
-    bonds: useColorModeValue('#F59E0B', '#FBBF24'), // Orange
-    commodities: useColorModeValue('#EF4444', '#F87171'), // Red
-    real_estate: useColorModeValue('#06B6D4', '#22D3EE'), // Cyan
-    other: useColorModeValue('#6B7280', '#9CA3AF'), // Gray
+    cash: useColorModeValue('var(--ff-colors-success-500)', 'var(--ff-colors-success-500)'), // Green
+    securities: useColorModeValue('var(--ff-colors-brand-500)', 'var(--ff-colors-brand-500)'), // Blue
+    crypto: useColorModeValue('var(--ff-colors-brand-400)', 'var(--ff-colors-brand-400)'), // Purple
+    bonds: useColorModeValue('var(--ff-colors-brand-600)', 'var(--ff-colors-brand-600)'), // Orange
+    commodities: useColorModeValue('var(--ff-colors-error-500)', 'var(--ff-colors-error-500)'), // Red
+    real_estate: useColorModeValue('var(--ff-colors-brand-500)', 'var(--ff-colors-brand-500)'), // Cyan
+    other: useColorModeValue('var(--ff-colors-gray-500)', 'var(--ff-colors-gray-500)'), // Gray
   };
 
   // Calculate key metrics
@@ -77,8 +79,7 @@ export function ReservesBreakdown({
           </Card.Header>
           <Card.Body>
             <VStack align="stretch" gap={4}>
-              {/* Stacked progress bar */}
-              <HStack width="100%" height="2rem" gap={0} borderRadius="md" overflow="hidden" shadow="sm">
+              <HStack width="100%" height="1rem" gap={0} borderRadius="full" overflow="hidden" shadow="sm">
                 {chartData.map((asset) => (
                   <Tooltip key={asset.name} content={`${asset.name}: ${asset.percentage}%`}>
                     <Box
@@ -86,7 +87,6 @@ export function ReservesBreakdown({
                       width={`${asset.percentage}%`}
                       bg={asset.color}
                       transition="all 0.2s ease-in-out"
-                      _hover={{ transform: 'scale(1.05)', zIndex: 1, shadow: 'lg' }}
                     />
                   </Tooltip>
                 ))}
@@ -101,9 +101,21 @@ export function ReservesBreakdown({
                       <Text fontSize="sm" fontWeight="medium" color="fg">
                         {asset.name}
                       </Text>
-                      <Text fontSize="sm" fontWeight="semibold" color={asset.color}>
-                        {asset.percentage}%
-                      </Text>
+                      <HStack mt={1}>
+                        <Text fontSize="sm" fontWeight="semibold" color={asset.color}>
+                          <FormatNumber
+                            value={asset.value}
+                            style="currency"
+                            currency={currency === 'USD' ? 'USD' : 'BRL'}
+                            notation="compact"
+                          />
+                        </Text>
+                        <Tag.Root colorPalette="brand" size="sm" variant="subtle">
+                          <Tag.Label fontSize="xs" fontWeight="semibold">
+                            {asset.percentage}%
+                          </Tag.Label>
+                        </Tag.Root>
+                      </HStack>
                     </VStack>
                   </HStack>
                 ))}

@@ -225,7 +225,7 @@ export const Reports = () => {
 
       {loaded ? (
         <Container maxW="8xl" px={4} py={8} mt="72px">
-          <VStack w="full" gap={{ base: 4, md: 12 }} align="stretch">
+          <VStack w="full" gap={{ base: 4, md: 24 }} align="stretch">
             <ReportHeader
               client={client}
               companyName={data.companyFullName}
@@ -261,6 +261,8 @@ export const Reports = () => {
                 avgcolateral1={Number(data.average1?.avgcolateral) || 0}
                 currency={data.currency}
               />
+
+
             </Grid>
             <ReservesBreakdown
               companyName={data.companyName}
@@ -269,6 +271,7 @@ export const Reports = () => {
               issued={data.last.circulation}
               balance={data.last.reserves - data.last.circulation}
               assetDistribution={data.assetDistribution}
+              currency={data.currency}
             />
             <TokenList
               tokens={data.tokens}
@@ -278,6 +281,25 @@ export const Reports = () => {
               circulation={data.last.circulation}
               periodTotalTransfer={data.total?.periodTotalTransfer}
             />
+
+
+<Box
+        position="absolute"
+        top="0%"
+        left="0%"
+        transform="translate(50%, 150%)"
+        w="100vw"
+        h="100vh"
+        bg="radial-gradient(circle, {colors.brand.300} 0%, {colors.brand.200} 25%, rgba(0,0,0,.1) 100%)"
+        _dark={{
+          bg: 'radial-gradient(circle, {colors.brand.900} 0%, {colors.brand.900} 25%, rgba(0,0,0,.5) 100%)',
+        }}
+        filter="blur(200px)"
+        zIndex={-1}
+      />
+
+
+
             <TokenChainBreakdown
               totalChains={3}
               totalTokens={1}

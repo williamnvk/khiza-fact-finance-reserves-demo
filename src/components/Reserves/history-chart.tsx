@@ -152,7 +152,7 @@ export function HistoryChart({
             <Text fontSize="2xl" fontWeight="bold" color="fg">
               Historical Reserve Coverage
             </Text>
-            <Text fontSize="sm" color="fg.muted" lineHeight="tall">
+            <Text fontSize="sm" color="fg.muted" lineHeight="tall" height="44px">
               Track cumulative balances versus tokens issued over time. Use filters to explore data by a different
               period.
             </Text>
@@ -191,7 +191,7 @@ export function HistoryChart({
                     Transaction volume
                   </Stat.Label>
                   <Stat.ValueText fontSize="xl" fontWeight="bold" color="brand.500">
-                    {formatLargeNumber(totalIssued | 0)}
+                  {formatLargeNumber(totalIssued | 0, currency === 'USD' ? '$' : 'R$')}
                   </Stat.ValueText>
                 </Stat.Root>
               </Card.Body>

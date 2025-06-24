@@ -26,6 +26,7 @@ export function BalancesChart({
   circulation,
   reserves,
   over,
+  currency,
 }: {
   circulation: number;
   reserves: number;
@@ -46,9 +47,11 @@ export function BalancesChart({
 
   // Enhanced color system with semantic meaning
   const colors = {
-    circulation: useColorModeValue(`var(--ff-colors-brand-500)`, 'var(--ff-colors-brand-500)'), // Blue - represents demand/usage
-    mainCollateral: useColorModeValue(`var(--ff-colors-success-500)`, 'var(--ff-colors-success-500)'), // Green - represents base security
-    overCollateral: useColorModeValue(`var(--ff-colors-warning-500)`, 'var(--ff-colors-warning-500)'), // Orange - represents excess security
+    circulation: useColorModeValue(`var(--ff-colors-brand-600)`, 'var(--ff-colors-brand-600)'), // Blue - represents demand/usage
+    mainCollateral: useColorModeValue(`var(--ff-colors-brand-500)`, 'var(--ff-colors-brand-500)'), // Green - represents base security
+    overCollateral: isOverCollateralized
+      ? useColorModeValue(`var(--ff-colors-success-500)`, 'var(--ff-colors-success-500)')
+      : useColorModeValue(`var(--ff-colors-warning-500)`, 'var(--ff-colors-warning-500)'), // Orange - represents excess security
     background: useColorModeValue(`var(--ff-colors-bg-subtle)`, 'var(--ff-colors-bg-subtle)'),
     border: useColorModeValue(`var(--ff-colors-border-subtle)`, 'var(--ff-colors-border-subtle)'),
     grid: useColorModeValue(`var(--ff-colors-bg-subtle)`, 'var(--ff-colors-bg-subtle)'),
@@ -194,7 +197,7 @@ export function BalancesChart({
                       icon = <Shield size={12} />;
                       break;
                     case 'Over Collateral':
-                      description = 'Additional security buffer';
+                      description = isOverCollateralized ? 'Additional security buffer' : 'Under-collateralized';
                       icon = <TrendingUp size={12} />;
                       break;
                     case 'Circulation':
@@ -213,7 +216,7 @@ export function BalancesChart({
                         <Icon>{icon}</Icon>
                         <VStack align="start" gap={0}>
                           <Text fontSize="xs" fontWeight="medium" color="fg">
-                            {dataKey}
+                            {dataKey === 'Over Collateral' && !isOverCollateralized ? 'Under Collateral' : dataKey}
                           </Text>
                           <Text fontSize="xs" color="fg.muted">
                             {description}
@@ -299,7 +302,7 @@ export function BalancesChart({
           <VStack align="start" gap={2} flex={1}>
             <Flex w="full" justify="space-between" align="center">
               <Heading fontSize="2xl" fontWeight="bold" color="fg">
-              Reserves Coverage Status
+                Reserves Coverage Status
               </Heading>
 
               {/* <ButtonGroup size="xs" attached gap={0} colorPalette="brand">
@@ -328,8 +331,9 @@ export function BalancesChart({
               </ButtonGroup> */}
             </Flex>
 
-            <Text fontSize="sm" color="fg.muted" lineHeight="tall" maxW="2xl">
-            Latest verified token supply and corresponding collateral reserves, including overcollateralization and utilization ratio.
+            <Text fontSize="sm" color="fg.muted" lineHeight="tall" maxW="2xl" h="44px">
+              Latest verified token supply and corresponding collateral reserves, including overcollateralization and
+              utilization ratio.
             </Text>
           </VStack>
         </Flex>
@@ -364,7 +368,7 @@ export function BalancesChart({
                   fontWeight="bold"
                   color={excessReserve > 0 ? 'success.500' : 'danger.500'}
                 >
-                  <FormatNumber value={Math.abs(excessReserve)} style="currency" currency="USD" />
+                  <FormatNumber value={Math.abs(excessReserve)} style="currency" currency={currency === 'USD' ? 'USD' : 'BRL'} />
                 </Stat.ValueText>
               </Stat.Root>
             </Card.Body>
@@ -467,7 +471,7 @@ export function BalancesChart({
                     stackId="stack"
                     fill={colors.overCollateral}
                     radius={isOverCollateralized ? [8, 8, 0, 0] : [0, 0, 8, 8]}
-                    name="Over Collateral"
+                    name={isOverCollateralized ? 'Over Collateral' : 'Under Collateral'}
                     maxBarSize={120}
                   />
                 </BarChart>
@@ -510,7 +514,7 @@ export function BalancesChart({
             <HStack gap={2}>
               <Box w={3} h={3} rounded="full" bg={colors.overCollateral} />
               <Text fontSize="xs" fontWeight="medium" color="fg">
-                Over Collateral
+                {isOverCollateralized ? 'Over Collateral' : 'Under Collateral'}
               </Text>
               {/* <Badge size="sm" variant="subtle" colorPalette="orange">
                     <FormatNumber value={over} style="currency" currency="USD" />

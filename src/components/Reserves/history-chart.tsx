@@ -190,7 +190,7 @@ export function HistoryChart({
                   <Stat.Label fontSize="xs" color="fg.muted">
                     Transaction volume
                   </Stat.Label>
-                  <Stat.ValueText fontSize="lg" fontWeight="bold" color="brand.500">
+                  <Stat.ValueText fontSize="xl" fontWeight="bold" color="brand.500">
                     {formatLargeNumber(totalIssued | 0)}
                   </Stat.ValueText>
                 </Stat.Root>
@@ -212,7 +212,7 @@ export function HistoryChart({
                   <Stat.Label fontSize="xs" color="fg.muted">
                     Number of transactions
                   </Stat.Label>
-                  <Stat.ValueText fontSize="lg" fontWeight="bold" color="success.500">
+                  <Stat.ValueText fontSize="xl" fontWeight="bold" color="success.500">
                     {formatLargeNumber(totalTransactions | 0)}
                   </Stat.ValueText>
                 </Stat.Root>

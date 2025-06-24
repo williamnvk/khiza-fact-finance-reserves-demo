@@ -11,8 +11,6 @@ import {
   Stat,
   Separator,
   Badge,
-  Button,
-  ButtonGroup,
   Icon,
   Grid,
   SimpleGrid,
@@ -20,7 +18,7 @@ import {
   Heading,
 } from '@chakra-ui/react';
 import { useColorModeValue } from '../ui/color-mode';
-import { TrendingUp, TrendingDown, Shield, BarChart3, PieChart, Activity } from 'lucide-react';
+import { TrendingUp, Shield, Activity } from 'lucide-react';
 
 type ChartView = 'stacked' | 'comparative' | 'ratio';
 
@@ -34,7 +32,9 @@ export function BalancesChart({
   over: number;
   currency: string;
 }) {
+  // @ts-ignore
   const [chartView, setChartView] = useState<ChartView>('comparative');
+  // @ts-ignore
   const [showDetails, setShowDetails] = useState(false);
 
   const totalReserves = reserves + over;
@@ -299,7 +299,7 @@ export function BalancesChart({
           <VStack align="start" gap={2} flex={1}>
             <Flex w="full" justify="space-between" align="center">
               <Heading fontSize="2xl" fontWeight="bold" color="fg">
-                Current Balances
+              Reserves Coverage Status
               </Heading>
 
               {/* <ButtonGroup size="xs" attached gap={0} colorPalette="brand">
@@ -329,8 +329,7 @@ export function BalancesChart({
             </Flex>
 
             <Text fontSize="sm" color="fg.muted" lineHeight="tall" maxW="2xl">
-              Real-time visualization of token circulation versus backing reserves. Monitors collateralization ratio and
-              excess reserve capacity for new token minting.
+            Latest verified token supply and corresponding collateral reserves, including overcollateralization and utilization ratio.
             </Text>
           </VStack>
         </Flex>
@@ -350,14 +349,6 @@ export function BalancesChart({
                 >
                   {collateralizationRatio.toFixed(1)}%
                 </Stat.ValueText>
-                <Stat.HelpText color="fg.muted" fontSize="xs">
-                  <HStack gap={1}>
-                    <Icon color={isOverCollateralized ? 'success.500' : 'warning.500'}>
-                      {isOverCollateralized ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
-                    </Icon>
-                    {isOverCollateralized ? 'Over-collateralized' : 'Under-collateralized'}
-                  </HStack>
-                </Stat.HelpText>
               </Stat.Root>
             </Card.Body>
           </Card.Root>
@@ -375,9 +366,6 @@ export function BalancesChart({
                 >
                   <FormatNumber value={Math.abs(excessReserve)} style="currency" currency="USD" />
                 </Stat.ValueText>
-                <Stat.HelpText color="fg.muted" fontSize="xs">
-                  {excessReserve > 0 ? 'Available for minting' : 'Reserve deficit'}
-                </Stat.HelpText>
               </Stat.Root>
             </Card.Body>
           </Card.Root>
@@ -391,9 +379,6 @@ export function BalancesChart({
                 <Stat.ValueText fontSize="xl" fontWeight="bold">
                   {reserveUtilization.toFixed(1)}%
                 </Stat.ValueText>
-                <Stat.HelpText color="fg.muted" fontSize="xs">
-                  Reserve efficiency
-                </Stat.HelpText>
               </Stat.Root>
             </Card.Body>
           </Card.Root>
@@ -401,21 +386,8 @@ export function BalancesChart({
         </Grid>
 
         <VStack gap={4}>
-          {/* Chart Controls */}
-          <Flex justify="space-between" align="center" w="full">
-            <Text fontSize="lg" fontWeight="semibold" color="fg">
-              {chartView === 'stacked' && 'Stacked Reserve View'}
-              {chartView === 'comparative' && 'Comparative Analysis'}
-              {chartView === 'ratio' && 'Reserve Ratio Analysis'}
-            </Text>
-
-            <Button size="xs" variant="ghost" onClick={() => setShowDetails(!showDetails)}>
-              {showDetails ? 'Hide' : 'Show'} Details
-            </Button>
-          </Flex>
-
           {/* Chart Container */}
-          <Box h={300} w="full">
+          <Box h={240} w="full">
             <ResponsiveContainer width="100%" height="100%">
               {chartView === 'stacked' ? (
                 <BarChart data={getChartData()} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
@@ -524,10 +496,10 @@ export function BalancesChart({
           </Box>
 
           {/* Enhanced Legend */}
-          <Flex justify="center" gap={6} wrap="wrap" mt={4}>
+          <Flex justify="center" gap={6} wrap="wrap" mt={2}>
             <HStack gap={2}>
               <Box w={3} h={3} rounded="full" bg={colors.mainCollateral} />
-              <Text fontSize="sm" fontWeight="medium" color="fg">
+              <Text fontSize="xs" fontWeight="medium" color="fg">
                 Main Collateral
               </Text>
               {/* <Badge size="sm" variant="subtle" colorPalette="green">
@@ -537,7 +509,7 @@ export function BalancesChart({
 
             <HStack gap={2}>
               <Box w={3} h={3} rounded="full" bg={colors.overCollateral} />
-              <Text fontSize="sm" fontWeight="medium" color="fg">
+              <Text fontSize="xs" fontWeight="medium" color="fg">
                 Over Collateral
               </Text>
               {/* <Badge size="sm" variant="subtle" colorPalette="orange">
@@ -547,7 +519,7 @@ export function BalancesChart({
 
             <HStack gap={2}>
               <Box w={3} h={3} rounded="full" bg={colors.circulation} />
-              <Text fontSize="sm" fontWeight="medium" color="fg">
+              <Text fontSize="xs" fontWeight="medium" color="fg">
                 Circulation
               </Text>
               {/* <Badge size="sm" variant="subtle" colorPalette="blue">

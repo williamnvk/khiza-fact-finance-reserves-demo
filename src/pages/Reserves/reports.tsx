@@ -297,6 +297,7 @@ export const Reports = () => {
               totalTokens={1}
               totalValue={Number(data.last.circulation)}
               chainDistribution={data.chainDistribution}
+              currency={data.currency}
             />
             <AuditReport reportsList={data.reportList} companyName={data.companyName} />{' '}
           </VStack>

@@ -1,5 +1,4 @@
-import { CircleCheck, Shield, TrendingUp, Eye, PieChart, BarChart3, Activity, Wallet } from 'lucide-react';
-import { formatLargeNumber } from '@/lib/utils';
+import { CircleCheck, Eye } from 'lucide-react';
 import {
   Box,
   VStack,
@@ -13,13 +12,10 @@ import {
   Stat,
   Badge,
   FormatNumber,
-  Progress,
-  Stack,
   SimpleGrid,
-  Icon,
   Image,
 } from '@chakra-ui/react';
-import { chains, reportChains } from '@/data/chains';
+import { reportChains } from '@/data/chains';
 
 export function TokenList({
   currency,
@@ -41,12 +37,12 @@ export function TokenList({
   };
 
   // Calculate comprehensive portfolio metrics
-  const totalPortfolioValue = tokens.reduce((sum, token) => sum + (circulation * token.share) / 100, 0);
-  const totalMarketCap = tokens.reduce((sum, token) => sum + ((circulation * token.share) / 100) * token.tokenPrice, 0);
-  const averageTokenPrice = tokens.reduce((sum, token) => sum + token.tokenPrice, 0) / tokens.length;
-  const totalChainsSupported = [...new Set(tokens.flatMap((token) => token.chains))].length;
-  const highestUtilization = Math.max(...tokens.map((token) => ((circulation * token.share) / 100 / reserves) * 100));
-  const mostSupportedChains = tokens.reduce((max, token) => (token.chains.length > max ? token.chains.length : max), 0);
+  // const totalPortfolioValue = tokens.reduce((sum, token) => sum + (circulation * token.share) / 100, 0);
+  // const totalMarketCap = tokens.reduce((sum, token) => sum + ((circulation * token.share) / 100) * token.tokenPrice, 0);
+  // const averageTokenPrice = tokens.reduce((sum, token) => sum + token.tokenPrice, 0) / tokens.length;
+  // const totalChainsSupported = [...new Set(tokens.flatMap((token) => token.chains))].length;
+  // const highestUtilization = Math.max(...tokens.map((token) => ((circulation * token.share) / 100 / reserves) * 100));
+  // const mostSupportedChains = tokens.reduce((max, token) => (token.chains.length > max ? token.chains.length : max), 0);
 
   return (
     <Box>
@@ -86,7 +82,11 @@ export function TokenList({
                   gap={6}
                   borderTopWidth={index === 0 ? '0px' : '1px'}
                   pt={index === 0 ? '0px' : '16px'}
-                  bg="whiteAlpha.500" rounded="lg" p={6} borderWidth="1px" borderColor="gray.200"
+                  bg="whiteAlpha.500"
+                  rounded="lg"
+                  p={6}
+                  borderWidth="1px"
+                  borderColor="gray.200"
                   _dark={{
                     borderColor: 'gray.700',
                     bg: 'blackAlpha.50',
@@ -172,7 +172,7 @@ export function TokenList({
                                   <FormatNumber
                                     value={tokenSupply}
                                     style="currency"
-                                    currency="USD"
+                                    currency={currency}
                                     notation="compact"
                                   />
                                 </Stat.ValueText>
@@ -193,7 +193,7 @@ export function TokenList({
                                   <FormatNumber
                                     value={token.tokenPrice}
                                     style="currency"
-                                    currency={currency === 'USD' ? 'USD' : 'BRL'}
+                                    currency={currency}
                                     minimumFractionDigits={2}
                                     maximumFractionDigits={4}
                                   />
@@ -225,7 +225,7 @@ export function TokenList({
                                   <FormatNumber
                                     value={tokenTransfers}
                                     style="currency"
-                                    currency="USD"
+                                    currency={currency}
                                     notation="compact"
                                   />
                                 </Stat.ValueText>
@@ -243,7 +243,7 @@ export function TokenList({
                                   <FormatNumber
                                     value={totalTransferVolume}
                                     style="currency"
-                                    currency="USD"
+                                    currency={currency}
                                     notation="compact"
                                   />
                                 </Stat.ValueText>

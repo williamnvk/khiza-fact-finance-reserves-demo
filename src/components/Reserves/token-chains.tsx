@@ -1,34 +1,18 @@
-import {
-  Box,
-  VStack,
-  Text,
-  HStack,
-  Grid,
-  GridItem,
-  Flex,
-  Card,
-  Stat,
-  Badge,
-  FormatNumber,
-  ColorSwatch,
-  Progress,
-  Separator,
-  SimpleGrid,
-  Icon,
-} from '@chakra-ui/react';
-import { Network, Layers, TrendingUp, Shield, Activity, BarChart3, Globe, Zap } from 'lucide-react';
+import { Box, VStack, Text, HStack, Flex, Card, Stat, Badge, FormatNumber, SimpleGrid, Icon } from '@chakra-ui/react';
+import { Network, Layers, Shield, BarChart3, Globe } from 'lucide-react';
 import { useColorModeValue } from '../ui/color-mode';
 
 export function TokenChainBreakdown({
-  totalChains,
   totalTokens,
   totalValue,
   chainDistribution,
+  currency,
 }: {
   totalChains: number;
   totalTokens: number;
   totalValue: number;
   chainDistribution: any[];
+  currency: string;
 }) {
   const formatPercent = (value: number) => `${value.toFixed(2)}%`;
 
@@ -53,11 +37,6 @@ export function TokenChainBreakdown({
     other: useColorModeValue('#6B7280', '#9CA3AF'),
   };
 
-  // Calculate comprehensive metrics
-  const averageChainDistribution =
-    chainDistribution.length > 0
-      ? chainDistribution.reduce((sum, chain) => sum + chain.value, 0) / chainDistribution.length
-      : 0;
 
   const dominantChain = chainDistribution.reduce(
     (max, chain) => (chain.value > max.value ? chain : max),
@@ -79,9 +58,7 @@ export function TokenChainBreakdown({
   }));
 
   return (
-    <Box
-    
-    >
+    <Box>
       <VStack align="stretch" gap={4}>
         {/* Enhanced Header Section */}
         <VStack align="stretch" gap={4}>
@@ -176,7 +153,7 @@ export function TokenChainBreakdown({
                     </HStack>
                   </Stat.Label>
                   <Stat.ValueText fontSize="xl" fontWeight="bold" color="success.500">
-                    <FormatNumber value={totalValue} style="currency" currency="USD" notation="compact" />
+                    <FormatNumber value={totalValue} style="currency" currency={currency} notation="compact" />
                   </Stat.ValueText>
                   <Stat.HelpText fontSize="xs" color="fg.muted">
                     Network Value
@@ -215,7 +192,15 @@ export function TokenChainBreakdown({
         </VStack>
 
         {/* Enhanced Visual Distribution */}
-        <VStack align="stretch" gap={6} bg="whiteAlpha.50" rounded="lg" p={6} borderWidth="1px" borderColor="gray.200" _dark={{ bg: 'gray.900' }}>
+        <VStack
+          align="stretch"
+          gap={6}
+          bg="whiteAlpha.50"
+          rounded="lg"
+          p={6}
+          borderWidth="1px"
+          _dark={{ bg: 'blackAlpha.50' }}
+        >
           <HStack justify="space-between">
             <Text fontSize="xl" fontWeight="semibold" color="fg">
               Network Distribution
@@ -258,7 +243,6 @@ export function TokenChainBreakdown({
               <Text>100%</Text>
             </HStack>
           </Box>
-
         </VStack>
       </VStack>
     </Box>

@@ -61,14 +61,82 @@ export function ReservesBreakdown({
             <Text fontSize={{ base: '2xl', md: '3xl' }} fontWeight="bold" color="fg">
               Reserves Overview
             </Text>
-            <Badge colorPalette="brand" size="md">
-              {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
-            </Badge>
           </HStack>
           <Text fontSize="md" color="fg.muted" lineHeight="relaxed">
             This section provides transparency into {companyName} asset reserves.
           </Text>
         </VStack>
+
+        
+        {/* Key Metrics - Simplified */}
+        <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={4}>
+          <GridItem>
+            <Card.Root size="sm" variant="outline" bg="transparent">
+              <Card.Body>
+                <Stat.Root>
+                  <Stat.Label fontSize="sm" color="fg.muted">
+                    Total Collateral Reserves
+                  </Stat.Label>
+                  <Stat.ValueText fontSize="xl" fontWeight="bold" color="success.500">
+                    <FormatNumber value={reserves} style="currency" currency={currency} notation="compact" />
+                  </Stat.ValueText>
+                </Stat.Root>
+              </Card.Body>
+            </Card.Root>
+          </GridItem>
+          {/* 
+          <GridItem>
+            <Card.Root size="sm" variant="subtle">
+              <Card.Body>
+                <Stat.Root>
+                  <Stat.Label fontSize="sm" color="fg.muted">
+                    Tokens Issued
+                  </Stat.Label>
+                  <Stat.ValueText fontSize="xl" fontWeight="bold" color="brand.500">
+                    <FormatNumber value={issued} style="currency" currency="USD" notation="compact" />
+                  </Stat.ValueText>
+                  <Stat.HelpText fontSize="xs" color="fg.muted">
+                    In Circulation
+                  </Stat.HelpText>
+                </Stat.Root>
+              </Card.Body>
+            </Card.Root>
+          </GridItem> */}
+
+          <GridItem>
+            <Card.Root size="sm" variant="outline" bg="transparent">
+              <Card.Body>
+                <Stat.Root>
+                  <Stat.Label fontSize="sm" color="fg.muted">
+                    Available Balance
+                  </Stat.Label>
+                  <Stat.ValueText fontSize="xl" fontWeight="bold" color={balance >= 0 ? 'success.500' : 'error.500'}>
+                    <FormatNumber value={Math.abs(balance)} style="currency" currency={currency} notation="compact" />
+                  </Stat.ValueText>
+                </Stat.Root>
+              </Card.Body>
+            </Card.Root>
+          </GridItem>
+
+          <GridItem>
+            <Card.Root size="sm" variant="outline" bg="transparent">
+              <Card.Body>
+                <Stat.Root>
+                  <Stat.Label fontSize="sm" color="fg.muted">
+                    Collateral Ratio
+                  </Stat.Label>
+                  <Stat.ValueText
+                    fontSize="xl"
+                    fontWeight="bold"
+                    color={isOverCollateralized ? 'success.500' : 'error.500'}
+                  >
+                    {collateralizationRatio.toFixed(2)}%
+                  </Stat.ValueText>
+                </Stat.Root>
+              </Card.Body>
+            </Card.Root>
+          </GridItem>
+        </Grid>
 
         {/* Asset Distribution Bar */}
         <Card.Root size="sm" variant="outline" bg="transparent">
@@ -106,7 +174,7 @@ export function ReservesBreakdown({
                           <FormatNumber
                             value={asset.value}
                             style="currency"
-                            currency={currency === 'USD' ? 'USD' : 'BRL'}
+                            currency={currency}
                             notation="compact"
                           />
                         </Text>
@@ -124,84 +192,6 @@ export function ReservesBreakdown({
           </Card.Body>
         </Card.Root>
 
-        {/* Key Metrics - Simplified */}
-        <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={4}>
-          <GridItem>
-            <Card.Root size="sm" variant="outline" bg="transparent">
-              <Card.Body>
-                <Stat.Root>
-                  <Stat.Label fontSize="sm" color="fg.muted">
-                    Total Collateral Reserves
-                  </Stat.Label>
-                  <Stat.ValueText fontSize="xl" fontWeight="bold" color="success.500">
-                    <FormatNumber value={reserves} style="currency" currency="USD" notation="compact" />
-                  </Stat.ValueText>
-                  <Stat.HelpText fontSize="xs" color="fg.muted">
-                    Fully Backed
-                  </Stat.HelpText>
-                </Stat.Root>
-              </Card.Body>
-            </Card.Root>
-          </GridItem>
-          {/* 
-          <GridItem>
-            <Card.Root size="sm" variant="subtle">
-              <Card.Body>
-                <Stat.Root>
-                  <Stat.Label fontSize="sm" color="fg.muted">
-                    Tokens Issued
-                  </Stat.Label>
-                  <Stat.ValueText fontSize="xl" fontWeight="bold" color="brand.500">
-                    <FormatNumber value={issued} style="currency" currency="USD" notation="compact" />
-                  </Stat.ValueText>
-                  <Stat.HelpText fontSize="xs" color="fg.muted">
-                    In Circulation
-                  </Stat.HelpText>
-                </Stat.Root>
-              </Card.Body>
-            </Card.Root>
-          </GridItem> */}
-
-          <GridItem>
-            <Card.Root size="sm" variant="outline" bg="transparent">
-              <Card.Body>
-                <Stat.Root>
-                  <Stat.Label fontSize="sm" color="fg.muted">
-                    Available Balance
-                  </Stat.Label>
-                  <Stat.ValueText fontSize="xl" fontWeight="bold" color={balance >= 0 ? 'success.500' : 'error.500'}>
-                    <FormatNumber value={Math.abs(balance)} style="currency" currency="USD" notation="compact" />
-                  </Stat.ValueText>
-                  <Stat.HelpText fontSize="xs" color="fg.muted">
-                    {balance >= 0 ? 'Surplus' : 'Deficit'}
-                  </Stat.HelpText>
-                </Stat.Root>
-              </Card.Body>
-            </Card.Root>
-          </GridItem>
-
-          <GridItem>
-            <Card.Root size="sm" variant="outline" bg="transparent">
-              <Card.Body>
-                <Stat.Root>
-                  <Stat.Label fontSize="sm" color="fg.muted">
-                    Collateral Ratio
-                  </Stat.Label>
-                  <Stat.ValueText
-                    fontSize="xl"
-                    fontWeight="bold"
-                    color={isOverCollateralized ? 'success.500' : 'error.500'}
-                  >
-                    <FormatNumber value={collateralizationRatio} style="percent" maximumFractionDigits={1} />
-                  </Stat.ValueText>
-                  <Stat.HelpText fontSize="xs" color="fg.muted">
-                    {isOverCollateralized ? 'Over-collateralized' : 'Under-collateralized'}
-                  </Stat.HelpText>
-                </Stat.Root>
-              </Card.Body>
-            </Card.Root>
-          </GridItem>
-        </Grid>
       </VStack>
     </Box>
   );

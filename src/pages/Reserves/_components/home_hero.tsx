@@ -1,7 +1,7 @@
 import { Container, Heading, Text, Grid, VStack, Box, Icon, SimpleGrid, Flex } from '@chakra-ui/react';
 import { Eye, Lock, Globe, Zap } from 'lucide-react';
 import { formatLargeNumber } from '@/lib/utils';
-import { SystemStatus } from './system-status';
+// import { SystemStatus } from './system-status';
 
 export const HomeHero = ({ totalReserves, clients }: { totalReserves: number; clients: any[] }) => {
   const uptimePercentage = 99.9;
@@ -9,7 +9,7 @@ export const HomeHero = ({ totalReserves, clients }: { totalReserves: number; cl
   return (
     <Container maxW="7xl" position="relative" zIndex={1} py={24}>
       <VStack w="full" h="full" justify="center" gap={8}>
-        <SystemStatus />
+        {/* <SystemStatus /> */}
 
         <VStack align="center" gap={4} w="full" my={16}>
           {/* <Badge

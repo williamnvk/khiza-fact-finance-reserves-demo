@@ -27,7 +27,7 @@ export function HistoryChart({
   periodTransactions1,
   avgcolateral,
   avgcolateral1,
-  currency = '$',
+  currency = 'USD',
 }: {
   heartbeat: string;
   historicalData: any[];
@@ -176,15 +176,7 @@ export function HistoryChart({
         {/* Key Metrics */}
         <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={4}>
           <GridItem>
-            <Card.Root
-              size="sm"
-              bg="transparent"
-              borderWidth="1px"
-              borderColor="blackAlpha.200"
-              _dark={{
-                borderColor: 'whiteAlpha.200',
-              }}
-            >
+          <Card.Root size="sm" bg="whiteAlpha.500" _dark={{ bg: 'blackAlpha.50' }} borderWidth="1px">
               <Card.Body>
                 <Stat.Root size="sm">
                   <Stat.Label fontSize="xs" color="fg.muted">
@@ -198,15 +190,7 @@ export function HistoryChart({
             </Card.Root>
           </GridItem>
           <GridItem>
-            <Card.Root
-              size="sm"
-              bg="transparent"
-              borderWidth="1px"
-              borderColor="blackAlpha.200"
-              _dark={{
-                borderColor: 'whiteAlpha.200',
-              }}
-            >
+          <Card.Root size="sm" bg="whiteAlpha.500" _dark={{ bg: 'blackAlpha.50' }} borderWidth="1px">
               <Card.Body>
                 <Stat.Root size="sm">
                   <Stat.Label fontSize="xs" color="fg.muted">
@@ -220,22 +204,14 @@ export function HistoryChart({
             </Card.Root>
           </GridItem>
           <GridItem>
-            <Card.Root
-              size="sm"
-              bg="transparent"
-              borderWidth="1px"
-              borderColor="blackAlpha.200"
-              _dark={{
-                borderColor: 'whiteAlpha.200',
-              }}
-            >
-              <Card.Body>
-                <Stat.Root size="sm">
+          <Card.Root size="sm" bg="whiteAlpha.500" _dark={{ bg: 'blackAlpha.50' }} borderWidth="1px">
+            <Card.Body>
+              <Stat.Root size="sm">
                   <Stat.Label fontSize="xs" color="fg.muted">
                     Average collateral
                   </Stat.Label>
-                  <Stat.ValueText fontSize="lg" fontWeight="bold" color="cyan.500">
-                    {averageIndex}
+                  <Stat.ValueText fontSize="xl" fontWeight="bold" color="cyan.500">
+                    {averageIndex}%
                   </Stat.ValueText>
                 </Stat.Root>
               </Card.Body>

@@ -10,7 +10,6 @@ import {
   Link as ChakraLink,
   Card,
   Stat,
-  Badge,
   FormatNumber,
   SimpleGrid,
   Image,
@@ -55,9 +54,6 @@ export function TokenList({
                 <Text fontSize="3xl" fontWeight="bold" color="fg">
                   Token Overview
                 </Text>
-                <Badge colorPalette="brand" size="md">
-                  {tokens.length} Asset{tokens.length !== 1 ? 's' : ''}
-                </Badge>
               </HStack>
               <Text fontSize="md" color="fg.muted" lineHeight="tall">
                 This section provides key onchain metrics to track the token's issuance, market activity, and reserve

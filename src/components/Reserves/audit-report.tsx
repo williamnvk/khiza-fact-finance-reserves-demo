@@ -264,15 +264,7 @@ export function AuditReport({
       {/* Bottom Info Section */}
       <Box
         mt={8}
-        p={6}
-        bg="brand.50"
-        _dark={{
-          bg: 'brand.900/20',
-          borderColor: 'brand.800',
-        }}
-        rounded="2xl"
-        borderWidth="1px"
-        borderColor="brand.200"
+       
       >
         <HStack gap={4}>
           <Icon as={FileText} boxSize={6} color="brand.600" _dark={{ color: 'brand.400' }} />
@@ -280,10 +272,15 @@ export function AuditReport({
             <Text fontWeight="semibold" color="brand.900" _dark={{ color: 'brand.100' }}>
               About Our Transparency Reports
             </Text>
-            <Text fontSize="sm" color="brand.700" _dark={{ color: 'brand.300' }} lineHeight="relaxed">
-              These comprehensive reports are published quarterly and include detailed asset breakdowns, third-party
-              audit results, compliance verification, and reserve attestations. Each report undergoes rigorous review to
-              ensure complete transparency for our stakeholders.
+            <Text fontSize="sm" color="fg.muted" lineHeight="relaxed">
+              "This page displays a transparency report powered by Fact Finance, with verified off-chain reserves and
+              automated onchain updates. Heartbeat frequency defines how often data is updated, while deviation
+              thresholds trigger changes only when reserve balances shift significantly. Collateral reserves (e.g., cash
+              or securities) are validated directly with custodians.
+              <br />
+              The token circulating supply represents the total issued tokens onchain, expected to be fully or
+              over-collateralized. Excess collateral reflects the buffer available for new issuance while preserving
+              full backing.
             </Text>
           </VStack>
         </HStack>

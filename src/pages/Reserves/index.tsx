@@ -46,6 +46,7 @@ import TokenizaLogo from '@/components/Icons/Tokeniza';
 interface HistoricalData {
   date: string;
   reserves: number;
+  circulation: number;
 }
 
 interface Client {
@@ -180,7 +181,8 @@ const Home = () => {
           <Grid templateColumns={{ base: '1fr', lg: 'repeat(2, 1fr)' }} gap={4} w="full">
             {clients.map((client, index) => {
               const latestData = client.historicalData[client.historicalData.length - 1];
-              const reserveRatio = ((latestData.reserves / latestData.reserves) * 100).toFixed(1);
+              const reserveRatio = ((latestData.reserves / latestData.circulation) * 100).toFixed(1);
+              const isOverCollateralized = (latestData.reserves / latestData.circulation) * 100 > 100;
               const previousData = client.historicalData[client.historicalData.length - 2];
               const growth = previousData
                 ? parseFloat((((latestData.reserves - previousData.reserves) / previousData.reserves) * 100).toFixed(1))
@@ -261,15 +263,13 @@ const Home = () => {
                             </Stat.ValueText>
                             <Stat.HelpText color="fg.muted" fontSize="xs">
                               <Shield size={12} style={{ display: 'inline', marginRight: '4px' }} />
-                              Fully backed
+                              {isOverCollateralized ? 'Over-collateralized' : 'Under-collateralized'}
                             </Stat.HelpText>
                           </Stat.Root>
                         </Box>
                       </Grid>
 
-                      {/* Reserve Health Indicator */}
-                      {/* Enhanced Reserve Health Indicator */}
-                      <Box
+                      {/* <Box
                         p={4}
                         bg="linear-gradient(35deg, {colors.brand.900}, {colors.brand.900})"
                         rounded="xl"
@@ -310,12 +310,12 @@ const Home = () => {
                         <Text fontSize="xs" color="fg.muted" mt={2} textAlign="center">
                           {reserveRatio}% of assets are fully backed by reserves
                         </Text>
-                      </Box>
+                      </Box> */}
 
                       {/* Audit Details */}
                       <VStack gap={3} align="stretch">
                         <HStack justify="space-between" fontSize="sm">
-                          <Text color="fg.muted">Last Audit:</Text>
+                          <Text color="fg.muted">Last Update:</Text>
                           <HStack>
                             <Text fontWeight="medium" color="fg.muted">
                               {latestData.date}
@@ -324,23 +324,19 @@ const Home = () => {
                           </HStack>
                         </HStack>
                         <HStack justify="space-between" fontSize="sm">
-                          <Text color="fg.muted">Check Frequency:</Text>
+                          <Text color="fg.muted">Frequency:</Text>
                           <Text fontWeight="medium" color="fg.muted">
                             {client.heartbeat}
                           </Text>
                         </HStack>
                         <HStack justify="space-between" fontSize="sm">
-                          <Text color="fg.muted">Compliance Status:</Text>
-                          <Badge colorPalette="success" size="xs" variant="subtle">
+                          <Text color="fg.muted">Status:</Text>
+                          <HStack bg={isOverCollateralized ? 'success.500' : 'danger.500/30'} rounded="full" px={2} py={1}>
                             <CheckCircle size={10} style={{ marginRight: '4px' }} />
-                            Compliant
-                          </Badge>
-                        </HStack>
-                        <HStack justify="space-between" fontSize="sm">
-                          <Text color="fg.muted">Risk Level:</Text>
-                          <Badge colorPalette="success" size="xs" variant="subtle">
-                            Low risk
-                          </Badge>
+                            <Text color={isOverCollateralized ? 'success.50' : 'danger.50'} fontSize="xs">
+                              {isOverCollateralized ? 'Over-collateralized' : 'Under-collateralized'}
+                            </Text>
+                          </HStack>
                         </HStack>
                       </VStack>
                     </VStack>

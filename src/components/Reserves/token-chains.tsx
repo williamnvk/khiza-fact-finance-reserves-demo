@@ -1,5 +1,5 @@
-import { Box, VStack, Text, HStack, Flex, Card, Stat, Badge, FormatNumber, SimpleGrid, Icon } from '@chakra-ui/react';
-import { Network, Layers, Shield, BarChart3, Globe } from 'lucide-react';
+import { Box, VStack, Text, HStack, Flex, Card, Stat, FormatNumber, SimpleGrid, Icon } from '@chakra-ui/react';
+import { Layers, BarChart3, Globe } from 'lucide-react';
 import { useColorModeValue } from '../ui/color-mode';
 
 export function TokenChainBreakdown({
@@ -37,13 +37,12 @@ export function TokenChainBreakdown({
     other: useColorModeValue('#6B7280', '#9CA3AF'),
   };
 
-
   const dominantChain = chainDistribution.reduce(
     (max, chain) => (chain.value > max.value ? chain : max),
     chainDistribution[0] || { name: 'N/A', value: 0 },
   );
 
-  const networkDiversityScore = chainDistribution.length > 0 ? (chainDistribution.length / 15) * 100 : 0; // Assuming 15 as max supported chains
+  // const networkDiversityScore = chainDistribution.length > 0 ? (chainDistribution.length / 15) * 100 : 0; // Assuming 15 as max supported chains
 
   const totalNetworkCoverage = chainDistribution.length;
   const averageTokensPerChain = totalNetworkCoverage > 0 ? totalTokens / totalNetworkCoverage : 0;
@@ -65,13 +64,9 @@ export function TokenChainBreakdown({
           <Flex justify="space-between" align="start" direction={{ base: 'column', md: 'row' }} gap={4}>
             <VStack align="start" gap={2} flex={1}>
               <HStack gap={3}>
-                <Icon as={Network} boxSize={8} color="brand.500" />
                 <Text fontSize="3xl" fontWeight="bold" color="fg">
                   Blockchain Distribution
                 </Text>
-                <Badge colorPalette="brand" size="md">
-                  {chainDistribution.length} Network{chainDistribution.length !== 1 ? 's' : ''}
-                </Badge>
               </HStack>
               <Text fontSize="md" color="fg.muted" lineHeight="tall">
                 This section shows how the token supply is distributed across different blockchains
@@ -80,7 +75,7 @@ export function TokenChainBreakdown({
           </Flex>
 
           {/* Network Overview Dashboard */}
-          <SimpleGrid columns={{ base: 2, md: 4 }} gap={4}>
+          <SimpleGrid columns={{ base: 1, md: 3 }} gap={4}>
             <Card.Root
               size="sm"
               bg="transparent"
@@ -101,9 +96,6 @@ export function TokenChainBreakdown({
                   <Stat.ValueText fontSize="xl" fontWeight="bold" color="brand.500">
                     {chainDistribution.length}
                   </Stat.ValueText>
-                  <Stat.HelpText fontSize="xs" color="success.500">
-                    Multi-chain Coverage
-                  </Stat.HelpText>
                 </Stat.Root>
               </Card.Body>
             </Card.Root>
@@ -128,9 +120,6 @@ export function TokenChainBreakdown({
                   <Stat.ValueText fontSize="xl" fontWeight="bold" color="warning.500">
                     <FormatNumber value={totalTokens} notation="compact" />
                   </Stat.ValueText>
-                  <Stat.HelpText fontSize="xs" color="fg.muted">
-                    Cross-chain Assets
-                  </Stat.HelpText>
                 </Stat.Root>
               </Card.Body>
             </Card.Root>
@@ -155,36 +144,6 @@ export function TokenChainBreakdown({
                   <Stat.ValueText fontSize="xl" fontWeight="bold" color="success.500">
                     <FormatNumber value={totalValue} style="currency" currency={currency} notation="compact" />
                   </Stat.ValueText>
-                  <Stat.HelpText fontSize="xs" color="fg.muted">
-                    Network Value
-                  </Stat.HelpText>
-                </Stat.Root>
-              </Card.Body>
-            </Card.Root>
-
-            <Card.Root
-              size="sm"
-              bg="transparent"
-              borderWidth="1px"
-              borderColor="blackAlpha.200"
-              _dark={{
-                borderColor: 'whiteAlpha.200',
-              }}
-            >
-              <Card.Body>
-                <Stat.Root>
-                  <Stat.Label fontSize="xs" color="fg.muted">
-                    <HStack gap={1}>
-                      <Icon as={Shield} boxSize={5} color="brand.500" />
-                      <Text>Diversity Score</Text>
-                    </HStack>
-                  </Stat.Label>
-                  <Stat.ValueText fontSize="xl" fontWeight="bold" color="brand.500">
-                    {networkDiversityScore.toFixed(0)}%
-                  </Stat.ValueText>
-                  <Stat.HelpText fontSize="xs" color="fg.muted">
-                    Risk Distribution
-                  </Stat.HelpText>
                 </Stat.Root>
               </Card.Body>
             </Card.Root>

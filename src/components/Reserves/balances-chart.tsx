@@ -102,7 +102,7 @@ export function BalancesChart({
   };
 
   // Enhanced tooltip with comprehensive information
-  const CustomTooltip = ({ active, payload, label }: any) => {
+  const CustomTooltip = ({ active, payload }: any) => {
     if (!active || !payload || !payload.length) return null;
 
     return (
@@ -340,48 +340,48 @@ export function BalancesChart({
 
         {/* Key Metrics Grid */}
         <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)', lg: 'repeat(3, 1fr)' }} gap={4}>
-          <Card.Root size="sm" bg="transparent" borderWidth="1px">
+          <Card.Root size="sm" bg="whiteAlpha.500" _dark={{ bg: 'blackAlpha.50' }} borderWidth="1px">
             <Card.Body>
               <Stat.Root size="sm">
                 <Stat.Label fontSize="xs" color="fg.muted">
-                  Collateralization Ratio
+                  Circulations
+                </Stat.Label>
+                <Stat.ValueText fontSize="xl" fontWeight="bold">
+                  <FormatNumber value={circulation} style="currency" currency={currency} />
+                </Stat.ValueText>
+              </Stat.Root>
+            </Card.Body>
+          </Card.Root>
+
+          <Card.Root size="sm" bg="whiteAlpha.500" _dark={{ bg: 'blackAlpha.50' }} borderWidth="1px">
+            <Card.Body>
+              <Stat.Root size="sm">
+                <Stat.Label fontSize="xs" color="fg.muted">
+                  Collateral
+                </Stat.Label>
+                <Stat.ValueText fontSize="xl" fontWeight="bold">
+                  <FormatNumber
+                    value={Math.abs(totalReserves)}
+                    style="currency"
+                    currency={currency === 'USD' ? 'USD' : 'BRL'}
+                  />
+                </Stat.ValueText>
+              </Stat.Root>
+            </Card.Body>
+          </Card.Root>
+
+          <Card.Root size="sm" bg="whiteAlpha.500" _dark={{ bg: 'blackAlpha.50' }} borderWidth="1px">
+            <Card.Body>
+              <Stat.Root size="sm">
+                <Stat.Label fontSize="xs" color="fg.muted">
+                  Reserves Status
                 </Stat.Label>
                 <Stat.ValueText
                   fontSize="xl"
                   fontWeight="bold"
                   color={isOverCollateralized ? 'success.500' : 'warning.500'}
                 >
-                  {collateralizationRatio.toFixed(1)}%
-                </Stat.ValueText>
-              </Stat.Root>
-            </Card.Body>
-          </Card.Root>
-
-          <Card.Root size="sm" bg="transparent" borderWidth="1px">
-            <Card.Body>
-              <Stat.Root size="sm">
-                <Stat.Label fontSize="xs" color="fg.muted">
-                  Excess Reserve
-                </Stat.Label>
-                <Stat.ValueText
-                  fontSize="xl"
-                  fontWeight="bold"
-                  color={excessReserve > 0 ? 'success.500' : 'danger.500'}
-                >
-                  <FormatNumber value={Math.abs(excessReserve)} style="currency" currency={currency === 'USD' ? 'USD' : 'BRL'} />
-                </Stat.ValueText>
-              </Stat.Root>
-            </Card.Body>
-          </Card.Root>
-
-          <Card.Root size="sm" bg="transparent" borderWidth="1px">
-            <Card.Body>
-              <Stat.Root size="sm">
-                <Stat.Label fontSize="xs" color="fg.muted">
-                  Reserve Utilization
-                </Stat.Label>
-                <Stat.ValueText fontSize="xl" fontWeight="bold">
-                  {reserveUtilization.toFixed(1)}%
+                  <FormatNumber value={excessReserve} style="currency" currency={currency} />
                 </Stat.ValueText>
               </Stat.Root>
             </Card.Body>
@@ -577,7 +577,7 @@ export function BalancesChart({
                     </VStack>
                   </VStack>
 
-                  <VStack align="start" gap={4}>
+                  <VStack align="start" gap={4} mt={-1}>
                     <HStack align="center" gap={2}>
                       <Icon color="brand.500">
                         <Activity size={14} />

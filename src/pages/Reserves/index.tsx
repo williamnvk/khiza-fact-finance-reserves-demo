@@ -229,7 +229,7 @@ const Home = () => {
                   <Card.Body>
                     <VStack gap={6} align="stretch">
                       {/* Key Metrics */}
-                      <Grid templateColumns="repeat(2, 1fr)" gap={6}>
+                      <Grid templateColumns="repeat(3, 1fr)" gap={4}>
                         <Box>
                           <Stat.Root>
                             <Stat.Label color="fg.muted" fontSize="sm">
@@ -256,9 +256,24 @@ const Home = () => {
                         <Box>
                           <Stat.Root>
                             <Stat.Label color="fg.muted" fontSize="sm">
+                              Circulation
+                            </Stat.Label>
+                            <Stat.ValueText fontSize="2xl" fontWeight="bold" color="blue.500">
+                              ${formatLargeNumber(latestData.circulation)}
+                            </Stat.ValueText>
+                            <Stat.HelpText color="fg.muted" fontSize="xs">
+                              <Database size={12} style={{ display: 'inline', marginRight: '4px' }} />
+                              Tokens in circulation
+                            </Stat.HelpText>
+                          </Stat.Root>
+                        </Box>
+
+                        <Box>
+                          <Stat.Root>
+                            <Stat.Label color="fg.muted" fontSize="sm">
                               Reserve ratio
                             </Stat.Label>
-                            <Stat.ValueText fontSize="2xl" fontWeight="bold" color="brand.500">
+                            <Stat.ValueText color={isOverCollateralized ? 'success.500' : 'warning.500'} fontSize="2xl" fontWeight="bold">
                               {reserveRatio}%
                             </Stat.ValueText>
                             <Stat.HelpText color="fg.muted" fontSize="xs">
@@ -331,9 +346,9 @@ const Home = () => {
                         </HStack>
                         <HStack justify="space-between" fontSize="sm">
                           <Text color="fg.muted">Status:</Text>
-                          <HStack bg={isOverCollateralized ? 'success.500' : 'danger.500/30'} rounded="full" px={2} py={1}>
+                          <HStack bg={isOverCollateralized ? 'success.500' : 'warning.500/60'} rounded="full" px={2} py={1}>
                             <CheckCircle size={10} style={{ marginRight: '4px' }} />
-                            <Text color={isOverCollateralized ? 'success.50' : 'danger.50'} fontSize="xs">
+                            <Text color={isOverCollateralized ? 'success.50' : 'warning.50'} fontSize="xs">
                               {isOverCollateralized ? 'Over-collateralized' : 'Under-collateralized'}
                             </Text>
                           </HStack>

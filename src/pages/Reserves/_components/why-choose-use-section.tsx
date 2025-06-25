@@ -225,8 +225,8 @@ export const WhyChooseUseSection = () => {
           </Grid>
 
           {/* Bottom Integration Section */}
-          <VStack gap={8} mt={20} textAlign="center">
-            <Heading size="xl" color="white" fontWeight="light">
+          <VStack gap={2} mt={20} textAlign="center">
+            <Heading fontSize="2xl" color="white" fontWeight="light">
               Simple integration
             </Heading>
             <Text fontSize="lg" color="gray.400" maxW="xl">

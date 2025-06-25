@@ -19,7 +19,7 @@ export const CTA = () => {
         </Text>
 
         <Stack direction={{ base: 'column', sm: 'row' }} gap={6}>
-          <ChakraLink href="mailto:por@fact.finance">
+          <ChakraLink href="mailto:fernanda@fact.finance">
             <Button
               size="xl"
               colorPalette="white"

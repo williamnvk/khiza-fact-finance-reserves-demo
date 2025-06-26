@@ -1,5 +1,5 @@
 import { Container, Heading, Text, Grid, VStack, Box, Icon, SimpleGrid, Flex } from '@chakra-ui/react';
-import { Eye, Lock, Globe, Zap, GitBranchIcon, ArrowUpIcon, LayoutDashboardIcon } from 'lucide-react';
+import { Zap, GitBranchIcon, ArrowUpIcon, LayoutDashboardIcon } from 'lucide-react';
 import { formatLargeNumber } from '@/lib/utils';
 // import { SystemStatus } from './system-status';
 
@@ -11,7 +11,7 @@ export const HomeHero = ({ totalReserves, clients }: { totalReserves: number; cl
       <VStack w="full" h="full" justify="center" gap={8}>
         {/* <SystemStatus /> */}
 
-        <VStack align="center" gap={4} w="full" my={{ base: 4, md: 16}}>
+        <VStack align="center" gap={4} w="full" my={{ base: 4, md: 16 }}>
           {/* <Badge
             size="lg"
             colorPalette="brand"
@@ -54,12 +54,18 @@ export const HomeHero = ({ totalReserves, clients }: { totalReserves: number; cl
         </VStack>
 
         {/* Key Stats */}
-        <Grid templateColumns={{ base: 'repeat(3, 1fr)', md: 'repeat(3, 1fr)' }} gap={{ base: 2, md: 6}} maxW={{ base: 'full', md: '2xl' }} w="full" py={{ base: 2, md: 4}}>
+        <Grid
+          templateColumns={{ base: 'repeat(3, 1fr)', md: 'repeat(3, 1fr)' }}
+          gap={{ base: 2, md: 6 }}
+          maxW={{ base: 'full', md: '2xl' }}
+          w="full"
+          py={{ base: 2, md: 4 }}
+        >
           <VStack gap={0}>
             <Heading fontSize={{ base: '2xl', md: '4xl' }} fontWeight="light" color="success.300" textAlign="center">
               ${formatLargeNumber(totalReserves)}
             </Heading>
-            <Text color="whiteAlpha.800"  fontSize={{ base: 'xs', md: 'sm' }} textAlign="center" fontWeight="light">
+            <Text color="whiteAlpha.800" fontSize={{ base: 'xs', md: 'sm' }} textAlign="center" fontWeight="light">
               Total Verified Reserves
             </Text>
           </VStack>
@@ -86,7 +92,7 @@ export const HomeHero = ({ totalReserves, clients }: { totalReserves: number; cl
             <Heading fontSize={{ base: '2xl', md: '4xl' }} fontWeight="light" color="success.300" textAlign="center">
               {uptimePercentage}%
             </Heading>
-            <Text color="whiteAlpha.800"  fontSize={{ base: 'xs', md: 'sm' }} textAlign="center" fontWeight="light">
+            <Text color="whiteAlpha.800" fontSize={{ base: 'xs', md: 'sm' }} textAlign="center" fontWeight="light">
               Uptime
             </Text>
           </VStack>

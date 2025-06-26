@@ -53,23 +53,23 @@ export function ReservesBreakdown({
   }));
 
   return (
-    <Box>
-      <VStack align="stretch" gap={6}>
+    <Box mb={{ base: 16, md: 0}}>
+      <VStack align="stretch" gap={{ base: 2, md: 6}}>
         {/* Simple Header */}
         <VStack align="start" gap={3} w="full">
           <HStack gap={3} flexWrap="wrap">
-            <Text fontSize={{ base: '2xl', md: '4xl' }} fontWeight="bold" color="fg">
+            <Text fontSize={{ base: '3xl', md: '4xl' }} fontWeight="bold" color="fg">
               Reserves Overview
             </Text>
           </HStack>
-          <Text fontSize="xl" color="fg.muted" lineHeight="relaxed">
+          <Text fontSize={{ base: "md", md: "xl" }} color="fg.muted" lineHeight="relaxed">
             This section provides transparency into {companyName} asset reserves.
           </Text>
         </VStack>
 
         
         {/* Key Metrics - Simplified */}
-        <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={4}>
+        <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={{ base: 2, md: 4}} mt={{ base: 4, md: 0}}>
           <GridItem>
             <Card.Root size="sm" variant="outline" bg="transparent">
               <Card.Body>
@@ -161,7 +161,7 @@ export function ReservesBreakdown({
               </HStack>
 
               {/* Legend */}
-              <Grid templateColumns={{ base: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }} gap={4} pt={4}>
+              <Grid templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }} gap={4} pt={4}>
                 {chartData.map((asset) => (
                   <HStack key={asset.name} gap={3}>
                     <ColorSwatch boxSize="4" value={asset.color} borderRadius="sm" />

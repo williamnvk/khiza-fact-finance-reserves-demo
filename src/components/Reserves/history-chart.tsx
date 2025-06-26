@@ -170,10 +170,10 @@ export function HistoryChart({
       <VStack align="stretch" gap={6}>
         <Flex justify="space-between" align="start" direction={{ base: 'column', md: 'row' }} gap={4}>
           <VStack align="start" gap={2} flex={1}>
-            <Text fontSize="4xl" fontWeight="bold" color="fg">
+            <Text fontSize={{ base: "3xl", md: "4xl" }} fontWeight="bold" color="fg">
               Historical Reserve Coverage
             </Text>
-            <Text fontSize="xl" color="fg.muted" lineHeight="tall"h="66px">
+            <Text fontSize={{ base: "md", md: "xl" }} color="fg.muted" lineHeight="tall"h={{ base: "auto", md: "66px"}}>
               Track cumulative balances versus tokens issued over time. Use filters to explore data by a different
               period.
             </Text>
@@ -195,7 +195,7 @@ export function HistoryChart({
         </Flex>
 
         {/* Key Metrics */}
-        <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={4}>
+        <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={{ base: 2, md: 4}}>
           <GridItem>
           <Card.Root size="sm" bg="whiteAlpha.500" _dark={{ bg: 'blackAlpha.50' }} borderWidth="1px">
               <Card.Body>

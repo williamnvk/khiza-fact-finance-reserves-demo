@@ -44,18 +44,18 @@ export function TokenList({
   // const mostSupportedChains = tokens.reduce((max, token) => (token.chains.length > max ? token.chains.length : max), 0);
 
   return (
-    <Box>
+    <Box mb={{ base: 16, md: 0}}>
       <VStack align="stretch" gap={8}>
         {/* Enhanced Header Section */}
         <VStack align="stretch" gap={4}>
           <Flex justify="space-between" align="start" direction={{ base: 'column', md: 'row' }} gap={4}>
             <VStack align="start" gap={2} flex={1}>
               <HStack gap={3}>
-                <Text fontSize="4xl" fontWeight="bold" color="fg">
+                <Text fontSize={{ base: "3xl", md: "4xl" }} fontWeight="bold" color="fg">
                   Token Overview
                 </Text>
               </HStack>
-              <Text fontSize="xl" color="fg.muted" lineHeight="tall">
+              <Text fontSize={{ base: "md", md: "xl" }} color="fg.muted" lineHeight="tall">
                 This section provides key onchain metrics to track the token's issuance, market activity, and reserve
                 dynamics.
               </Text>
@@ -75,12 +75,12 @@ export function TokenList({
               <>
                 <Grid
                   templateColumns={{ base: '1fr', lg: '300px 1fr' }}
-                  gap={6}
+                  gap={{ base: 2, md: 6}}
                   borderTopWidth={index === 0 ? '0px' : '1px'}
                   pt={index === 0 ? '0px' : '16px'}
                   bg="whiteAlpha.500"
                   rounded="lg"
-                  p={6}
+                  p={{ base: 4, md: 6}}
                   borderWidth="1px"
                   borderColor="gray.200"
                   _dark={{
@@ -157,7 +157,7 @@ export function TokenList({
                         <Text fontSize="lg" fontWeight="semibold" color="fg" mb={4}>
                           Token Metrics
                         </Text>
-                        <SimpleGrid columns={{ base: 2, md: 3, lg: 5 }} gap={4}>
+                        <SimpleGrid columns={{ base: 2, md: 3, lg: 5 }} gap={{ base: 1, md: 4}}>
                           <Card.Root size="sm">
                             <Card.Body>
                               <Stat.Root size="sm">

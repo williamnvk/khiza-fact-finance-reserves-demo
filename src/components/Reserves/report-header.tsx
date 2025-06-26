@@ -57,15 +57,15 @@ export function ReportHeader({
   return (
     <Box
       position="relative"
-      bg={client === 'scenium' ? 'whiteAlpha.600' : 'whiteAlpha.50'}
-      _dark={{ bg: 'whiteAlpha.50' }}
-      borderRadius="3xl"
-      shadow="2xl"
-      borderWidth="1px"
-      borderColor="whiteAlpha.200"
+      bg={{ base: "none", md: client === 'scenium' ? 'whiteAlpha.600' : 'whiteAlpha.50'}}
+      _dark={{ bg: { base: "none", md: 'whiteAlpha.50' } }}
+      borderRadius={{ base: "none", md: "3xl" }}
+      shadow={{ base: "none", md: "2xl" }}
+      borderWidth={{ base: "none", md: "1px" }}
+      borderColor={{ base: "none", md: "whiteAlpha.200" }}
       overflow="hidden"
     >
-      <Box position="relative" p={{ base: 4, md: 6, lg: 8 }}>
+      <Box position="relative" p={{ base: 0, md: 6, lg: 8 }}>
         <Box position="absolute" top={6} right={6}>
           <ColorModeButton />
         </Box>
@@ -85,7 +85,7 @@ export function ReportHeader({
           </Box>
 
           <VStack align="start" gap={4} flex={1}>
-            <HStack gap={3} align="center" flexWrap="wrap">
+            <HStack gap={{ base: 2, md: 3}} align="center" flexWrap="wrap">
               <Heading
                 fontSize="3xl"
                 color="gray.900"
@@ -144,7 +144,7 @@ export function ReportHeader({
             md: 'repeat(2, 1fr)',
             lg: 'repeat(4, 1fr)',
           }}
-          gap={6}
+          gap={{ base: 2, md: 6}}
         >
           {/* Issued Tokens Card */}
           <GridItem>

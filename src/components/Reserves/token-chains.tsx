@@ -1,5 +1,4 @@
-import { Box, VStack, Text, HStack, Flex, Card, Stat, FormatNumber, SimpleGrid, Icon } from '@chakra-ui/react';
-import { Layers, BarChart3, Globe } from 'lucide-react';
+import { Box, VStack, Text, HStack, Flex, Card, Stat, FormatNumber, SimpleGrid, Stack } from '@chakra-ui/react';
 import { useColorModeValue } from '../ui/color-mode';
 
 export function TokenChainBreakdown({
@@ -57,25 +56,25 @@ export function TokenChainBreakdown({
   }));
 
   return (
-    <Box>
+    <Box mb={{ base: 16, md: 0}}>
       <VStack align="stretch" gap={4}>
         {/* Enhanced Header Section */}
         <VStack align="stretch" gap={4}>
           <Flex justify="space-between" align="start" direction={{ base: 'column', md: 'row' }} gap={4}>
             <VStack align="start" gap={2} flex={1}>
               <HStack gap={3}>
-                <Text fontSize="4xl" fontWeight="bold" color="fg">
+                <Text fontSize={{ base: "3xl", md: "4xl" }} fontWeight="bold" color="fg">
                   Blockchain Distribution
                 </Text>
               </HStack>
-              <Text fontSize="xl" color="fg.muted" lineHeight="tall">
+              <Text fontSize={{ base: "md", md: "xl" }} color="fg.muted" lineHeight="tall">
                 This section shows how the token supply is distributed across different blockchains
               </Text>
             </VStack>
           </Flex>
 
           {/* Network Overview Dashboard */}
-          <SimpleGrid columns={{ base: 1, md: 3 }} gap={4}>
+          <SimpleGrid columns={{ base: 1, md: 3 }} gap={{ base: 2, md: 4}}>
             <Card.Root
               size="sm"
               bg="transparent"
@@ -150,18 +149,18 @@ export function TokenChainBreakdown({
         {/* Enhanced Visual Distribution */}
         <VStack
           align="stretch"
-          gap={6}
+          gap={{ base: 2, md: 6}}
           bg="whiteAlpha.50"
           rounded="lg"
-          p={6}
+          p={{ base: 4, md: 6}}
           borderWidth="1px"
           _dark={{ bg: 'blackAlpha.50' }}
         >
-          <HStack justify="space-between">
-            <Text fontSize="xl" fontWeight="semibold" color="fg">
+          <Stack justify="space-between" direction={{ base: "column", md: "row" }} gap={2}>
+            <Text fontSize={{ base: "md", md: "xl" }} fontWeight="semibold" color="fg">
               Network Distribution
             </Text>
-            <VStack align="end" gap={0}>
+            <VStack align={{ base: "start", md: "end" }} gap={0} w="full">
               <Text fontSize="sm" fontWeight="medium" color="fg.muted">
                 Dominant Chain: {dominantChain.name}
               </Text>
@@ -169,7 +168,7 @@ export function TokenChainBreakdown({
                 {formatPercent(dominantChain.value)} allocation
               </Text>
             </VStack>
-          </HStack>
+          </Stack>
 
           {/* Enhanced Distribution Bar */}
           <Box>

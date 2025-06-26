@@ -237,8 +237,8 @@ export const Reports = () => {
               threshold={data.threshold}
               dappLink={data.dapp}
             />
-            <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6}>
-              <BalancesChart
+            <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={{ base: 16, md: 6}} mb={{ base: 16, md: 0}}>
+              <BalancesChart 
                 circulation={data.last.circulation}
                 reserves={data.last.reserves}
                 currency={data.currency}

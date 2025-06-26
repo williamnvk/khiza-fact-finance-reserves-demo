@@ -225,7 +225,7 @@ export function BalancesChart({
         >
           <VStack align="start" gap={2} flex={1}>
             <Flex w="full" justify="space-between" align="center">
-              <Heading fontSize="4xl" fontWeight="bold" color="fg">
+              <Heading fontSize={{ base: "3xl", md: "4xl" }} fontWeight="bold" color="fg">
                 Reserves Coverage Status
               </Heading>
 
@@ -255,7 +255,7 @@ export function BalancesChart({
               </ButtonGroup> */}
             </Flex>
 
-            <Text fontSize="xl" color="fg.muted" lineHeight="tall" h="66px">
+            <Text fontSize={{ base: "md", md: "xl" }} color="fg.muted" lineHeight="tall" h={{ base: "auto", md: "66px"}}>
               Latest verified token supply and corresponding collateral reserves<sup>4</sup>, including overcollateralization and
               utilization ratio.
             </Text>
@@ -263,7 +263,7 @@ export function BalancesChart({
         </Flex>
 
         {/* Key Metrics Grid */}
-        <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)', lg: 'repeat(3, 1fr)' }} gap={4}>
+        <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)', lg: 'repeat(3, 1fr)' }} gap={{ base: 2, md: 4}}>
           <Card.Root size="sm" bg="whiteAlpha.500" _dark={{ bg: 'blackAlpha.50' }} borderWidth="1px">
             <Card.Body>
               <Stat.Root size="sm">
@@ -354,7 +354,7 @@ export function BalancesChart({
                   />
                 </BarChart>
               ) : chartView === 'comparative' ? (
-                <BarChart data={getChartData()} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
+                <BarChart data={getChartData()} margin={{ top: 0, right: 20, left: 0, bottom: 20 }}>
                   <XAxis
                     dataKey="name"
                     tickLine={false}

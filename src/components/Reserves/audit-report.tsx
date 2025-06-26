@@ -1,6 +1,6 @@
 import { Download, ChevronDown, FileText, Calendar, Shield, CheckCircle, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
-import { Box, HStack, VStack, Text, Button, Menu, Icon, Card, Grid, Heading } from '@chakra-ui/react';
+import { Box, HStack, VStack, Text, Button, Menu, Icon, Card, Grid, Heading, Stack } from '@chakra-ui/react';
 
 export function AuditReport({
   reportsList,
@@ -30,7 +30,12 @@ export function AuditReport({
 
   return (
     <>
-      <Grid templateColumns={{ base: '1fr', lg: 'auto 1fr auto' }} gap={{ base: 8, lg: 12 }} alignItems="center">
+      <Grid
+        templateColumns={{ base: '1fr', lg: 'auto 1fr auto' }}
+        gap={{ base: 8, lg: 12 }}
+        alignItems="center"
+        mb={{ base: 16, md: 0 }}
+      >
         {/* Icon Section */}
         <VStack gap={4}>
           <Box
@@ -45,6 +50,7 @@ export function AuditReport({
             shadow="lg"
             borderWidth="1px"
             borderColor="gray.100"
+            display={{ base: 'none', md: 'block' }}
           >
             <Box
               position="absolute"
@@ -56,7 +62,7 @@ export function AuditReport({
             <Icon as={Shield} boxSize={10} color="brand.600" _dark={{ color: 'brand.400' }} />
           </Box>
 
-          <VStack gap={1}>
+          <VStack gap={1} display={{ base: 'none', md: 'block' }}>
             <HStack gap={1}>
               <Icon as={CheckCircle} boxSize={4} color="green.500" />
               <Text fontSize="sm" fontWeight="medium" color="green.600" _dark={{ color: 'green.400' }}>
@@ -68,7 +74,7 @@ export function AuditReport({
 
         {/* Content Section */}
         <VStack align="start" gap={6} flex="1">
-          <Heading fontSize={{ base: '2xl', md: '4xl' }} fontWeight="bold" color="gray.900" _dark={{ color: 'white' }}>
+          <Heading fontSize={{ base: '3xl', md: '4xl' }} fontWeight="bold" color="gray.900" _dark={{ color: 'white' }}>
             Download Report
           </Heading>
 
@@ -107,10 +113,15 @@ export function AuditReport({
               </Grid> */}
 
           {/* Action Section */}
-          <HStack gap={4} minW={{ base: 'full', lg: '280px' }}>
+          <Stack
+            direction={{ base: 'column', md: 'row' }}
+            gap={{ base: 2, md: 4 }}
+            minW={{ base: 'full', lg: '280px' }}
+            w="full"
+          >
             {/* Date Selector */}
             <Box w="full">
-              <Text fontSize="sm" fontWeight="medium" mb={2} color="gray.700" _dark={{ color: 'gray.300' }}>
+              <Text fontSize="sm" fontWeight="medium" mb={2} color="fg.muted">
                 Select Report Period
               </Text>
               <Menu.Root>
@@ -181,7 +192,7 @@ export function AuditReport({
 
             {/* Download Button */}
             <Button
-              mt={7}
+              mt={{ base: 2, md: 7 }}
               size="lg"
               w="full"
               bgGradient="linear(to-r, brand.500, brand.600)"
@@ -211,14 +222,13 @@ export function AuditReport({
                 <Icon as={ArrowRight} boxSize={4} />
               </HStack>
             </Button>
-          </HStack>
+          </Stack>
         </VStack>
       </Grid>
 
       {/* Bottom Info Section */}
-      <Box mt={8}>
-        <HStack gap={4}>
-          <Icon as={FileText} boxSize={6} color="brand.600" _dark={{ color: 'brand.400' }} />
+      <Box mt={{ base: 0, md: 8 }} mb={{ base: 16, md: 0}}>
+        <Stack direction={{ base: "column", md: "row" }} gap={4}>
           <VStack align="start" gap={1} flex="1">
             <Text fontWeight="semibold" color="brand.900" _dark={{ color: 'brand.100' }}>
               About Our Transparency Reports
@@ -234,7 +244,7 @@ export function AuditReport({
               full backing.
             </Text>
           </VStack>
-        </HStack>
+        </Stack>
       </Box>
     </>
   );

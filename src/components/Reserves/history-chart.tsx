@@ -117,12 +117,33 @@ export function HistoryChart({
     );
   };
 
+  // Function to calculate average collateral ratio from historical data
+  const calculateAverageCollateral = (data: any[]) => {
+    if (!data || data.length === 0) return 0;
+    
+    const validEntries = data.filter(entry => entry.circulation > 0 && entry.reserves > 0);
+    if (validEntries.length === 0) return 0;
+    
+    const totalRatio = validEntries.reduce((sum, entry) => {
+      return sum + (entry.reserves / entry.circulation * 100);
+    }, 0);
+    
+    return Math.round(totalRatio / validEntries.length);
+  };
+
   let periods = heartbeat == '1 hour' ? ['Hour', 'Day'] : ['Month', 'Year'];
   const [selected, setSelected] = useState(periods[0]);
   const [historicalDataChart, setHistoricalDataChart] = useState(
     historicalData1?.length ? historicalData1 : historicalData,
   );
-  const [averageIndex, setAverageIndex] = useState(historicalData1?.length ? avgcolateral1 : avgcolateral);
+  
+  // Calculate average collateral properly from historical data
+  const calculatedAvgCollateral = calculateAverageCollateral(historicalData);
+  const calculatedAvgCollateral1 = calculateAverageCollateral(historicalData1);
+  
+  const [averageIndex, setAverageIndex] = useState(
+    historicalData1?.length ? calculatedAvgCollateral1 : calculatedAvgCollateral
+  );
   const [totalIssued, setTotalIssued] = useState(historicalData1?.length ? periodTotalTransfer1 : periodTotalTransfer);
   const [totalTransactions, setTotalTransactions] = useState(
     historicalData1?.length ? periodTransactions1 : periodTransactions,
@@ -132,12 +153,12 @@ export function HistoryChart({
     if (selected === periods[0]) {
       setSelected(periods[1]);
       setHistoricalDataChart(historicalData);
-      setAverageIndex(avgcolateral);
+      setAverageIndex(calculatedAvgCollateral);
       setTotalIssued(periodTotalTransfer);
       setTotalTransactions(periodTransactions);
     } else {
       setHistoricalDataChart(historicalData1);
-      setAverageIndex(avgcolateral1);
+      setAverageIndex(calculatedAvgCollateral1);
       setTotalIssued(periodTotalTransfer1);
       setTotalTransactions(periodTransactions1);
       setSelected(periods[0]);

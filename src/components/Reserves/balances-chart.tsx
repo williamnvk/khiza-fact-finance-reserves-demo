@@ -268,7 +268,7 @@ export function BalancesChart({
             <Card.Body>
               <Stat.Root size="sm">
                 <Stat.Label fontSize="md" color="fg.muted">
-                  Circulations
+                  Total in circulation
                 </Stat.Label>
                 <Stat.ValueText fontSize="xl" fontWeight="bold">
                   <FormatNumber value={circulation} style="currency" currency={currency} />
@@ -281,7 +281,7 @@ export function BalancesChart({
             <Card.Body>
               <Stat.Root size="sm">
                 <Stat.Label fontSize="md" color="fg.muted">
-                  Collateral
+                  Total collateral
                 </Stat.Label>
                 <Stat.ValueText fontSize="xl" fontWeight="bold">
                   <FormatNumber value={totalReserves} style="currency" currency={currency} />

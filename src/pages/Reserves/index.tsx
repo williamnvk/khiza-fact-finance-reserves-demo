@@ -15,32 +15,15 @@ import {
   Center,
   Card,
   Stat,
-  Icon,
   Tag,
 } from '@chakra-ui/react';
 import { Link } from 'react-router';
-import {
-  ArrowRight,
-  Shield,
-  Clock,
-  CheckCircle,
-  TrendingUp,
-  BarChart3,
-  FileCheck,
-  Globe,
-  Layers,
-  Database,
-  Sparkles,
-  CheckCircle2,
-} from 'lucide-react';
+import { ArrowRight, Shield, CheckCircle, BarChart3, Database, Sparkles, CheckCircle2 } from 'lucide-react';
 import { formatLargeNumber } from '@/lib/utils';
 import { CTA } from './_components/cta';
 import { HomeHero } from './_components/home_hero';
 import { FAQSection } from './_components/faq-section';
-import { TestimonialsSection } from './_components/testimonials-section';
-import { WhyChooseUseSection } from './_components/why-choose-use-section';
 import AveniaLogo from '@/components/Icons/Avenia';
-import TokenizaLogo from '@/components/Icons/Tokeniza';
 
 // Define types for better TypeScript support
 interface HistoricalData {
@@ -113,24 +96,17 @@ const Home = () => {
   return (
     <>
       <Box
-        id="hero"
-        position="relative"
-        w="100vw"
-        h="100vh"
-        bg="white"
-        _dark={{
-          bg: 'brand.950',
-          bgImage: 'linear-gradient(35deg, {colors.brand.800}, transparent)',
-        }}
-        bgImage="linear-gradient(35deg, {colors.brand.500}, {colors.brand.100})"
-        color="white"
-        pos="fixed"
-        top={0}
-        left={0}
-        right={0}
-        bottom={0}
+        position="absolute"
+        top="0%"
+        left="50%"
+        transform="translate(-50%, -50%)"
+        w="500px"
+        h="500px"
+        bg="radial-gradient(circle, {colors.brand.800} 0%, {colors.brand.900} 25%, transparent 100%)"
+        filter="blur(120px)"
+        opacity={0.5}
         zIndex={-1}
-      ></Box>
+      />
       {/* Floating Elements */}
       <Box position="absolute" top="20%" left="10%" opacity={0.1}>
         <Shield size={60} />
@@ -155,14 +131,20 @@ const Home = () => {
 
       <HomeHero totalReserves={totalReserves} clients={clients} />
 
-      <Container maxW="7xl" pt={8} pb={32}>
-        <VStack gap={12} w="full">
+      <Container maxW="7xl" pt={{ base: 4, md: 8 }} pb={{ base: 16, md: 32 }}>
+        <VStack gap={{ base: 6, md: 12 }} w="full">
           <VStack gap={6} textAlign="center">
             <Badge size="lg" colorPalette="brand" px={4} py={2} rounded="full">
               <Sparkles size={16} style={{ marginRight: '8px' }} />
               Our Clients: Real-Time Proof of Reserve
             </Badge>
-            <Heading fontSize="5xl" textAlign="center" fontWeight="light" maxW="4xl" lineHeight="1.2">
+            <Heading
+              fontSize={{ base: '4xl', md: '5xl' }}
+              textAlign="center"
+              fontWeight="light"
+              maxW="4xl"
+              lineHeight="1.2"
+            >
               Continuous verification for{' '}
               <Text
                 as="span"
@@ -173,7 +155,7 @@ const Home = () => {
                 leading tokenized assets
               </Text>
             </Heading>
-            <Text fontSize="lg" textAlign="center" maxW="2xl">
+            <Text fontSize={{ base: 'sm', md: 'lg' }} textAlign="center" maxW="2xl" color="fg.muted">
               Independent and continuous verification of reserves for the biggest players in the tokenized asset market
             </Text>
           </VStack>
@@ -183,10 +165,10 @@ const Home = () => {
               const latestData = client.historicalData[client.historicalData.length - 1];
               const reserveRatio = ((latestData.reserves / latestData.circulation) * 100).toFixed(1);
               const isOverCollateralized = (latestData.reserves / latestData.circulation) * 100 > 100;
-              const previousData = client.historicalData[client.historicalData.length - 2];
-              const growth = previousData
-                ? parseFloat((((latestData.reserves - previousData.reserves) / previousData.reserves) * 100).toFixed(1))
-                : 0;
+              // const previousData = client.historicalData[client.historicalData.length - 2];
+              // const growth = previousData
+              //   ? parseFloat((((latestData.reserves - previousData.reserves) / previousData.reserves) * 100).toFixed(1))
+              //   : 0;
 
               return (
                 <Card.Root
@@ -214,10 +196,19 @@ const Home = () => {
                   <Card.Header>
                     <Flex justify="space-between" align="flex-start">
                       {client.logo === 'avenia' && <AveniaLogo width={100} height={80} />}
-                      {client.logo === 'tokeniza' && <TokenizaLogo width={100} height={80} />}
+                      {client.logo === 'tokeniza' && <Image src="/assets/logos/tbrl.png" alt="Scenium" maxH="80px" />}
                       {client.logo === 'scenium' && <Image src="/assets/logos/scenium.png" alt="Scenium" />}
 
-                      <Tag.Root bg="success.200" color="success.800" variant="subtle" rounded="full" px={2.5}>
+                      <Tag.Root
+                        bg="success.200"
+                        color="success.800"
+                        variant="subtle"
+                        rounded="full"
+                        px={2.5}
+                        position="absolute"
+                        top={{ base: 4, md: 12 }}
+                        right={4}
+                      >
                         <Tag.Label fontSize="sm">Verified</Tag.Label>
                         <Tag.EndElement>
                           <CheckCircle size={12} style={{ marginRight: '4px' }} />
@@ -227,59 +218,43 @@ const Home = () => {
                   </Card.Header>
 
                   <Card.Body>
-                    <VStack gap={6} align="stretch">
+                    <VStack gap={{ base: 4, md: 6 }} align="stretch">
                       {/* Key Metrics */}
-                      <Grid templateColumns="repeat(3, 1fr)" gap={4}>
+                      <Grid templateColumns={{ base: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }} gap={4}>
                         <Box>
                           <Stat.Root>
-                            <Stat.Label color="fg.muted" fontSize="sm">
+                            <Stat.Label color="fg.muted" fontSize="md">
                               Total reserves
                             </Stat.Label>
-                            <Stat.ValueText fontSize="2xl" fontWeight="bold" color="success.600">
+                            <Stat.ValueText fontSize="3xl" fontWeight="bold" color="success.600">
                               ${formatLargeNumber(latestData.reserves)}
                             </Stat.ValueText>
-                            <Stat.HelpText color="fg.muted" fontSize="xs">
-                              <TrendingUp
-                                size={12}
-                                style={{
-                                  display: 'inline',
-                                  marginRight: '4px',
-                                  color: growth >= 0 ? 'success.400' : 'error.400',
-                                }}
-                              />
-                              {growth >= 0 ? '+' : ''}
-                              {growth}% from last period
-                            </Stat.HelpText>
                           </Stat.Root>
                         </Box>
 
                         <Box>
                           <Stat.Root>
-                            <Stat.Label color="fg.muted" fontSize="sm">
+                            <Stat.Label color="fg.muted" fontSize="md">
                               Circulation
                             </Stat.Label>
-                            <Stat.ValueText fontSize="2xl" fontWeight="bold" color="blue.500">
+                            <Stat.ValueText fontSize="3xl" fontWeight="bold" color="blue.500">
                               ${formatLargeNumber(latestData.circulation)}
                             </Stat.ValueText>
-                            <Stat.HelpText color="fg.muted" fontSize="xs">
-                              <Database size={12} style={{ display: 'inline', marginRight: '4px' }} />
-                              Tokens in circulation
-                            </Stat.HelpText>
                           </Stat.Root>
                         </Box>
 
                         <Box>
                           <Stat.Root>
-                            <Stat.Label color="fg.muted" fontSize="sm">
+                            <Stat.Label color="fg.muted" fontSize="md">
                               Reserve ratio
                             </Stat.Label>
-                            <Stat.ValueText color={isOverCollateralized ? 'success.500' : 'warning.500'} fontSize="2xl" fontWeight="bold">
+                            <Stat.ValueText
+                              color={isOverCollateralized ? 'success.500' : 'warning.500'}
+                              fontSize="3xl"
+                              fontWeight="bold"
+                            >
                               {reserveRatio}%
                             </Stat.ValueText>
-                            <Stat.HelpText color="fg.muted" fontSize="xs">
-                              <Shield size={12} style={{ display: 'inline', marginRight: '4px' }} />
-                              {isOverCollateralized ? 'Over-collateralized' : 'Under-collateralized'}
-                            </Stat.HelpText>
                           </Stat.Root>
                         </Box>
                       </Grid>
@@ -329,7 +304,7 @@ const Home = () => {
 
                       {/* Audit Details */}
                       <VStack gap={3} align="stretch">
-                        <HStack justify="space-between" fontSize="sm">
+                        <HStack justify="space-between" fontSize="md">
                           <Text color="fg.muted">Last Update:</Text>
                           <HStack>
                             <Text fontWeight="medium" color="fg.muted">
@@ -338,15 +313,20 @@ const Home = () => {
                             <CheckCircle2 size={14} color="#10B981" />
                           </HStack>
                         </HStack>
-                        <HStack justify="space-between" fontSize="sm">
+                        <HStack justify="space-between" fontSize="md">
                           <Text color="fg.muted">Frequency:</Text>
                           <Text fontWeight="medium" color="fg.muted">
                             {client.heartbeat}
                           </Text>
                         </HStack>
-                        <HStack justify="space-between" fontSize="sm">
+                        <HStack justify="space-between" fontSize="md">
                           <Text color="fg.muted">Status:</Text>
-                          <HStack bg={isOverCollateralized ? 'success.500' : 'warning.500/60'} rounded="full" px={2} py={1}>
+                          <HStack
+                            bg={isOverCollateralized ? 'success.500' : 'warning.500/60'}
+                            rounded="full"
+                            px={2}
+                            py={1}
+                          >
                             <CheckCircle size={10} style={{ marginRight: '4px' }} />
                             <Text color={isOverCollateralized ? 'success.50' : 'warning.50'} fontSize="xs">
                               {isOverCollateralized ? 'Over-collateralized' : 'Under-collateralized'}
@@ -357,8 +337,8 @@ const Home = () => {
                     </VStack>
                   </Card.Body>
 
-                  <Card.Footer>
-                    <Link to={client.companyName.toLowerCase()}>
+                  <Card.Footer w="full">
+                    <Link to={client.companyName.toLowerCase()} style={{ width: '100%' }}>
                       <Button
                         variant="ghost"
                         color="brand.50"
@@ -378,9 +358,9 @@ const Home = () => {
           </Grid>
         </VStack>
       </Container>
-      <WhyChooseUseSection />
+      {/* <WhyChooseUseSection /> */}
 
-      <Container maxW="7xl" py={24}>
+      {/* <Container maxW="7xl" py={24}>
         <VStack gap={16}>
           <VStack gap={6} textAlign="center">
             <Badge size="lg" colorPalette="purple" px={4} py={2} rounded="full">
@@ -441,9 +421,9 @@ const Home = () => {
             </VStack>
           </Grid>
         </VStack>
-      </Container>
+      </Container> */}
 
-      <TestimonialsSection />
+      {/* <TestimonialsSection /> */}
 
       <FAQSection />
 

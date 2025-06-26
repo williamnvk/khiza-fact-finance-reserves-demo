@@ -51,34 +51,34 @@ export const FAQSection = () => {
               <HelpCircle size={16} style={{ marginRight: '8px' }} />
               Frequently asked questions
             </Badge>
-            <Heading fontSize="4xl" maxW="2xl" lineHeight="1.2">
+            <Heading fontSize={{ base: '2xl', md: '4xl' }} maxW="2xl" lineHeight="1.2">
               Everything you need to know about{' '}
               <Text as="span" bgImage="linear-gradient(35deg, {colors.brand.500}, {colors.brand.400})" bgClip="text">
                 Proof of reserves
               </Text>
             </Heading>
-            <Text fontSize="lg" maxW="1xl">
+            <Text fontSize={{ base: 'sm', md: 'lg' }} maxW="1xl" color="fg.muted">
               Get answers to the most common questions about our real-time audit platform
             </Text>
           </VStack>
 
-          <AccordionRoot collapsible variant="enclosed" w="full" bg="white">
+          <AccordionRoot
+            collapsible
+            defaultValue={[]}
+            variant="enclosed"
+            size="lg"
+            role="region"
+            aria-labelledby="faq-heading"
+          >
             {faqs.map((faq, index) => (
               <AccordionItem key={index} value={index.toString()}>
-                <AccordionItemTrigger
-                  py={6}
-                  px={6}
-                  _hover={{ bg: 'gray.50' }}
-                  borderBottom="1px solid"
-                  borderColor="gray.100"
-                  _last={{ borderBottom: 'none' }}
-                >
-                  <Text fontWeight="semibold" color="gray.800" fontSize="md">
+                <AccordionItemTrigger fontFamily="body">
+                  <Text fontSize={{ base: 'sm', md: 'lg' }} lineHeight={{ base: 1.2, md: 1 }}>
                     {faq.question}
                   </Text>
                 </AccordionItemTrigger>
-                <AccordionItemContent px={6} pb={6}>
-                  <Text color="gray.600" lineHeight="1.6" fontSize="sm">
+                <AccordionItemContent>
+                  <Text key={faq.answer} fontSize={{ base: 'sm', md: 'md' }} role="document">
                     {faq.answer}
                   </Text>
                 </AccordionItemContent>

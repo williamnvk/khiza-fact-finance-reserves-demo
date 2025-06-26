@@ -138,6 +138,7 @@ export default function UseCases() {
               alt: 'Fact Finance Use Cases',
             },
           ],
+          canonical: 'https://fact.finance/use-cases',
         }}
         twitter={{
           card: 'summary_large_image',
@@ -286,17 +287,17 @@ export default function UseCases() {
             ))}
           </SimpleGrid>
           <Box
-        position="absolute"
-        top="0%"
-        left="50%"
-        transform="translate(-50%, -50%)"
-        w="500px"
-        h="500px"
-        bg="radial-gradient(circle, {colors.brand.800} 0%, {colors.brand.900} 25%, transparent 100%)"
-        filter="blur(120px)"
-        opacity={0.5}
-        zIndex={-1}
-      />
+            position="absolute"
+            top="0%"
+            left="50%"
+            transform="translate(-50%, -50%)"
+            w="500px"
+            h="500px"
+            bg="radial-gradient(circle, {colors.brand.800} 0%, {colors.brand.900} 25%, transparent 100%)"
+            filter="blur(120px)"
+            opacity={0.5}
+            zIndex={-1}
+          />
           <Commodities currentUseCase={currentUseCase as UseCase} />
           <RealEstate currentUseCase={currentUseCase as UseCase} />
           <CapitalMarkets currentUseCase={currentUseCase as UseCase} />

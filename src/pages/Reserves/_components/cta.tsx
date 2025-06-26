@@ -1,7 +1,6 @@
-import { Container, HStack, VStack, Heading, Text, Stack, Button, Link as ChakraLink } from '@chakra-ui/react';
+import { Container, VStack, Heading, Text, Stack, Button, Link as ChakraLink } from '@chakra-ui/react';
 import { Box } from '@chakra-ui/react';
-import { Clock, CheckCircle, ArrowUpRight, FileCheck, Shield, Globe } from 'lucide-react';
-import {} from '@chakra-ui/react';
+import { ArrowUpRight, FileCheck, Shield } from 'lucide-react';
 import { Users } from 'lucide-react';
 
 export const CTA = () => {
@@ -31,6 +30,7 @@ export const CTA = () => {
               _hover={{ transform: 'translateY(-2px)' }}
               transition="all 0.3s"
               shadow="xl"
+              w={{ base: 'full', md: 'auto' }}
             >
               <Users size={20} style={{ marginRight: '8px' }} />
               Request Consultation
@@ -57,21 +57,6 @@ export const CTA = () => {
             </Button>
           </ChakraLink>
         </Stack>
-
-        <HStack gap={8} color="whiteAlpha.700" fontSize="sm" mt={8}>
-          <HStack>
-            <CheckCircle size={16} />
-            <Text>Certified Auditing</Text>
-          </HStack>
-          <HStack>
-            <Clock size={16} />
-            <Text>24/7 Available</Text>
-          </HStack>
-          <HStack>
-            <Globe size={16} />
-            <Text>International Standards</Text>
-          </HStack>
-        </HStack>
       </VStack>
     </Container>
   );

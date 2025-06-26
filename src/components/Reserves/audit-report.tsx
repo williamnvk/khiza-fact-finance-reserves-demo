@@ -1,6 +1,6 @@
 import { Download, ChevronDown, FileText, Calendar, Shield, CheckCircle, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
-import { Box, HStack, VStack, Text, Button, Menu, Icon, Card, Grid } from '@chakra-ui/react';
+import { Box, HStack, VStack, Text, Button, Menu, Icon, Card, Grid, Heading } from '@chakra-ui/react';
 
 export function AuditReport({
   reportsList,
@@ -30,94 +30,50 @@ export function AuditReport({
 
   return (
     <>
-      {/* Main Card */}
-      <Card.Root
-        size="lg"
-        variant="elevated"
-        rounded="3xl"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        transform={isHovered ? 'translateY(-8px)' : 'translateY(0)'}
-        transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
-        shadow={isHovered ? '2xl' : 'xl'}
-        borderWidth="1px"
-        borderColor="gray.200"
-        _dark={{
-          borderColor: 'gray.700',
-          bg: 'gray.800',
-        }}
-        overflow="hidden"
-        position="relative"
-      >
-        {/* Background Pattern */}
-        <Box
-          position="absolute"
-          top="0"
-          right="0"
-          w="full"
-          h="full"
-          bgGradient="linear-gradient(135deg, {colors.brand.50} 0%, transparent 70%)"
-          _dark={{
-            bgGradient: 'linear-gradient(135deg, {colors.brand.900/20} 0%, transparent 70%)',
-          }}
-          opacity="0.5"
-        />
+      <Grid templateColumns={{ base: '1fr', lg: 'auto 1fr auto' }} gap={{ base: 8, lg: 12 }} alignItems="center">
+        {/* Icon Section */}
+        <VStack gap={4}>
+          <Box
+            position="relative"
+            bg="white"
+            _dark={{
+              bg: 'gray.700',
+              borderColor: 'gray.600',
+            }}
+            rounded="3xl"
+            p={6}
+            shadow="lg"
+            borderWidth="1px"
+            borderColor="gray.100"
+          >
+            <Box
+              position="absolute"
+              inset="0"
+              bgGradient="linear(135deg, brand.500, purple.600)"
+              rounded="3xl"
+              opacity="0.1"
+            />
+            <Icon as={Shield} boxSize={10} color="brand.600" _dark={{ color: 'brand.400' }} />
+          </Box>
 
-        <Card.Body p={{ base: 8, md: 12 }}>
-          <Grid templateColumns={{ base: '1fr', lg: 'auto 1fr auto' }} gap={{ base: 8, lg: 12 }} alignItems="center">
-            {/* Icon Section */}
-            <VStack gap={4}>
-              <Box
-                position="relative"
-                bg="white"
-                _dark={{
-                  bg: 'gray.700',
-                  borderColor: 'gray.600',
-                }}
-                rounded="3xl"
-                p={6}
-                shadow="lg"
-                borderWidth="1px"
-                borderColor="gray.100"
-              >
-                <Box
-                  position="absolute"
-                  inset="0"
-                  bgGradient="linear(135deg, brand.500, purple.600)"
-                  rounded="3xl"
-                  opacity="0.1"
-                />
-                <Icon as={Shield} boxSize={10} color="brand.600" _dark={{ color: 'brand.400' }} />
-              </Box>
+          <VStack gap={1}>
+            <HStack gap={1}>
+              <Icon as={CheckCircle} boxSize={4} color="green.500" />
+              <Text fontSize="sm" fontWeight="medium" color="green.600" _dark={{ color: 'green.400' }}>
+                Verified
+              </Text>
+            </HStack>
+          </VStack>
+        </VStack>
 
-              <VStack gap={1}>
-                <HStack gap={1}>
-                  <Icon as={CheckCircle} boxSize={4} color="green.500" />
-                  <Text fontSize="sm" fontWeight="medium" color="green.600" _dark={{ color: 'green.400' }}>
-                    Verified
-                  </Text>
-                </HStack>
-              </VStack>
-            </VStack>
+        {/* Content Section */}
+        <VStack align="start" gap={6} flex="1">
+          <Heading fontSize={{ base: '2xl', md: '4xl' }} fontWeight="bold" color="gray.900" _dark={{ color: 'white' }}>
+            Download Report
+          </Heading>
 
-            {/* Content Section */}
-            <VStack align="start" gap={6} flex="1">
-              <VStack align="start" gap={3}>
-                <HStack gap={3}>
-                  <Text
-                    fontSize={{ base: 'xl', md: '2xl' }}
-                    fontWeight="bold"
-                    color="gray.900"
-                    _dark={{ color: 'white' }}
-                  >
-                    Download Report
-                  </Text>
-                  <Icon as={FileText} boxSize={5} color="brand.500" />
-                </HStack>
-              </VStack>
-
-              {/* Features Grid */}
-              {/* <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={4} w="full">
+          {/* Features Grid */}
+          {/* <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={4} w="full">
                 {[
                   { icon: Shield, label: 'Security Audit', desc: 'Third-party verified' },
                   { icon: FileText, label: 'Financial Data', desc: 'Detailed breakdown' },
@@ -150,122 +106,117 @@ export function AuditReport({
                 ))}
               </Grid> */}
 
-              {/* Action Section */}
-              <HStack gap={4} minW={{ base: 'full', lg: '280px' }}>
-                {/* Date Selector */}
-                <Box w="full">
-                  <Text fontSize="sm" fontWeight="medium" mb={2} color="gray.700" _dark={{ color: 'gray.300' }}>
-                    Select Report Period
-                  </Text>
-                  <Menu.Root>
-                    <Menu.Trigger asChild>
-                      <Button
-                        variant="outline"
-                        size="lg"
-                        w="full"
-                        justifyContent="space-between"
-                        bg="white"
-                        _dark={{
-                          bg: 'gray.700',
-                          borderColor: 'gray.600',
-                        }}
-                        borderColor="gray.300"
-                        _hover={{
-                          borderColor: 'brand.400',
-                          shadow: 'md',
-                        }}
-                        transition="all 0.2s ease"
-                      >
+          {/* Action Section */}
+          <HStack gap={4} minW={{ base: 'full', lg: '280px' }}>
+            {/* Date Selector */}
+            <Box w="full">
+              <Text fontSize="sm" fontWeight="medium" mb={2} color="gray.700" _dark={{ color: 'gray.300' }}>
+                Select Report Period
+              </Text>
+              <Menu.Root>
+                <Menu.Trigger asChild>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    w="full"
+                    justifyContent="space-between"
+                    bg="white"
+                    _dark={{
+                      bg: 'gray.700',
+                      borderColor: 'gray.600',
+                    }}
+                    borderColor="gray.300"
+                    _hover={{
+                      borderColor: 'brand.400',
+                      shadow: 'md',
+                    }}
+                    transition="all 0.2s ease"
+                  >
+                    <HStack>
+                      <Icon as={Calendar} boxSize={4} color="brand.500" />
+                      <Text fontWeight="medium">{selectedDate}</Text>
+                    </HStack>
+                    <Icon as={ChevronDown} boxSize={4} />
+                  </Button>
+                </Menu.Trigger>
+                <Menu.Content
+                  bg="white"
+                  _dark={{
+                    bg: 'gray.700',
+                    borderColor: 'gray.600',
+                  }}
+                  borderColor="gray.200"
+                  shadow="2xl"
+                  rounded="xl"
+                  py={2}
+                  minW="280px"
+                >
+                  {reportsList.map((item) => (
+                    <Menu.Item
+                      key={item.date}
+                      value={item.date}
+                      onClick={() => setSelectedDate(item.date)}
+                      _hover={{
+                        bg: 'brand.50',
+                        _dark: { bg: 'gray.600' },
+                      }}
+                      px={4}
+                      py={3}
+                      rounded="lg"
+                      mx={2}
+                      cursor="pointer"
+                    >
+                      <HStack justify="space-between" w="full">
                         <HStack>
                           <Icon as={Calendar} boxSize={4} color="brand.500" />
-                          <Text fontWeight="medium">{selectedDate}</Text>
+                          <Text fontWeight="medium">{item.date}</Text>
                         </HStack>
-                        <Icon as={ChevronDown} boxSize={4} />
-                      </Button>
-                    </Menu.Trigger>
-                    <Menu.Content
-                      bg="white"
-                      _dark={{
-                        bg: 'gray.700',
-                        borderColor: 'gray.600',
-                      }}
-                      borderColor="gray.200"
-                      shadow="2xl"
-                      rounded="xl"
-                      py={2}
-                      minW="280px"
-                    >
-                      {reportsList.map((item) => (
-                        <Menu.Item
-                          key={item.date}
-                          value={item.date}
-                          onClick={() => setSelectedDate(item.date)}
-                          _hover={{
-                            bg: 'brand.50',
-                            _dark: { bg: 'gray.600' },
-                          }}
-                          px={4}
-                          py={3}
-                          rounded="lg"
-                          mx={2}
-                          cursor="pointer"
-                        >
-                          <HStack justify="space-between" w="full">
-                            <HStack>
-                              <Icon as={Calendar} boxSize={4} color="brand.500" />
-                              <Text fontWeight="medium">{item.date}</Text>
-                            </HStack>
-                            {item.date === selectedDate && <Icon as={CheckCircle} boxSize={4} color="green.500" />}
-                          </HStack>
-                        </Menu.Item>
-                      ))}
-                    </Menu.Content>
-                  </Menu.Root>
-                </Box>
+                        {item.date === selectedDate && <Icon as={CheckCircle} boxSize={4} color="green.500" />}
+                      </HStack>
+                    </Menu.Item>
+                  ))}
+                </Menu.Content>
+              </Menu.Root>
+            </Box>
 
-                {/* Download Button */}
-                <Button
-                  mt={7}
-                  size="lg"
-                  w="full"
-                  bgGradient="linear(to-r, brand.500, brand.600)"
-                  _hover={{
-                    bgGradient: 'linear(to-r, brand.600, brand.700)',
-                    transform: 'translateY(-2px)',
-                    shadow: 'lg',
-                  }}
-                  color="white"
-                  loading={isDownloading}
-                  loadingText="Downloading..."
-                  onClick={() => {
-                    const selectedReport = reportsList.find((report) => report.date === selectedDate);
-                    if (selectedReport) {
-                      handleDownload(selectedReport.file);
-                    }
-                  }}
-                  transition="all 0.3s ease"
-                  fontWeight="semibold"
-                  _active={{
-                    transform: 'translateY(0)',
-                  }}
-                >
-                  <HStack gap={2}>
-                    <Icon as={Download} boxSize={5} />
-                    <Text>Download Report</Text>
-                    <Icon as={ArrowRight} boxSize={4} />
-                  </HStack>
-                </Button>
+            {/* Download Button */}
+            <Button
+              mt={7}
+              size="lg"
+              w="full"
+              bgGradient="linear(to-r, brand.500, brand.600)"
+              _hover={{
+                bgGradient: 'linear(to-r, brand.600, brand.700)',
+                transform: 'translateY(-2px)',
+                shadow: 'lg',
+              }}
+              color="white"
+              loading={isDownloading}
+              loadingText="Downloading..."
+              onClick={() => {
+                const selectedReport = reportsList.find((report) => report.date === selectedDate);
+                if (selectedReport) {
+                  handleDownload(selectedReport.file);
+                }
+              }}
+              transition="all 0.3s ease"
+              fontWeight="semibold"
+              _active={{
+                transform: 'translateY(0)',
+              }}
+            >
+              <HStack gap={2}>
+                <Icon as={Download} boxSize={5} />
+                <Text>Download Report</Text>
+                <Icon as={ArrowRight} boxSize={4} />
               </HStack>
-            </VStack>
-          </Grid>
-        </Card.Body>
-      </Card.Root>
+            </Button>
+          </HStack>
+        </VStack>
+      </Grid>
 
       {/* Bottom Info Section */}
-      <Box
-        mt={8}
-       
-      >
+      <Box mt={8}>
         <HStack gap={4}>
           <Icon as={FileText} boxSize={6} color="brand.600" _dark={{ color: 'brand.400' }} />
           <VStack align="start" gap={1} flex="1">
@@ -273,7 +224,7 @@ export function AuditReport({
               About Our Transparency Reports
             </Text>
             <Text fontSize="sm" color="fg.muted" lineHeight="relaxed">
-              "This page displays a transparency report powered by Fact Finance, with verified off-chain reserves and
+              This page displays a transparency report powered by Fact Finance, with verified off-chain reserves and
               automated onchain updates. Heartbeat frequency defines how often data is updated, while deviation
               thresholds trigger changes only when reserve balances shift significantly. Collateral reserves (e.g., cash
               or securities) are validated directly with custodians.

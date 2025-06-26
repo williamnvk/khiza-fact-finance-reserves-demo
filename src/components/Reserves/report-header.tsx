@@ -111,7 +111,7 @@ export function ReportHeader({
               </Badge>
             </HStack>
 
-            <Text fontSize="sm">{description}</Text>
+            <Text fontSize="lg" lineHeight="tall">{description}</Text>
 
             {/* Action Buttons */}
             <HStack gap={3} align="stretch" minW="200px">
@@ -123,7 +123,7 @@ export function ReportHeader({
                   display="flex"
                   alignItems="center"
                 >
-                  <Text>Launch dApp</Text>
+                  <Text>Site</Text>
                   <Icon as={ArrowUpRightIcon} />
                 </ChakraLink>
               )}
@@ -167,10 +167,8 @@ export function ReportHeader({
                   <Text
                     fontSize="xs"
                     fontWeight="bold"
-                    color="brand.600"
                     textTransform="uppercase"
                     letterSpacing="wider"
-                    _dark={{ color: 'brand.400' }}
                   >
                     Circulating Token Supply
                   </Text>
@@ -207,10 +205,8 @@ export function ReportHeader({
                   <Text
                     fontSize="xs"
                     fontWeight="bold"
-                    color="brand.600"
                     textTransform="uppercase"
                     letterSpacing="wider"
-                    _dark={{ color: 'brand.400' }}
                   >
                     Total Reserves
                   </Text>
@@ -218,7 +214,7 @@ export function ReportHeader({
                     <Text fontSize="sm" color="gray.600" fontWeight="medium" _dark={{ color: 'gray.400' }}>
                       {currency}
                     </Text>
-                    <Heading fontSize="2xl" color="brand.700" _dark={{ color: 'brand.300' }} lineHeight="1">
+                    <Heading fontSize="2xl" lineHeight="1">
                       {reserves}
                     </Heading>
                   </Flex>
@@ -249,10 +245,8 @@ export function ReportHeader({
                   <Text
                     fontSize="xs"
                     fontWeight="bold"
-                    color={isHealthy ? 'success.600' : 'warning.600'}
                     textTransform="uppercase"
                     letterSpacing="wider"
-                    _dark={{ color: isHealthy ? 'success.400' : 'warning.400' }}
                   >
                     Collateral Ratio
                   </Text>
@@ -291,14 +285,12 @@ export function ReportHeader({
                   <Text
                     fontSize="xs"
                     fontWeight="bold"
-                    color="brand.600"
                     textTransform="uppercase"
                     letterSpacing="wider"
-                    _dark={{ color: 'brand.400' }}
-                  >
+                   >
                     Last Update
                   </Text>
-                  <Text fontSize="lg" fontWeight="bold" color="brand.800" _dark={{ color: 'brand.200' }}>
+                  <Text fontSize="lg" fontWeight="bold">
                     {dateAs}
                   </Text>
 

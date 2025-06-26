@@ -40,7 +40,6 @@ export function BalancesChart({
 
   const totalReserves = reserves + over;
   const mainCollateral = reserves - over;
-  const collateralizationRatio = (totalReserves / circulation) * 100;
   const excessReserve = totalReserves - circulation;
   const isOverCollateralized = totalReserves > circulation;
   const reserveUtilization = (circulation / totalReserves) * 100;
@@ -109,79 +108,9 @@ export function BalancesChart({
       <Card.Root borderWidth="1px" shadow="xl" p={4} maxW="360px">
         <Card.Body p={0}>
           <VStack align="start" gap={3}>
-            <Box>
-              <Text fontSize="md" fontWeight="bold" color="fg">
-                Reserve Analysis
-              </Text>
-              <Text fontSize="xs" color="fg.muted" mt={1}>
-                Real-time collateralization status
-              </Text>
-            </Box>
-
-            <Separator />
-
-            {chartView === 'stacked' && (
-              <VStack align="start" gap={2} w="full">
-                {payload.map((entry: any, index: number) => {
-                  const value = entry.value;
-                  const dataKey = entry.dataKey;
-                  let description = '';
-                  let icon = null;
-
-                  switch (dataKey) {
-                    case 'Main Collateral':
-                      description = 'Primary reserve backing';
-                      icon = <Shield size={12} />;
-                      break;
-                    case 'Over Collateral':
-                      description = 'Additional security buffer';
-                      icon = <TrendingUp size={12} />;
-                      break;
-                    case 'Circulation':
-                      description = 'Tokens in circulation';
-                      icon = <Activity size={12} />;
-                      break;
-                  }
-
-                  return (
-                    <HStack key={index} justify="space-between" w="full">
-                      <HStack gap={2}>
-                        <Box w={3} h={3} rounded="full" bg={entry.color} />
-                        <Icon>{icon}</Icon>
-                        <VStack align="start" gap={0}>
-                          <Text fontSize="xs" fontWeight="medium" color="fg">
-                            {dataKey}
-                          </Text>
-                          <Text fontSize="xs" color="fg.muted">
-                            {description}
-                          </Text>
-                        </VStack>
-                      </HStack>
-                      <Text fontSize="sm" fontWeight="bold" color={entry.color}>
-                        <FormatNumber value={value} style="currency" currency="USD" />
-                      </Text>
-                    </HStack>
-                  );
-                })}
-
-                <Separator />
-
-                <VStack align="start" gap={1} w="full">
-                  <HStack justify="space-between" w="full">
-                    <Text fontSize="xs" color="fg.muted">
-                      Collateralization Ratio
-                    </Text>
-                    <Badge
-                      variant={isOverCollateralized ? 'solid' : 'outline'}
-                      colorPalette={isOverCollateralized ? 'green' : 'orange'}
-                      size="sm"
-                    >
-                      {collateralizationRatio.toFixed(1)}%
-                    </Badge>
-                  </HStack>
-                </VStack>
-              </VStack>
-            )}
+            <Text fontSize="md" fontWeight="bold" color="fg">
+              Reserve Analysis
+            </Text>
 
             {chartView === 'comparative' && (
               <VStack align="start" gap={2} w="full">
@@ -229,23 +158,6 @@ export function BalancesChart({
                     </HStack>
                   );
                 })}
-
-                <Separator />
-
-                <VStack align="start" gap={1} w="full">
-                  <HStack justify="space-between" w="full">
-                    <Text fontSize="xs" color="fg.muted">
-                      Collateralization Ratio
-                    </Text>
-                    <Badge
-                      variant={isOverCollateralized ? 'solid' : 'outline'}
-                      colorPalette={isOverCollateralized ? 'green' : 'orange'}
-                      size="sm"
-                    >
-                      {collateralizationRatio.toFixed(1)}%
-                    </Badge>
-                  </HStack>
-                </VStack>
               </VStack>
             )}
           </VStack>
@@ -301,7 +213,7 @@ export function BalancesChart({
         >
           <VStack align="start" gap={2} flex={1}>
             <Flex w="full" justify="space-between" align="center">
-              <Heading fontSize="2xl" fontWeight="bold" color="fg">
+              <Heading fontSize="4xl" fontWeight="bold" color="fg">
                 Reserves Coverage Status
               </Heading>
 
@@ -331,7 +243,7 @@ export function BalancesChart({
               </ButtonGroup> */}
             </Flex>
 
-            <Text fontSize="sm" color="fg.muted" lineHeight="tall" maxW="2xl" h="44px">
+            <Text fontSize="xl" color="fg.muted" lineHeight="tall"h="66px">
               Latest verified token supply and corresponding collateral reserves, including overcollateralization and
               utilization ratio.
             </Text>
@@ -343,7 +255,7 @@ export function BalancesChart({
           <Card.Root size="sm" bg="whiteAlpha.500" _dark={{ bg: 'blackAlpha.50' }} borderWidth="1px">
             <Card.Body>
               <Stat.Root size="sm">
-                <Stat.Label fontSize="xs" color="fg.muted">
+                <Stat.Label fontSize="md" color="fg.muted">
                   Circulations
                 </Stat.Label>
                 <Stat.ValueText fontSize="xl" fontWeight="bold">
@@ -356,15 +268,11 @@ export function BalancesChart({
           <Card.Root size="sm" bg="whiteAlpha.500" _dark={{ bg: 'blackAlpha.50' }} borderWidth="1px">
             <Card.Body>
               <Stat.Root size="sm">
-                <Stat.Label fontSize="xs" color="fg.muted">
+                <Stat.Label fontSize="md" color="fg.muted">
                   Collateral
                 </Stat.Label>
                 <Stat.ValueText fontSize="xl" fontWeight="bold">
-                  <FormatNumber
-                    value={Math.abs(totalReserves)}
-                    style="currency"
-                    currency={currency === 'USD' ? 'USD' : 'BRL'}
-                  />
+                  <FormatNumber value={Math.abs(totalReserves)} style="currency" currency={currency} />
                 </Stat.ValueText>
               </Stat.Root>
             </Card.Body>
@@ -373,8 +281,8 @@ export function BalancesChart({
           <Card.Root size="sm" bg="whiteAlpha.500" _dark={{ bg: 'blackAlpha.50' }} borderWidth="1px">
             <Card.Body>
               <Stat.Root size="sm">
-                <Stat.Label fontSize="xs" color="fg.muted">
-                  Reserves Status
+                <Stat.Label fontSize="md" color="fg.muted">
+                  {isOverCollateralized ? 'Over Collateral' : 'Under Collateral'}
                 </Stat.Label>
                 <Stat.ValueText
                   fontSize="xl"

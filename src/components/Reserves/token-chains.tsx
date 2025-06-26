@@ -64,11 +64,11 @@ export function TokenChainBreakdown({
           <Flex justify="space-between" align="start" direction={{ base: 'column', md: 'row' }} gap={4}>
             <VStack align="start" gap={2} flex={1}>
               <HStack gap={3}>
-                <Text fontSize="3xl" fontWeight="bold" color="fg">
+                <Text fontSize="4xl" fontWeight="bold" color="fg">
                   Blockchain Distribution
                 </Text>
               </HStack>
-              <Text fontSize="md" color="fg.muted" lineHeight="tall">
+              <Text fontSize="xl" color="fg.muted" lineHeight="tall">
                 This section shows how the token supply is distributed across different blockchains
               </Text>
             </VStack>
@@ -89,11 +89,10 @@ export function TokenChainBreakdown({
                 <Stat.Root>
                   <Stat.Label fontSize="xs" color="fg.muted">
                     <HStack gap={1}>
-                      <Icon as={Globe} boxSize={5} color="brand.500" />
-                      <Text>Active Networks</Text>
+                      <Text fontSize="lg">Active Networks</Text>
                     </HStack>
                   </Stat.Label>
-                  <Stat.ValueText fontSize="xl" fontWeight="bold" color="brand.500">
+                  <Stat.ValueText fontSize="2xl" fontWeight="bold">
                     {chainDistribution.length}
                   </Stat.ValueText>
                 </Stat.Root>
@@ -113,11 +112,10 @@ export function TokenChainBreakdown({
                 <Stat.Root>
                   <Stat.Label fontSize="xs" color="fg.muted">
                     <HStack gap={1}>
-                      <Icon as={Layers} boxSize={5} color="warning.500" />
-                      <Text>Total Tokens</Text>
+                      <Text fontSize="lg">Total Tokens</Text>
                     </HStack>
                   </Stat.Label>
-                  <Stat.ValueText fontSize="xl" fontWeight="bold" color="warning.500">
+                  <Stat.ValueText fontSize="2xl" fontWeight="bold">
                     <FormatNumber value={totalTokens} notation="compact" />
                   </Stat.ValueText>
                 </Stat.Root>
@@ -137,11 +135,10 @@ export function TokenChainBreakdown({
                 <Stat.Root>
                   <Stat.Label fontSize="xs" color="fg.muted">
                     <HStack gap={1}>
-                      <Icon as={BarChart3} boxSize={5} color="success.500" />
-                      <Text>Total Value</Text>
+                        <Text fontSize="lg">Total Value</Text>
                     </HStack>
                   </Stat.Label>
-                  <Stat.ValueText fontSize="xl" fontWeight="bold" color="success.500">
+                  <Stat.ValueText fontSize="2xl" fontWeight="bold">
                     <FormatNumber value={totalValue} style="currency" currency={currency} notation="compact" />
                   </Stat.ValueText>
                 </Stat.Root>

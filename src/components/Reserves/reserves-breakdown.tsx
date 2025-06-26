@@ -58,11 +58,11 @@ export function ReservesBreakdown({
         {/* Simple Header */}
         <VStack align="start" gap={3} w="full">
           <HStack gap={3} flexWrap="wrap">
-            <Text fontSize={{ base: '2xl', md: '3xl' }} fontWeight="bold" color="fg">
+            <Text fontSize={{ base: '2xl', md: '4xl' }} fontWeight="bold" color="fg">
               Reserves Overview
             </Text>
           </HStack>
-          <Text fontSize="md" color="fg.muted" lineHeight="relaxed">
+          <Text fontSize="xl" color="fg.muted" lineHeight="relaxed">
             This section provides transparency into {companyName} asset reserves.
           </Text>
         </VStack>
@@ -74,10 +74,10 @@ export function ReservesBreakdown({
             <Card.Root size="sm" variant="outline" bg="transparent">
               <Card.Body>
                 <Stat.Root>
-                  <Stat.Label fontSize="sm" color="fg.muted">
+                  <Stat.Label fontSize="md" color="fg.muted">
                     Total Collateral Reserves
                   </Stat.Label>
-                  <Stat.ValueText fontSize="xl" fontWeight="bold" color="success.500">
+                  <Stat.ValueText fontSize="xl" fontWeight="bold">
                     <FormatNumber value={reserves} style="currency" currency={currency} notation="compact" />
                   </Stat.ValueText>
                 </Stat.Root>
@@ -107,10 +107,10 @@ export function ReservesBreakdown({
             <Card.Root size="sm" variant="outline" bg="transparent">
               <Card.Body>
                 <Stat.Root>
-                  <Stat.Label fontSize="sm" color="fg.muted">
+                  <Stat.Label fontSize="md" color="fg.muted">
                     Available Balance
                   </Stat.Label>
-                  <Stat.ValueText fontSize="xl" fontWeight="bold" color={balance >= 0 ? 'success.500' : 'error.500'}>
+                  <Stat.ValueText fontSize="xl" fontWeight="bold">
                     <FormatNumber value={Math.abs(balance)} style="currency" currency={currency} notation="compact" />
                   </Stat.ValueText>
                 </Stat.Root>
@@ -122,7 +122,7 @@ export function ReservesBreakdown({
             <Card.Root size="sm" variant="outline" bg="transparent">
               <Card.Body>
                 <Stat.Root>
-                  <Stat.Label fontSize="sm" color="fg.muted">
+                  <Stat.Label fontSize="md" color="fg.muted">
                     Collateral Ratio
                   </Stat.Label>
                   <Stat.ValueText

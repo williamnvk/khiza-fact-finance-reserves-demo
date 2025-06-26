@@ -149,10 +149,10 @@ export function HistoryChart({
       <VStack align="stretch" gap={6}>
         <Flex justify="space-between" align="start" direction={{ base: 'column', md: 'row' }} gap={4}>
           <VStack align="start" gap={2} flex={1}>
-            <Text fontSize="2xl" fontWeight="bold" color="fg">
+            <Text fontSize="4xl" fontWeight="bold" color="fg">
               Historical Reserve Coverage
             </Text>
-            <Text fontSize="sm" color="fg.muted" lineHeight="tall" height="44px">
+            <Text fontSize="xl" color="fg.muted" lineHeight="tall"h="66px">
               Track cumulative balances versus tokens issued over time. Use filters to explore data by a different
               period.
             </Text>
@@ -179,10 +179,10 @@ export function HistoryChart({
           <Card.Root size="sm" bg="whiteAlpha.500" _dark={{ bg: 'blackAlpha.50' }} borderWidth="1px">
               <Card.Body>
                 <Stat.Root size="sm">
-                  <Stat.Label fontSize="xs" color="fg.muted">
+                  <Stat.Label fontSize="md" color="fg.muted">
                     Transaction volume
                   </Stat.Label>
-                  <Stat.ValueText fontSize="xl" fontWeight="bold" color="brand.500">
+                  <Stat.ValueText fontSize="xl" fontWeight="bold">
                   {formatLargeNumber(totalIssued | 0, currency === 'USD' ? '$' : 'R$')}
                   </Stat.ValueText>
                 </Stat.Root>
@@ -193,10 +193,10 @@ export function HistoryChart({
           <Card.Root size="sm" bg="whiteAlpha.500" _dark={{ bg: 'blackAlpha.50' }} borderWidth="1px">
               <Card.Body>
                 <Stat.Root size="sm">
-                  <Stat.Label fontSize="xs" color="fg.muted">
+                  <Stat.Label fontSize="md" color="fg.muted">
                     Number of transactions
                   </Stat.Label>
-                  <Stat.ValueText fontSize="xl" fontWeight="bold" color="success.500">
+                  <Stat.ValueText fontSize="xl" fontWeight="bold">
                     {formatLargeNumber(totalTransactions | 0)}
                   </Stat.ValueText>
                 </Stat.Root>
@@ -207,10 +207,10 @@ export function HistoryChart({
           <Card.Root size="sm" bg="whiteAlpha.500" _dark={{ bg: 'blackAlpha.50' }} borderWidth="1px">
             <Card.Body>
               <Stat.Root size="sm">
-                  <Stat.Label fontSize="xs" color="fg.muted">
+                    <Stat.Label fontSize="md" color="fg.muted">
                     Average collateral
                   </Stat.Label>
-                  <Stat.ValueText fontSize="xl" fontWeight="bold" color="cyan.500">
+                  <Stat.ValueText fontSize="xl" fontWeight="bold" color={averageIndex > 100 ? 'success.500' : 'warning.500'}>
                     {averageIndex}%
                   </Stat.ValueText>
                 </Stat.Root>

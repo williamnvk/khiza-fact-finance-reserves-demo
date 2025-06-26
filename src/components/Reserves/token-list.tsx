@@ -51,11 +51,11 @@ export function TokenList({
           <Flex justify="space-between" align="start" direction={{ base: 'column', md: 'row' }} gap={4}>
             <VStack align="start" gap={2} flex={1}>
               <HStack gap={3}>
-                <Text fontSize="3xl" fontWeight="bold" color="fg">
+                <Text fontSize="4xl" fontWeight="bold" color="fg">
                   Token Overview
                 </Text>
               </HStack>
-              <Text fontSize="md" color="fg.muted" lineHeight="tall">
+              <Text fontSize="xl" color="fg.muted" lineHeight="tall">
                 This section provides key onchain metrics to track the token's issuance, market activity, and reserve
                 dynamics.
               </Text>

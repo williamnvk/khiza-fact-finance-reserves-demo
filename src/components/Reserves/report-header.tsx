@@ -295,13 +295,11 @@ export function ReportHeader({
                   </Text>
 
                   {heartbeat && (
-                    <Tooltip content="The heartbeat is a timing rule that ensures updates happen at regular intervals. For example, with a 5-minute heartbeat, the system will attempt an update at least every 5 minutes—even without major changes. This prevents data staleness and detects delays or outages quickly.">
                       <VStack align="start" gap={1}>
                         <Text fontSize="xs" fontWeight="medium">
-                          Heartbeat: {heartbeat} <Icon as={InfoIcon} boxSize={4} />
+                          Heartbeat<sup>1</sup>: {heartbeat}
                         </Text>
                       </VStack>
-                    </Tooltip>
                   )}
                 </VStack>
               </HStack>

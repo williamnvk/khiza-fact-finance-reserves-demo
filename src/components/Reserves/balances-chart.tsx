@@ -256,7 +256,7 @@ export function BalancesChart({
             </Flex>
 
             <Text fontSize="xl" color="fg.muted" lineHeight="tall" h="66px">
-              Latest verified token supply and corresponding collateral reserves, including overcollateralization and
+              Latest verified token supply and corresponding collateral reserves<sup>4</sup>, including overcollateralization and
               utilization ratio.
             </Text>
           </VStack>

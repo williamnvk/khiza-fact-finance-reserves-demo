@@ -9,16 +9,12 @@ import { formatLargeNumber } from '@/lib/utils';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
-import { Box, Container, Grid, VStack } from '@chakra-ui/react';
+import { Box, Container, Grid, Text, VStack } from '@chakra-ui/react';
 import { ColorModeProvider } from '@/components/ui/color-mode';
 
 const FOOTNOTES = [
   {
     id: '1',
-    text: 'This is a real-time transparency report powered by Fact Finance, showing verified off-chain reserves with automated on-chain updates when thresholds are met.',
-  },
-  {
-    id: '2',
     text: 'The heartbeat is a timing rule that ensures updates happen at regular intervals. For example, with a 5-minute heartbeat, the system will attempt an update at least every 5 minutes—even without major changes. This prevents data staleness and detects delays or outages quickly.',
   },
   {
@@ -298,7 +294,15 @@ export const Reports = () => {
               chainDistribution={data.chainDistribution}
               currency={data.currency}
             />
-            <AuditReport reportsList={data.reportList} companyName={data.companyName} />{' '}
+            <AuditReport reportsList={data.reportList} companyName={data.companyName} />
+
+            <VStack gap={1} align="start" w="full">
+              {FOOTNOTES.map((footnote, index) => (
+                <Text key={index} fontSize="sm" color="fg.muted">
+                  {footnote.id}. {footnote.text}
+                </Text>
+              ))}
+            </VStack>
           </VStack>
         </Container>
       ) : null}

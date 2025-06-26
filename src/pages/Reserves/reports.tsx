@@ -245,7 +245,6 @@ export const Reports = () => {
               <BalancesChart
                 circulation={data.last.circulation}
                 reserves={data.last.reserves}
-                over={data.last.reserves - data.last.circulation}
                 currency={data.currency}
               />
 

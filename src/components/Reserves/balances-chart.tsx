@@ -9,7 +9,6 @@ import {
   Card,
   Flex,
   Stat,
-  Separator,
   Badge,
   Icon,
   Grid,
@@ -25,12 +24,10 @@ type ChartView = 'stacked' | 'comparative' | 'ratio';
 export function BalancesChart({
   circulation,
   reserves,
-  over,
   currency,
 }: {
   circulation: number;
   reserves: number;
-  over: number;
   currency: string;
 }) {
   // @ts-ignore
@@ -38,9 +35,10 @@ export function BalancesChart({
   // @ts-ignore
   const [showDetails, setShowDetails] = useState(false);
 
-  const totalReserves = reserves + over;
-  const mainCollateral = reserves - over;
-  const excessReserve = totalReserves - circulation;
+  const totalReserves = reserves;
+  const overCollateral = totalReserves - circulation;
+  const mainCollateral = circulation;
+  const excessReserve = overCollateral;
   const isOverCollateralized = totalReserves > circulation;
   const reserveUtilization = (circulation / totalReserves) * 100;
 
@@ -67,7 +65,7 @@ export function BalancesChart({
           {
             name: 'Current State',
             'Main Collateral': mainCollateral,
-            'Over Collateral': over,
+            'Over Collateral': overCollateral,
             Circulation: circulation,
           },
         ];
@@ -83,7 +81,7 @@ export function BalancesChart({
             name: 'Collateral\nReserves',
             Circulation: 0,
             'Main Collateral': mainCollateral,
-            'Over Collateral': over,
+            'Over Collateral': overCollateral,
           },
         ];
       case 'ratio':
@@ -158,6 +156,20 @@ export function BalancesChart({
                     </HStack>
                   );
                 })}
+
+                <HStack justify="space-between" w="full" borderTopWidth={1} mt={2} pt={4}>
+                  <HStack gap={2}>
+                    <Box w={3} h={3} rounded="full" /> <Icon as={Shield} />
+                    <VStack align="start" gap={0}>
+                      <Text fontSize="xs" fontWeight="medium" color="fg">
+                        Collateral
+                      </Text>
+                    </VStack>
+                  </HStack>
+                  <Text fontSize="sm" fontWeight="bold" color="fg">
+                    <FormatNumber value={totalReserves} style="currency" currency={currency} />
+                  </Text>
+                </HStack>
               </VStack>
             )}
           </VStack>
@@ -243,7 +255,7 @@ export function BalancesChart({
               </ButtonGroup> */}
             </Flex>
 
-            <Text fontSize="xl" color="fg.muted" lineHeight="tall"h="66px">
+            <Text fontSize="xl" color="fg.muted" lineHeight="tall" h="66px">
               Latest verified token supply and corresponding collateral reserves, including overcollateralization and
               utilization ratio.
             </Text>
@@ -272,7 +284,7 @@ export function BalancesChart({
                   Collateral
                 </Stat.Label>
                 <Stat.ValueText fontSize="xl" fontWeight="bold">
-                  <FormatNumber value={Math.abs(totalReserves)} style="currency" currency={currency} />
+                  <FormatNumber value={totalReserves} style="currency" currency={currency} />
                 </Stat.ValueText>
               </Stat.Root>
             </Card.Body>
@@ -289,7 +301,7 @@ export function BalancesChart({
                   fontWeight="bold"
                   color={isOverCollateralized ? 'success.500' : 'warning.500'}
                 >
-                  <FormatNumber value={excessReserve} style="currency" currency={currency} />
+                  <FormatNumber value={overCollateral} style="currency" currency={currency} />
                 </Stat.ValueText>
               </Stat.Root>
             </Card.Body>
@@ -425,7 +437,7 @@ export function BalancesChart({
                 {isOverCollateralized ? 'Over Collateral' : 'Under Collateral'}
               </Text>
               {/* <Badge size="sm" variant="subtle" colorPalette="orange">
-                    <FormatNumber value={over} style="currency" currency="USD" />
+                    <FormatNumber value={overCollateral} style="currency" currency="USD" />
                   </Badge> */}
             </HStack>
 
@@ -479,7 +491,7 @@ export function BalancesChart({
                           Safety Buffer
                         </Text>
                         <Text fontSize="sm" fontWeight="medium" color="success.500">
-                          <FormatNumber value={over} style="currency" currency="USD" />
+                          <FormatNumber value={overCollateral} style="currency" currency="USD" />
                         </Text>
                       </Flex>
                     </VStack>

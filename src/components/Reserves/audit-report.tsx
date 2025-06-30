@@ -1,6 +1,6 @@
-import { Download, ChevronDown, FileText, Calendar, Shield, CheckCircle, ArrowRight } from 'lucide-react';
+import { Download, ChevronDown, Calendar, Shield, CheckCircle, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
-import { Box, HStack, VStack, Text, Button, Menu, Icon, Card, Grid, Heading, Stack } from '@chakra-ui/react';
+import { Box, HStack, VStack, Text, Button, Menu, Icon, Grid, Heading, Stack } from '@chakra-ui/react';
 
 export function AuditReport({
   reportsList,
@@ -10,7 +10,6 @@ export function AuditReport({
 }) {
   const [selectedDate, setSelectedDate] = useState(reportsList[0].date);
   const [isDownloading, setIsDownloading] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
 
   const handleDownload = async (file: string) => {
     setIsDownloading(true);
@@ -120,7 +119,7 @@ export function AuditReport({
             w="full"
           >
             {/* Date Selector */}
-            <Box w="full">
+            <Box w={{ base: 'full', md: 'auto' }}>
               <Text fontSize="sm" fontWeight="medium" mb={2} color="fg.muted">
                 Select Report Period
               </Text>
@@ -194,7 +193,7 @@ export function AuditReport({
             <Button
               mt={{ base: 2, md: 7 }}
               size="lg"
-              w="full"
+              w={{ base: 'full', md: 'auto' }}
               bgGradient="linear(to-r, brand.500, brand.600)"
               _hover={{
                 bgGradient: 'linear(to-r, brand.600, brand.700)',
@@ -225,27 +224,6 @@ export function AuditReport({
           </Stack>
         </VStack>
       </Grid>
-
-      {/* Bottom Info Section */}
-      <Box mt={{ base: 0, md: 8 }} mb={{ base: 16, md: 0}}>
-        <Stack direction={{ base: "column", md: "row" }} gap={4}>
-          <VStack align="start" gap={1} flex="1">
-            <Text fontWeight="semibold" color="brand.900" _dark={{ color: 'brand.100' }}>
-              About Our Transparency Reports
-            </Text>
-            <Text fontSize="sm" color="fg.muted" lineHeight="relaxed">
-              This page displays a transparency report powered by Fact Finance, with verified off-chain reserves and
-              automated onchain updates. Heartbeat frequency defines how often data is updated, while deviation
-              thresholds trigger changes only when reserve balances shift significantly. Collateral reserves (e.g., cash
-              or securities) are validated directly with custodians.
-              <br />
-              The token circulating supply represents the total issued tokens onchain, expected to be fully or
-              over-collateralized. Excess collateral reflects the buffer available for new issuance while preserving
-              full backing.
-            </Text>
-          </VStack>
-        </Stack>
-      </Box>
     </>
   );
 }

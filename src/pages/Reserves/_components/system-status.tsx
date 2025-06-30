@@ -25,7 +25,7 @@ export const SystemStatus = () => {
           System Status
         </Text>
         <Badge colorPalette="success" variant="solid" size="xs" px={2} rounded="full">
-          Live
+          Verified
         </Badge>
       </HStack>
 

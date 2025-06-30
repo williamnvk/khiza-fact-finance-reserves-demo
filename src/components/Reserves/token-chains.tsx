@@ -56,25 +56,25 @@ export function TokenChainBreakdown({
   }));
 
   return (
-    <Box mb={{ base: 16, md: 0}}>
+    <Box mb={{ base: 16, md: 0 }}>
       <VStack align="stretch" gap={4}>
         {/* Enhanced Header Section */}
         <VStack align="stretch" gap={4}>
           <Flex justify="space-between" align="start" direction={{ base: 'column', md: 'row' }} gap={4}>
             <VStack align="start" gap={2} flex={1}>
               <HStack gap={3}>
-                <Text fontSize={{ base: "3xl", md: "4xl" }} fontWeight="bold" color="fg">
+                <Text fontSize={{ base: '3xl', md: '4xl' }} fontWeight="bold" color="fg">
                   Blockchain Distribution
                 </Text>
               </HStack>
-              <Text fontSize={{ base: "md", md: "xl" }} color="fg.muted" lineHeight="tall">
+              <Text fontSize={{ base: 'md', md: 'xl' }} color="fg.muted" lineHeight="tall">
                 This section shows how the token supply is distributed across different blockchains
               </Text>
             </VStack>
           </Flex>
 
           {/* Network Overview Dashboard */}
-          <SimpleGrid columns={{ base: 1, md: 3 }} gap={{ base: 2, md: 4}}>
+          <SimpleGrid columns={{ base: 1, md: 3 }} gap={{ base: 2, md: 4 }}>
             <Card.Root
               size="sm"
               bg="transparent"
@@ -134,7 +134,7 @@ export function TokenChainBreakdown({
                 <Stat.Root>
                   <Stat.Label fontSize="xs" color="fg.muted">
                     <HStack gap={1}>
-                        <Text fontSize="lg">Total Value</Text>
+                      <Text fontSize="lg">Total Value</Text>
                     </HStack>
                   </Stat.Label>
                   <Stat.ValueText fontSize="2xl" fontWeight="bold">
@@ -149,18 +149,18 @@ export function TokenChainBreakdown({
         {/* Enhanced Visual Distribution */}
         <VStack
           align="stretch"
-          gap={{ base: 2, md: 6}}
+          gap={{ base: 2, md: 6 }}
           bg="whiteAlpha.50"
           rounded="lg"
-          p={{ base: 4, md: 6}}
+          p={{ base: 4, md: 6 }}
           borderWidth="1px"
           _dark={{ bg: 'blackAlpha.50' }}
         >
-          <Stack justify="space-between" direction={{ base: "column", md: "row" }} gap={2}>
-            <Text fontSize={{ base: "md", md: "xl" }} fontWeight="semibold" color="fg">
+          <Stack justify="space-between" direction={{ base: 'column', md: 'row' }} gap={2}>
+            <Text fontSize={{ base: 'md', md: 'xl' }} fontWeight="semibold" color="fg">
               Network Distribution
             </Text>
-            <VStack align={{ base: "start", md: "end" }} gap={0} w="full">
+            <VStack align={{ base: 'start', md: 'end' }} gap={0} w="full">
               <Text fontSize="sm" fontWeight="medium" color="fg.muted">
                 Dominant Chain: {dominantChain.name}
               </Text>
@@ -192,9 +192,9 @@ export function TokenChainBreakdown({
             {/* Progress indicator */}
             <HStack justify="space-between" fontSize="xs" color="fg.muted" mb={6}>
               <Text>0%</Text>
-              <Text fontWeight="medium" color="fg">
+              {/* <Text fontWeight="medium" color="fg">
                 Distribution Across {chainDistribution.length} Networks
-              </Text>
+              </Text> */}
               <Text>100%</Text>
             </HStack>
           </Box>

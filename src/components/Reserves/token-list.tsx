@@ -161,10 +161,10 @@ export function TokenList({
                           <Card.Root size="sm">
                             <Card.Body>
                               <Stat.Root size="sm">
-                                <Stat.Label fontSize="xs" color="fg.muted">
+                                <Stat.Label fontSize="md" color="fg.muted">
                                   Token Circulating Supply
                                 </Stat.Label>
-                                <Stat.ValueText fontSize="lg" fontWeight="semibold" color="brand.500">
+                                <Stat.ValueText fontSize="xl" fontWeight="semibold" color="brand.500">
                                   <FormatNumber
                                     value={tokenSupply}
                                     style="currency"
@@ -179,13 +179,13 @@ export function TokenList({
                           <Card.Root size="sm">
                             <Card.Body>
                               <Stat.Root size="sm">
-                                <Stat.Label fontSize="xs" color="fg.muted">
+                                <Stat.Label fontSize="md" color="fg.muted">
                                   <HStack gap={1}>
                                     <Text>Current Price</Text>
                                     <CircleCheck size={12} color="var(--ff-colors-brand-500)" />
                                   </HStack>
                                 </Stat.Label>
-                                <Stat.ValueText fontSize="lg" fontWeight="semibold" color="fg.muted">
+                                <Stat.ValueText fontSize="xl" fontWeight="semibold" color="fg.muted">
                                   <FormatNumber
                                     value={token.tokenPrice}
                                     style="currency"
@@ -201,10 +201,10 @@ export function TokenList({
                           <Card.Root size="sm">
                             <Card.Body>
                               <Stat.Root size="sm">
-                                <Stat.Label fontSize="xs" color="fg.muted">
+                                <Stat.Label fontSize="md" color="fg.muted">
                                   Reserves Utilization
                                 </Stat.Label>
-                                <Stat.ValueText fontSize="lg" fontWeight="semibold">
+                                <Stat.ValueText fontSize="xl" fontWeight="semibold">
                                   {reserveUtilization.toFixed(2)}%
                                 </Stat.ValueText>
                               </Stat.Root>
@@ -214,10 +214,10 @@ export function TokenList({
                           <Card.Root size="sm">
                             <Card.Body>
                               <Stat.Root size="sm">
-                                <Stat.Label fontSize="xs" color="fg.muted">
+                                <Stat.Label fontSize="md" color="fg.muted">
                                   30-Day Transfer Volume
                                 </Stat.Label>
-                                <Stat.ValueText fontSize="lg" fontWeight="semibold" color="purple.500">
+                                <Stat.ValueText fontSize="xl" fontWeight="semibold" color="purple.500">
                                   <FormatNumber
                                     value={tokenTransfers}
                                     style="currency"
@@ -232,10 +232,10 @@ export function TokenList({
                           <Card.Root size="sm">
                             <Card.Body>
                               <Stat.Root size="sm">
-                                <Stat.Label fontSize="xs" color="fg.muted">
+                                      <Stat.Label fontSize="md" color="fg.muted">
                                   Total Transfer Volume
                                 </Stat.Label>
-                                <Stat.ValueText fontSize="lg" fontWeight="semibold" color="teal.500">
+                                <Stat.ValueText fontSize="xl" fontWeight="semibold" color="teal.500">
                                   <FormatNumber
                                     value={totalTransferVolume}
                                     style="currency"

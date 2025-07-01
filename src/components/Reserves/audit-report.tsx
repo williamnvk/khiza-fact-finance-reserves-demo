@@ -128,11 +128,6 @@ export function AuditReport({
             w="full"
             className="omit-from-print"
           >
-
-
-{JSON.stringify(reportsList)}
-
-
             {/* Date Selector */}
             <Box w={{ base: 'full', md: 'auto' }} className="omit-from-print">
               <Text fontSize="sm" fontWeight="medium" mb={2} color="fg.muted">

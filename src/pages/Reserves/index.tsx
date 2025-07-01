@@ -171,7 +171,11 @@ const Home = () => {
                     <Flex justify="space-between" align="flex-start">
                       {client.logo === 'avenia' && <AveniaLogo width={100} height={80} />}
                       {client.logo === 'tokeniza' && <Image src="/assets/logos/tbrl.png" alt="TBRL" h="80px" />}
-                      {client.logo === 'scenium' && <Image src="/assets/logos/scenium.png" alt="Scenium" h="80px" />}
+                      {client.logo === 'scenium' && (
+                        <Box h="80px">
+                          <Image src="/assets/logos/scenium.png" alt="Scenium" h="60px" />
+                        </Box>
+                      )}
 
                       <Tag.Root
                         bg="success.200"

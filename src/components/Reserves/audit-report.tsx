@@ -28,12 +28,13 @@ export function AuditReport({
   };
 
   return (
-    <>
+    <Box className="omit-from-print">
       <Grid
         templateColumns={{ base: '1fr', lg: 'auto 1fr auto' }}
         gap={{ base: 8, lg: 12 }}
         alignItems="center"
         mb={{ base: 16, md: 0 }}
+        className="omit-from-print"
       >
         {/* Icon Section */}
         <VStack gap={4}>
@@ -50,6 +51,7 @@ export function AuditReport({
             borderWidth="1px"
             borderColor="gray.100"
             display={{ base: 'none', md: 'block' }}
+            className="omit-from-print"
           >
             <Box
               position="absolute"
@@ -57,11 +59,12 @@ export function AuditReport({
               bgGradient="linear(135deg, brand.500, purple.600)"
               rounded="3xl"
               opacity="0.1"
+              className="omit-from-print"
             />
             <Icon as={Shield} boxSize={10} color="brand.600" _dark={{ color: 'brand.400' }} />
           </Box>
 
-          <VStack gap={1} display={{ base: 'none', md: 'block' }}>
+          <VStack gap={1} display={{ base: 'none', md: 'block' }} className="omit-from-print">
             <HStack gap={1}>
               <Icon as={CheckCircle} boxSize={4} color="green.500" />
               <Text fontSize="sm" fontWeight="medium" color="green.600" _dark={{ color: 'green.400' }}>
@@ -72,8 +75,14 @@ export function AuditReport({
         </VStack>
 
         {/* Content Section */}
-        <VStack align="start" gap={6} flex="1">
-          <Heading fontSize={{ base: '3xl', md: '4xl' }} fontWeight="bold" color="gray.900" _dark={{ color: 'white' }}>
+        <VStack align="start" gap={6} flex="1" className="omit-from-print">
+          <Heading
+            fontSize={{ base: '3xl', md: '4xl' }}
+            fontWeight="bold"
+            color="gray.900"
+            _dark={{ color: 'white' }}
+            className="omit-from-print"
+          >
             Download Report
           </Heading>
 
@@ -117,9 +126,10 @@ export function AuditReport({
             gap={{ base: 2, md: 4 }}
             minW={{ base: 'full', lg: '280px' }}
             w="full"
+            className="omit-from-print"
           >
             {/* Date Selector */}
-            <Box w={{ base: 'full', md: 'auto' }}>
+            <Box w={{ base: 'full', md: 'auto' }} className="omit-from-print">
               <Text fontSize="sm" fontWeight="medium" mb={2} color="fg.muted">
                 Select Report Period
               </Text>
@@ -160,6 +170,7 @@ export function AuditReport({
                   rounded="xl"
                   py={2}
                   minW="280px"
+                  className="omit-from-print"
                 >
                   {reportsList.map((item) => (
                     <Menu.Item
@@ -193,6 +204,7 @@ export function AuditReport({
             <Button
               mt={{ base: 2, md: 7 }}
               size="lg"
+              className="omit-from-print"
               w={{ base: 'full', md: 'auto' }}
               bgGradient="linear(to-r, brand.500, brand.600)"
               _hover={{
@@ -215,7 +227,7 @@ export function AuditReport({
                 transform: 'translateY(0)',
               }}
             >
-              <HStack gap={2}>
+              <HStack gap={2} className="omit-from-print">
                 <Icon as={Download} boxSize={5} />
                 <Text>Download Report</Text>
                 <Icon as={ArrowRight} boxSize={4} />
@@ -224,6 +236,6 @@ export function AuditReport({
           </Stack>
         </VStack>
       </Grid>
-    </>
+    </Box>
   );
 }

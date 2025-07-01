@@ -214,7 +214,7 @@ export function BalancesChart({
   // };
 
   return (
-    <Box  className="break-page">
+    <Box className="break-page">
       <VStack align="stretch" gap={6}>
         {/* Header Section */}
         <Flex

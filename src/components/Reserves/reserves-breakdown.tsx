@@ -53,7 +53,7 @@ export function ReservesBreakdown({
   }));
 
   return (
-    <Box mb={{ base: 16, md: 0}}>
+    <Box mb={{ base: 16, md: 0}} className="break-page">
       <VStack align="stretch" gap={{ base: 2, md: 6}}>
         {/* Simple Header */}
         <VStack align="start" gap={3} w="full">

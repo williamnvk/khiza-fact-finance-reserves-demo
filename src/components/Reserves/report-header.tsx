@@ -65,6 +65,7 @@ export function ReportHeader({
       borderWidth={{ base: 'none', md: '1px' }}
       borderColor={{ base: 'none', md: 'whiteAlpha.200' }}
       overflow="hidden"
+      className="break-page"
     >
       <Box position="relative" p={{ base: 0, md: 6, lg: 8 }}>
         <Box position="absolute" top={6} right={6} className="omit-from-print">

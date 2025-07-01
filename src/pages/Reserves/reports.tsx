@@ -226,7 +226,7 @@ export const Reports = () => {
       />
 
       {loaded ? (
-        <Container maxW="8xl" px={4} py={8} mt="72px">
+        <Container maxW="8xl" px={4} py={8} mt="72px" border="none"	>
           <VStack w="full" gap={{ base: 4, md: 24 }} align="stretch">
             <ReportHeader
               client={client}
@@ -296,7 +296,7 @@ export const Reports = () => {
               }}
               filter="blur(200px)"
               zIndex={-1}
-               className="omit-from-print"
+              className="omit-from-print"
             />
             <TokenChainBreakdown
               totalChains={3}

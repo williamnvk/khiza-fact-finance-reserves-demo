@@ -1,6 +1,6 @@
-import { Download, ChevronDown, Calendar, Shield, CheckCircle, ArrowRight } from 'lucide-react';
+import { Download, Shield, CheckCircle, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
-import { Box, HStack, VStack, Text, Button, Menu, Icon, Grid, Heading, Stack } from '@chakra-ui/react';
+import { Box, HStack, VStack, Text, Button, NativeSelect, Icon, Grid, Heading, Stack } from '@chakra-ui/react';
 
 export function AuditReport({
   reportsList,
@@ -128,83 +128,41 @@ export function AuditReport({
             w="full"
             className="omit-from-print"
           >
-
-
-{JSON.stringify(reportsList)}
-
-
             {/* Date Selector */}
             <Box w={{ base: 'full', md: 'auto' }} className="omit-from-print">
               <Text fontSize="sm" fontWeight="medium" mb={2} color="fg.muted">
                 Select Report Period
               </Text>
-              <Menu.Root>
-                <Menu.Trigger asChild>
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    w="full"
-                    justifyContent="space-between"
-                    bg="white"
-                    _dark={{
-                      bg: 'gray.700',
-                      borderColor: 'gray.600',
-                    }}
-                    borderColor="gray.300"
-                    _hover={{
-                      borderColor: 'brand.400',
-                      shadow: 'md',
-                    }}
-                    transition="all 0.2s ease"
-                  >
-                    <HStack>
-                      <Icon as={Calendar} boxSize={4} color="brand.500" />
-                      <Text fontWeight="medium">{selectedDate}</Text>
-                    </HStack>
-                    <Icon as={ChevronDown} boxSize={4} />
-                  </Button>
-                </Menu.Trigger>
-                <Menu.Content
+              <NativeSelect.Root size="lg" w="full">
+                <NativeSelect.Field
+                  value={selectedDate}
+                  onChange={(e) => setSelectedDate(e.target.value)}
                   bg="white"
                   _dark={{
                     bg: 'gray.700',
                     borderColor: 'gray.600',
                   }}
-                  borderColor="gray.200"
-                  shadow="2xl"
-                  rounded="xl"
-                  py={2}
+                  borderColor="gray.300"
+                  _hover={{
+                    borderColor: 'brand.400',
+                    shadow: 'md',
+                  }}
+                  transition="all 0.2s ease"
+                  rounded="lg"
+                  px={4}
+                  py={3}
+                  fontSize="md"
+                  fontWeight="medium"
                   minW="280px"
-                  className="omit-from-print"
                 >
                   {reportsList.map((item) => (
-                    <Menu.Item
-                      key={item.date}
-                      value={item.date}
-                      onClick={() => {
-                        setSelectedDate(item.date);
-                      }}
-                      _hover={{
-                        bg: 'brand.50',
-                        _dark: { bg: 'gray.600' },
-                      }}
-                      px={4}
-                      py={3}
-                      rounded="lg"
-                      mx={2}
-                      cursor="pointer"
-                    >
-                      <HStack justify="space-between" w="full">
-                        <HStack>
-                          <Icon as={Calendar} boxSize={4} color="brand.500" />
-                          <Text fontWeight="medium">{item.date}</Text>
-                        </HStack>
-                        {item.date === selectedDate && <Icon as={CheckCircle} boxSize={4} color="green.500" />}
-                      </HStack>
-                    </Menu.Item>
+                    <option key={item.date} value={item.date}>
+                      {item.date}
+                    </option>
                   ))}
-                </Menu.Content>
-              </Menu.Root>
+                </NativeSelect.Field>
+                <NativeSelect.Indicator />
+              </NativeSelect.Root>
             </Box>
 
             {/* Download Button */}

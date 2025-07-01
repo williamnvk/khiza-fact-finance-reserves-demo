@@ -17,14 +17,13 @@ import {
   Tag,
 } from '@chakra-ui/react';
 import { Link } from 'react-router';
-import { ArrowRight, Shield, CheckCircle, BarChart3, Database, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Shield, CheckCircle, CheckCircle2 } from 'lucide-react';
 import { formatLargeNumber } from '@/lib/utils';
 import { CTA } from './_components/cta';
 import { HomeHero } from './_components/home_hero';
 import { FAQSection } from './_components/faq-section';
 import AveniaLogo from '@/components/Icons/Avenia';
 
-// Define types for better TypeScript support
 interface HistoricalData {
   date: string;
   reserves: number;
@@ -171,8 +170,12 @@ const Home = () => {
                   <Card.Header>
                     <Flex justify="space-between" align="flex-start">
                       {client.logo === 'avenia' && <AveniaLogo width={100} height={80} />}
-                      {client.logo === 'tokeniza' && <Image src="/assets/logos/tbrl.png" alt="Scenium" maxH="80px" />}
-                      {client.logo === 'scenium' && <Image src="/assets/logos/scenium.png" alt="Scenium" />}
+                      {client.logo === 'tokeniza' && <Image src="/assets/logos/tbrl.png" alt="TBRL" h="80px" />}
+                      {client.logo === 'scenium' && (
+                        <Box h="80px">
+                          <Image src="/assets/logos/scenium.png" alt="Scenium" h="60px" />
+                        </Box>
+                      )}
 
                       <Tag.Root
                         bg="success.200"

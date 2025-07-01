@@ -44,7 +44,7 @@ export function TokenList({
   // const mostSupportedChains = tokens.reduce((max, token) => (token.chains.length > max ? token.chains.length : max), 0);
 
   return (
-    <Box mb={{ base: 16, md: 0}}>
+    <Box mb={{ base: 16, md: 0}} className="break-page">
       <VStack align="stretch" gap={8}>
         {/* Enhanced Header Section */}
         <VStack align="stretch" gap={4}>

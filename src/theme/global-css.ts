@@ -116,4 +116,14 @@ export const globalCss = defineGlobalStyles({
       transform: 'translateY(0px)',
     },
   },
+  '.omit-from-print': {
+    '@media print': {
+      display: 'none',
+    },
+  },
+  '.break-page': {
+    '@media print': {
+      pageBreakAfter: 'always',
+    },
+  },
 });

@@ -213,6 +213,7 @@ export const Reports = () => {
         position="absolute"
         top="0%"
         left="0%"
+        className="omit-from-print"
         transform="translate(-50%, -50%)"
         w="100vw"
         h="100vh"
@@ -295,6 +296,7 @@ export const Reports = () => {
               }}
               filter="blur(200px)"
               zIndex={-1}
+               className="omit-from-print"
             />
             <TokenChainBreakdown
               totalChains={3}

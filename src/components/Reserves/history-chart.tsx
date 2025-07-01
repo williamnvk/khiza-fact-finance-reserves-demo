@@ -52,7 +52,7 @@ export function HistoryChart({
     if (!active || !payload || !payload.length) return null;
 
     return (
-      <Card.Root borderWidth="1px" shadow="lg" p={4} maxW="320px" _dark={{ shadow: 'dark-lg' }}>
+      <Card.Root borderWidth="1px" shadow="lg" p={4} maxW="320px" _dark={{ shadow: 'dark-lg' }} className="omit-from-print">
         <Card.Body p={0}>
           <VStack align="start" gap={3}>
             <Text fontSize="sm" fontWeight="semibold" color="fg">
@@ -166,7 +166,7 @@ export function HistoryChart({
   };
 
   return (
-    <Box>
+    <Box className="break-page">
       <VStack align="stretch" gap={6}>
         <Flex justify="space-between" align="start" direction={{ base: 'column', md: 'row' }} gap={4}>
           <VStack align="start" gap={2} flex={1}>

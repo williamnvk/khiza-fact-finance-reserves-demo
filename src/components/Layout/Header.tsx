@@ -24,6 +24,7 @@ export const Header: FC<HeaderProps> = () => {
       <Box
         as="header"
         position="fixed"
+        className="omit-from-print"
         top={0}
         zIndex={100}
         w="100vw"

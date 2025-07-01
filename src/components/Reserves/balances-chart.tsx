@@ -103,7 +103,7 @@ export function BalancesChart({
     if (!active || !payload || !payload.length) return null;
 
     return (
-      <Card.Root borderWidth="1px" shadow="xl" p={4} maxW="360px">
+      <Card.Root borderWidth="1px" shadow="xl" p={4} maxW="360px" className="omit-from-print">
         <Card.Body p={0}>
           <VStack align="start" gap={3}>
             <Text fontSize="md" fontWeight="bold" color="fg">
@@ -214,7 +214,7 @@ export function BalancesChart({
   // };
 
   return (
-    <Box>
+    <Box  className="break-page">
       <VStack align="stretch" gap={6}>
         {/* Header Section */}
         <Flex

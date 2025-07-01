@@ -56,7 +56,7 @@ export function TokenChainBreakdown({
   }));
 
   return (
-    <Box mb={{ base: 16, md: 0 }}>
+    <Box mb={{ base: 16, md: 0 }} className="break-page">
       <VStack align="stretch" gap={4}>
         {/* Enhanced Header Section */}
         <VStack align="stretch" gap={4}>

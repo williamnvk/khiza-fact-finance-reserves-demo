@@ -67,7 +67,7 @@ export function ReportHeader({
       overflow="hidden"
     >
       <Box position="relative" p={{ base: 0, md: 6, lg: 8 }}>
-        <Box position="absolute" top={6} right={6}>
+        <Box position="absolute" top={6} right={6} className="omit-from-print">
           <ColorModeButton />
         </Box>
         <Flex
@@ -117,7 +117,7 @@ export function ReportHeader({
             </Text>
 
             {/* Action Buttons */}
-            <HStack gap={3} align="stretch" minW="200px">
+            <HStack gap={3} align="stretch" minW="200px" className="omit-from-print">
               {dappLink && (
                 <ChakraLink
                   href={dappLink}
@@ -125,6 +125,7 @@ export function ReportHeader({
                   rel="noopener noreferrer"
                   display="flex"
                   alignItems="center"
+                  className="omit-from-print"
                 >
                   <Text>Site</Text>
                   <Icon as={ArrowUpRightIcon} />
@@ -132,7 +133,7 @@ export function ReportHeader({
               )}
 
               {contract && (
-                <ChakraLink href={contractLink} target="_blank" rel="noopener noreferrer">
+                <ChakraLink href={contractLink} target="_blank" rel="noopener noreferrer" className="omit-from-print">
                   View Contract
                 </ChakraLink>
               )}

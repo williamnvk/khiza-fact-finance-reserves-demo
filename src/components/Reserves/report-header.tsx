@@ -108,7 +108,7 @@ export function ReportHeader({
                 fontSize="xs"
               >
                 <Box width={2} height={2} bg="white" rounded="full" animation="pulse 2s infinite" />
-                LIVE
+                VERIFIED
               </Badge>
             </HStack>
 

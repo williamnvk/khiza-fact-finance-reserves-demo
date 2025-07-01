@@ -105,6 +105,8 @@ export function BalancesChart({
     return (
       <Card.Root borderWidth="1px" shadow="xl" p={4} maxW="360px" className="omit-from-print">
         <Card.Body p={0}>
+
+
           <VStack align="start" gap={3}>
             <Text fontSize="md" fontWeight="bold" color="fg">
               Reserve Analysis
@@ -151,13 +153,17 @@ export function BalancesChart({
                         </VStack>
                       </HStack>
                       <Text fontSize="sm" fontWeight="bold" color={entry.color}>
-                        <FormatNumber value={value} style="currency" currency="USD" />
+                        {dataKey === 'Main Collateral' ? (
+                          <FormatNumber value={totalReserves} style="currency" currency="USD" />
+                        ) : (
+                          <FormatNumber value={value} style="currency" currency="USD" />
+                        )}
                       </Text>
                     </HStack>
                   );
                 })}
 
-                <HStack justify="space-between" w="full" borderTopWidth={1} mt={2} pt={4}>
+                {/* <HStack justify="space-between" w="full" borderTopWidth={1} mt={2} pt={4}>
                   <HStack gap={2}>
                     <Box w={3} h={3} rounded="full" /> <Icon as={Shield} />
                     <VStack align="start" gap={0}>
@@ -169,7 +175,7 @@ export function BalancesChart({
                   <Text fontSize="sm" fontWeight="bold" color="fg">
                     <FormatNumber value={totalReserves} style="currency" currency={currency} />
                   </Text>
-                </HStack>
+                </HStack> */}
               </VStack>
             )}
           </VStack>

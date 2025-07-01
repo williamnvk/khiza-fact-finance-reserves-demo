@@ -128,6 +128,11 @@ export function AuditReport({
             w="full"
             className="omit-from-print"
           >
+
+
+{JSON.stringify(reportsList)}
+
+
             {/* Date Selector */}
             <Box w={{ base: 'full', md: 'auto' }} className="omit-from-print">
               <Text fontSize="sm" fontWeight="medium" mb={2} color="fg.muted">
@@ -176,7 +181,9 @@ export function AuditReport({
                     <Menu.Item
                       key={item.date}
                       value={item.date}
-                      onClick={() => setSelectedDate(item.date)}
+                      onClick={() => {
+                        setSelectedDate(item.date);
+                      }}
                       _hover={{
                         bg: 'brand.50',
                         _dark: { bg: 'gray.600' },
@@ -217,6 +224,7 @@ export function AuditReport({
               loadingText="Downloading..."
               onClick={() => {
                 const selectedReport = reportsList.find((report) => report.date === selectedDate);
+                console.log(selectedReport);
                 if (selectedReport) {
                   handleDownload(selectedReport.file);
                 }

@@ -9,7 +9,6 @@ import {
   Grid,
   VStack,
   HStack,
-  Badge,
   Image,
   Spinner,
   Center,
@@ -18,7 +17,7 @@ import {
   Tag,
 } from '@chakra-ui/react';
 import { Link } from 'react-router';
-import { ArrowRight, Shield, CheckCircle, BarChart3, Database, Sparkles, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Shield, CheckCircle, BarChart3, Database, CheckCircle2 } from 'lucide-react';
 import { formatLargeNumber } from '@/lib/utils';
 import { CTA } from './_components/cta';
 import { HomeHero } from './_components/home_hero';
@@ -77,7 +76,7 @@ const Home = () => {
           </Box>
           <VStack gap={2}>
             <Text fontSize="lg" fontWeight="semibold" color="gray.700">
-              Loading Audit Data
+              Loading Data...
             </Text>
             <Text color="gray.500" fontSize="sm">
               Verifying proof of reserves...
@@ -107,37 +106,15 @@ const Home = () => {
         opacity={0.5}
         zIndex={-1}
       />
-      {/* Floating Elements */}
-      <Box position="absolute" top="20%" left="10%" opacity={0.1}>
-        <Shield size={60} />
-      </Box>
-      <Box position="absolute" top="60%" right="15%" opacity={0.1}>
-        <Database size={40} />
-      </Box>
-      <Box position="absolute" bottom="20%" left="20%" opacity={0.1}>
-        <BarChart3 size={50} />
-      </Box>
-
-      {/* Floating Elements */}
-      <Box position="absolute" top="5%" left="10%" opacity={0.1}>
-        <Shield size={60} />
-      </Box>
-      <Box position="absolute" top="10%" right="25%" opacity={0.1}>
-        <Database size={40} />
-      </Box>
-      <Box position="absolute" bottom="10%" left="30%" opacity={0.1}>
-        <BarChart3 size={50} />
-      </Box>
 
       <HomeHero totalReserves={totalReserves} clients={clients} />
 
       <Container maxW="7xl" pt={{ base: 4, md: 8 }} pb={{ base: 16, md: 32 }}>
         <VStack gap={{ base: 6, md: 12 }} w="full">
           <VStack gap={6} textAlign="center">
-            <Badge size="lg" colorPalette="brand" px={4} py={2} rounded="full">
-              <Sparkles size={16} style={{ marginRight: '8px' }} />
-              Our Clients: Real-Time Proof of Reserve
-            </Badge>
+            <Text color="brand.300" fontWeight="600" letterSpacing={2} textAlign={{ base: 'left', md: 'center' }}>
+              OUR CLIENTS
+            </Text>
             <Heading
               fontSize={{ base: '4xl', md: '5xl' }}
               textAlign="center"
@@ -145,19 +122,17 @@ const Home = () => {
               maxW="4xl"
               lineHeight="1.2"
             >
-              Continuous verification for{' '}
+              Independent and continuous verification for{` `}
               <Text
                 as="span"
                 fontWeight="bold"
                 bgImage="linear-gradient(35deg, {colors.brand.500}, {colors.brand.400})"
                 bgClip="text"
               >
-                leading tokenized assets
+                tokenization
               </Text>
+              {` `}platforms
             </Heading>
-            <Text fontSize={{ base: 'sm', md: 'lg' }} textAlign="center" maxW="2xl" color="fg.muted">
-              Independent and continuous verification of reserves for the biggest players in the tokenized asset market
-            </Text>
           </VStack>
 
           <Grid templateColumns={{ base: '1fr', lg: 'repeat(2, 1fr)' }} gap={4} w="full">
@@ -235,7 +210,7 @@ const Home = () => {
                         <Box>
                           <Stat.Root>
                             <Stat.Label color="fg.muted" fontSize="md">
-                              Circulation
+                              Token supply
                             </Stat.Label>
                             <Stat.ValueText fontSize="3xl" fontWeight="bold" color="blue.500">
                               ${formatLargeNumber(latestData.circulation)}
@@ -246,7 +221,7 @@ const Home = () => {
                         <Box>
                           <Stat.Root>
                             <Stat.Label color="fg.muted" fontSize="md">
-                              Reserve ratio
+                              Collateral ratio
                             </Stat.Label>
                             <Stat.ValueText
                               color={isOverCollateralized ? 'success.500' : 'warning.500'}

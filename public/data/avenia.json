@@ -8,8 +8,7 @@
   "contractLink": "https://polygonscan.com/address/0xe6a537a407488807f0bbeb0038b79004f19dddfb",
   "dapp": "https://avenia.io",
   "heartbeat": "1 month",
-  "threshold": "",
-
+  "threshold": "5%",
   "assetDistribution": [
     {
       "type": "cash",

@@ -26,7 +26,7 @@ interface ReportHeaderProps {
   dateAs: string;
   heartbeat?: string;
   dappLink: string;
-  threshold: string;
+  threshold?: string;
   circulation: string;
   reserves: string;
   ratio: string;
@@ -41,6 +41,7 @@ export function ReportHeader({
   companyName,
   dateAs,
   heartbeat,
+  threshold,
   dappLink,
   circulation,
   reserves,
@@ -57,12 +58,12 @@ export function ReportHeader({
   return (
     <Box
       position="relative"
-      bg={{ base: "none", md: client === 'scenium' ? 'whiteAlpha.600' : 'whiteAlpha.50'}}
-      _dark={{ bg: { base: "none", md: 'whiteAlpha.50' } }}
-      borderRadius={{ base: "none", md: "3xl" }}
-      shadow={{ base: "none", md: "2xl" }}
-      borderWidth={{ base: "none", md: "1px" }}
-      borderColor={{ base: "none", md: "whiteAlpha.200" }}
+      bg={{ base: 'none', md: client === 'scenium' ? 'whiteAlpha.600' : 'whiteAlpha.50' }}
+      _dark={{ bg: { base: 'none', md: 'whiteAlpha.50' } }}
+      borderRadius={{ base: 'none', md: '3xl' }}
+      shadow={{ base: 'none', md: '2xl' }}
+      borderWidth={{ base: 'none', md: '1px' }}
+      borderColor={{ base: 'none', md: 'whiteAlpha.200' }}
       overflow="hidden"
     >
       <Box position="relative" p={{ base: 0, md: 6, lg: 8 }}>
@@ -85,7 +86,7 @@ export function ReportHeader({
           </Box>
 
           <VStack align="start" gap={4} flex={1}>
-            <HStack gap={{ base: 2, md: 3}} align="center" flexWrap="wrap">
+            <HStack gap={{ base: 2, md: 3 }} align="center" flexWrap="wrap">
               <Heading
                 fontSize="3xl"
                 color="gray.900"
@@ -111,7 +112,9 @@ export function ReportHeader({
               </Badge>
             </HStack>
 
-            <Text fontSize="lg" lineHeight="tall">{description}</Text>
+            <Text fontSize="lg" lineHeight="tall">
+              {description}
+            </Text>
 
             {/* Action Buttons */}
             <HStack gap={3} align="stretch" minW="200px">
@@ -144,7 +147,7 @@ export function ReportHeader({
             md: 'repeat(2, 1fr)',
             lg: 'repeat(4, 1fr)',
           }}
-          gap={{ base: 2, md: 6}}
+          gap={{ base: 2, md: 6 }}
         >
           {/* Issued Tokens Card */}
           <GridItem>
@@ -164,12 +167,7 @@ export function ReportHeader({
                   <Icon as={CoinsIcon} boxSize={6} color="white" />
                 </Box>
                 <VStack align="start" gap={2} flex={1}>
-                  <Text
-                    fontSize="xs"
-                    fontWeight="bold"
-                    textTransform="uppercase"
-                    letterSpacing="wider"
-                  >
+                  <Text fontSize="xs" fontWeight="bold" textTransform="uppercase" letterSpacing="wider">
                     Circulating Token Supply
                   </Text>
                   <Flex align="center" gap={2}>
@@ -202,12 +200,7 @@ export function ReportHeader({
                   <DatabaseBackupIcon color="white" size={24} />
                 </Box>
                 <VStack align="start" gap={2} flex={1}>
-                  <Text
-                    fontSize="xs"
-                    fontWeight="bold"
-                    textTransform="uppercase"
-                    letterSpacing="wider"
-                  >
+                  <Text fontSize="xs" fontWeight="bold" textTransform="uppercase" letterSpacing="wider">
                     Total Reserves
                   </Text>
                   <Flex align="center" gap={2}>
@@ -242,12 +235,7 @@ export function ReportHeader({
                 </Box>
 
                 <VStack align="start" gap={2} flex={1}>
-                  <Text
-                    fontSize="xs"
-                    fontWeight="bold"
-                    textTransform="uppercase"
-                    letterSpacing="wider"
-                  >
+                  <Text fontSize="xs" fontWeight="bold" textTransform="uppercase" letterSpacing="wider">
                     Collateral Ratio
                   </Text>
                   <Heading
@@ -282,12 +270,7 @@ export function ReportHeader({
                 </Box>
 
                 <VStack align="start" gap={0} flex={1}>
-                  <Text
-                    fontSize="xs"
-                    fontWeight="bold"
-                    textTransform="uppercase"
-                    letterSpacing="wider"
-                   >
+                  <Text fontSize="xs" fontWeight="bold" textTransform="uppercase" letterSpacing="wider">
                     Last Update
                   </Text>
                   <Text fontSize="lg" fontWeight="bold">
@@ -295,11 +278,19 @@ export function ReportHeader({
                   </Text>
 
                   {heartbeat && (
-                      <VStack align="start" gap={1}>
-                        <Text fontSize="xs" fontWeight="medium">
-                          Heartbeat<sup>1</sup>: {heartbeat}
-                        </Text>
-                      </VStack>
+                    <VStack align="start" gap={1}>
+                      <Text fontSize="xs" fontWeight="medium">
+                        Heartbeat<sup>1</sup>: {heartbeat}
+                      </Text>
+                    </VStack>
+                  )}
+
+                  {threshold && (
+                    <VStack align="start" gap={1}>
+                      <Text fontSize="xs" fontWeight="medium">
+                        Deviation Threshold<sup>2</sup>: {threshold}
+                      </Text>
+                    </VStack>
                   )}
                 </VStack>
               </HStack>

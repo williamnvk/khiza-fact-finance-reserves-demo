@@ -36,25 +36,26 @@ export const HomeHero = ({ totalReserves, clients }: { totalReserves: number; cl
             textAlign="center"
             maxW="6xl"
           >
-            Onchain proof of reserves for the{' '}
+            Proof of Reserves for
+            <br />
             <Text
               as="span"
               bgImage="linear-gradient(35deg, white, {colors.brand.500}, {colors.brand.200})"
               bgClip="text"
               fontWeight="semibold"
             >
-              Real-World Assets
+              Tokenized Assets
             </Text>
           </Heading>
 
           <Text fontSize={{ base: 'md', md: 'xl' }} textAlign="center" color="whiteAlpha.800" maxW="3xl">
-            We connect tokenized assets to their off-chain reserves, delivering real-time onchain collateral
-            verification through public dashboards for transparency and tracking.
+            We connect offchain collateral and track onchain token supply, bringing both into a dynamic dashboard that
+            enables transparency and trust for tokenized assets.
           </Text>
         </VStack>
 
         {/* Key Stats */}
-        <Grid
+        {/* <Grid
           templateColumns={{ base: 'repeat(3, 1fr)', md: 'repeat(3, 1fr)' }}
           gap={{ base: 2, md: 6 }}
           maxW={{ base: 'full', md: '2xl' }}
@@ -78,15 +79,7 @@ export const HomeHero = ({ totalReserves, clients }: { totalReserves: number; cl
               Active Integrations
             </Text>
           </VStack>
-          {/* 
-          <VStack gap={0}>
-            <Heading fontSize="4xl" fontWeight="light" color="success.300" textAlign="center">
-              {totalAudits}
-            </Heading>
-            <Text color="whiteAlpha.800" fontSize="sm" fontWeight="light">
-              Total audits
-            </Text>
-          </VStack> */}
+      
 
           <VStack gap={0}>
             <Heading fontSize={{ base: '2xl', md: '4xl' }} fontWeight="light" color="success.300" textAlign="center">
@@ -96,7 +89,7 @@ export const HomeHero = ({ totalReserves, clients }: { totalReserves: number; cl
               Uptime
             </Text>
           </VStack>
-        </Grid>
+        </Grid> */}
 
         {/* Enhanced Feature Cards */}
         <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} gap={4} w="full" maxW="6xl" mt={8}>

@@ -5,7 +5,7 @@ import { Users } from 'lucide-react';
 
 export const CTA = () => {
   return (
-    <Container maxW="5xl" position="relative" zIndex={1}>
+    <Container maxW="5xl" position="relative" zIndex={1} py={{ base: 16, md: 32 }}>
       <VStack gap={10} textAlign="center">
         <Box p={4} bg="whiteAlpha.200" rounded="full">
           <Shield size={48} />

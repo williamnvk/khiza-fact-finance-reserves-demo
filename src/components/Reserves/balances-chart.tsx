@@ -225,7 +225,7 @@ export function BalancesChart({
         >
           <VStack align="start" gap={2} flex={1}>
             <Flex w="full" justify="space-between" align="center">
-              <Heading fontSize={{ base: "3xl", md: "4xl" }} fontWeight="bold" color="fg">
+              <Heading fontSize={{ base: '3xl', md: '4xl' }} fontWeight="bold" color="fg">
                 Reserves Coverage Status
               </Heading>
 
@@ -255,15 +255,20 @@ export function BalancesChart({
               </ButtonGroup> */}
             </Flex>
 
-            <Text fontSize={{ base: "md", md: "xl" }} color="fg.muted" lineHeight="tall" h={{ base: "auto", md: "66px"}}>
-              Latest verified token supply and corresponding collateral reserves<sup>4</sup>, including overcollateralization and
-              utilization ratio.
+            <Text
+              fontSize={{ base: 'md', md: 'xl' }}
+              color="fg.muted"
+              lineHeight="tall"
+              h={{ base: 'auto', md: '66px' }}
+            >
+              Latest verified token supply<sup>3</sup> and corresponding collateral reserves<sup>4</sup>, including the
+              status of over or under collateralization.
             </Text>
           </VStack>
         </Flex>
 
         {/* Key Metrics Grid */}
-        <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)', lg: 'repeat(3, 1fr)' }} gap={{ base: 2, md: 4}}>
+        <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)', lg: 'repeat(3, 1fr)' }} gap={{ base: 2, md: 4 }}>
           <Card.Root size="sm" bg="whiteAlpha.500" _dark={{ bg: 'blackAlpha.50' }} borderWidth="1px">
             <Card.Body>
               <Stat.Root size="sm">

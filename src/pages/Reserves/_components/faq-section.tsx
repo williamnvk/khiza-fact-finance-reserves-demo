@@ -1,43 +1,31 @@
-import { Container, VStack, Heading, Text, Badge, Box } from '@chakra-ui/react';
-import { HelpCircle } from 'lucide-react';
+import { Container, VStack, Heading, Text, Box } from '@chakra-ui/react';
 import { AccordionRoot, AccordionItem, AccordionItemTrigger, AccordionItemContent } from '@/components/ui/accordion';
 
 const faqs = [
   {
     question: 'What is Proof of Reserves (PoR)?',
     answer:
-      'Proof of Reserves is a cryptographic verification method that demonstrates an exchange or financial institution holds sufficient assets to cover all customer deposits. Unlike traditional audits, our PoR system provides real-time, continuous verification of reserves.',
+      'Proof of Reserves is a method to publicly demonstrate that tokenized assets are backed by real-world collateral. Fact Finance automates this process by connecting to custodians and publishing verified reserve data onchain.',
   },
   {
-    question: 'How often are reserves verified?',
+    question: 'How often is the reserve data updated?',
     answer:
-      'Our system performs continuous verification 24/7, updating every few minutes. This is significantly more frequent than traditional quarterly audits, ensuring your reserves are always properly backed and monitored.',
+      'Updates follow two rules: a heartbeat frequency (e.g., every 10 minutes) that ensures regular updates, and a deviation threshold that triggers a new update only when the reserve balance changes beyond a defined percentage (e.g., ±2%).',
   },
   {
-    question: 'What happens if discrepancies are detected?',
+    question: 'What does the collateralization status mean?',
     answer:
-      'Our automated system immediately triggers alerts and can pause token issuance if configured. Notifications are sent to all stakeholders, and detailed reports are generated to help identify and resolve issues quickly.',
+      'If the status is over-collateralized, it means the verified reserves exceed the circulating token supply — indicating a safety buffer and room for new issuance. If it’s under-collateralized, it means the reserves are not sufficient to fully back the issued tokens — signaling a potential risk and the need for corrective action.',
   },
   {
-    question: 'How does this differ from traditional audits?',
+    question: 'How does Fact Finance track token issuance?',
     answer:
-      'Traditional audits provide quarterly snapshots based on manual reporting. Our system offers real-time monitoring through direct API connections with custodians, providing continuous transparency and immediate discrepancy detection.',
-  },
-
-  {
-    question: 'Can clients customize their audit parameters?',
-    answer:
-      'Yes, clients can configure monitoring frequency, alert thresholds, compliance requirements, and dashboard visualizations to meet their specific needs and regulatory requirements.',
+      'We monitor the onchain token supply by tracking the smart contract of the token. This data is compared to the verified reserves to ensure ongoing collateral coverage, and the result is displayed in a public dashboard.',
   },
   {
-    question: 'Is the audit data publicly accessible?',
+    question: 'How is this different from a traditional audit?',
     answer:
-      'Yes, we provide public dashboards that display real-time reserve data while maintaining client confidentiality. This transparency builds trust with users and regulatory bodies.',
-  },
-  {
-    question: 'What types of assets can be audited?',
-    answer:
-      'We support all major cryptocurrencies, stablecoins, tokenized assets, and traditional financial instruments. Our system can adapt to new asset types as the market evolves.',
+      'Fact Finance is not an audit firm and does not issue an opinion about the collateral. Instead, we provide a real-time transparency layer by connecting directly to custodians and publishing verified reserve data onchain.',
   },
 ];
 
@@ -47,19 +35,12 @@ export const FAQSection = () => {
       <Container maxW="4xl">
         <VStack gap={12}>
           <VStack gap={6} textAlign="center">
-            <Badge size="lg" colorPalette="brand" px={4} py={2} rounded="full">
-              <HelpCircle size={16} style={{ marginRight: '8px' }} />
-              Frequently asked questions
-            </Badge>
             <Heading fontSize={{ base: '2xl', md: '4xl' }} maxW="2xl" lineHeight="1.2">
               Everything you need to know about{' '}
               <Text as="span" bgImage="linear-gradient(35deg, {colors.brand.500}, {colors.brand.400})" bgClip="text">
                 Proof of reserves
               </Text>
             </Heading>
-            <Text fontSize={{ base: 'sm', md: 'lg' }} maxW="1xl" color="fg.muted">
-              Get answers to the most common questions about our real-time audit platform
-            </Text>
           </VStack>
 
           <AccordionRoot

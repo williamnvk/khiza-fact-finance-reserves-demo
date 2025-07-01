@@ -15,23 +15,27 @@ import { ColorModeProvider } from '@/components/ui/color-mode';
 const FOOTNOTES = [
   {
     id: '1',
-    text: 'The heartbeat is a timing rule that ensures updates happen at regular intervals. For example, with a 5-minute heartbeat, the system will attempt an update at least every 5 minutes—even without major changes. This prevents data staleness and detects delays or outages quickly.',
+    text: 'The heartbeat is a timing rule that ensures updates happen at regular intervals. For example, with a 1-hour heartbeat, the system will attempt an update at least every 1 hour, even without major changes. This prevents data staleness and detects delays or outages quickly.',
+  },
+  {
+    id: '2',
+    text: 'The deviation threshold defines how much the reserve balance must change before a new onchain update is triggered. For instance, with a 5% threshold, the system only publishes a new value if the balance moves by 5% or more since the last update. This avoids unnecessary updates due to minor fluctuations.',
   },
   {
     id: '3',
-    text: 'The deviation threshold defines how much the reserve balance must change before a new on-chain update is triggered. For instance, with a 2% threshold, the system only publishes a new value if the balance moves by 2% or more since the last update. This avoids unnecessary updates due to minor fluctuations.',
+    text: 'Tokens Supply is the total amount of tokens currently in circulation, issued by the tokenization platform. Each unit should be backed by a verified reserve, ensuring a transparent 1:1 or over-collateralized ratio.',
   },
   {
     id: '4',
-    text: 'Collateral Reserves are real-world assets—such as cash or public securities—held in reserve to back issued tokens. Fact Finance verifies the existence and value of these reserves through connected data sources.',
+    text: 'Collateral reserves are real-world assets, such as cash or public securities, held to back issued tokens. Fact Finance verifies their existence and value through direct connections with the custodian.',
   },
   {
     id: '5',
-    text: 'Tokens Issued is the total amount of tokens currently in circulation, issued by the tokenization platform. Each unit should be backed by a verified reserve, ensuring a transparent 1:1 or over-collateralized ratio.',
+    text: 'Tokens Supply is the total amount of tokens currently in circulation, issued by the tokenization platform. Each unit should be backed by a verified reserve, ensuring a transparent 1:1 or over-collateralized ratio.',
   },
   {
     id: '6',
-    text: 'Excess Collateral is the portion of reserves that exceeds the circulating supply of tokens. It acts as a safety buffer and may allow additional token issuance while maintaining full backing.',
+    text: 'Over or under collateralization refers to the difference between the verified reserves and the circulating token supply. A positive gap indicates excess collateral (a safety buffer), while a negative gap signals insufficient reserves and potential undercollateralization risk.',
   },
 ];
 
@@ -112,6 +116,7 @@ export const Reports = () => {
     companyName: '',
     logo: '',
     dapp: '',
+    threshold: '',
     chart_history_change: 0,
     chart_history_new_reserves: 0,
     chart_history_new_tokens_issued: 0,
@@ -152,7 +157,6 @@ export const Reports = () => {
     assetDistribution: [],
     chainDistribution: [],
     footnotes: [],
-    threshold: '',
     heartbeat: '',
     description: '',
   });
@@ -181,6 +185,7 @@ export const Reports = () => {
     data.historicalData1 = historicalData1;
     data.total = dataChart.total;
     data.total1 = total1;
+    data.threshold = data.threshold === '' ? undefined : data.threshold;
     data.average = dataChart.average;
     data.average1 = average1;
     data.last = data.historicalData[data.historicalData.length - 1];
@@ -234,11 +239,15 @@ export const Reports = () => {
               ratio={((data.last.reserves / data.last.circulation) * 100).toFixed(1) + '%'}
               dateAs={data.historicalData?.[data.historicalData.length - 1]?.date || ''}
               heartbeat={data.heartbeat}
-              threshold={data.threshold}
+              threshold={data.threshold === '' ? undefined : data.threshold}
               dappLink={data.dapp}
             />
-            <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={{ base: 16, md: 6}} mb={{ base: 16, md: 0}}>
-              <BalancesChart 
+            <Grid
+              templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }}
+              gap={{ base: 16, md: 6 }}
+              mb={{ base: 16, md: 0 }}
+            >
+              <BalancesChart
                 circulation={data.last.circulation}
                 reserves={data.last.reserves}
                 currency={data.currency}

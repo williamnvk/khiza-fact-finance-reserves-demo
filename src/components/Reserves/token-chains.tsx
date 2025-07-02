@@ -1,4 +1,18 @@
-import { Box, VStack, Text, HStack, Flex, Card, Stat, FormatNumber, SimpleGrid, Stack } from '@chakra-ui/react';
+import {
+  Box,
+  VStack,
+  Text,
+  HStack,
+  Flex,
+  Card,
+  Stat,
+  FormatNumber,
+  SimpleGrid,
+  Grid,
+  ColorSwatch,
+  Tag,
+} from '@chakra-ui/react';
+import { Tooltip } from '@/components/ui/tooltip';
 import { useColorModeValue } from '../ui/color-mode';
 
 export function TokenChainBreakdown({
@@ -146,59 +160,44 @@ export function TokenChainBreakdown({
           </SimpleGrid>
         </VStack>
 
-        {/* Enhanced Visual Distribution */}
-        <VStack
-          align="stretch"
-          gap={{ base: 2, md: 6 }}
-          bg="whiteAlpha.50"
-          rounded="lg"
-          p={{ base: 4, md: 6 }}
-          borderWidth="1px"
-          _dark={{ bg: 'blackAlpha.50' }}
-        >
-          <Stack justify="space-between" direction={{ base: 'column', md: 'row' }} gap={2}>
-            <Text fontSize={{ base: 'md', md: 'xl' }} fontWeight="semibold" color="fg">
+        {/* Network Distribution */}
+        <Card.Root size="sm" variant="outline" bg="transparent">
+          <Card.Header>
+            <Card.Title fontSize="lg" fontWeight="semibold">
               Network Distribution
-            </Text>
-            <VStack align={{ base: 'start', md: 'end' }} gap={0} w="full">
-              <Text fontSize="sm" fontWeight="medium" color="fg.muted">
-                Dominant Chain: {dominantChain.name}
-              </Text>
-              <Text fontSize="xs" color="brand.500">
-                {formatPercent(dominantChain.value)} allocation
-              </Text>
+            </Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <VStack align="stretch" gap={4}>
+              <HStack width="100%" height="1rem" gap={0} borderRadius="full" overflow="hidden" shadow="sm">
+                {enhancedChainData.map((chain) => (
+                  <Tooltip key={chain.name} content={`${chain.name}: ${formatPercent(chain.value)}`}>
+                    <Box height="100%" width={`${chain.value}%`} bg={chain.color} transition="all 0.2s ease-in-out" />
+                  </Tooltip>
+                ))}
+              </HStack>
+
+              {/* Legend */}
+              <Grid templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }} gap={4} pt={4}>
+                {enhancedChainData.map((chain) => (
+                  <HStack key={chain.name} gap={3}>
+                    <ColorSwatch boxSize="4" value={chain.color} borderRadius="sm" />
+                    <HStack gap={4} align="center">
+                      <Text fontSize="sm" fontWeight="medium" color="fg">
+                        {chain.name.charAt(0).toUpperCase() + chain.name.slice(1)}
+                      </Text>
+                      <Tag.Root colorPalette="brand" size="sm" variant="subtle">
+                        <Tag.Label fontSize="xs" fontWeight="semibold">
+                          {formatPercent(chain.value)}
+                        </Tag.Label>
+                      </Tag.Root>
+                    </HStack>
+                  </HStack>
+                ))}
+              </Grid>
             </VStack>
-          </Stack>
-
-          {/* Enhanced Distribution Bar */}
-          <Box>
-            <HStack h={4} w="full" rounded="full" overflow="hidden" mb={4} shadow="inner">
-              {enhancedChainData.map((chain) => (
-                <Box
-                  key={chain.name}
-                  h="full"
-                  bg={chain.color}
-                  width={`${Number(chain.value)}%`}
-                  _hover={{
-                    transform: 'scaleY(1.2)',
-                    zIndex: 1,
-                  }}
-                  transition="all 0.2s"
-                  cursor="pointer"
-                />
-              ))}
-            </HStack>
-
-            {/* Progress indicator */}
-            <HStack justify="space-between" fontSize="xs" color="fg.muted" mb={6}>
-              <Text>0%</Text>
-              {/* <Text fontWeight="medium" color="fg">
-                Distribution Across {chainDistribution.length} Networks
-              </Text> */}
-              <Text>100%</Text>
-            </HStack>
-          </Box>
-        </VStack>
+          </Card.Body>
+        </Card.Root>
       </VStack>
     </Box>
   );

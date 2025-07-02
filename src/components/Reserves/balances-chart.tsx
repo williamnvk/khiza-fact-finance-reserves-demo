@@ -105,8 +105,6 @@ export function BalancesChart({
     return (
       <Card.Root borderWidth="1px" shadow="xl" p={4} maxW="360px" className="omit-from-print">
         <Card.Body p={0}>
-
-
           <VStack align="start" gap={3}>
             <Text fontSize="md" fontWeight="bold" color="fg">
               Reserve Analysis
@@ -379,7 +377,7 @@ export function BalancesChart({
                     tickLine={false}
                     width={80}
                   />
-                  <Tooltip content={<CustomTooltip />} />
+                  <Tooltip cursor={false} content={<CustomTooltip />} />
 
                   <Bar
                     dataKey="Circulation"

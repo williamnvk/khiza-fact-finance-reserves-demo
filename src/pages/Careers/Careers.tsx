@@ -22,7 +22,6 @@ import {
   RocketIcon,
   BarChart2Icon,
 } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
 import { useState } from 'react';
 import {
   DrawerBackdrop,
@@ -157,13 +156,11 @@ export default function Careers() {
 
   return (
     <Box>
-      <Helmet>
-        <title>Careers at Fact Finance | Join Our Team</title>
-        <meta
-          name="description"
-          content="Join Fact Finance in building the future of decentralized finance. View our open positions and learn about our company culture."
-        />
-      </Helmet>
+      <title>Careers at Fact Finance | Join Our Team</title>
+      <meta
+        name="description"
+        content="Join Fact Finance in building the future of decentralized finance. View our open positions and learn about our company culture."
+      />
 
       <Container maxW="5xl" py={{ base: 8, md: 16 }}>
         <VStack gap={12} align="stretch">

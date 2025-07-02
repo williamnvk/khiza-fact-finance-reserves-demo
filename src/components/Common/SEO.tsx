@@ -1,5 +1,3 @@
-import { Helmet } from 'react-helmet-async';
-
 interface SEOProps {
   title?: string;
   description?: string;
@@ -39,7 +37,7 @@ export const SEO = ({
   const baseUrl = 'https://fact.finance/';
 
   return (
-    <Helmet>
+    <>
       <title>{title}</title>
       <meta name="description" content={description} />
 
@@ -61,6 +59,6 @@ export const SEO = ({
       <link rel="canonical" href={canonical} />
 
       <script type="application/ld+json">{JSON.stringify(rawStructuredData)}</script>
-    </Helmet>
+    </>
   );
 };

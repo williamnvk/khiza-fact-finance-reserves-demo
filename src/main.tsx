@@ -5,7 +5,6 @@ import React from 'react';
 import { Home } from './pages/Home/Home.tsx';
 import { Provider as ChakraProvider } from '@/components/ui/provider';
 import { BaseLayout } from './components/Layout/Layout.tsx';
-import { HelmetProvider } from 'react-helmet-async';
 import '@fontsource/lato/index.css';
 import Careers from './pages/Careers/Careers.tsx';
 import Features from './pages/Features/Features.tsx';
@@ -26,7 +25,6 @@ ReactGA.initialize(TRACKING_ID);
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ChakraProvider>
-      <HelmetProvider>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<BaseLayout />}>
@@ -45,7 +43,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             </Route>
           </Routes>
         </BrowserRouter>
-      </HelmetProvider>
     </ChakraProvider>
   </React.StrictMode>,
 );

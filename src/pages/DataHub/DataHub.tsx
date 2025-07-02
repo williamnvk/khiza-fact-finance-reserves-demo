@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { DataHub } from '../../data/data-hub';
 import {
   VStack,
@@ -10,12 +10,12 @@ import {
   Container,
   HStack,
   IconButton,
-  useDisclosure,
   useBreakpointValue,
   Button,
+  Dialog,
+  Portal,
+  Drawer,
 } from '@chakra-ui/react';
-import { DrawerRoot, DrawerContent, DrawerHeader, DrawerBody, DrawerCloseTrigger } from '@/components/ui/drawer';
-import { DialogRoot, DialogContent, DialogBody } from '@/components/ui/dialog';
 import { BotIcon, CheckIcon, FilterIcon, RocketIcon, SearchCodeIcon, SearchIcon, XIcon } from 'lucide-react';
 import { create } from 'zustand';
 import { DataCard } from './DataCard';
@@ -61,8 +61,8 @@ const useDataHubStore = create<DataHubStore>((set) => ({
               ? state.filters[key].filter((v) => v !== value)
               : [...state.filters[key], value]
             : value === state.filters[key]
-            ? ''
-            : value,
+              ? ''
+              : value,
       },
     })),
   resetFilters: () => set({ filters: initialFilters }),
@@ -77,7 +77,7 @@ interface Props {
 export default function DataHubComponent({ data }: Props) {
   const { searchQuery, filters, detailItem, setSearchQuery, setFilter, setDetailItem, resetFilters } =
     useDataHubStore();
-  const { open, onOpen, onToggle } = useDisclosure();
+  const [open, setOpen] = useState(false);
   const isMobile = useBreakpointValue({ base: true, md: false });
 
   const filteredData = useMemo(() => {
@@ -97,7 +97,7 @@ export default function DataHubComponent({ data }: Props) {
           if (key === 'interfaces') {
             return (value as string[]).every((v) => item.Interfaces.includes(v));
           }
-          return (value as string[]).includes(item[key as keyof DataHub]);
+          return (value as string[]).includes(String(item[key as keyof DataHub]));
         }
 
         const itemValue = String(item[key as keyof DataHub]).toLowerCase();
@@ -118,7 +118,7 @@ export default function DataHubComponent({ data }: Props) {
             if (key === 'interfaces') {
               return (value as string[]).every((v) => item.Interfaces.includes(v));
             }
-            return (value as string[]).includes(item[key as keyof DataHub]);
+            return (value as string[]).includes(String(item[key as keyof DataHub]));
           }
 
           return String(item[key as keyof DataHub]).toLowerCase() === (value as string).toLowerCase();
@@ -295,12 +295,12 @@ export default function DataHubComponent({ data }: Props) {
 
           {isMobile && (
             <Button
-              leftIcon={<FilterIcon aria-hidden="true" />}
-              onClick={onOpen}
+              onClick={() => setOpen(true)}
               colorScheme={hasActiveFilters ? 'blue' : 'gray'}
               variant={hasActiveFilters ? 'solid' : 'outline'}
               aria-expanded={open}
             >
+              <FilterIcon aria-hidden="true" />
               Filters
             </Button>
           )}
@@ -341,12 +341,7 @@ export default function DataHubComponent({ data }: Props) {
                 aria-label="Data indicators"
               >
                 {filteredData.map((item) => (
-                  <DataCard
-                    key={`${item.Country}-${item.Name}`}
-                    item={item}
-                    onClick={() => setDetailItem(item)}
-                    role="listitem"
-                  />
+                  <DataCard key={`${item.Country}-${item.Name}`} item={item} onClick={() => setDetailItem(item)} />
                 ))}
               </Grid>
             )}
@@ -355,38 +350,45 @@ export default function DataHubComponent({ data }: Props) {
       </VStack>
 
       {isMobile && (
-        <DrawerRoot open={open} onOpenChange={onToggle} size="full">
-          <DrawerContent>
-            <DrawerCloseTrigger />
-            <DrawerHeader>Filters</DrawerHeader>
-            <DrawerBody>
-              <VStack gap={2} w="full">
-                <FiltersContent />
-                {hasActiveFilters && (
-                  <Button colorScheme="blue" variant="ghost" onClick={resetFilters} w="full">
-                    Clear all filters
-                  </Button>
-                )}
-              </VStack>
-            </DrawerBody>
-          </DrawerContent>
-        </DrawerRoot>
+        <Drawer.Root open={open} onOpenChange={() => setOpen(!open)} size="full">
+          <Portal>
+            <Drawer.Backdrop />
+            <Drawer.Positioner>
+              <Drawer.Content>
+                <Drawer.Header>
+                  <Drawer.Title>Filters</Drawer.Title>
+                </Drawer.Header>
+                <Drawer.Body>
+                  <VStack gap={2} w="full">
+                    <FiltersContent />
+                    {hasActiveFilters && (
+                      <Button colorScheme="blue" variant="ghost" onClick={resetFilters} w="full">
+                        Clear all filters
+                      </Button>
+                    )}
+                  </VStack>
+                </Drawer.Body>
+                <Drawer.CloseTrigger />
+              </Drawer.Content>
+            </Drawer.Positioner>
+          </Portal>
+        </Drawer.Root>
       )}
 
-      <DialogRoot
-        placement="center"
-        size="sm"
-        open={!!detailItem}
-        onOpenChange={() => setDetailItem(null)}
-        aria-label="Indicator Details"
-        lazyMount
-      >
-        <DialogContent>
-          <DialogBody>
-            <DetailItem detailItem={detailItem as unknown as DataHub} onClose={() => setDetailItem(null)} />
-          </DialogBody>
-        </DialogContent>
-      </DialogRoot>
+      {detailItem !== null && (
+        <Portal>
+          <Dialog.Root placement="center" size="sm" open={!!detailItem} onOpenChange={() => setDetailItem(null)}>
+            <Dialog.Backdrop />
+            <Dialog.Positioner>
+              <Dialog.Content>
+                <Dialog.Body>
+                  <DetailItem detailItem={detailItem as unknown as DataHub} onClose={() => setDetailItem(null)} />
+                </Dialog.Body>
+              </Dialog.Content>
+            </Dialog.Positioner>
+          </Dialog.Root>
+        </Portal>
+      )}
     </Container>
   );
 }

@@ -73,7 +73,7 @@ export const Home = () => {
           gap={{ base: 8, lg: 16 }}
           flexDirection={{ base: 'column', xl: 'row' }}
         >
-          <VStack gap={6} align={{ base: 'center', md: 'flex-start' }} flex={1}>
+          <VStack gap={6} align={{ base: 'center', md: 'flex-start' }} w={{base: "full", md: "440px" }}>
             <TitleSection align={{ base: 'center', md: 'flex-start' }}>
               <Text fontSize="sm" color="brand.300" w="full" textAlign={{ base: 'left', md: 'center', xl: 'left' }}>
                 CALLING THE DEVS

@@ -231,7 +231,7 @@ export function BalancesChart({
         >
           <VStack align="start" gap={2} flex={1}>
             <Flex w="full" justify="space-between" align="center">
-              <Heading fontSize={{ base: '3xl', md: '4xl' }} fontWeight="bold" color="fg">
+              <Heading fontSize={{ base: '2xl', md: '3xl' }} fontWeight="bold" color="fg">
                 Reserves Coverage Status
               </Heading>
 
@@ -262,7 +262,7 @@ export function BalancesChart({
             </Flex>
 
             <Text
-              fontSize={{ base: 'md', md: 'xl' }}
+              fontSize={{ base: 'sm', md: 'md' }}
               color="fg.muted"
               lineHeight="tall"
               h={{ base: 'auto', md: '66px' }}

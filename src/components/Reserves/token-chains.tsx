@@ -63,11 +63,11 @@ export function TokenChainBreakdown({
           <Flex justify="space-between" align="start" direction={{ base: 'column', md: 'row' }} gap={4}>
             <VStack align="start" gap={2} flex={1}>
               <HStack gap={3}>
-                <Text fontSize={{ base: '3xl', md: '4xl' }} fontWeight="bold" color="fg">
+                <Text fontSize={{ base: '2xl', md: '3xl' }} fontWeight="bold" color="fg">
                   Blockchain Distribution
                 </Text>
               </HStack>
-              <Text fontSize={{ base: 'md', md: 'xl' }} color="fg.muted" lineHeight="tall">
+              <Text fontSize={{ base: 'sm', md: 'md' }} color="fg.muted" lineHeight="tall">
                 This section shows how the token supply is distributed across different blockchains
               </Text>
             </VStack>

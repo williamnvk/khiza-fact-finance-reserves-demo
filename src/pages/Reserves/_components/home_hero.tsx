@@ -28,7 +28,7 @@ export const HomeHero = ({ totalReserves, clients }: { totalReserves: number; cl
           </Badge> */}
 
           <Heading
-            fontSize={{ base: '4xl', md: '7xl' }}
+            fontSize={{ base: '4xl', md: '6xl' }}
             lineHeight="1.1"
             bgImage="linear-gradient(35deg, white, {colors.brand.200}, {colors.brand.200})"
             bgClip="text"

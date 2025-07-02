@@ -77,7 +77,7 @@ export function AuditReport({
         {/* Content Section */}
         <VStack align="start" gap={6} flex="1" className="omit-from-print">
           <Heading
-            fontSize={{ base: '3xl', md: '4xl' }}
+            fontSize={{ base: '2xl', md: '3xl' }}
             fontWeight="bold"
             color="gray.900"
             _dark={{ color: 'white' }}

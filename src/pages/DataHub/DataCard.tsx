@@ -1,7 +1,7 @@
 import React from 'react';
 import { DataHub } from '../../data/data-hub';
-import { VStack, Text, Heading, Flex, HStack } from '@chakra-ui/react';
-import { BotIcon, ClockIcon, Code2Icon, DatabaseIcon, RocketIcon, SearchCodeIcon } from 'lucide-react';
+import { VStack, Text, Heading, Flex, HStack, Icon } from '@chakra-ui/react';
+import { BotIcon, ClockIcon, DatabaseIcon, RocketIcon, SearchCodeIcon } from 'lucide-react';
 import { CircleFlag } from 'react-circle-flags';
 import { Tooltip } from '@/components/ui/tooltip';
 import { getCountryCode } from './get-country-code';
@@ -17,12 +17,14 @@ export const DataCard = React.memo(({ item, onClick }: { item: DataHub; onClick:
       boxShadow: 'lg',
     }}
     borderRadius="lg"
-    bg="gray.100"
+    bgImage="linear-gradient(35deg, {colors.whiteAlpha.50}, {colors.whiteAlpha.200})"
+    border="1px solid"
+    borderColor="whiteAlpha.500"
     align="start"
     gap={2}
   >
     <Flex justify="space-between" align="center" gap={4} w="full" px={6} pt={6}>
-      <Heading fontSize="xl" lineHeight="shorter" truncate maxW="70%" color="gray.900">
+      <Heading fontSize="xl" lineHeight="shorter" truncate maxW="70%">
         {item.Name}
       </Heading>
       {item.Country === 'Latam' ? (
@@ -68,7 +70,7 @@ export const DataCard = React.memo(({ item, onClick }: { item: DataHub; onClick:
         <CircleFlag countryCode={getCountryCode(item.Country)} width={16} />
       )}
     </Flex>
-    <Text lineHeight="shorter" lineClamp={1} color="gray.500" px={6} my={3}>
+    <Text lineHeight="shorter" lineClamp={1} color="fg.muted" px={6} my={3}>
       {item.Description}
     </Text>
 
@@ -80,7 +82,6 @@ export const DataCard = React.memo(({ item, onClick }: { item: DataHub; onClick:
             fontWeight="medium"
             fontSize="xs"
             textTransform="uppercase"
-            color="gray.500"
             display="inline-flex"
             gap={2}
           >
@@ -93,11 +94,11 @@ export const DataCard = React.memo(({ item, onClick }: { item: DataHub; onClick:
       </Flex>
     </Tooltip>
 
-    <Flex justify="start" align="center" w="full" gap={4} borderTop="1px solid #ccc" pt={4} px={6} pb={4}>
+    <Flex justify="start" align="center" w="full" gap={4} borderTop="1px solid" borderColor="whiteAlpha.500" pt={4} px={6} pb={4}>
       <Tooltip content="Frequency updated">
         <Flex align="center" gap={1} justify="center">
-          <ClockIcon size={14} color="var(--ff-colors-gray-400)" />
-          <Text fontWeight="medium" fontSize="xs" textTransform="uppercase" color="gray.600">
+          <Icon as={ClockIcon} boxSize={4} color="fg.muted" />
+          <Text fontWeight="medium" fontSize="xs" textTransform="uppercase" color="fg.muted">
             {item.Frequency}
           </Text>
         </Flex>
@@ -105,8 +106,8 @@ export const DataCard = React.memo(({ item, onClick }: { item: DataHub; onClick:
 
       <Tooltip content="Source">
         <Flex gap={1} flexWrap="wrap" align="center" justify="center">
-          <DatabaseIcon size={14} color="var(--ff-colors-gray-400)" />
-          <Text fontWeight="medium" fontSize="xs" textTransform="uppercase" color="gray.600">
+          <Icon as={DatabaseIcon} boxSize={4} color="fg.muted" />
+          <Text fontWeight="medium" fontSize="xs" textTransform="uppercase" color="fg.muted">
             {item.Source}
           </Text>
         </Flex>

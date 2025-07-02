@@ -252,6 +252,34 @@ export default function DataHubComponent({ data }: Props) {
 
   return (
     <Container maxW="full" mt={{ base: '72px', md: '96px' }} pos="relative">
+       <Box
+        position="absolute"
+        top="0%"
+        left="0%"
+        transform="translate(-50%, -50%)"
+        w="500px"
+        h="500px"
+        bg="radial-gradient(circle, {colors.brand.800} 0%, {colors.brand.900} 25%, transparent 100%)"
+        filter="blur(120px)"
+        opacity={0.5}
+        zIndex={-1}
+      />
+
+
+
+<Box
+        position="absolute"
+        top="0%"
+        right="-10%"
+        // transform="translate(-50%, -50%)"
+        w="500px"
+        h="500px"
+        bg="radial-gradient(circle, {colors.brand.800} 0%, {colors.brand.900} 25%, transparent 100%)"
+        filter="blur(120px)"
+        opacity={0.5}
+        zIndex={-1}
+      />
+
       <VStack w="full" gap={4}>
         <HStack w="full" gap={4} role="search" mb={{ base: 0, md: 4 }}>
           <HStack

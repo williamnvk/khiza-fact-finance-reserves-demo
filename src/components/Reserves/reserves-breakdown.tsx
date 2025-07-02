@@ -58,11 +58,11 @@ export function ReservesBreakdown({
         {/* Simple Header */}
         <VStack align="start" gap={3} w="full">
           <HStack gap={3} flexWrap="wrap">
-            <Text fontSize={{ base: '3xl', md: '4xl' }} fontWeight="bold" color="fg">
+            <Text fontSize={{ base: '2xl', md: '3xl' }} fontWeight="bold" color="fg">
               Reserves Overview
             </Text>
           </HStack>
-          <Text fontSize={{ base: "md", md: "xl" }} color="fg.muted" lineHeight="relaxed">
+          <Text fontSize={{ base: "sm", md: "md" }} color="fg.muted" lineHeight="relaxed">
             This section provides transparency into {companyName} asset reserves.
           </Text>
         </VStack>

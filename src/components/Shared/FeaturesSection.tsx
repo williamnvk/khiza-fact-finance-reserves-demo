@@ -2,8 +2,10 @@ import { Box, Text, Heading, VStack, HStack, Container, useBreakpointValue } fro
 import { BadgeCheckIcon, ComponentIcon, SearchIcon } from 'lucide-react';
 import { TitleSection } from '../ui/title-sectiont';
 import { memo, useState } from 'react';
+import { useI18n } from '@/hooks/useI18n';
 
 const FeaturesSection = memo(() => {
+  const { t } = useI18n();
   const isMobile = useBreakpointValue({ base: true, md: false });
   const stackDirection = useBreakpointValue({ base: 'column', md: 'row' }) as 'column' | 'row';
   const cardWidth = useBreakpointValue({
@@ -26,22 +28,20 @@ const FeaturesSection = memo(() => {
   const cards = [
     {
       icon: (size: number = 24) => <BadgeCheckIcon size={size} strokeWidth={1.5} aria-hidden="true" />,
-      title: 'Proof of Authenticity',
-      subtitle:
-        'On-chain wallet validation that the data comes directly from the official data provider, eliminating risks of tampering.',
+      title: t('features.proofOfAuthenticity.title'),
+      subtitle: t('features.proofOfAuthenticity.subtitle'),
       borderColor: 'brand.800',
     },
     {
       icon: (size: number = 24) => <SearchIcon size={size} strokeWidth={1.5} aria-hidden="true" />,
-      title: 'Confidence Index',
-      subtitle:
-        'Our system monitors data for anomalies using statistical and density-based detection techniques. Any outlier data is flagged so the consumer contract can determine how to handle it.',
+      title: t('features.confidenceIndex.title'),
+      subtitle: t('features.confidenceIndex.subtitle'),
       borderColor: 'brand.800',
     },
     {
       icon: (size: number = 24) => <ComponentIcon size={size} strokeWidth={1.5} aria-hidden="true" />,
-      title: 'External Auditors',
-      subtitle: 'A pool of independent auditors validates the integrity and accuracy of the data provided',
+      title: t('features.externalAuditors.title'),
+      subtitle: t('features.externalAuditors.subtitle'),
       borderColor: 'brand.800',
     },
   ];
@@ -89,7 +89,7 @@ const FeaturesSection = memo(() => {
           w="full"
           textAlign={{ base: 'left', md: 'center' }}
         >
-          Our key features
+          {t('features.sectionTitle')}
         </Heading>
         <Text
           textStyle="subtitle"
@@ -98,7 +98,7 @@ const FeaturesSection = memo(() => {
           w="full"
           textAlign={{ base: 'left', md: 'center' }}
         >
-          Reliable solutions for secure and precise data delivery
+          {t('features.sectionSubtitle')}
         </Text>
       </TitleSection>
       <HStack

@@ -1,9 +1,12 @@
-import { Container, VStack, Heading, Text, Stack, Button, Link as ChakraLink } from '@chakra-ui/react';
+import { Container, VStack, Heading, Text, Stack, Button, Link as ChakraLink, HStack } from '@chakra-ui/react';
 import { Box } from '@chakra-ui/react';
-import { ArrowUpRight, FileCheck, Shield } from 'lucide-react';
+import { ArrowUpRight, Shield } from 'lucide-react';
 import { Users } from 'lucide-react';
+import { useI18n } from '@/hooks/useI18n';
 
 export const CTA = () => {
+  const { t } = useI18n();
+
   return (
     <Container maxW="5xl" position="relative" zIndex={1} py={{ base: 16, md: 32 }}>
       <VStack gap={10} textAlign="center">
@@ -11,49 +14,45 @@ export const CTA = () => {
           <Shield size={48} />
         </Box>
         <Heading size="3xl" fontWeight="800">
-          Strengthen trust in your digital asset
+          {t('reserves.cta.heading')}
         </Heading>
         <Text fontSize="xl" color="whiteAlpha.900" maxW="700px" lineHeight="1.6">
-          Discover how Fact Finance can bring more transparency, security and credibility to your tokenized assets.
+          {t('reserves.cta.subtitle')}
         </Text>
 
-        <Stack direction={{ base: 'column', sm: 'row' }} gap={6}>
-          <ChakraLink href="mailto:fernanda@fact.finance">
+        <Stack direction={{ base: 'column', md: 'row' }} gap={4} w="full" justify="center" maxW="md">
+          <ChakraLink
+            href="https://cal.com/luciano-juvinski-fact-finance/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            _hover={{ textDecoration: 'none' }}
+          >
             <Button
-              size="xl"
-              colorPalette="white"
-              variant="solid"
-              px={10}
-              py={8}
-              fontSize="lg"
-              fontWeight="semibold"
-              _hover={{ transform: 'translateY(-2px)' }}
-              transition="all 0.3s"
-              shadow="xl"
-              w={{ base: 'full', md: 'auto' }}
+              size="lg"
+              colorPalette="brand"
+              w="full"
             >
-              <Users size={20} style={{ marginRight: '8px' }} />
-              Request Consultation
+              <HStack gap={2}>
+                <Users size={20} />
+                <Text>{t('reserves.cta.consultationButton')}</Text>
+              </HStack>
             </Button>
           </ChakraLink>
-          <ChakraLink href="https://docs.fact.finance/features/por/">
+          <ChakraLink
+            href="https://docs.fact.finance/"
+            target="_blank"
+            rel="noopener noreferrer"
+            _hover={{ textDecoration: 'none' }}
+          >
             <Button
-              size="xl"
               variant="outline"
-              colorPalette="whiteAlpha"
-              px={10}
-              py={8}
-              fontSize="lg"
-              fontWeight="semibold"
-              _hover={{
-                bg: 'whiteAlpha.200',
-                transform: 'translateY(-2px)',
-              }}
-              transition="all 0.3s"
+              size="lg"
+              w="full"
             >
-              <FileCheck size={20} style={{ marginRight: '8px' }} />
-              Technical Documentation
-              <ArrowUpRight size={16} style={{ marginLeft: '8px' }} />
+              <HStack gap={2}>
+                <Text>{t('reserves.cta.learnMoreButton')}</Text>
+                <ArrowUpRight size={20} />
+              </HStack>
             </Button>
           </ChakraLink>
         </Stack>

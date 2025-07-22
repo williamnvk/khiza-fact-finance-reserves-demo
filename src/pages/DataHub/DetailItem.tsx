@@ -1,9 +1,11 @@
-import { Box, Text, Flex, HStack, Button, IconButton, Heading, VStack, Link, SimpleGrid } from '@chakra-ui/react';
+import { Box, Text, Flex, HStack, Button, IconButton, Heading, VStack, Link as ChakraLink, SimpleGrid } from '@chakra-ui/react';
 import { DataHub } from '@/data/data-hub';
 import { useState } from 'react';
 import { ArrowRightIcon, CopyCheckIcon, CopyIcon } from 'lucide-react';
+import { useI18n } from '@/hooks/useI18n';
 
 export const DetailItem = ({ detailItem, onClose }: { detailItem: DataHub; onClose: () => void }) => {
+  const { t } = useI18n();
   const [copied, setCopied] = useState(false);
 
   const onCopyCode = () => {
@@ -31,28 +33,28 @@ export const DetailItem = ({ detailItem, onClose }: { detailItem: DataHub; onClo
       <SimpleGrid columns={2} gap={8} w="full">
         <VStack gap={0} align="start" justify="space-between">
           <Text fontSize="10px" letterSpacing="2px" color="gray.400">
-            SOURCE
+            {t('dataHub.detail.source')}
           </Text>
           <Text>{detailItem.Source}</Text>
         </VStack>
 
         <VStack gap={0} align="start">
           <Text fontSize="10px" letterSpacing="2px" color="gray.400">
-            COUNTRY
+            {t('dataHub.detail.country')}
           </Text>
           <Text>{detailItem.Country}</Text>
         </VStack>
 
         <VStack gap={0} align="start">
           <Text fontSize="10px" letterSpacing="2px" color="gray.400">
-            UPDATE FREQUENCY
+            {t('dataHub.detail.updateFrequency')}
           </Text>
           <Text>{detailItem.Frequency}</Text>
         </VStack>
 
         <VStack gap={0} align="start">
           <Text fontSize="10px" letterSpacing="2px" color="gray.400">
-            INTERFACES
+            {t('dataHub.detail.interfaces')}
           </Text>
           <Flex gap={2} flexWrap="wrap">
             {detailItem.Interfaces.map((int) => (
@@ -78,7 +80,7 @@ export const DetailItem = ({ detailItem, onClose }: { detailItem: DataHub; onClo
       >
         <VStack gap={0} w="full" align="start">
           <Text fontSize="8px" letterSpacing="2px" color="gray.400">
-            CODE
+            {t('dataHub.detail.code')}
           </Text>
           <Text fontSize="xl">{detailItem.Code}</Text>
         </VStack>
@@ -88,12 +90,18 @@ export const DetailItem = ({ detailItem, onClose }: { detailItem: DataHub; onClo
       </HStack>
 
       <HStack w="full" justify="start" mt={8}>
-        <Button as={Link} href="https://docs.fact.finance/" target="_blank" variant="solid">
-          How to integrate
-          <ArrowRightIcon />
-        </Button>
+        <ChakraLink 
+          href="https://docs.fact.finance/" 
+          target="_blank"
+          _hover={{ textDecoration: 'none' }}
+        >
+          <Button variant="solid">
+            {t('dataHub.detail.howToIntegrate')}
+            <ArrowRightIcon />
+          </Button>
+        </ChakraLink>
         <Button onClick={onClose} variant="ghost">
-          Close
+          {t('dataHub.detail.close')}
         </Button>
       </HStack>
     </Box>

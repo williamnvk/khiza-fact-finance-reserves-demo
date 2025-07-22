@@ -20,8 +20,10 @@ import { SEO } from '@/components/Common/SEO';
 import { Image } from '@chakra-ui/react';
 import XIcon from '@/components/Icons/XIcon';
 import { useState, useCallback } from 'react';
+import { useI18n } from '@/hooks/useI18n';
 
 export default function AboutUs() {
+  const { t } = useI18n();
   const cardBg = 'blackAlpha.500';
   const cardHoverBg = 'whiteAlpha.100';
   const [hoveredAward, setHoveredAward] = useState<string | null>(null);
@@ -40,7 +42,7 @@ export default function AboutUs() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Fact Finance',
-    description: 'Enterprise blockchain infrastructure and data solutions for real-world asset tokenization',
+    description: t('about.seo.description'),
     url: 'https://fact.finance/about',
     logo: 'https://fact.finance/logo.png',
     foundingDate: '2023',
@@ -59,13 +61,13 @@ export default function AboutUs() {
       {
         '@type': 'Award',
         name: 'Solana Renaissance Hackathon Brazil Winner',
-        description: 'First place in the Brazilian stage of Solana Renaissance Hackathon 2024',
+        description: t('about.awards.solana.description'),
         dateAwarded: '2024',
       },
       {
         '@type': 'Award',
         name: 'Brazilian National Treasury Web3 Hackathon',
-        description: '3rd place in the National Treasury Tokenization Hackathon',
+        description: t('about.awards.treasury.description'),
         dateAwarded: '2023',
       },
     ],
@@ -74,9 +76,9 @@ export default function AboutUs() {
   return (
     <Box pos="relative" w="full" h="full" pt={{ base: '72px', md: '144px' }}>
       <SEO
-        title="About Fact Finance | Enterprise Blockchain Infrastructure & Data Solutions"
-        description="Meet the expert team behind Fact Finance's secure data infrastructure for real-world asset tokenization. Learn about our achievements in blockchain technology and data solutions."
-        keywords="blockchain infrastructure, data solutions, asset tokenization, web3 technology, blockchain experts, data infrastructure, real-world assets, blockchain oracle, tokenization platform"
+        title={t('about.seo.title')}
+        description={t('about.seo.description')}
+        keywords={t('about.seo.keywords')}
         structuredData={JSON.stringify(structuredData)}
         canonical="https://fact.finance/about"
       />
@@ -117,20 +119,6 @@ export default function AboutUs() {
       <Container maxW="6xl" aria-label="About Us Section" zIndex={1}>
         <VStack gap={0} align="stretch">
           <TitleSection>
-            {/* <Text
-              fontSize="sm"
-              bgGradient="to-r"
-              gradientFrom="brand.50"
-              gradientTo="brand.400"
-              bgClip="text"
-              textTransform="uppercase"
-              letterSpacing={2}
-              fontWeight="600"
-              w="full"
-              textAlign={{ base: 'left', md: 'center' }}
-            >
-              Get to know us
-            </Text> */}
             <Heading
               as="h2"
               textStyle="title"
@@ -138,7 +126,7 @@ export default function AboutUs() {
               w="full"
               textAlign={{ base: 'left', md: 'center' }}
             >
-              Get to know us
+              {t('about.hero.title')}
             </Heading>
 
             <Text
@@ -150,7 +138,7 @@ export default function AboutUs() {
               w="full"
               textAlign={{ base: 'left', md: 'center' }}
             >
-              We are driving the tokenized economy with trusted data infrastructure.
+              {t('about.hero.subtitle')}
             </Text>
           </TitleSection>
 
@@ -293,15 +281,10 @@ export default function AboutUs() {
               zIndex={-1}
             />
             <Text fontSize="xl" w="full" textAlign={{ base: 'left', md: 'left' }} lineHeight="tall" zIndex={2}>
-              Fact Finance was created to provide essential data infrastructure for the tokenized economy. We bridge
-              tokenization platforms with official and licensed data sources, ensuring secure and compliant access to
-              information. Our goal is to accelerate blockchain adoption by seamlessly connecting decentralized systems
-              to the off-chain world.
+              {t('about.company.description1')}
             </Text>
             <Text fontSize="lg" w="full" textAlign={{ base: 'left', md: 'left' }} lineHeight="tall" zIndex={2}>
-              As tokenization evolves and the demand for standardized, reliable data grows, Fact Finance is committed to
-              being the go-to data hub. We empower the industry with streamlined access to accurate and trustworthy
-              information, unlocking the full potential of real-world asset tokenization
+              {t('about.company.description2')}
             </Text>
 
             <Text
@@ -316,7 +299,7 @@ export default function AboutUs() {
               w="full"
               textAlign={{ base: 'left', md: 'center' }}
             >
-              Awards
+              {t('about.awards.title')}
             </Text>
 
             <SimpleGrid
@@ -372,7 +355,7 @@ export default function AboutUs() {
                     fontWeight="600"
                     borderRightRadius="0"
                   >
-                    1st Place
+                    {t('about.awards.solana.badge')}
                   </Badge>
 
                   <Center w="full" alignItems={{ base: 'flex-end', md: 'center' }} h={{ base: '100px', md: '140px' }}>
@@ -384,7 +367,7 @@ export default function AboutUs() {
                       role="img"
                       aria-label="Solana Logo"
                     >
-                      <g clip-path="url(#clip0_1064_606)">
+                      <g clipPath="url(#clip0_1064_606)">
                         <path
                           d="M108.53 75.6899L90.81 94.6899C90.4267 95.1026 89.9626 95.432 89.4464 95.6573C88.9303 95.8827 88.3732 95.9994 87.81 95.9999H3.81C3.40937 95.9997 3.01749 95.8827 2.68235 95.6631C2.34722 95.4436 2.08338 95.1311 1.92313 94.7639C1.76288 94.3967 1.71318 93.9908 1.78012 93.5958C1.84706 93.2008 2.02772 92.8338 2.3 92.5399L20 73.5399C20.3833 73.1273 20.8474 72.7979 21.3636 72.5725C21.8797 72.3472 22.4368 72.2305 23 72.2299H107C107.404 72.2216 107.802 72.333 108.143 72.5502C108.484 72.7674 108.754 73.0806 108.917 73.4504C109.081 73.8203 109.131 74.2303 109.062 74.6288C108.993 75.0273 108.808 75.3965 108.53 75.6899ZM90.81 37.4199C90.4253 37.0091 89.9608 36.6811 89.445 36.4558C88.9292 36.2306 88.3728 36.1129 87.81 36.11H3.81C3.40937 36.1102 3.01749 36.2272 2.68235 36.4468C2.34722 36.6663 2.08338 36.9788 1.92313 37.346C1.76288 37.7132 1.71318 38.1191 1.78012 38.5141C1.84706 38.9091 2.02772 39.2761 2.3 39.57L20 58.58C20.3847 58.9908 20.8492 59.3188 21.365 59.5441C21.8808 59.7693 22.4372 59.887 23 59.8899H107C107.4 59.8878 107.79 59.7693 108.124 59.5491C108.458 59.3288 108.72 59.0162 108.879 58.6494C109.038 58.2826 109.087 57.8774 109.019 57.4833C108.952 57.0892 108.772 56.7232 108.5 56.43L90.81 37.4199ZM3.81 23.7699H87.81C88.3732 23.7694 88.9303 23.6527 89.4464 23.4273C89.9626 23.202 90.4267 22.8726 90.81 22.4599L108.53 3.45995C108.808 3.16647 108.993 2.79726 109.062 2.39877C109.131 2.00028 109.081 1.59031 108.917 1.22045C108.754 0.850591 108.484 0.537368 108.143 0.320195C107.802 0.103021 107.404 -0.0084012 107 -5.10783e-05H23C22.4368 0.000541762 21.8797 0.117167 21.3636 0.342553C20.8474 0.567938 20.3833 0.897249 20 1.30995L2.3 20.3099C2.02772 20.6038 1.84706 20.9708 1.78012 21.3658C1.71318 21.7608 1.76288 22.1667 1.92313 22.5339C2.08338 22.9011 2.34722 23.2136 2.68235 23.4331C3.01749 23.6527 3.40937 23.7697 3.81 23.7699Z"
                           fill="url(#paint0_linear_1064_606)"
@@ -423,12 +406,12 @@ export default function AboutUs() {
                           y2="-1.01005"
                           gradientUnits="userSpaceOnUse"
                         >
-                          <stop offset="0.08" stop-color="#9945FF" />
-                          <stop offset="0.3" stop-color="#8752F3" />
-                          <stop offset="0.5" stop-color="#5497D5" />
-                          <stop offset="0.6" stop-color="#43B4CA" />
-                          <stop offset="0.72" stop-color="#28E0B9" />
-                          <stop offset="0.97" stop-color="#19FB9B" />
+                          <stop offset="0.08" stopColor="#9945FF" />
+                          <stop offset="0.3" stopColor="#8752F3" />
+                          <stop offset="0.5" stopColor="#5497D5" />
+                          <stop offset="0.6" stopColor="#43B4CA" />
+                          <stop offset="0.72" stopColor="#28E0B9" />
+                          <stop offset="0.97" stopColor="#19FB9B" />
                         </linearGradient>
                         <clipPath id="clip0_1064_606">
                           <rect width="646" height="96" fill="white" />
@@ -438,8 +421,7 @@ export default function AboutUs() {
                   </Center>
 
                   <Text flex={1} fontSize="md">
-                    1st Place at Brazilian stage of the Solana Renaissance Hackathon in 2024. Winner of the Solana
-                    Foundation Demo Day at Blockchain.RIO.
+                    {t('about.awards.solana.description')}
                   </Text>
                 </VStack>
               </Link>
@@ -491,11 +473,10 @@ export default function AboutUs() {
                     aria-label="Brazilian National Treasury Logo"
                   />
                   <Text flex={1} fontSize="md">
-                    Winner of the Best Oracle on the Web3 Hackathon: National Treasury Tokenization, organized by the Brazilian
-                    Ministry of Finance in December 2023.
+                    {t('about.awards.treasury.description')}
                     <br />
                     <Text as="span" fontWeight="200" fontSize="xs">
-                      (as team Vale das Araucárias)
+                      {t('about.awards.treasury.note')}
                     </Text>
                   </Text>
                 </VStack>
@@ -517,7 +498,7 @@ export default function AboutUs() {
                 w="full"
                 textAlign={{ base: 'left', md: 'center' }}
               >
-                Meet the innovators
+                {t('about.team.sectionTitle')}
               </Text>
               <Heading
                 as="h2"
@@ -526,7 +507,7 @@ export default function AboutUs() {
                 w="full"
                 textAlign={{ base: 'left', md: 'center' }}
               >
-                The team behind Fact Finance
+                {t('about.team.sectionHeading')}
               </Heading>
               <Text
                 fontSize={{ base: 'md', md: 'lg' }}
@@ -536,8 +517,7 @@ export default function AboutUs() {
                 textAlign={{ base: 'left', md: 'center' }}
                 color="whiteAlpha.800"
               >
-                Dedicated professionals with deep expertise in blockchain, data infrastructure, and economic systems,
-                committed to delivering secure and precise data solutions for web3 and real-world asset tokenization.
+                {t('about.team.sectionDescription')}
               </Text>
             </TitleSection>
 
@@ -669,7 +649,7 @@ export default function AboutUs() {
                 w="full"
                 textAlign={{ base: 'left', md: 'center' }}
               >
-                Media & Press
+                {t('about.media.sectionTitle')}
               </Text>
               <Heading
                 as="h2"
@@ -678,7 +658,7 @@ export default function AboutUs() {
                 w="full"
                 textAlign={{ base: 'left', md: 'center' }}
               >
-                Learn more about us
+                {t('about.media.sectionHeading')}
               </Heading>
               <Text
                 fontSize={{ base: 'md', md: 'lg' }}
@@ -688,7 +668,7 @@ export default function AboutUs() {
                 textAlign={{ base: 'left', md: 'center' }}
                 color="whiteAlpha.800"
               >
-                Watch our recent podcast appearances to learn more about our vision and mission
+                {t('about.media.sectionDescription')}
               </Text>
             </TitleSection>
 
@@ -696,11 +676,11 @@ export default function AboutUs() {
               {[
                 {
                   url: 'https://www.youtube.com/embed/zZGX-fMnJz0',
-                  title: 'Fact Finance discusses blockchain data infrastructure and asset tokenization',
+                  title: t('about.media.videos.video1'),
                 },
                 {
                   url: 'https://www.youtube.com/embed/MT6ZBBPVpNM',
-                  title: 'Fact Finance explains the future of tokenized assets',
+                  title: t('about.media.videos.video2'),
                 },
               ].map((video, index) => (
                 <Box key={index}>

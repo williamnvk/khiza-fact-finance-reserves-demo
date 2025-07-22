@@ -11,33 +11,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router';
 import { Box, Container, Grid, Text, VStack } from '@chakra-ui/react';
 import { ColorModeProvider } from '@/components/ui/color-mode';
-
-const FOOTNOTES = [
-  {
-    id: '1',
-    text: 'The heartbeat is a timing rule that ensures updates happen at regular intervals. For example, with a 1-hour heartbeat, the system will attempt an update at least every 1 hour, even without major changes. This prevents data staleness and detects delays or outages quickly.',
-  },
-  {
-    id: '2',
-    text: 'The deviation threshold defines how much the reserve balance must change before a new onchain update is triggered. For instance, with a 5% threshold, the system only publishes a new value if the balance moves by 5% or more since the last update. This avoids unnecessary updates due to minor fluctuations.',
-  },
-  {
-    id: '3',
-    text: 'Tokens Supply is the total amount of tokens currently in circulation, issued by the tokenization platform. Each unit should be backed by a verified reserve, ensuring a transparent 1:1 or over-collateralized ratio.',
-  },
-  {
-    id: '4',
-    text: 'Collateral reserves are real-world assets, such as cash or public securities, held to back issued tokens. Fact Finance verifies their existence and value through direct connections with the custodian.',
-  },
-  {
-    id: '5',
-    text: 'Tokens Supply is the total amount of tokens currently in circulation, issued by the tokenization platform. Each unit should be backed by a verified reserve, ensuring a transparent 1:1 or over-collateralized ratio.',
-  },
-  {
-    id: '6',
-    text: 'Over or under collateralization refers to the difference between the verified reserves and the circulating token supply. A positive gap indicates excess collateral (a safety buffer), while a negative gap signals insufficient reserves and potential undercollateralization risk.',
-  },
-];
+import { useI18n } from '@/hooks/useI18n';
 
 type LastData = {
   date: string;
@@ -111,6 +85,35 @@ type Data = {
 
 export const Reports = () => {
   const { client } = useParams();
+  const { t } = useI18n();
+
+  // Create footnotes array using translations
+  const getFootnotes = () => [
+    {
+      id: '1',
+      text: t('reports.footnotes.heartbeat'),
+    },
+    {
+      id: '2',
+      text: t('reports.footnotes.deviation'),
+    },
+    {
+      id: '3',
+      text: t('reports.footnotes.tokensSupply'),
+    },
+    {
+      id: '4',
+      text: t('reports.footnotes.collateralReserves'),
+    },
+    {
+      id: '5',
+      text: t('reports.footnotes.tokensSupply'),
+    },
+    {
+      id: '6',
+      text: t('reports.footnotes.collateralization'),
+    },
+  ];
 
   const [data, setData] = useState<Data>({
     companyName: '',
@@ -181,6 +184,9 @@ export const Reports = () => {
     const response = await fetch(`/data/${client}.json`);
     const data = await response.json();
 
+    if (dataChart.assetDistribution && dataChart.assetDistribution.length > 0) {
+      data.assetDistribution = dataChart.assetDistribution;
+    }
     data.historicalData = dataChart.historical;
     data.historicalData1 = historicalData1;
     data.total = dataChart.total;
@@ -188,7 +194,10 @@ export const Reports = () => {
     data.threshold = data.threshold === '' ? undefined : data.threshold;
     data.average = dataChart.average;
     data.average1 = average1;
-    data.last = data.historicalData[data.historicalData.length - 1];
+    //data.last = data.historicalData[data.historicalData.length - 1];
+    if (data.historicalData1.length > 0) data.last = historicalData1[data.historicalData1.length - 1];
+    else data.last = data.historicalData[data.historicalData.length - 1];
+
     data.chart_history_new_tokens_issued = data.last.circulation - data.historicalData[0].circulation;
     data.chart_history_new_reserves = data.last.reserves - data.historicalData[0].reserves;
     data.chart_history_change =
@@ -197,11 +206,15 @@ export const Reports = () => {
         (data.last.circulation / data.last.reserves)) *
       100;
 
-    if (data.footnotes) FOOTNOTES.push(...data.footnotes);
+    // Add custom footnotes from data if they exist
+    if (data.footnotes) {
+      const translatedFootnotes = getFootnotes();
+      translatedFootnotes.push(...data.footnotes);
+    }
 
     setData(data);
     setLoaded(true);
-    document.title = `${data.companyName} - Proof of reserves`;
+    document.title = `${data.companyName} - ${t('reports.title')}`;
   };
   useEffect(() => {
     loadData();
@@ -226,7 +239,7 @@ export const Reports = () => {
       />
 
       {loaded ? (
-        <Container maxW="8xl" px={4} py={8} mt="72px" border="none"	>
+        <Container maxW="8xl" px={4} py={8} mt="72px" border="none">
           <VStack w="full" gap={{ base: 4, md: 24 }} align="stretch">
             <ReportHeader
               client={client}
@@ -308,11 +321,17 @@ export const Reports = () => {
             <AuditReport reportsList={data.reportList} companyName={data.companyName} />
 
             <VStack gap={1} align="start" w="full">
-              {FOOTNOTES.map((footnote, index) => (
+              {getFootnotes().map((footnote, index) => (
                 <Text key={index} fontSize="sm" color="fg.muted">
                   {footnote.id}. {footnote.text}
                 </Text>
               ))}
+              {data.footnotes &&
+                data.footnotes.map((footnote, index) => (
+                  <Text key={`custom-${index}`} fontSize="sm" color="fg.muted">
+                    {footnote.id}. {footnote.text}
+                  </Text>
+                ))}
             </VStack>
           </VStack>
         </Container>

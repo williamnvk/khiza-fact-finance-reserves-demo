@@ -15,6 +15,7 @@ import {
   Image,
 } from '@chakra-ui/react';
 import { reportChains } from '@/data/chains';
+import { useI18n } from '@/hooks/useI18n';
 
 export function TokenList({
   currency,
@@ -30,6 +31,8 @@ export function TokenList({
   circulation: number;
   periodTotalTransfer: number;
 }) {
+  const { t } = useI18n();
+  
   // Function to get shortened contract address
   const getShortenedAddress = (address: string) => {
     return address.length > 12 ? `${address.substring(0, 6)}...${address.substring(address.length - 6)}` : address;
@@ -52,12 +55,11 @@ export function TokenList({
             <VStack align="start" gap={2} flex={1}>
               <HStack gap={3}>
                 <Text fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" color="fg">
-                  Token Overview
+                  {t('reserves.components.tokenList.title')}
                 </Text>
               </HStack>
               <Text fontSize={{ base: "sm", md: "md" }} color="fg.muted" lineHeight="tall">
-                This section provides key onchain metrics to track the token's issuance, market activity, and reserve
-                dynamics.
+                {t('reserves.components.tokenList.subtitle')}
               </Text>
             </VStack>
           </Flex>
@@ -105,7 +107,7 @@ export function TokenList({
                       {/* Chain Support */}
                       <Box>
                         <Text fontSize="sm" fontWeight="medium" color="fg" mb={2}>
-                          Token Contracts ({token.chains.length})
+                          {t('reserves.components.tokenList.tokenContracts')} ({token.chains.length})
                         </Text>
                         <HStack gap={2} flexWrap="wrap">
                           {token.chains.map((chain: string) => (
@@ -130,7 +132,7 @@ export function TokenList({
                         <Box bg="gray.50" rounded="lg" p={3} _dark={{ bg: 'gray.800' }}>
                           <VStack align="start" gap={2}>
                             <Text fontSize="sm" fontWeight="medium" color="fg">
-                              Onchain reserves data
+                              {t('reserves.components.tokenList.onchainReservesData')}
                             </Text>
                             <ChakraLink
                               href={`https://etherscan.io/address/${token.oracleContract}`}
@@ -155,14 +157,14 @@ export function TokenList({
                       {/* Token Metrics */}
                       <Box>
                         <Text fontSize="lg" fontWeight="semibold" color="fg" mb={4}>
-                          Token Metrics
+                          {t('reserves.components.tokenList.tokenMetrics')}
                         </Text>
                         <SimpleGrid columns={{ base: 2, md: 3, lg: 5 }} gap={{ base: 1, md: 4}}>
                           <Card.Root size="sm">
                             <Card.Body>
                               <Stat.Root size="sm">
                                 <Stat.Label fontSize="md" color="fg.muted">
-                                  Token Circulating Supply
+                                  {t('reserves.components.tokenList.tokenCirculatingSupply')}
                                 </Stat.Label>
                                 <Stat.ValueText fontSize="xl" fontWeight="semibold" color="brand.500">
                                   <FormatNumber
@@ -181,7 +183,7 @@ export function TokenList({
                               <Stat.Root size="sm">
                                 <Stat.Label fontSize="md" color="fg.muted">
                                   <HStack gap={1}>
-                                    <Text>Current Price</Text>
+                                    <Text>{t('reserves.components.tokenList.currentPrice')}</Text>
                                     <CircleCheck size={12} color="var(--ff-colors-brand-500)" />
                                   </HStack>
                                 </Stat.Label>
@@ -202,7 +204,7 @@ export function TokenList({
                             <Card.Body>
                               <Stat.Root size="sm">
                                 <Stat.Label fontSize="md" color="fg.muted">
-                                  Reserves Utilization
+                                  {t('reserves.components.tokenList.reservesUtilization')}
                                 </Stat.Label>
                                 <Stat.ValueText fontSize="xl" fontWeight="semibold">
                                   {reserveUtilization.toFixed(2)}%
@@ -215,7 +217,7 @@ export function TokenList({
                             <Card.Body>
                               <Stat.Root size="sm">
                                 <Stat.Label fontSize="md" color="fg.muted">
-                                  30-Day Transfer Volume
+                                  {t('reserves.components.tokenList.thirtyDayTransferVolume')}
                                 </Stat.Label>
                                 <Stat.ValueText fontSize="xl" fontWeight="semibold" color="purple.500">
                                   <FormatNumber
@@ -233,7 +235,7 @@ export function TokenList({
                             <Card.Body>
                               <Stat.Root size="sm">
                                       <Stat.Label fontSize="md" color="fg.muted">
-                                  Total Transfer Volume
+                                  {t('reserves.components.tokenList.totalTransferVolume')}
                                 </Stat.Label>
                                 <Stat.ValueText fontSize="xl" fontWeight="semibold" color="teal.500">
                                   <FormatNumber

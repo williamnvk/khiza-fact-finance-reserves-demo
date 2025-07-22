@@ -18,6 +18,7 @@ import { ArrowUpRightIcon, ChartLineIcon, CheckIcon, CoinsIcon, DatabaseBackupIc
 import { ColorModeButton, useColorMode } from '../ui/color-mode';
 import TokenizaLogo from '../Icons/Tokeniza';
 import { Tooltip } from '../ui/tooltip';
+import { useI18n } from '@/hooks/useI18n';
 
 interface ReportHeaderProps {
   client: any;
@@ -50,6 +51,7 @@ export function ReportHeader({
   contract,
   contractLink,
 }: ReportHeaderProps) {
+  const { t } = useI18n();
   // Calculate ratio as percentage for progress bar
   const ratioPercentage = parseFloat(ratio.replace('%', ''));
   const isHealthy = ratioPercentage >= 100;
@@ -109,7 +111,7 @@ export function ReportHeader({
                 fontSize="xs"
               >
                 <Box width={2} height={2} bg="white" rounded="full" animation="pulse 2s infinite" />
-                VERIFIED
+                {t('reserves.components.common.verified')}
               </Badge>
             </HStack>
 
@@ -128,14 +130,14 @@ export function ReportHeader({
                   alignItems="center"
                   className="omit-from-print"
                 >
-                  <Text>Site</Text>
+                  <Text>{t('reserves.components.common.site')}</Text>
                   <Icon as={ArrowUpRightIcon} />
                 </ChakraLink>
               )}
 
               {contract && (
                 <ChakraLink href={contractLink} target="_blank" rel="noopener noreferrer" className="omit-from-print">
-                  View Contract
+                  {t('reserves.components.common.viewContract')}
                 </ChakraLink>
               )}
             </HStack>
@@ -170,7 +172,7 @@ export function ReportHeader({
                 </Box>
                 <VStack align="start" gap={2} flex={1}>
                   <Text fontSize="xs" fontWeight="bold" textTransform="uppercase" letterSpacing="wider">
-                    Circulating Token Supply
+                    {t('reserves.components.reportHeader.circulatingTokenSupply')}
                   </Text>
                   <Flex align="center" gap={2}>
                     <Text fontSize="sm" color="gray.600" fontWeight="medium" _dark={{ color: 'gray.400' }}>
@@ -203,7 +205,7 @@ export function ReportHeader({
                 </Box>
                 <VStack align="start" gap={2} flex={1}>
                   <Text fontSize="xs" fontWeight="bold" textTransform="uppercase" letterSpacing="wider">
-                    Total Reserves
+                    {t('reserves.components.reportHeader.totalReserves')}
                   </Text>
                   <Flex align="center" gap={2}>
                     <Text fontSize="sm" color="gray.600" fontWeight="medium" _dark={{ color: 'gray.400' }}>
@@ -238,7 +240,7 @@ export function ReportHeader({
 
                 <VStack align="start" gap={2} flex={1}>
                   <Text fontSize="xs" fontWeight="bold" textTransform="uppercase" letterSpacing="wider">
-                    Collateral Ratio
+                    {t('reserves.components.reportHeader.collateralRatio')}
                   </Text>
                   <Heading
                     fontSize="2xl"
@@ -273,7 +275,7 @@ export function ReportHeader({
 
                 <VStack align="start" gap={0} flex={1}>
                   <Text fontSize="xs" fontWeight="bold" textTransform="uppercase" letterSpacing="wider">
-                    Last Update
+                    {t('reserves.components.reportHeader.lastUpdate')}
                   </Text>
                   <Text fontSize="lg" fontWeight="bold">
                     {dateAs}
@@ -282,7 +284,7 @@ export function ReportHeader({
                   {heartbeat && (
                     <VStack align="start" gap={1}>
                       <Text fontSize="xs" fontWeight="medium">
-                        Heartbeat<sup>1</sup>: {heartbeat}
+                        {t('reserves.components.reportHeader.heartbeat')}<sup>1</sup>: {heartbeat}
                       </Text>
                     </VStack>
                   )}
@@ -290,7 +292,7 @@ export function ReportHeader({
                   {threshold && (
                     <VStack align="start" gap={1}>
                       <Text fontSize="xs" fontWeight="medium">
-                        Deviation Threshold<sup>2</sup>: {threshold}
+                        {t('reserves.components.reportHeader.deviationThreshold')}<sup>2</sup>: {threshold}
                       </Text>
                     </VStack>
                   )}

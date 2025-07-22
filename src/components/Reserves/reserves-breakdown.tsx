@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { Tooltip } from '@/components/ui/tooltip';
 import { useColorModeValue } from '../ui/color-mode';
+import { useI18n } from '@/hooks/useI18n';
 
 export function ReservesBreakdown({
   reserves,
@@ -30,9 +31,11 @@ export function ReservesBreakdown({
   companyName: string;
   currency: string;
 }) {
+  const { t } = useI18n();
+  
   // Enhanced asset colors with better accessibility
   const assetColors = {
-    cash: useColorModeValue('var(--ff-colors-success-500)', 'var(--ff-colors-success-500)'), // Green
+    ash: useColorModeValue('var(--ff-colors-success-500)', 'var(--ff-colors-success-500)'), // Green
     securities: useColorModeValue('var(--ff-colors-brand-500)', 'var(--ff-colors-brand-500)'), // Blue
     crypto: useColorModeValue('var(--ff-colors-brand-400)', 'var(--ff-colors-brand-400)'), // Purple
     bonds: useColorModeValue('var(--ff-colors-brand-600)', 'var(--ff-colors-brand-600)'), // Orange
@@ -49,33 +52,32 @@ export function ReservesBreakdown({
   const chartData = assetDistribution.map((asset) => ({
     ...asset,
     percentage: ((asset.value / reserves) * 100).toFixed(1),
-    color: assetColors[asset.type as keyof typeof assetColors] || assetColors.other,
+    color: assetColors[asset.type.toLowerCase() as keyof typeof assetColors] || assetColors.other,
   }));
 
   return (
-    <Box mb={{ base: 16, md: 0}} className="break-page">
-      <VStack align="stretch" gap={{ base: 2, md: 6}}>
+    <Box mb={{ base: 16, md: 0 }} className="break-page">
+      <VStack align="stretch" gap={{ base: 2, md: 6 }}>
         {/* Simple Header */}
         <VStack align="start" gap={3} w="full">
           <HStack gap={3} flexWrap="wrap">
             <Text fontSize={{ base: '2xl', md: '3xl' }} fontWeight="bold" color="fg">
-              Reserves Overview
+              {t('reserves.components.reservesBreakdown.title')}
             </Text>
           </HStack>
-          <Text fontSize={{ base: "sm", md: "md" }} color="fg.muted" lineHeight="relaxed">
-            This section provides transparency into {companyName} asset reserves.
+          <Text fontSize={{ base: 'sm', md: 'md' }} color="fg.muted" lineHeight="relaxed">
+            {t('reserves.components.reservesBreakdown.subtitle', { companyName })}
           </Text>
         </VStack>
 
-        
         {/* Key Metrics - Simplified */}
-        <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={{ base: 2, md: 4}} mt={{ base: 4, md: 0}}>
+        <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={{ base: 2, md: 4 }} mt={{ base: 4, md: 0 }}>
           <GridItem>
             <Card.Root size="sm" variant="outline" bg="transparent">
               <Card.Body>
                 <Stat.Root>
                   <Stat.Label fontSize="md" color="fg.muted">
-                    Total Collateral Reserves
+                    {t('reserves.components.reservesBreakdown.totalCollateralReserves')}
                   </Stat.Label>
                   <Stat.ValueText fontSize="xl" fontWeight="bold">
                     <FormatNumber value={reserves} style="currency" currency={currency} notation="compact" />
@@ -108,10 +110,10 @@ export function ReservesBreakdown({
               <Card.Body>
                 <Stat.Root>
                   <Stat.Label fontSize="md" color="fg.muted">
-                    Available Balance
+                    {t('reserves.components.reservesBreakdown.excessCollateral')}
                   </Stat.Label>
                   <Stat.ValueText fontSize="xl" fontWeight="bold">
-                    <FormatNumber value={Math.abs(balance)} style="currency" currency={currency} notation="compact" />
+                    <FormatNumber value={balance} style="currency" currency={currency} notation="compact" />
                   </Stat.ValueText>
                 </Stat.Root>
               </Card.Body>
@@ -123,7 +125,7 @@ export function ReservesBreakdown({
               <Card.Body>
                 <Stat.Root>
                   <Stat.Label fontSize="md" color="fg.muted">
-                    Collateral Ratio
+                    {t('reserves.components.reservesBreakdown.collateralRatio')}
                   </Stat.Label>
                   <Stat.ValueText
                     fontSize="xl"
@@ -171,12 +173,7 @@ export function ReservesBreakdown({
                       </Text>
                       <HStack mt={1}>
                         <Text fontSize="sm" fontWeight="semibold" color={asset.color}>
-                          <FormatNumber
-                            value={asset.value}
-                            style="currency"
-                            currency={currency}
-                            notation="compact"
-                          />
+                          <FormatNumber value={asset.value} style="currency" currency={currency} notation="compact" />
                         </Text>
                         <Tag.Root colorPalette="brand" size="sm" variant="subtle">
                           <Tag.Label fontSize="xs" fontWeight="semibold">
@@ -191,7 +188,6 @@ export function ReservesBreakdown({
             </VStack>
           </Card.Body>
         </Card.Root>
-
       </VStack>
     </Box>
   );

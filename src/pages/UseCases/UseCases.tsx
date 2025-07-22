@@ -7,8 +7,10 @@ import { USE_CASE_CAPITAL_MARKETS, USE_CASE_COMMODITIES, USE_CASE_REAL_ESTATE, U
 import CapitalMarkets from './CapitalMarkets';
 import Commodities from './Commodities';
 import RealEstate from './RealEstate';
+import { useI18n } from '@/hooks/useI18n';
 
 export default function UseCases() {
+  const { t } = useI18n();
   const { useCase } = useParams();
   const [currentUseCase, setCurrentUseCase] = useState<UseCase | null>(null);
 
@@ -164,7 +166,7 @@ export default function UseCases() {
               w="full"
               textAlign={{ base: 'left', md: 'center' }}
             >
-              Use Cases
+              {t('useCases.title')}
             </Text>
             <Heading
               as="h1"
@@ -173,7 +175,7 @@ export default function UseCases() {
               w="full"
               textAlign={{ base: 'left', md: 'center' }}
             >
-              Real-world use cases for blockchain solutions
+              {t('useCases.subtitle')}
             </Heading>
             <Text
               fontSize={{ base: 'md', md: 'lg' }}
@@ -183,8 +185,7 @@ export default function UseCases() {
               textAlign={{ base: 'left', md: 'center' }}
               color="whiteAlpha.800"
             >
-              Discover practical applications of Fact Finance's data across industries, from Real Estate to Commodities,
-              driving innovation in the tokenized economy.
+              {t('useCases.description')}
             </Text>
           </TitleSection>
 
@@ -199,22 +200,22 @@ export default function UseCases() {
             {[
               {
                 id: USE_CASE_CAPITAL_MARKETS,
-                title: 'Capital markets',
-                description: 'Access official economic indices from authorized sources',
+                title: t('useCases.capitalMarkets.title'),
+                description: t('useCases.capitalMarkets.description'),
                 video: '/assets/what-we-do/capital-markets.mp4',
                 poster: '/assets/what-we-do/capital-markets-poster.webp',
               },
               {
                 id: USE_CASE_REAL_ESTATE,
-                title: 'Real Estate',
-                description: 'Square meter price and proof of reserve for properties',
+                title: t('useCases.realEstate.title'),
+                description: t('useCases.realEstate.description'),
                 video: '/assets/what-we-do/real-estate.mp4',
                 poster: '/assets/what-we-do/real-estate-poster.webp',
               },
               {
                 id: USE_CASE_COMMODITIES,
-                title: 'Commodities',
-                description: 'Qualitative data and monitoring for commodities',
+                title: t('useCases.commodities.title'),
+                description: t('useCases.commodities.description'),
                 video: '/assets/what-we-do/commodities.mp4',
                 poster: '/assets/what-we-do/commodities-poster.webp',
               },
@@ -260,29 +261,37 @@ export default function UseCases() {
                   {card.description}
                 </Text>
                 <Box
-                  as="video"
                   position="absolute"
                   top={0}
                   left={0}
                   w="100%"
                   h="100%"
-                  objectFit="cover"
-                  autoPlay
-                  muted
-                  playsInline
-                  loading="lazy"
-                  preload="metadata"
-                  poster={card.poster}
-                  filter={currentUseCase === card.id ? 'brightness(1)' : 'brightness(0.25)'}
-                  mixBlendMode={currentUseCase === card.id ? 'normal' : 'luminosity'}
-                  opacity={0.5}
-                  loop
-                  src={card.video}
-                  aria-hidden="true"
                   zIndex={-1}
-                  fetchPriority={currentUseCase === card.id ? 'high' : 'low'}
-                  aria-label={`Background video showing ${card.title}`}
-                />
+                >
+                  <video
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      filter: currentUseCase === card.id ? 'brightness(1)' : 'brightness(0.25)',
+                      mixBlendMode: currentUseCase === card.id ? 'normal' : 'luminosity',
+                      opacity: 0.5
+                    }}
+                    autoPlay
+                    muted
+                    playsInline
+                    loop
+                    preload="metadata"
+                    poster={card.poster}
+                    aria-hidden="true"
+                    aria-label={`Background video showing ${card.title}`}
+                  >
+                    <source src={card.video} type="video/mp4" />
+                  </video>
+                </Box>
               </VStack>
             ))}
           </SimpleGrid>

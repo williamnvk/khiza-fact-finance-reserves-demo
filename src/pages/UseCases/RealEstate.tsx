@@ -2,8 +2,11 @@ import { Heading, Text, VStack, SimpleGrid } from '@chakra-ui/react';
 import { BadgeCheckIcon, ComponentIcon, SearchIcon } from 'lucide-react';
 import { USE_CASE_REAL_ESTATE, UseCase } from './types';
 import UseCasesCTA from './CTA';
+import { useI18n } from '@/hooks/useI18n';
 
 export default function RealEstate({ currentUseCase }: { currentUseCase: UseCase }) {
+  const { t } = useI18n();
+  
   return (
     <VStack
       w="full"
@@ -15,43 +18,21 @@ export default function RealEstate({ currentUseCase }: { currentUseCase: UseCase
         as="h2"
         fontSize={{ base: '2xl', sm: '4xl', md: '4xl', lg: '4xl' }}
         lineHeight="1.1"
-        aria-label="Section heading about Unlocking value by reducing information asymmetry"
+        aria-label={`Section heading about ${t('useCases.realEstate.sectionTitle')}`}
       >
-        Unlocking value by reducing information asymmetry
+        {t('useCases.realEstate.sectionTitle')}
       </Heading>
       <br />
       <Text fontSize={{ base: 'md', md: 'lg' }}>
-        The tokenization of Real Estate offers the advantages of{' '}
-        <Text as="span" fontWeight="bold">
-          fractional ownership
-        </Text>{' '}
-        and the potential for increased liquidity, making these high-value assets more accessible to a broader range of
-        investors within a tradable and programmable infrastructure. However, significant{' '}
-        <Text as="span" fontWeight="bold">
-          information asymmetries
-        </Text>{' '}
-        between the token and the off-chain asset it represents still limit its full potential. To unlock greater
-        utility and liquidity, tokenized Real Estate assets must be enriched with{' '}
-        <Text as="span" fontWeight="bold">
-          verified, up-to-date data
-        </Text>{' '}
-        that provides a real-time connection to the underlying property.
+        {t('useCases.realEstate.intro1')}
       </Text>
       <br />
       <Text fontSize={{ base: 'md', md: 'lg' }}>
-        Tokenized properties offer greater accessibility, but blockchain technology lacks intrinsic connections to
-        off-chain data. This creates a gap: while tokens can represent ownership, they do not inherently reflect the{' '}
-        <Text as="span" fontWeight="bold">
-          current market conditions
-        </Text>{' '}
-        of the real-world asset they are tied to. Fact Finance bridges this gap by serving as the data layer between
-        tokenized assets and proprietary data sources. For example, a Real Estate company tokenizing a property needs
-        the token to reflect more than just ownership, it must also carry the information of the market value for that
-        asset, transforming the token into a true digital twin.
+        {t('useCases.realEstate.intro2')}
       </Text>
       <br />
       <Text fontWeight="bold" fontSize={{ base: 'lg', md: '2xl' }}>
-        What type of data?
+        {t('useCases.realEstate.dataTypes')}
       </Text>
       <br />
       <SimpleGrid columns={{ base: 1, md: 3 }} w="full" gap={{ base: 1, md: 4 }}>
@@ -65,12 +46,10 @@ export default function RealEstate({ currentUseCase }: { currentUseCase: UseCase
           color="black"
         >
           <Text as="span" fontWeight="bold" fontSize={{ base: 'lg', md: '3xl' }}>
-            Proof of Reserve
+            {t('useCases.realEstate.proofOfReserve.title')}
           </Text>
           <Text fontSize={{ base: 'sm', md: 'md' }}>
-            To confirm that the token corresponds to a specific property, Fact Finance can provide on-chain information,
-            such as: Address and geolocation, Legal status (Due Diligence), Property type (residential or commercial),
-            year of construction.
+            {t('useCases.realEstate.proofOfReserve.description')}
           </Text>
         </VStack>
 
@@ -84,12 +63,10 @@ export default function RealEstate({ currentUseCase }: { currentUseCase: UseCase
           color="black"
         >
           <Text as="span" fontWeight="bold" fontSize={{ base: 'lg', md: '3xl' }}>
-            Square Meter Price
+            {t('useCases.realEstate.squareMeterPrice.title')}
           </Text>
           <Text fontSize={{ base: 'sm', md: 'md' }}>
-            To reflect property appreciation or depreciation, tokens require up-to-date regional price per square meter
-            data. Fact Finance integrates directly with licensed data institutions to provide precise market pricing,
-            enabling an up-to-date valuation of the property to be calculated.
+            {t('useCases.realEstate.squareMeterPrice.description')}
           </Text>
         </VStack>
 
@@ -103,12 +80,10 @@ export default function RealEstate({ currentUseCase }: { currentUseCase: UseCase
           color="black"
         >
           <Text as="span" fontWeight="bold" fontSize={{ base: 'lg', md: '3xl' }}>
-            Economic indices
+            {t('useCases.realEstate.economicIndices.title')}
           </Text>
           <Text fontSize={{ base: 'sm', md: 'md' }}>
-            Real estate contracts often require inflation adjustments. In Brazil, 90% of rental contracts are tied to
-            the inflation index IGP-M. Fact Finance connects directly to this official data source, ensuring seamless
-            inflation updates.
+            {t('useCases.realEstate.economicIndices.description')}
           </Text>
         </VStack>
       </SimpleGrid>
@@ -116,7 +91,7 @@ export default function RealEstate({ currentUseCase }: { currentUseCase: UseCase
       <br />
 
       <Text fontWeight="bold" fontSize={{ base: 'lg', md: '2xl' }}>
-        Here's how Fact Finance ensures a reliable connection:
+        {t('useCases.realEstate.reliableConnection')}
       </Text>
       <br />
       <SimpleGrid columns={{ base: 1, md: 3 }} w="full" gap={{ base: 4, md: 4 }}>
@@ -125,10 +100,9 @@ export default function RealEstate({ currentUseCase }: { currentUseCase: UseCase
             <BadgeCheckIcon size={32} />
           </Text>
           <VStack gap={{ base: 1, md: 4 }} flex={1} align="flex-start">
-            <Heading fontSize={{ base: 'lg', md: '2xl' }}>Proof of Authenticity</Heading>
+            <Heading fontSize={{ base: 'lg', md: '2xl' }}>{t('features.proofOfAuthenticity.title')}</Heading>
             <Text fontSize={{ base: 'sm', md: 'md' }}>
-              On-chain wallet validation that the data comes directly from the official data provider, eliminating risks
-              of tampering.
+              {t('features.proofOfAuthenticity.subtitle')}
             </Text>
           </VStack>
         </VStack>
@@ -138,10 +112,9 @@ export default function RealEstate({ currentUseCase }: { currentUseCase: UseCase
             <SearchIcon size={32} />
           </Text>
           <VStack gap={{ base: 1, md: 4 }} flex={1} align="flex-start">
-            <Heading fontSize={{ base: 'lg', md: '2xl' }}>Confidence Index</Heading>
+            <Heading fontSize={{ base: 'lg', md: '2xl' }}>{t('features.confidenceIndex.title')}</Heading>
             <Text fontSize={{ base: 'sm', md: 'md' }}>
-              Our system monitors data for anomalies using statistical and density-based detection techniques. Any
-              outlier data is flagged so the consumer contract can determine how to handle it.
+              {t('features.confidenceIndex.subtitle')}
             </Text>
           </VStack>
         </VStack>
@@ -151,9 +124,9 @@ export default function RealEstate({ currentUseCase }: { currentUseCase: UseCase
             <ComponentIcon size={32} />
           </Text>
           <VStack gap={{ base: 1, md: 4 }} flex={1} align="flex-start">
-            <Heading fontSize={{ base: 'lg', md: '2xl' }}>External Auditors</Heading>
+            <Heading fontSize={{ base: 'lg', md: '2xl' }}>{t('features.externalAuditors.title')}</Heading>
             <Text fontSize={{ base: 'sm', md: 'md' }}>
-              A pool of independent auditors validates the integrity and accuracy of the data provided
+              {t('features.externalAuditors.subtitle')}
             </Text>
           </VStack>
         </VStack>
@@ -162,14 +135,12 @@ export default function RealEstate({ currentUseCase }: { currentUseCase: UseCase
       <br />
 
       <Text fontSize={{ base: 'md', md: 'lg' }}>
-        With Fact Finance's integration, tokenized Real Estate moves beyond static representation to become a dynamic
-        financial asset. Tokens can now serve as collateral for loans or be used in DeFi applications, unlocking greater
-        utility and liquidity for both issuers and investors.
+        {t('useCases.realEstate.conclusion')}
       </Text>
 
       <br />
 
-      <UseCasesCTA title="Unlock the potential of tokenized Real Estate" />
+      <UseCasesCTA title={t('useCases.cta.realEstateTitle')} />
     </VStack>
   );
 }

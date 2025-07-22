@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { TitleSection } from '@/components/ui/title-sectiont';
 import { Box, Container, Heading, Text, VStack, Table } from '@chakra-ui/react';
+import { useI18n } from '@/hooks/useI18n';
 
 interface CurrencyData {
   symbol: string;
@@ -11,6 +12,7 @@ interface CurrencyData {
 }
 
 export default function DataProviders() {
+  const { t } = useI18n();
   const [currencies, setCurrencies] = useState<CurrencyData[]>([
     {
       symbol: 'BTC',
@@ -55,11 +57,11 @@ export default function DataProviders() {
         <VStack gap={12} align="stretch">
           <TitleSection>
             <Text fontSize="sm" color="brand.300">
-              DATA PROVIDERS
+              {t('dataProviders.title')}
             </Text>
-            <Heading textStyle="title">Real-Time Currency Data</Heading>
+            <Heading textStyle="title">{t('dataProviders.subtitle')}</Heading>
             <Text fontSize="lg">
-              Live cryptocurrency price feeds with real-time updates and weekly performance metrics.
+              {t('dataProviders.description')}
             </Text>
           </TitleSection>
 
@@ -67,11 +69,11 @@ export default function DataProviders() {
             <Table.Root variant="line">
               <Table.Header>
                 <Table.Row>
-                  <Table.ColumnHeader>Symbol</Table.ColumnHeader>
-                  <Table.ColumnHeader>Name</Table.ColumnHeader>
-                  <Table.ColumnHeader>Price (USD)</Table.ColumnHeader>
-                  <Table.ColumnHeader>Weekly Change</Table.ColumnHeader>
-                  <Table.ColumnHeader>Last Update</Table.ColumnHeader>
+                  <Table.ColumnHeader>{t('dataProviders.table.symbol')}</Table.ColumnHeader>
+                  <Table.ColumnHeader>{t('dataProviders.table.name')}</Table.ColumnHeader>
+                  <Table.ColumnHeader>{t('dataProviders.table.price')}</Table.ColumnHeader>
+                  <Table.ColumnHeader>{t('dataProviders.table.weeklyChange')}</Table.ColumnHeader>
+                  <Table.ColumnHeader>{t('dataProviders.table.lastUpdate')}</Table.ColumnHeader>
                 </Table.Row>
               </Table.Header>
               <Table.Body>

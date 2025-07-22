@@ -1,8 +1,11 @@
 import { Heading, Text, VStack, SimpleGrid } from '@chakra-ui/react';
 import { USE_CASE_COMMODITIES, UseCase } from './types';
 import UseCasesCTA from './CTA';
+import { useI18n } from '@/hooks/useI18n';
 
 export default function Commodities({ currentUseCase }: { currentUseCase: UseCase }) {
+  const { t } = useI18n();
+  
   return (
     <VStack
       w="full"
@@ -14,38 +17,29 @@ export default function Commodities({ currentUseCase }: { currentUseCase: UseCas
         as="h2"
         fontSize={{ base: '2xl', sm: '4xl', md: '4xl', lg: '4xl' }}
         lineHeight="1.1"
-        aria-label="Section heading about unlocking liquidity and transparency"
+        aria-label={`Section heading about ${t('useCases.commodities.sectionTitle')}`}
       >
-        Unlocking liquidity and transparency
+        {t('useCases.commodities.sectionTitle')}
       </Heading>
       <br />
       <Text fontSize={{ base: 'md', md: 'lg' }}>
-        Latin America's economies heavily rely on the commodities sector, driving global markets for agricultural goods,
-        minerals, and energy. Despite its significance, this sector faces challenges such as operational inefficiencies,
-        high transaction costs, and limited access to financing, particularly for smaller producers.
+        {t('useCases.commodities.intro1')}
       </Text>
       <br />
       <Text fontSize={{ base: 'md', md: 'lg' }}>
-        Tokenization provides a powerful solution by digitizing physical commodities, making them tradable and usable as
-        collateral for financing. This unlocks liquidity for producers while enabling them to retain ownership of their
-        assets.
+        {t('useCases.commodities.intro2')}
       </Text>
       <br />
       <Text fontWeight="bold" fontSize={{ base: 'lg', md: '2xl' }}>
-        Reducing risk with verified data for commodity tokenization
+        {t('useCases.commodities.riskReduction')}
       </Text>
       <br />
       <Text fontSize={{ base: 'md', md: 'lg' }}>
-        In lending markets, managing risk exposure is critical for both lenders and borrowers. Collateralized assets
-        must be as transparent as possible to reduce perceived risk. In agriculture, for example, variables such as
-        region, weather, grain type, and other qualitative factors significantly impact the associated risk score.
-        Addressing these information asymmetries is key to unlocking tokenization's potential to expand financing to
-        small producers.
+        {t('useCases.commodities.risk1')}
       </Text>
       <br />
       <Text fontSize={{ base: 'md', md: 'lg' }}>
-        Fact Finance bridges this gap by connecting tokenized assets, such as grains or livestock, to trusted data
-        sources directly associated with the underlying commodities. This includes:
+        {t('useCases.commodities.risk2')}
       </Text>
       <br />
       <SimpleGrid columns={{ base: 1, sm: 4 }} w="full" gap={{ base: 1, md: 4 }}>
@@ -59,10 +53,10 @@ export default function Commodities({ currentUseCase }: { currentUseCase: UseCas
           color="black"
         >
           <Text as="span" fontWeight="bold" fontSize="xl">
-            Market prices
+            {t('useCases.commodities.marketPrices.title')}
           </Text>
           <Text fontSize="sm">
-            Real-time pricing pulled directly from trusted exchanges like the CME (Chicago Mercantile Exchange).
+            {t('useCases.commodities.marketPrices.description')}
           </Text>
         </VStack>
 
@@ -76,10 +70,10 @@ export default function Commodities({ currentUseCase }: { currentUseCase: UseCas
           color="black"
         >
           <Text as="span" fontWeight="bold" fontSize="xl">
-            Qualitative data
+            {t('useCases.commodities.qualitativeData.title')}
           </Text>
           <Text fontSize="sm">
-            Information from farmers' ERP systems, such as productivity history, crop type, and operational timelines.
+            {t('useCases.commodities.qualitativeData.description')}
           </Text>
         </VStack>
 
@@ -93,10 +87,10 @@ export default function Commodities({ currentUseCase }: { currentUseCase: UseCas
           color="black"
         >
           <Text as="span" fontWeight="bold" fontSize="xl">
-            Environmental data
+            {t('useCases.commodities.environmentalData.title')}
           </Text>
           <Text fontSize="sm">
-            Weather conditions and climate forecasts that influence yield quality and asset value.
+            {t('useCases.commodities.environmentalData.description')}
           </Text>
         </VStack>
 
@@ -110,10 +104,10 @@ export default function Commodities({ currentUseCase }: { currentUseCase: UseCas
           color="black"
         >
           <Text as="span" fontWeight="bold" fontSize="xl">
-            Logistics data
+            {t('useCases.commodities.logisticsData.title')}
           </Text>
           <Text fontSize="sm">
-            Key information such as proximity to ports or transportation hubs, affecting delivery efficiency and costs.
+            {t('useCases.commodities.logisticsData.description')}
           </Text>
         </VStack>
       </SimpleGrid>
@@ -121,26 +115,19 @@ export default function Commodities({ currentUseCase }: { currentUseCase: UseCas
       <br />
 
       <Text fontWeight="bold" fontSize="2xl" lineHeight="1">
-        Event monitoring for tokenized commodities
+        {t('useCases.commodities.eventMonitoring')}
       </Text>
       <br />
 
       <Text fontSize={{ base: 'md', md: 'lg' }} fontWeight="400">
-        By enriching tokens with real-time data, oracles can track off-chain events that directly affect the value or
-        utility of tokenized assets. For example, an insurance smart contract for agricultural assets can use weather
-        oracles to monitor events such as droughts or floods, automatically triggering payouts when predefined
-        thresholds are met. Similarly, Fact Finance's oracles can flag significant changes, such as adverse weather
-        conditions, that may require lenders to reassess loan terms.
+        {t('useCases.commodities.event1')}
       </Text>
       <br />
       <Text fontSize={{ base: 'md', md: 'lg' }} fontWeight="400">
-        With this data integration, collateralized tokens become dynamic financial instruments rather than static
-        representations, reducing risk and increasing transparency. This enables lending protocols to offer higher
-        Loan-to-Value (LTV) ratios, giving producers greater access to financing without sacrificing control over their
-        assets.
+        {t('useCases.commodities.event2')}
       </Text>
       <br />
-      <UseCasesCTA title="Unlock the potential of tokenized commodities" />
+      <UseCasesCTA title={t('useCases.cta.commoditiesTitle')} />
     </VStack>
   );
 }

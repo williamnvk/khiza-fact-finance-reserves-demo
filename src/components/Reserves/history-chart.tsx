@@ -16,6 +16,7 @@ import {
   Separator,
 } from '@chakra-ui/react';
 import { useColorModeValue } from '../ui/color-mode';
+import { useI18n } from '@/hooks/useI18n';
 
 export function HistoryChart({
   heartbeat,
@@ -40,6 +41,8 @@ export function HistoryChart({
   avgcolateral1: number;
   currency: string;
 }) {
+  const { t } = useI18n();
+
   // Chart colors that work for both light and dark modes
   const colors = {
     reserves: useColorModeValue('var(--ff-colors-success-600)', 'var(--ff-colors-success-400)'),
@@ -52,17 +55,24 @@ export function HistoryChart({
     if (!active || !payload || !payload.length) return null;
 
     return (
-      <Card.Root borderWidth="1px" shadow="lg" p={4} maxW="320px" _dark={{ shadow: 'dark-lg' }} className="omit-from-print">
+      <Card.Root
+        borderWidth="1px"
+        shadow="lg"
+        p={4}
+        maxW="320px"
+        _dark={{ shadow: 'dark-lg' }}
+        className="omit-from-print"
+      >
         <Card.Body p={0}>
           <VStack align="start" gap={3}>
             <Text fontSize="sm" fontWeight="semibold" color="fg">
-              Date: {payload[0].payload.date}
+              {t('reserves.components.common.date')}: {payload[0].payload.date}
             </Text>
 
             <Box w="full">
               <HStack justify="space-between" mb={1}>
                 <Text fontSize="xs" color="fg.muted">
-                  Collateral Reserves
+                  {t('reserves.components.historyChart.tooltips.collateralReserves')}
                 </Text>
                 <Text fontSize="sm" fontWeight="medium" color={colors.reserves}>
                   {formatLargeNumber(payload[0].value, currency)}
@@ -71,7 +81,7 @@ export function HistoryChart({
 
               <HStack justify="space-between" mb={2}>
                 <Text fontSize="xs" color="fg.muted">
-                  Tokens Issued
+                  {t('reserves.components.historyChart.tooltips.tokensIssued')}
                 </Text>
                 <Text fontSize="sm" fontWeight="medium" color={colors.circulation}>
                   {formatLargeNumber(payload[1].value, currency)}
@@ -84,7 +94,7 @@ export function HistoryChart({
 
                   <HStack justify="space-between" mb={1}>
                     <Text fontSize="xs" color="fg.muted">
-                      Transactions
+                      {t('reserves.components.historyChart.tooltips.transactions')}
                     </Text>
                     <Text fontSize="sm" fontWeight="medium" color="fg">
                       {payload[0].payload.transactions}
@@ -93,7 +103,7 @@ export function HistoryChart({
 
                   <HStack justify="space-between" mb={1}>
                     <Text fontSize="xs" color="fg.muted">
-                      Total Transfer
+                      {t('reserves.components.historyChart.tooltips.totalTransfer')}
                     </Text>
                     <Text fontSize="sm" fontWeight="medium" color="fg">
                       {formatLargeNumber(payload[0].payload.totalTransfer, currency)}
@@ -102,7 +112,7 @@ export function HistoryChart({
 
                   <HStack justify="space-between">
                     <Text fontSize="xs" color="fg.muted">
-                      Total Burned
+                      {t('reserves.components.historyChart.tooltips.totalBurned')}
                     </Text>
                     <Text fontSize="sm" fontWeight="medium" color="warning.500">
                       {formatLargeNumber(payload[0].payload.totalBurned, currency)}
@@ -120,14 +130,14 @@ export function HistoryChart({
   // Function to calculate average collateral ratio from historical data
   const calculateAverageCollateral = (data: any[]) => {
     if (!data || data.length === 0) return 0;
-    
-    const validEntries = data.filter(entry => entry.circulation > 0 && entry.reserves > 0);
+
+    const validEntries = data.filter((entry) => entry.circulation > 0 && entry.reserves > 0);
     if (validEntries.length === 0) return 0;
-    
+
     const totalRatio = validEntries.reduce((sum, entry) => {
-      return sum + (entry.reserves / entry.circulation * 100);
+      return sum + (entry.reserves / entry.circulation) * 100;
     }, 0);
-    
+
     return Math.round(totalRatio / validEntries.length);
   };
 
@@ -136,13 +146,13 @@ export function HistoryChart({
   const [historicalDataChart, setHistoricalDataChart] = useState(
     historicalData1?.length ? historicalData1 : historicalData,
   );
-  
+
   // Calculate average collateral properly from historical data
   const calculatedAvgCollateral = calculateAverageCollateral(historicalData);
   const calculatedAvgCollateral1 = calculateAverageCollateral(historicalData1);
-  
+
   const [averageIndex, setAverageIndex] = useState(
-    historicalData1?.length ? calculatedAvgCollateral1 : calculatedAvgCollateral
+    historicalData1?.length ? calculatedAvgCollateral1 : calculatedAvgCollateral,
   );
   const [totalIssued, setTotalIssued] = useState(historicalData1?.length ? periodTotalTransfer1 : periodTotalTransfer);
   const [totalTransactions, setTotalTransactions] = useState(
@@ -170,12 +180,16 @@ export function HistoryChart({
       <VStack align="stretch" gap={6}>
         <Flex justify="space-between" align="start" direction={{ base: 'column', md: 'row' }} gap={4}>
           <VStack align="start" gap={2} flex={1}>
-            <Text fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" color="fg">
-              Historical Reserve Coverage
+            <Text fontSize={{ base: '2xl', md: '3xl' }} fontWeight="bold" color="fg">
+              {t('reserves.components.historyChart.title')}
             </Text>
-            <Text fontSize={{ base: "sm", md: "md" }} color="fg.muted" lineHeight="tall"h={{ base: "auto", md: "66px"}}>
-              Track cumulative balances versus tokens issued over time. Use filters to explore data by a different
-              period.
+            <Text
+              fontSize={{ base: 'sm', md: 'md' }}
+              color="fg.muted"
+              lineHeight="tall"
+              h={{ base: 'auto', md: '66px' }}
+            >
+              {t('reserves.components.historyChart.subtitle')}
             </Text>
           </VStack>
           {historicalData1?.length ? (
@@ -187,7 +201,7 @@ export function HistoryChart({
                   colorPalette={selected === period ? 'brand' : 'gray'}
                   variant={selected === period ? 'solid' : 'subtle'}
                 >
-                  {period}
+                  {t(`reserves.components.historyChart.periods.${period}`)}
                 </Button>
               ))}
             </ButtonGroup>
@@ -195,27 +209,27 @@ export function HistoryChart({
         </Flex>
 
         {/* Key Metrics */}
-        <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={{ base: 2, md: 4}}>
+        <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={{ base: 2, md: 4 }}>
           <GridItem>
-          <Card.Root size="sm" bg="whiteAlpha.500" _dark={{ bg: 'blackAlpha.50' }} borderWidth="1px">
+            <Card.Root size="sm" bg="whiteAlpha.500" _dark={{ bg: 'blackAlpha.50' }} borderWidth="1px">
               <Card.Body>
                 <Stat.Root size="sm">
                   <Stat.Label fontSize="md" color="fg.muted">
-                    Transaction volume
+                    {t('reserves.components.historyChart.transactionVolume')}
                   </Stat.Label>
                   <Stat.ValueText fontSize="xl" fontWeight="bold">
-                  {formatLargeNumber(totalIssued | 0, currency === 'USD' ? '$' : 'R$')}
+                    {formatLargeNumber(totalIssued | 0, currency === 'USD' ? '$' : 'R$')}
                   </Stat.ValueText>
                 </Stat.Root>
               </Card.Body>
             </Card.Root>
           </GridItem>
           <GridItem>
-          <Card.Root size="sm" bg="whiteAlpha.500" _dark={{ bg: 'blackAlpha.50' }} borderWidth="1px">
+            <Card.Root size="sm" bg="whiteAlpha.500" _dark={{ bg: 'blackAlpha.50' }} borderWidth="1px">
               <Card.Body>
                 <Stat.Root size="sm">
                   <Stat.Label fontSize="md" color="fg.muted">
-                    Number of transactions
+                    {t('reserves.components.historyChart.numberOfTransactions')}
                   </Stat.Label>
                   <Stat.ValueText fontSize="xl" fontWeight="bold">
                     {formatLargeNumber(totalTransactions | 0)}
@@ -225,13 +239,17 @@ export function HistoryChart({
             </Card.Root>
           </GridItem>
           <GridItem>
-          <Card.Root size="sm" bg="whiteAlpha.500" _dark={{ bg: 'blackAlpha.50' }} borderWidth="1px">
-            <Card.Body>
-              <Stat.Root size="sm">
-                    <Stat.Label fontSize="md" color="fg.muted">
-                    Average collateral
+            <Card.Root size="sm" bg="whiteAlpha.500" _dark={{ bg: 'blackAlpha.50' }} borderWidth="1px">
+              <Card.Body>
+                <Stat.Root size="sm">
+                  <Stat.Label fontSize="md" color="fg.muted">
+                    {t('reserves.components.historyChart.averageCollateral')}
                   </Stat.Label>
-                  <Stat.ValueText fontSize="xl" fontWeight="bold" color={averageIndex > 100 ? 'success.500' : 'warning.500'}>
+                  <Stat.ValueText
+                    fontSize="xl"
+                    fontWeight="bold"
+                    color={averageIndex > 100 ? 'success.500' : 'warning.500'}
+                  >
                     {averageIndex}%
                   </Stat.ValueText>
                 </Stat.Root>
@@ -286,7 +304,7 @@ export function HistoryChart({
             <Box w={3} h={3} rounded="full" bg={colors.circulation} shadow="sm" />
             <VStack align="start" gap={0}>
               <Text fontSize="xs" fontWeight="medium" color="fg">
-                Circulating token supply
+                {t('reserves.components.historyChart.legend.circulatingTokenSupply')}
               </Text>
             </VStack>
           </HStack>
@@ -295,7 +313,7 @@ export function HistoryChart({
             <Box w={3} h={3} rounded="full" bg={colors.reserves} shadow="sm" />
             <VStack align="start" gap={0}>
               <Text fontSize="xs" fontWeight="medium" color="fg">
-                Total Reserves
+                {t('reserves.components.historyChart.legend.totalReserves')}
               </Text>
             </VStack>
           </HStack>

@@ -1,8 +1,11 @@
 import { Container, HStack, Text, Box, Link, Stack } from '@chakra-ui/react';
 import LinkedinIcon from '../Icons/LinkedinIcon';
 import XIcon from '../Icons/XIcon';
+import { useI18n } from '@/hooks/useI18n';
 
 export function Footer() {
+  const { t } = useI18n();
+  
   return (
     <Box position="relative" w="full">
       <Container maxW="container.xl">
@@ -23,14 +26,14 @@ export function Footer() {
           >
             <Stack gap={4} flex={1}>
               <Text fontSize="sm" color="gray.300">
-                &copy; {new Date().getFullYear()} Fact Finance. All rights reserved.
+                &copy; {new Date().getFullYear()} Fact Finance. {t('footer.allRightsReserved')}
               </Text>
               <Text fontSize="xs" color="gray.400">
-                Powering asset tokenization with trusted real-world data.
+                {t('footer.tagline')}
               </Text>
             </Stack>
 
-            <HStack justify={{ base: 'center', md: 'end' }} gap={5} as="nav" aria-label="Social Media Links">
+            <HStack justify={{ base: 'center', md: 'end' }} gap={5} as="nav" aria-label={t('footer.socialMedia')}>
               <Link
                 title="Linkedin"
                 target="_blank"

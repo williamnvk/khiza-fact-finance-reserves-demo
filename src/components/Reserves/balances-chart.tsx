@@ -18,6 +18,7 @@ import {
 } from '@chakra-ui/react';
 import { useColorModeValue } from '../ui/color-mode';
 import { TrendingUp, Shield, Activity } from 'lucide-react';
+import { useI18n } from '@/hooks/useI18n';
 
 type ChartView = 'stacked' | 'comparative' | 'ratio';
 
@@ -30,6 +31,7 @@ export function BalancesChart({
   reserves: number;
   currency: string;
 }) {
+  const { t } = useI18n();
   // @ts-ignore
   const [chartView, setChartView] = useState<ChartView>('comparative');
   // @ts-ignore
@@ -107,7 +109,7 @@ export function BalancesChart({
         <Card.Body p={0}>
           <VStack align="start" gap={3}>
             <Text fontSize="md" fontWeight="bold" color="fg">
-              Reserve Analysis
+              {t('reserves.components.balancesChart.tooltips.reserveAnalysis')}
             </Text>
 
             {chartView === 'comparative' && (
@@ -120,15 +122,15 @@ export function BalancesChart({
 
                   switch (dataKey) {
                     case 'Main Collateral':
-                      description = 'Primary reserve backing';
+                      description = t('reserves.components.balancesChart.tooltips.primaryReserve');
                       icon = <Shield size={12} />;
                       break;
                     case 'Over Collateral':
-                      description = isOverCollateralized ? 'Additional security buffer' : 'Under-collateralized';
+                      description = isOverCollateralized ? t('reserves.components.balancesChart.tooltips.additionalBuffer') : t('reserves.components.balancesChart.tooltips.underCollateralized');
                       icon = <TrendingUp size={12} />;
                       break;
                     case 'Circulation':
-                      description = 'Tokens in circulation';
+                      description = t('reserves.components.balancesChart.tooltips.tokensInCirculation');
                       icon = <Activity size={12} />;
                       break;
                   }
@@ -230,7 +232,7 @@ export function BalancesChart({
           <VStack align="start" gap={2} flex={1}>
             <Flex w="full" justify="space-between" align="center">
               <Heading fontSize={{ base: '2xl', md: '3xl' }} fontWeight="bold" color="fg">
-                Reserves Coverage Status
+                {t('reserves.components.balancesChart.title')}
               </Heading>
 
               {/* <ButtonGroup size="xs" attached gap={0} colorPalette="brand">
@@ -265,8 +267,7 @@ export function BalancesChart({
               lineHeight="tall"
               h={{ base: 'auto', md: '66px' }}
             >
-              Latest verified token supply<sup>3</sup> and corresponding collateral reserves<sup>4</sup>, including the
-              status of over or under collateralization.
+              {t('reserves.components.balancesChart.subtitle')}
             </Text>
           </VStack>
         </Flex>
@@ -277,7 +278,7 @@ export function BalancesChart({
             <Card.Body>
               <Stat.Root size="sm">
                 <Stat.Label fontSize="md" color="fg.muted">
-                  Total in circulation
+                  {t('reserves.components.balancesChart.totalInCirculation')}
                 </Stat.Label>
                 <Stat.ValueText fontSize="xl" fontWeight="bold">
                   <FormatNumber value={circulation} style="currency" currency={currency} />
@@ -290,7 +291,7 @@ export function BalancesChart({
             <Card.Body>
               <Stat.Root size="sm">
                 <Stat.Label fontSize="md" color="fg.muted">
-                  Total collateral
+                  {t('reserves.components.balancesChart.totalCollateral')}
                 </Stat.Label>
                 <Stat.ValueText fontSize="xl" fontWeight="bold">
                   <FormatNumber value={totalReserves} style="currency" currency={currency} />
@@ -303,7 +304,7 @@ export function BalancesChart({
             <Card.Body>
               <Stat.Root size="sm">
                 <Stat.Label fontSize="md" color="fg.muted">
-                  {isOverCollateralized ? 'Over Collateral' : 'Under Collateral'}
+                  {isOverCollateralized ? t('reserves.components.balancesChart.overCollateral') : t('reserves.components.balancesChart.underCollateral')}
                 </Stat.Label>
                 <Stat.ValueText
                   fontSize="xl"
@@ -433,7 +434,7 @@ export function BalancesChart({
             <HStack gap={2}>
               <Box w={3} h={3} rounded="full" bg={colors.mainCollateral} />
               <Text fontSize="xs" fontWeight="medium" color="fg">
-                Main Collateral
+                {t('reserves.components.balancesChart.legend.mainCollateral')}
               </Text>
               {/* <Badge size="sm" variant="subtle" colorPalette="green">
                     <FormatNumber value={mainCollateral} style="currency" currency="USD" />
@@ -443,7 +444,7 @@ export function BalancesChart({
             <HStack gap={2}>
               <Box w={3} h={3} rounded="full" bg={colors.overCollateral} />
               <Text fontSize="xs" fontWeight="medium" color="fg">
-                {isOverCollateralized ? 'Over Collateral' : 'Under Collateral'}
+                {isOverCollateralized ? t('reserves.components.balancesChart.legend.overCollateral') : t('reserves.components.balancesChart.legend.underCollateral')}
               </Text>
               {/* <Badge size="sm" variant="subtle" colorPalette="orange">
                     <FormatNumber value={overCollateral} style="currency" currency="USD" />
@@ -453,7 +454,7 @@ export function BalancesChart({
             <HStack gap={2}>
               <Box w={3} h={3} rounded="full" bg={colors.circulation} />
               <Text fontSize="xs" fontWeight="medium" color="fg">
-                Circulation
+                {t('reserves.components.balancesChart.legend.circulation')}
               </Text>
               {/* <Badge size="sm" variant="subtle" colorPalette="blue">
                     <FormatNumber value={circulation} style="currency" currency="USD" />

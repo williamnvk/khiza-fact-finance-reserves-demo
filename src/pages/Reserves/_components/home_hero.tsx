@@ -1,32 +1,14 @@
-import { Container, Heading, Text, Grid, VStack, Box, Icon, SimpleGrid, Flex } from '@chakra-ui/react';
+import { Container, Heading, Text, VStack, Box, Icon, SimpleGrid } from '@chakra-ui/react';
 import { Zap, GitBranchIcon, ArrowUpIcon, LayoutDashboardIcon } from 'lucide-react';
-import { formatLargeNumber } from '@/lib/utils';
-// import { SystemStatus } from './system-status';
+import { useI18n } from '@/hooks/useI18n';
 
-export const HomeHero = ({ totalReserves, clients }: { totalReserves: number; clients: any[] }) => {
-  const uptimePercentage = 99.9;
+export const HomeHero = () => {
+  const { t } = useI18n();
 
   return (
     <Container maxW="7xl" position="relative" zIndex={1} py={24}>
       <VStack w="full" h="full" justify="center" gap={8}>
-        {/* <SystemStatus /> */}
-
         <VStack align="center" gap={4} w="full" my={{ base: 4, md: 16 }}>
-          {/* <Badge
-            size="lg"
-            colorPalette="brand"
-            rounded="lg"
-            px={4}
-            py={2}
-            bg="brand.900"
-            border="1px solid"
-            borderColor="whiteAlpha.50"
-            color="whiteAlpha.800"
-          >
-            <Icon as={Shield} boxSize={4} color="brand.100" mr={2} />
-            Certified Blockchain Auditing
-          </Badge> */}
-
           <Heading
             fontSize={{ base: '4xl', md: '6xl' }}
             lineHeight="1.1"
@@ -36,7 +18,7 @@ export const HomeHero = ({ totalReserves, clients }: { totalReserves: number; cl
             textAlign="center"
             maxW="6xl"
           >
-            Proof of Reserves for
+            {t('reserves.hero.title')}
             <br />
             <Text
               as="span"
@@ -44,126 +26,67 @@ export const HomeHero = ({ totalReserves, clients }: { totalReserves: number; cl
               bgClip="text"
               fontWeight="semibold"
             >
-              Tokenized Assets
+              {t('reserves.hero.titleHighlight')}
             </Text>
           </Heading>
 
-          <Text fontSize={{ base: 'md', md: 'xl' }} textAlign="center" color="whiteAlpha.800" maxW="3xl">
-            We connect offchain collateral and track onchain token supply, bringing both into a dynamic dashboard that
-            enables transparency and trust for tokenized assets.
+          <Text
+            fontSize={{ base: 'lg', md: 'xl' }}
+            color="whiteAlpha.800"
+            textAlign="center"
+            maxW="4xl"
+            lineHeight="1.7"
+          >
+            {t('reserves.hero.subtitle')}
           </Text>
         </VStack>
 
-        {/* Key Stats */}
-        {/* <Grid
-          templateColumns={{ base: 'repeat(3, 1fr)', md: 'repeat(3, 1fr)' }}
-          gap={{ base: 2, md: 6 }}
-          maxW={{ base: 'full', md: '2xl' }}
-          w="full"
-          py={{ base: 2, md: 4 }}
-        >
-          <VStack gap={0}>
-            <Heading fontSize={{ base: '2xl', md: '4xl' }} fontWeight="light" color="success.300" textAlign="center">
-              ${formatLargeNumber(totalReserves)}
-            </Heading>
-            <Text color="whiteAlpha.800" fontSize={{ base: 'xs', md: 'sm' }} textAlign="center" fontWeight="light">
-              Total Verified Reserves
-            </Text>
-          </VStack>
-
-          <VStack gap={0}>
-            <Heading fontSize={{ base: '2xl', md: '4xl' }} fontWeight="light" color="success.300" textAlign="center">
-              {clients.length}+
-            </Heading>
-            <Text color="whiteAlpha.800" fontSize={{ base: 'xs', md: 'sm' }} textAlign="center" fontWeight="light">
-              Active Integrations
-            </Text>
-          </VStack>
-      
-
-          <VStack gap={0}>
-            <Heading fontSize={{ base: '2xl', md: '4xl' }} fontWeight="light" color="success.300" textAlign="center">
-              {uptimePercentage}%
-            </Heading>
-            <Text color="whiteAlpha.800" fontSize={{ base: 'xs', md: 'sm' }} textAlign="center" fontWeight="light">
-              Uptime
-            </Text>
-          </VStack>
-        </Grid> */}
-
         {/* Enhanced Feature Cards */}
-        <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} gap={4} w="full" maxW="6xl" mt={8}>
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} gap={6} w="full" mt={8}>
           {[
             {
               icon: GitBranchIcon,
-              title: 'Direct connection to off-chain reserves',
-              description:
-                'We connect to custodians, banks, or financial systems via secure APIs or validated files to extract real-world collateral data.',
+              title: t('reserves.hero.features.directConnection.title'),
+              description: t('reserves.hero.features.directConnection.description'),
               color: 'brand',
             },
             {
               icon: Zap,
-              title: 'Live tracking of token issuance',
-              description:
-                'We monitor the smart contract of the token to track the circulating supply and match it against the verified reserve data.',
+              title: t('reserves.hero.features.liveTracking.title'),
+              description: t('reserves.hero.features.liveTracking.description'),
               color: 'warning',
             },
             {
               icon: ArrowUpIcon,
-              title: 'Oracles that publish data onchain',
-              description:
-                'Using three oracle models (Push, Pull, Signature), we publish reserve data to smart contracts — with triggers like heartbeat or deviation.',
+              title: t('reserves.hero.features.oracles.title'),
+              description: t('reserves.hero.features.oracles.description'),
               color: 'success',
             },
             {
               icon: LayoutDashboardIcon,
-              title: 'Real-time dashboard for transparency',
-              description:
-                'Our public dashboards display balances, update history, token supply, and onchain contract links — enabling full visibility and trust.',
+              title: t('reserves.hero.features.dashboard.title'),
+              description: t('reserves.hero.features.dashboard.description'),
               color: 'brand',
             },
           ].map((feature, index) => (
             <Box
               key={index}
-              position="relative"
               p={6}
+              rounded="lg"
               bg="whiteAlpha.50"
-              rounded="xl"
-              border="1px solid"
+              borderWidth="1px"
               borderColor="whiteAlpha.200"
-              backdropFilter="blur(12px)"
-              transition="all 0.3s ease"
-              _hover={{
-                bg: 'whiteAlpha.100',
-                borderColor: 'whiteAlpha.300',
-                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)',
-              }}
-              _before={{
-                content: '""',
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                height: '1px',
-                bg: 'linear-gradient(90deg, transparent, {colors.brand.400}, transparent)',
-              }}
+              _hover={{ bg: 'whiteAlpha.100', transform: 'translateY(-2px)' }}
+              transition="all 0.2s"
             >
-              <VStack align="flex-start" gap={3} h="full">
-                <Flex
-                  align="center"
-                  justify="center"
-                  w={12}
-                  h={12}
-                  bg={`${feature.color}.500`}
-                  rounded="lg"
-                  color="white"
-                  boxShadow={`0 4px 12px rgba(59, 130, 246, 0.3)`}
-                >
-                  <Icon as={feature.icon} boxSize={6} />
-                </Flex>
-
-                <VStack align="flex-start" gap={2} flex={1}>
-                  <Text fontWeight="bold" fontSize="lg" color="white">
+              <VStack align="start" gap={4} h="full">
+                <Box p={3} bg={`${feature.color}.100`} rounded="lg">
+                  <Icon color={`${feature.color}.500`} boxSize={6}>
+                    <feature.icon />
+                  </Icon>
+                </Box>
+                <VStack align="start" gap={2} flex={1}>
+                  <Text fontSize="md" fontWeight="semibold" lineHeight="1.3" color="white">
                     {feature.title}
                   </Text>
                   <Text fontSize="sm" color="whiteAlpha.800" lineHeight="1.5">

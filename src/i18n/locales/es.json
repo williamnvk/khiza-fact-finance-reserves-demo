@@ -1,0 +1,619 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "features": "Características",
+    "useCases": "Casos de Uso",
+    "dataHub": "Centro de Datos",
+    "about": "Acerca de Nosotros",
+    "reserves": "Reservas",
+    "docs": "Docs",
+    "documentation": "Documentación"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "retry": "Reintentar",
+    "close": "Cerrar",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "language": "Idioma",
+    "selectLanguage": "Seleccionar Idioma",
+    "goBack": "Volver",
+    "goHome": "Ir al Inicio",
+    "verified": "VERIFICADO"
+  },
+  "errors": {
+    "generic": {
+      "title": "Ups...",
+      "message": "¡Ocurrió un error inesperado!",
+      "action": "Volver"
+    },
+    "notFound": {
+      "title": "Página no encontrada",
+      "action": "Página de inicio"
+    }
+  },
+  "hero": {
+    "title": "Prueba de Reservas On-chain con Dashboard Dinámico",
+    "subtitle": "Conectando transparencia en tiempo real entre tokens on-chain y colateral off-chain",
+    "description": "Fact Finance establece una nueva capa de transparencia y seguridad para el mercado de activos tokenizados, conectando datos off-chain al entorno on-chain con publicación automatizada de oráculos, reglas de contratos inteligentes programables, validación continua y visualización en tiempo real.",
+    "getStarted": "Comenzar",
+    "learnMore": "Aprender Más",
+    "seamlessTitlePart1": "Integración",
+    "seamlessTitlePart2": "blockchain",
+    "seamlessTitlePart3": "de datos fluida",
+    "seamlessTitlePart4": "para desarrolladores",
+    "seamlessDescription": "Conecta contratos inteligentes a datos del mundo real con nuestras potentes APIs y herramientas para desarrolladores.",
+    "trustedByTitle": "Confianza de empresas líderes",
+    "mainTitle": "Datos oficiales para la",
+    "mainTitle2": "economía tokenizada",
+    "mainSubtitle": "Entregando datos precisos, verificados y oficiales para impulsar la tokenización de activos del mundo real.",
+    "talkToExpert": "Hablar con un experto",
+    "dataHub": "Centro de datos",
+    "trustedBy": "Confianza de"
+  },
+  "footer": {
+    "socialMedia": "Enlaces de Redes Sociales",
+    "allRightsReserved": "Todos los derechos reservados.",
+    "tagline": "Impulsando la tokenización de activos con datos confiables del mundo real."
+  },
+  "features": {
+    "title": "Características",
+    "description": "Descubre el poder de nuestra plataforma",
+    "sectionTitle": "Nuestras características clave",
+    "sectionSubtitle": "Soluciones confiables para la entrega segura y precisa de datos",
+    "proofOfAuthenticity": {
+      "title": "Prueba de Autenticidad",
+      "subtitle": "Validación on-chain de billetera que confirma que los datos provienen directamente del proveedor oficial de datos, eliminando riesgos de manipulación."
+    },
+    "confidenceIndex": {
+      "title": "Índice de Confianza",
+      "subtitle": "Nuestro sistema monitorea datos en busca de anomalías utilizando técnicas de detección estadística y basada en densidad. Cualquier dato atípico es marcado para que el contrato consumidor pueda determinar cómo manejarlo."
+    },
+    "externalAuditors": {
+      "title": "Auditores Externos",
+      "subtitle": "Un grupo de auditores independientes valida la integridad y precisión de los datos proporcionados"
+    },
+    "page": {
+      "title": "Un nuevo estándar para datos on-chain",
+      "subtitle": "Fact Finance proporciona feeds de datos seguros y conformes, permitiendo la tokenización de activos precisa y eficiente en rieles blockchain",
+      "proofOfAuthenticity": {
+        "title": "Prueba de autenticidad",
+        "verifiedPartnerships": {
+          "title": "Alianzas verificadas",
+          "description": "Relaciones comerciales con proveedores de datos confiables a través de acuerdos de licencia con institutos de investigación, agencias gubernamentales, empresas especializadas en datos."
+        },
+        "cryptographicSecurity": {
+          "title": "Seguridad criptográfica",
+          "description": "Cada proveedor recibe una clave criptográfica única registrada on-chain, actuando como una firma a prueba de manipulaciones para todos los datos enviados."
+        },
+        "onChainValidation": {
+          "title": "Validación On-Chain",
+          "description": "Cada punto de datos se firma con una clave criptográfica única. Después de eso, Fact Finance verifica la autenticidad antes de publicarlo on-chain."
+        }
+      },
+      "confidenceIndex": {
+        "title": "Índice de Confianza",
+        "benefits": "Beneficios",
+        "automation": {
+          "title": "Automatización",
+          "description": "Permite a los protocolos automatizar respuestas basadas en la clasificación de datos."
+        },
+        "precision": {
+          "title": "Precisión",
+          "description": "Utiliza análisis estadístico y LOF para la detección precisa de anomalías."
+        },
+        "riskManagement": {
+          "title": "Gestión de riesgos",
+          "description": "Mitiga la exposición a datos no confiables o manipulados."
+        },
+        "scalability": {
+          "title": "Escalabilidad",
+          "description": "Se integra fácilmente con varios protocolos, optimizando la gestión de riesgos."
+        }
+      },
+      "externalAuditors": {
+        "title": "Auditores externos",
+        "consensusChecks": {
+          "title": "Verificaciones de consenso",
+          "description": "Múltiples participantes, como clientes o nodos, verifican colaborativamente la precisión de los datos, asegurando confiabilidad a través de validación descentralizada."
+        },
+        "auditFirms": {
+          "title": "Firmas de auditoría",
+          "description": "Firmas de auditoría independientes evalúan la integridad de los datos, proporcionando supervisión externa para mejorar la credibilidad y el cumplimiento."
+        },
+        "aiAnalysis": {
+          "title": "Análisis de IA",
+          "description": "Modelos de aprendizaje automático y predictivos analizan datos contextualmente, identificando anomalías y asegurando precisión."
+        }
+      },
+      "viewFullDocumentation": "Ver documentación completa"
+    }
+  },
+  "dataHub": {
+    "title": "Centro de Datos",
+    "description": "Accede a información completa de datos",
+    "search": {
+      "placeholder": "Buscar indicadores...",
+      "clear": "Limpiar búsqueda",
+      "noResults": "No se encontraron resultados. Intenta ajustar tu búsqueda o filtros."
+    },
+    "filters": {
+      "title": "Filtros",
+      "clearAll": "Limpiar todos los filtros",
+      "clear": "Limpiar filtros",
+      "interfaces": "Interfaces",
+      "category": "Categoría",
+      "subCategory": "SubCategoría",
+      "region": "Región",
+      "frequency": "Frecuencia",
+      "source": "Fuente",
+      "soon": "PRÓXIMAMENTE"
+    },
+    "card": {
+      "interfaces": "Interfaces",
+      "frequency": "Frecuencia actualizada",
+      "source": "Fuente"
+    },
+    "detail": {
+      "source": "FUENTE",
+      "country": "PAÍS",
+      "updateFrequency": "FRECUENCIA DE ACTUALIZACIÓN",
+      "interfaces": "INTERFACES",
+      "code": "CÓDIGO",
+      "howToIntegrate": "Cómo integrar",
+      "close": "Cerrar"
+    }
+  },
+  "dataProviders": {
+    "title": "Proveedores de Datos",
+    "subtitle": "Datos de Monedas en Tiempo Real",
+    "description": "Feeds de precios de criptomonedas en vivo con actualizaciones en tiempo real y métricas de rendimiento semanal.",
+    "table": {
+      "symbol": "Símbolo",
+      "name": "Nombre",
+      "price": "Precio (USD)",
+      "weeklyChange": "Cambio Semanal",
+      "lastUpdate": "Última Actualización"
+    }
+  },
+  "reserves": {
+    "title": "Fact Finance - Transparencia y Confianza para el Ecosistema Web3",
+    "loading": {
+      "title": "Cargando Datos...",
+      "subtitle": "Verificando prueba de reservas..."
+    },
+    "hero": {
+      "title": "Prueba de Reservas para",
+      "titleHighlight": "Activos Tokenizados",
+      "subtitle": "Conectamos colateral off-chain y rastreamos el suministro de tokens on-chain, llevando ambos a un dashboard dinámico que permite transparencia y confianza para activos tokenizados.",
+      "stats": {
+        "totalReserves": "Reservas Totales Verificadas",
+        "activeIntegrations": "Integraciones Activas",
+        "uptime": "Tiempo de Actividad"
+      },
+      "features": {
+        "directConnection": {
+          "title": "Conexión directa a reservas off-chain",
+          "description": "Nos conectamos a custodios, bancos o sistemas financieros a través de APIs seguras o archivos validados para extraer datos de colateral del mundo real."
+        },
+        "liveTracking": {
+          "title": "Rastreo en vivo de emisión de tokens",
+          "description": "Monitoreamos el contrato inteligente del token para rastrear el suministro circulante y compararlo con los datos de reserva verificados."
+        },
+        "oracles": {
+          "title": "Oráculos que publican datos on-chain",
+          "description": "Usando tres modelos de oráculo (Push, Pull, Signature), publicamos datos de reserva a contratos inteligentes — con disparadores como heartbeat o desviación."
+        },
+        "dashboard": {
+          "title": "Dashboard en tiempo real para transparencia",
+          "description": "Nuestros dashboards públicos muestran saldos, historial de actualizaciones, suministro de tokens y enlaces de contratos on-chain — permitiendo visibilidad completa y confianza."
+        }
+      }
+    },
+    "clientsSection": {
+      "title": "NUESTROS CLIENTES",
+      "heading": "Verificación independiente y continua para",
+      "headingHighlight": "plataformas de",
+      "headingSubtext": "tokenización",
+      "verified": "Verificado"
+    },
+    "faq": {
+      "heading": "Todo lo que necesitas saber sobre",
+      "headingHighlight": "Prueba de reservas",
+      "questions": {
+        "whatIsPor": {
+          "question": "¿Qué es la Prueba de Reservas (PoR)?",
+          "answer": "La Prueba de Reservas es un método para demostrar públicamente que los activos tokenizados están respaldados por colateral del mundo real. Fact Finance automatiza este proceso conectándose a custodios y publicando datos de reserva verificados on-chain."
+        },
+        "updateFrequency": {
+          "question": "¿Con qué frecuencia se actualizan los datos de reserva?",
+          "answer": "Las actualizaciones siguen dos reglas: una frecuencia de heartbeat (por ejemplo, cada 10 minutos) que asegura actualizaciones regulares, y un umbral de desviación que activa una nueva actualización solo cuando el saldo de reserva cambia más allá de un porcentaje definido (por ejemplo, ±2%)."
+        },
+        "collateralizationStatus": {
+          "question": "¿Qué significa el estado de colateralización?",
+          "answer": "Si el estado es sobre-colateralizado, significa que las reservas verificadas exceden el suministro circulante de tokens — indicando un búfer de seguridad y espacio para nueva emisión. Si está sub-colateralizado, significa que las reservas no son suficientes para respaldar completamente los tokens emitidos — señalando un riesgo potencial y la necesidad de acción correctiva."
+        },
+        "tokenTracking": {
+          "question": "¿Cómo rastrea Fact Finance la emisión de tokens?",
+          "answer": "Monitoreamos el suministro de tokens on-chain rastreando el contrato inteligente del token. Estos datos se comparan con las reservas verificadas para asegurar cobertura continua de colateral, y el resultado se muestra en un dashboard público."
+        },
+        "traditionalAudit": {
+          "question": "¿En qué se diferencia esto de una auditoría tradicional?",
+          "answer": "Fact Finance no es una firma de auditoría y no emite una opinión sobre el colateral. En su lugar, proporcionamos una capa de transparencia en tiempo real conectándonos directamente a custodios y publicando datos de reserva verificados on-chain."
+        }
+      }
+    },
+    "cta": {
+      "heading": "Fortalece la confianza en tu activo digital",
+      "subtitle": "Descubre cómo Fact Finance puede aportar más transparencia, seguridad y credibilidad a tus activos tokenizados.",
+      "consultationButton": "Reservar una consulta",
+      "learnMoreButton": "Aprender más"
+    },
+    "components": {
+      "common": {
+        "verified": "VERIFICADO",
+        "site": "Sitio",
+        "viewContract": "Ver Contrato",
+        "date": "Fecha"
+      },
+      "balancesChart": {
+        "title": "Estado de cobertura de reservas",
+        "subtitle": "Último suministro de tokens verificado y reservas de colateral correspondientes, incluyendo el estado de sobre o sub colateralización.",
+        "totalInCirculation": "Total en circulación",
+        "totalCollateral": "Colateral total",
+        "overCollateral": "Sobre colateral",
+        "underCollateral": "Sub colateral",
+        "mainCollateral": "Colateral principal",
+        "circulation": "Circulación",
+        "tooltips": {
+          "reserveAnalysis": "Análisis de Reservas",
+          "primaryReserve": "Respaldo de reserva primaria",
+          "additionalBuffer": "Buffer de seguridad adicional",
+          "underCollateralized": "Sub-colateralizado",
+          "tokensInCirculation": "Tokens en circulación"
+        },
+        "legend": {
+          "mainCollateral": "Colateral principal",
+          "overCollateral": "Sobre colateral",
+          "underCollateral": "Sub colateral",
+          "circulation": "Circulación"
+        }
+      },
+      "reportHeader": {
+        "circulatingTokenSupply": "Suministro circulante de tokens",
+        "totalReserves": "Reservas totales",
+        "collateralRatio": "Ratio de colateral",
+        "lastUpdate": "Última actualización",
+        "heartbeat": "Heartbeat",
+        "deviationThreshold": "Umbral de desviación"
+      },
+      "reservesBreakdown": {
+        "title": "Resumen de reservas",
+        "subtitle": "Esta sección proporciona transparencia sobre las reservas de activos de {{companyName}}.",
+        "totalCollateralReserves": "Reservas totales de colateral",
+        "excessCollateral": "Colateral excedente",
+        "collateralRatio": "Ratio de colateral"
+      },
+      "historyChart": {
+        "title": "Cobertura histórica de reservas",
+        "subtitle": "Rastrea saldos acumulados versus tokens emitidos a lo largo del tiempo. Usa filtros para explorar datos por un período diferente.",
+        "numberOfTransactions": "Número de transacciones",
+        "transactionVolume": "Volumen de transacciones",
+        "averageCollateral": "Colateral promedio",
+        "tooltips": {
+          "collateralReserves": "Reservas de Colateral",
+          "tokensIssued": "Tokens Emitidos",
+          "transactions": "Transacciones",
+          "totalTransfer": "Transferencia Total",
+          "totalBurned": "Total Quemado"
+        },
+        "legend": {
+          "circulatingTokenSupply": "Suministro circulante de tokens",
+          "totalReserves": "Reservas Totales"
+        },
+        "periods": {
+          "Hour": "Hora",
+          "Day": "Día",
+          "Month": "Mes",
+          "Year": "Año",
+          "All": "Todo"
+        }
+      },
+      "tokenList": {
+        "title": "Resumen de tokens",
+        "subtitle": "Esta sección proporciona métricas clave on-chain para rastrear emisión de tokens, actividad del mercado y dinámicas de reservas.",
+        "tokenContracts": "Contratos de tokens",
+        "onchainReservesData": "Datos de reservas on-chain",
+        "tokenMetrics": "Métricas de tokens",
+        "tokenCirculatingSupply": "Suministro circulante de tokens",
+        "currentPrice": "Precio actual",
+        "reservesUtilization": "Utilización de reservas",
+        "thirtyDayTransferVolume": "Volumen de transferencias 30 días",
+        "totalTransferVolume": "Volumen total de transferencias"
+      },
+      "tokenChains": {
+        "title": "Distribución blockchain",
+        "subtitle": "Esta sección muestra cómo se distribuye el suministro de tokens a través de diferentes blockchains",
+        "activeNetworks": "Redes activas",
+        "totalTokens": "Tokens totales",
+        "totalValue": "Valor total",
+        "networkDistribution": "Distribución de red"
+      },
+      "auditReport": {
+        "verified": "Verificado",
+        "downloadReport": "Descargar Reporte",
+        "selectReportPeriod": "Seleccionar Período de Reporte",
+        "downloading": "Descargando..."
+      }
+    },
+    "clients": {
+      "title": "CONFIANZA DE EMPRESAS LÍDERES",
+      "heading": "Prueba de Reservas para",
+      "headingHighlight": "activos tokenizados",
+      "headingSubtext": "verificados",
+      "cards": {
+        "totalReserves": "Reservas totales",
+        "tokenSupply": "Suministro de tokens",
+        "collateralRatio": "Ratio de colateral",
+        "lastUpdate": "Última Actualización:",
+        "frequency": "Frecuencia:",
+        "status": "Estado:",
+        "overCollateralized": "Sobre-colateralizado",
+        "underCollateralized": "Sub-colateralizado",
+        "viewCompleteReport": "Ver reporte completo"
+      }
+    }
+  },
+  "faq": {
+    "whatIsOracle": {
+      "title": "¿Qué es un oráculo?",
+      "content": "Un oráculo conecta datos del mundo real a la blockchain, permitiendo que los contratos inteligentes se ejecuten basándose en eventos del mundo real."
+    },
+    "whyTokenizedAssets": {
+      "title": "¿Por qué los activos tokenizados necesitan oráculos?",
+      "content": "Los oráculos proporcionan los datos del mundo real que los activos tokenizados necesitan para funcionar con precisión, como valuaciones de propiedades para tokens de Real Estate o tasas de interés e inflación para tokens de crédito privado. Sin oráculos, los activos tokenizados no pueden reflejar cambios en tiempo real o eventos off-chain."
+    },
+    "whatDataTypes": {
+      "title": "¿Qué tipos de datos puede proporcionar Fact Finance?",
+      "content": "Podemos proporcionar varios tipos de datos, incluyendo precios de mercado, índices económicos, prueba de reservas, precio por metro cuadrado para Real Estate, actualizaciones meteorológicas, y más, dependiendo del caso de uso. Contáctanos si tu proyecto necesita algún dato específico."
+    },
+    "dataSource": {
+      "title": "¿De dónde obtiene Fact Finance sus datos?",
+      "content": "Nuestros feeds de datos provienen directamente de fuentes oficiales, como bancos centrales, institutos de investigación e instituciones financieras."
+    },
+    "integration": {
+      "title": "¿Cómo integro las APIs de Fact Finance en mi proyecto?",
+      "content": "Nuestra documentación proporciona guías paso a paso, referencias de API y ejemplos para integración con blockchains basadas en EVM y Solana."
+    }
+  },
+  "whatWeDo": {
+    "title": "LO QUE HACEMOS",
+    "heading": "Impulsando la tokenización de activos con datos confiables del mundo real",
+    "description": "La capa de datos que conecta fuentes oficiales de datos a activos tokenizados, desbloqueando soluciones financieras innovadoras",
+    "capitalMarkets": {
+      "title": "Mercados de capital",
+      "description": "Accede a índices económicos oficiales directamente de la fuente oficial"
+    },
+    "realEstate": {
+      "title": "Bienes raíces",
+      "description": "Precio por metro cuadrado y prueba de reserva para propiedades tokenizadas"
+    },
+    "commodities": {
+      "title": "Commodities",
+      "description": "Datos cualitativos y monitoreo de eventos para commodities tokenizados"
+    }
+  },
+  "useCases": {
+    "title": "Casos de Uso",
+    "subtitle": "Casos de uso del mundo real para soluciones blockchain",
+    "description": "Descubre aplicaciones prácticas de los datos de Fact Finance a través de industrias, desde Bienes Raíces hasta Commodities, impulsando la innovación en la economía tokenizada.",
+    "capitalMarkets": {
+      "title": "Mercados de capital",
+      "description": "Accede a índices económicos oficiales de fuentes autorizadas",
+      "sectionTitle": "Reformando los mercados de capital en América Latina",
+      "intro1": "Los mercados de capital tokenizados están reformando el panorama financiero, especialmente en regiones como América Latina, donde las altas tasas de interés e inflación han moldeado históricamente el comportamiento económico. Mientras los inversores buscan proteger los rendimientos reales, la tokenización está emergiendo como una herramienta poderosa para modernizar los sistemas financieros.",
+      "intro2": "Brasil está a la vanguardia en la adopción de blockchain para instrumentos financieros. Con el Banco Central desarrollando su propia infraestructura DLT y reguladores colaborando con participantes del mercado, la tokenización ha pasado de la teoría a convertirse en una realidad. Este cambio trae liquidaciones más rápidas, menores costos y mayor eficiencia, todo mientras mantiene los estándares tradicionales del mercado.",
+      "intro3": "El surgimiento de plataformas de tokenización señala una nueva era de innovación financiera en Brasil. Estas empresas están trabajando estrechamente con reguladores para integrar la programabilidad de contratos inteligentes en las necesidades del sistema financiero tradicional. El objetivo es crear la economía tokenizada que mantenga el cumplimiento regulatorio mientras desbloquea nuevas eficiencias.",
+      "factFinanceRole": "El papel de Fact Finance conectando datos oficiales y activos tokenizados",
+      "role1": "En Brasil, aproximadamente el 45% de la deuda pública está vinculada al Selic (tasa de interés), y otro 30% a bonos ajustados por inflación. Estos instrumentos indexados dominan más del 75% del mercado de bonos del país. Más allá de la deuda pública, los contratos privados a largo plazo, como arrendamientos residenciales, también dependen de la indexación por inflación, siendo el Índice General de Precios del Mercado (IGP-M) un elemento básico para ajustes de precios de alquiler.",
+      "role2": "Al igual que la economía tradicional, la economía tokenizada también necesita depender de datos económicos precisos y verificados. Fact Finance proporciona acceso on-chain fluido y seguro a índices económicos, como CDI (tasa de interés) e IGP-M (inflación), directamente de fuentes oficiales. Nuestra infraestructura de oráculos actúa como un centro de datos, integrando esta información en activos tokenizados como bonos públicos, crédito privado y contratos a largo plazo.",
+      "role3": "Al conectar datos económicos del mundo real con la tokenización de activos, Fact Finance permite que los activos tokenizados reciban actualizaciones de precios en tiempo real basadas en datos oficiales.",
+      "dataTypes": "¿Qué tipo de datos?",
+      "cdi": {
+        "title": "CDI",
+        "subtitle": "(Certificado de Depósito Interbancario)",
+        "description": "Actualizaciones diarias o mensuales on-chain de la tasa de interés clave de Brasil, permitiendo que los activos tokenizados reflejen rendimientos precisos vinculados a la tasa de interés."
+      },
+      "ipca": {
+        "title": "IPCA",
+        "subtitle": "(Índice Nacional de Precios al Consumidor Amplio)",
+        "description": "Datos oficiales de inflación directamente on-chain, asegurando que los contratos tokenizados, como bonos y arrendamientos, se ajusten automáticamente para preservar el valor real."
+      },
+      "igpm": {
+        "title": "IGP-M",
+        "subtitle": "(Índice General de Precios del Mercado)",
+        "description": "Actualizaciones vinculadas a la inflación para sectores como Bienes Raíces, permitiendo ajustes precisos de alquiler y precios confiables para activos tokenizados."
+      }
+    },
+    "realEstate": {
+      "title": "Bienes Raíces",
+      "description": "Precio por metro cuadrado y prueba de reserva para propiedades",
+      "sectionTitle": "Desbloqueando valor al reducir la asimetría de información",
+      "intro1": "La tokenización de Bienes Raíces ofrece las ventajas de la propiedad fraccionaria y el potencial de mayor liquidez, haciendo que estos activos de alto valor sean más accesibles a una gama más amplia de inversores dentro de una infraestructura comercializable y programable. Sin embargo, las asimetrías significativas de información entre el token y el activo off-chain que representa aún limitan su potencial completo. Para desbloquear mayor utilidad y liquidez, los activos de Bienes Raíces tokenizados deben enriquecerse con datos verificados y actualizados que proporcionen una conexión en tiempo real a la propiedad subyacente.",
+      "intro2": "Las propiedades tokenizadas ofrecen mayor accesibilidad, pero la tecnología blockchain carece de conexiones intrínsecas a datos off-chain. Esto crea una brecha: mientras que los tokens pueden representar propiedad, no reflejan inherentemente las condiciones actuales del mercado del activo del mundo real al que están vinculados. Fact Finance cierra esta brecha sirviendo como la capa de datos entre activos tokenizados y fuentes de datos propietarias. Por ejemplo, una empresa de Bienes Raíces que tokeniza una propiedad necesita que el token refleje más que solo propiedad, también debe llevar la información del valor de mercado para ese activo, transformando el token en un verdadero gemelo digital.",
+      "dataTypes": "¿Qué tipo de datos?",
+      "proofOfReserve": {
+        "title": "Prueba de Reserva",
+        "description": "Para confirmar que el token corresponde a una propiedad específica, Fact Finance puede proporcionar información on-chain, como: Dirección y geolocalización, Estado legal (Due Diligence), Tipo de propiedad (residencial o comercial), año de construcción."
+      },
+      "squareMeterPrice": {
+        "title": "Precio por Metro Cuadrado",
+        "description": "Para reflejar la apreciación o depreciación de la propiedad, los tokens requieren datos actualizados de precio regional por metro cuadrado. Fact Finance se integra directamente con instituciones de datos licenciadas para proporcionar precios de mercado precisos, permitiendo calcular una valuación actualizada de la propiedad."
+      },
+      "economicIndices": {
+        "title": "Índices económicos",
+        "description": "Los contratos de bienes raíces a menudo requieren ajustes por inflación. En Brasil, el 90% de los contratos de alquiler están vinculados al índice de inflación IGP-M. Fact Finance se conecta directamente a esta fuente de datos oficial, asegurando actualizaciones fluidas de inflación."
+      },
+      "reliableConnection": "Así es como Fact Finance asegura una conexión confiable:",
+      "conclusion": "Con la integración de Fact Finance, los Bienes Raíces tokenizados van más allá de la representación estática para convertirse en un activo financiero dinámico. Los tokens ahora pueden servir como colateral para préstamos o ser utilizados en aplicaciones DeFi, desbloqueando mayor utilidad y liquidez tanto para emisores como para inversores."
+    },
+    "commodities": {
+      "title": "Commodities",
+      "description": "Datos cualitativos y monitoreo para commodities",
+      "sectionTitle": "Desbloqueando liquidez y transparencia",
+      "intro1": "Las economías de América Latina dependen fuertemente del sector de commodities, impulsando mercados globales de productos agrícolas, minerales y energía. A pesar de su importancia, este sector enfrenta desafíos como ineficiencias operativas, altos costos de transacción y acceso limitado a financiamiento, particularmente para productores más pequeños.",
+      "intro2": "La tokenización proporciona una solución poderosa al digitalizar commodities físicos, haciéndolos comercializables y utilizables como colateral para financiamiento. Esto desbloquea liquidez para productores mientras les permite retener la propiedad de sus activos.",
+      "riskReduction": "Reduciendo riesgo con datos verificados para tokenización de commodities",
+      "risk1": "En los mercados de préstamos, gestionar la exposición al riesgo es crítico tanto para prestamistas como para prestatarios. Los activos colateralizados deben ser tan transparentes como sea posible para reducir el riesgo percibido. En agricultura, por ejemplo, variables como región, clima, tipo de grano y otros factores cualitativos impactan significativamente el puntaje de riesgo asociado. Abordar estas asimetrías de información es clave para desbloquear el potencial de la tokenización para expandir el financiamiento a pequeños productores.",
+      "risk2": "Fact Finance cierra esta brecha conectando activos tokenizados, como granos o ganado, a fuentes de datos confiables directamente asociadas con los commodities subyacentes. Esto incluye:",
+      "marketPrices": {
+        "title": "Precios de mercado",
+        "description": "Precios en tiempo real obtenidos directamente de intercambios confiables como el CME (Chicago Mercantile Exchange)."
+      },
+      "qualitativeData": {
+        "title": "Datos cualitativos",
+        "description": "Información de los sistemas ERP de agricultores, como historial de productividad, tipo de cultivo y cronogramas operacionales."
+      },
+      "environmentalData": {
+        "title": "Datos ambientales",
+        "description": "Condiciones climáticas y pronósticos del clima que influyen en la calidad del rendimiento y el valor del activo."
+      },
+      "logisticsData": {
+        "title": "Datos logísticos",
+        "description": "Información clave como proximidad a puertos o centros de transporte, afectando la eficiencia de entrega y costos."
+      },
+      "eventMonitoring": "Monitoreo de eventos para commodities tokenizados",
+      "event1": "Al enriquecer tokens con datos en tiempo real, los oráculos pueden rastrear eventos off-chain que afectan directamente el valor o utilidad de activos tokenizados. Por ejemplo, un contrato inteligente de seguros para activos agrícolas puede usar oráculos meteorológicos para monitorear eventos como sequías o inundaciones, activando automáticamente pagos cuando se cumplen umbrales predefinidos. Similarmente, los oráculos de Fact Finance pueden marcar cambios significativos, como condiciones climáticas adversas, que pueden requerir que los prestamistas reevalúen los términos del préstamo.",
+      "event2": "Con esta integración de datos, los tokens colateralizados se convierten en instrumentos financieros dinámicos en lugar de representaciones estáticas, reduciendo el riesgo y aumentando la transparencia. Esto permite que los protocolos de préstamos ofrezcan ratios Préstamo-a-Valor (LTV) más altos, dando a los productores mayor acceso a financiamiento sin sacrificar el control sobre sus activos."
+    },
+    "cta": {
+      "defaultDescription": "¿Listo para ver cómo el centro de datos de Fact Finance puede impulsar tus soluciones de activos tokenizados?",
+      "visitDocs": "Visita nuestra página de documentación",
+      "contactUs": "Contáctanos",
+      "additionalInfo": "Visita nuestra página de documentación hoy o contáctanos para aprender más.",
+      "capitalMarketsTitle": "Desbloquea el potencial de los mercados de capital tokenizados",
+      "realEstateTitle": "Desbloquea el potencial de los Bienes Raíces tokenizados",
+      "commoditiesTitle": "Desbloquea el potencial de commodities tokenizados"
+    }
+  },
+  "home": {
+    "seo": {
+      "title": "Fact Finance",
+      "description": "Integración fluida de datos blockchain para desarrolladores. Conecta contratos inteligentes a datos del mundo real con nuestras potentes APIs y herramientas para desarrolladores."
+    },
+    "sections": {
+      "supportedChains": "Cadenas Soportadas",
+      "callingDevs": "LLAMANDO A LOS DEVS",
+      "dataIntegrationTitle": "Integración fluida de datos para desarrolladores blockchain",
+      "dataIntegrationDescription1": "Integra sin esfuerzo datos confiables y verificados en tus proyectos blockchain con nuestro centro de datos que ahorra tiempo. Fact Finance proporciona APIs potentes para conectar contratos inteligentes a fuentes de datos del mundo real.",
+      "dataIntegrationDescription2": "Sin incorporación compleja, solo documentación clara, guías paso a paso y ejemplos listos para usar para EVMs y Solana.",
+      "exploreDocumentation": "Explorar documentación",
+      "contactSupport": "Contactar soporte",
+      "faqTitle": "Preguntas Frecuentes",
+      "faqSubtitle": "Encuentra respuestas a preguntas comunes sobre Fact Finance",
+      "stillHaveQuestions": "¿Aún tienes preguntas?",
+      "contactUs": "Contáctanos",
+      "unlockValueTitle": "Desbloquea el valor de tu activo tokenizado con datos oficiales",
+      "unlockValueDescription": "Nuestra capa de datos conecta fuentes de datos oficiales confiables a activos tokenizados, desbloqueando nuevas soluciones financieras.",
+      "talkToExpert": "Hablar con un experto"
+    },
+    "loading": {
+      "whatWeDo": "Cargando sección de qué hacemos...",
+      "features": "Cargando sección de características...",
+      "faq": "Cargando preguntas frecuentes..."
+    },
+    "aria": {
+      "supportedChains": "Redes Blockchain Soportadas",
+      "codeExample": "Ejemplo de Código",
+      "exploreDocsLabel": "Explorar Documentación",
+      "contactSupportLabel": "Contactar Soporte",
+      "contactUsLabel": "Contáctanos para más información"
+    }
+  },
+  "about": {
+    "title": "Acerca de Nosotros",
+    "description": "Aprende más sobre nuestra misión y equipo",
+    "seo": {
+      "title": "Acerca de Fact Finance | Infraestructura Blockchain Empresarial y Soluciones de Datos",
+      "description": "Conoce al equipo experto detrás de la infraestructura de datos segura de Fact Finance para la tokenización de activos del mundo real. Aprende sobre nuestros logros en tecnología blockchain y soluciones de datos.",
+      "keywords": "infraestructura blockchain, soluciones de datos, tokenización de activos, tecnología web3, expertos blockchain, infraestructura de datos, activos del mundo real, oráculo blockchain, plataforma de tokenización"
+    },
+    "hero": {
+      "title": "Conócenos",
+      "subtitle": "Estamos impulsando la economía tokenizada con infraestructura de datos confiable."
+    },
+    "company": {
+      "description1": "Fact Finance fue creada para proporcionar infraestructura de datos esencial para la economía tokenizada. Conectamos plataformas de tokenización con fuentes de datos oficiales y licenciadas, asegurando acceso seguro y conforme a la información. Nuestro objetivo es acelerar la adopción de blockchain conectando sin problemas sistemas descentralizados al mundo off-chain.",
+      "description2": "A medida que la tokenización evoluciona y la demanda de datos estandarizados y confiables crece, Fact Finance está comprometido a ser el centro de datos de referencia. Empoderamos a la industria con acceso simplificado a información precisa y confiable, desbloqueando el potencial completo de la tokenización de activos del mundo real"
+    },
+    "awards": {
+      "title": "Premios",
+      "solana": {
+        "badge": "1er Lugar",
+        "description": "1er Lugar en la etapa brasileña del Solana Renaissance Hackathon en 2024. Ganador del Demo Day de Solana Foundation en Blockchain.RIO."
+      },
+      "treasury": {
+        "description": "Ganador del Mejor Oráculo en el Web3 Hackathon: Tokenización del Tesoro Nacional, organizado por el Ministerio de Finanzas de Brasil en diciembre de 2023.",
+        "note": "(como equipo Vale das Araucárias)"
+      }
+    },
+    "team": {
+      "sectionTitle": "Conoce a los innovadores",
+      "sectionHeading": "El equipo detrás de Fact Finance",
+      "sectionDescription": "Profesionales dedicados con profunda experiencia en blockchain, infraestructura de datos y sistemas económicos, comprometidos a entregar soluciones de datos seguras y precisas para web3 y tokenización de activos del mundo real."
+    },
+    "media": {
+      "sectionTitle": "Medios y Prensa",
+      "sectionHeading": "Aprende más sobre nosotros",
+      "sectionDescription": "Mira nuestras apariciones recientes en podcasts para aprender más sobre nuestra visión y misión",
+      "videos": {
+        "video1": "Fact Finance discute infraestructura de datos blockchain y tokenización de activos",
+        "video2": "Fact Finance explica el futuro de los activos tokenizados"
+      }
+    }
+  },
+  "reports": {
+    "title": "Prueba de reservas",
+    "footnotes": {
+      "heartbeat": "El heartbeat es una regla de tiempo que asegura que las actualizaciones ocurran a intervalos regulares. Por ejemplo, con un heartbeat de 1 hora, el sistema intentará una actualización al menos cada 1 hora, incluso sin cambios mayores. Esto previene datos obsoletos y detecta retrasos o interrupciones rápidamente.",
+      "deviation": "El umbral de desviación define cuánto debe cambiar el saldo de reserva antes de que se active una nueva actualización on-chain. Por ejemplo, con un umbral del 5%, el sistema solo publica un nuevo valor si el saldo se mueve 5% o más desde la última actualización. Esto evita actualizaciones innecesarias debido a fluctuaciones menores.",
+      "tokensSupply": "El Suministro de Tokens es la cantidad total de tokens actualmente en circulación, emitidos por la plataforma de tokenización. Cada unidad debe estar respaldada por una reserva verificada, asegurando una relación transparente 1:1 o sobre-colateralizada.",
+      "collateralReserves": "Las reservas de colateral son activos del mundo real, como efectivo o valores públicos, mantenidos para respaldar tokens emitidos. Fact Finance verifica su existencia y valor a través de conexiones directas con el custodio.",
+      "collateralization": "La sobre o sub colateralización se refiere a la diferencia entre las reservas verificadas y el suministro circulante de tokens. Una brecha positiva indica colateral excedente (un buffer de seguridad), mientras que una brecha negativa señala reservas insuficientes y riesgo potencial de sub-colateralización."
+    }
+  },
+  "months": {
+    "january": "Enero",
+    "february": "Febrero",
+    "march": "Marzo",
+    "april": "Abril",
+    "may": "Mayo",
+    "june": "Junio",
+    "july": "Julio",
+    "august": "Agosto",
+    "september": "Septiembre",
+    "october": "Octubre",
+    "november": "Noviembre",
+    "december": "Diciembre"
+  },
+  "codeBlock": {
+    "evm": {
+      "interfaceComment": "/// Interfaz del contrato Oracle",
+      "constructorComment": "/// Constructor para inicializar el contrato ConsumerFOracle",
+      "functionComment": "/// Recupera el último feed de datos del oráculo y actualiza las variables de estado del contrato",
+      "structComment": "/// Estructura de campo DataFeed",
+      "valueComment": "/// @dev Valor entero del feed de datos",
+      "updatedAtComment": "/// @dev timestamp de actualización de datos del backend",
+      "decimalComment": "/// @dev Número de lugares decimales para el valor de datos",
+      "confidenceComment": "/// @dev Nivel de confianza del feed de datos",
+      "confidenceRangeComment": "/// @dev 0: atípico, 5: aceptable, 95: confiable"
+    },
+    "solana": {
+      "functionComment": "// Función para extraer datos del programa Oracle",
+      "cpiComment": "// Llamando al método CPI para obtener datos del programa Oracle",
+      "unpackingComment": "// Desempaquetando la tupla de resultado",
+      "loggingComment": "// Registrando los datos recuperados"
+    }
+  }
+} 

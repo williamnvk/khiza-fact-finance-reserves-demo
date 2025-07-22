@@ -7,6 +7,7 @@ import { CodeBlock } from '@/components/Shared/CodeBlock';
 import { Hero } from '@/components/Shared/Hero';
 import { Suspense, lazy } from 'react';
 import { Link } from 'react-router';
+import { useI18n } from '@/hooks/useI18n';
 
 const LazyFaq = lazy(() => import('@/components/Shared/Faq').then((module) => ({ default: module.Faq })));
 const LazyFeaturesSection = lazy(() =>
@@ -17,18 +18,20 @@ const LazyWhatWeDo = lazy(() =>
 );
 
 export const Home = () => {
+  const { t } = useI18n();
+
   return (
     <Box>
       <SEO
-        title="Fact Finance"
-        description="Seamless blockchain data integration for developers. Connect smart contracts to real-world data with our powerful APIs and developer tools."
+        title={t('home.seo.title')}
+        description={t('home.seo.description')}
       />
       <Hero />
 
       <Suspense
         fallback={
           <Text role="status" textAlign="center" p={4}>
-            Loading what we do section...
+            {t('home.loading.whatWeDo')}
           </Text>
         }
       >
@@ -49,16 +52,16 @@ export const Home = () => {
           textAlign={{ base: 'left', md: 'center' }}
           mb={{ base: 2, md: 4 }}
         >
-          Supported Chains
+          {t('home.sections.supportedChains')}
         </Text>
-        <Chains aria-label="Supported Blockchain Networks" />
+        <Chains aria-label={t('home.aria.supportedChains')} />
       </Container>
 
       <Box pos="relative" aria-labelledby="features-section-heading" as="section" pb={{ base: 8, md: 24 }}>
         <Suspense
           fallback={
             <Text role="status" textAlign="center" p={4}>
-              Loading features section...
+              {t('home.loading.features')}
             </Text>
           }
         >
@@ -76,7 +79,7 @@ export const Home = () => {
           <VStack gap={6} align={{ base: 'center', md: 'flex-start' }} w={{base: "full", md: "440px" }}>
             <TitleSection align={{ base: 'center', md: 'flex-start' }}>
               <Text fontSize="sm" color="brand.300" w="full" textAlign={{ base: 'left', md: 'center', xl: 'left' }}>
-                CALLING THE DEVS
+                {t('home.sections.callingDevs')}
               </Text>
               <Heading
                 as="h2"
@@ -87,7 +90,7 @@ export const Home = () => {
                 fontSize={{ base: '2xl', sm: '3xl', md: '3xl', lg: '4xl' }}
                 maxW={{ base: 'full', md: 'xl', xl: 'full' }}
               >
-                Seamless data integration for blockchain developers
+                {t('home.sections.dataIntegrationTitle')}
               </Heading>
               <Text
                 fontSize="sm"
@@ -96,8 +99,7 @@ export const Home = () => {
                 maxW={{ base: 'full', md: 'xl', xl: 'full' }}
                 mx="auto"
               >
-                Effortlessly integrate trusted, verified data into your blockchain projects with our time-saving data
-                hub. Fact Finance provides powerful APIs to connect smart contracts to real-world data sources.
+                {t('home.sections.dataIntegrationDescription1')}
               </Text>
               <Text
                 fontSize="sm"
@@ -106,28 +108,35 @@ export const Home = () => {
                 maxW={{ base: 'full', md: 'xl', xl: 'full' }}
                 mx="auto"
               >
-                No complex onboarding, just clear documentation, step-by-step guides, and ready-to-use examples for EVMs
-                and Solana.
+                {t('home.sections.dataIntegrationDescription2')}
               </Text>
             </TitleSection>
             <HStack gap={4} flexWrap={{ base: 'wrap', md: 'nowrap' }} justify={{ base: 'center', lg: 'flex-start' }}>
-              <Button
-                as="a"
+              <ChakraLink
                 href="https://docs.fact.finance"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Explore Documentation"
+                aria-label={t('home.aria.exploreDocsLabel')}
                 w={{ base: 'full', md: 'auto' }}
+                _hover={{ textDecoration: 'none' }}
               >
-                Explore documentation
-              </Button>
-              <Button variant="ghost" as="a" href="mailto:juvinski@fact.finance" aria-label="Contact Support">
-                Contact support
-              </Button>
+                <Button w="full">
+                  {t('home.sections.exploreDocumentation')}
+                </Button>
+              </ChakraLink>
+              <ChakraLink
+                href="mailto:juvinski@fact.finance"
+                aria-label={t('home.aria.contactSupportLabel')}
+                _hover={{ textDecoration: 'none' }}
+              >
+                <Button variant="ghost">
+                  {t('home.sections.contactSupport')}
+                </Button>
+              </ChakraLink>
             </HStack>
           </VStack>
           <Box flex={1}>
-            <CodeBlock aria-label="Code Example" />
+            <CodeBlock aria-label={t('home.aria.codeExample')} />
           </Box>
         </HStack>
 
@@ -164,34 +173,33 @@ export const Home = () => {
             textAlign={{ base: 'left', md: 'center' }}
             fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }}
           >
-            Frequently Asked Questions
+            {t('home.sections.faqTitle')}
           </Heading>
           <Text as="p" textStyle="subtitle" w="full" textAlign={{ base: 'left', md: 'center' }}>
-            Find answers to common questions about Fact Finance
+            {t('home.sections.faqSubtitle')}
           </Text>
         </VStack>
         <Suspense
           fallback={
             <Text role="status" w="full" textAlign={{ base: 'left', md: 'center' }} p={4}>
-              Loading FAQs...
+              {t('home.loading.faq')}
             </Text>
           }
         >
           <LazyFaq />
         </Suspense>
         <Center gap={3} mt={{ base: 4, md: 8 }}>
-          <Text fontSize="smaller">Still have questions?</Text>
+          <Text fontSize="smaller">{t('home.sections.stillHaveQuestions')}</Text>
           <ChakraLink
-            as="a"
             href="mailto:juvinski@fact.finance"
             color="brand.500"
             fontSize="smaller"
-            aria-label="Contact us for more information"
+            aria-label={t('home.aria.contactUsLabel')}
             _hover={{ textDecoration: 'underline' }}
             target="_blank"
             rel="noopener noreferrer"
           >
-            Contact us
+            {t('home.sections.contactUs')}
           </ChakraLink>
         </Center>
       </Container>
@@ -216,9 +224,7 @@ export const Home = () => {
               fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
               lineHeight={1.2}
             >
-              Unlock the value of your
-              <br />
-              tokenized asset with official data
+              {t('home.sections.unlockValueTitle')}
             </Heading>
             <Text
               id="unlock-value-description"
@@ -227,25 +233,27 @@ export const Home = () => {
               textAlign={{ base: 'left', md: 'center' }}
               fontSize={{ base: 'sm', md: 'md' }}
             >
-              Our data layer connects trusted, official data sources to tokenized assets, unlocking new financial
-              solutions.
+              {t('home.sections.unlockValueDescription')}
             </Text>
           </TitleSection>
 
           <HStack justify="center" gap={4} mt={4} flexWrap={{ base: 'wrap', md: 'nowrap' }}>
-            <Button
-              size="xl"
-              w={{ base: 'full', sm: 'auto' }}
-              as="a"
+            <ChakraLink
               href="mailto:fernanda@fact.finance"
               target="_blank"
               rel="noopener noreferrer"
+              w={{ base: 'full', sm: 'auto' }}
+              _hover={{ textDecoration: 'none' }}
             >
-              Talk to an expert
-            </Button>
-            <Button variant="plain" color="bg" as={Link} to="/data-hub">
-              Data Hub
-            </Button>
+              <Button size="xl" w="full">
+                {t('home.sections.talkToExpert')}
+              </Button>
+            </ChakraLink>
+            <Link to="/data-hub" style={{ textDecoration: 'none' }}>
+              <Button variant="plain" color="bg">
+                {t('dataHub.title')}
+              </Button>
+            </Link>
           </HStack>
         </Center>
       </VStack>

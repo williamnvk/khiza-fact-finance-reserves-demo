@@ -1,13 +1,17 @@
-import { Box, Button, Heading, Stack, Text, VStack } from '@chakra-ui/react';
+import { Box, Button, Heading, Stack, Text, VStack, Link as ChakraLink } from '@chakra-ui/react';
 import { ReactNode } from 'react';
+import { useI18n } from '@/hooks/useI18n';
 
 export default function UseCasesCTA({
   title,
-  description = 'Ready to see how Fact Finance’s data hub can power your tokenized assets solutions?',
+  description,
 }: {
   title: ReactNode;
   description?: ReactNode;
 }) {
+  const { t } = useI18n();
+  const defaultDescription = description || t('useCases.cta.defaultDescription');
+
   return (
     <VStack
       mt={{ base: 4, md: 8 }}
@@ -36,33 +40,41 @@ export default function UseCasesCTA({
         maxW={{ base: 'full', md: '3xl' }}
         textAlign={{ base: 'left', md: 'center' }}
       >
-        {description}
+        {defaultDescription}
         <br />
-        Visit our docs page today or contact us to learn more.
+        {t('useCases.cta.additionalInfo')}
       </Text>
       <Stack direction={{ base: 'column', sm: 'row' }} gap={4} mt={4} w="full" align="center" justify="center">
-        <Button
-          as="a"
+        <ChakraLink
           href="https://docs.fact.finance"
-          variant="primary"
-          size="lg"
-          w={{ base: 'full', sm: 'auto' }}
           target="_blank"
           rel="noopener noreferrer"
+          w={{ base: 'full', sm: 'auto' }}
+          _hover={{ textDecoration: 'none' }}
         >
-          Visit our docs page
-        </Button>
-        <Button
-          as="a"
+                     <Button
+             variant="solid"
+             size="lg"
+             w="full"
+           >
+            {t('useCases.cta.visitDocs')}
+          </Button>
+        </ChakraLink>
+        <ChakraLink
           href="mailto:fernanda@fact.finance"
-          variant="outline"
-          size="lg"
-          w={{ base: 'full', sm: 'auto' }}
           target="_blank"
           rel="noopener noreferrer"
+          w={{ base: 'full', sm: 'auto' }}
+          _hover={{ textDecoration: 'none' }}
         >
-          Contact us
-        </Button>
+          <Button
+            variant="outline"
+            size="lg"
+            w="full"
+          >
+            {t('useCases.cta.contactUs')}
+          </Button>
+        </ChakraLink>
       </Stack>
       <Box
         position="absolute"

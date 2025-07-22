@@ -2,15 +2,20 @@ import { Box, Container, Heading, HStack, Text, VStack, useBreakpointValue } fro
 import { TitleSection } from '@/components/ui/title-sectiont';
 import { useState, useEffect, useRef } from 'react';
 import { StackDirection } from 'node_modules/@chakra-ui/react/dist/types/components/stack/get-separator-style';
+import { useI18n } from '@/hooks/useI18n';
+
+// Define the type for card keys
+type CardKey = 'capital-markets' | 'real-estate' | 'commodities';
 
 export const WhatWeDo = () => {
-  const cardRefs = {
+  const { t } = useI18n();
+  const cardRefs: Record<CardKey, React.RefObject<HTMLDivElement | null>> = {
     'capital-markets': useRef<HTMLDivElement>(null),
     'real-estate': useRef<HTMLDivElement>(null),
     commodities: useRef<HTMLDivElement>(null),
   };
 
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const [hoveredCard, setHoveredCard] = useState<CardKey | null>(null);
 
   // Responsive layout
   const stackDirection = useBreakpointValue({ base: 'column', lg: 'row' });
@@ -60,7 +65,7 @@ export const WhatWeDo = () => {
             w="full"
             textAlign={{ base: 'left', md: 'center' }}
           >
-            WHAT WE DO
+            {t('whatWeDo.title')}
           </Text>
           <Heading
             id="what-we-do-title"
@@ -69,9 +74,7 @@ export const WhatWeDo = () => {
             textAlign={{ base: 'left', md: 'center' }}
             lineHeight={{ base: '1.2', md: '1.3' }}
           >
-            Powering asset tokenization with
-            <br />
-            trusted real-world data{' '}
+            {t('whatWeDo.heading')}
           </Heading>
           <Text
             as="p"
@@ -82,8 +85,7 @@ export const WhatWeDo = () => {
             w="full"
             textAlign={{ base: 'left', md: 'center' }}
           >
-            The data layer connecting official data sources to tokenized assets, unlocking innovative financial
-            solutions
+            {t('whatWeDo.description')}
           </Text>
         </TitleSection>
 
@@ -97,27 +99,27 @@ export const WhatWeDo = () => {
         >
           {[
             {
-              id: 'capital-markets',
-              title: 'Capital markets',
-              description: 'Access official economic indices straight from the official source',
+              id: 'capital-markets' as CardKey,
+              title: t('whatWeDo.capitalMarkets.title'),
+              description: t('whatWeDo.capitalMarkets.description'),
               video: '/assets/what-we-do/capital-markets.mp4',
             },
             {
-              id: 'real-estate',
-              title: 'Real estate',
-              description: 'Square meter price and proof of reserve for tokenized properties',
+              id: 'real-estate' as CardKey,
+              title: t('whatWeDo.realEstate.title'),
+              description: t('whatWeDo.realEstate.description'),
               video: '/assets/what-we-do/real-estate.mp4',
             },
             {
-              id: 'commodities',
-              title: 'Commodities',
-              description: 'Qualitative data and event monitoring for tokenized commodities',
+              id: 'commodities' as CardKey,
+              title: t('whatWeDo.commodities.title'),
+              description: t('whatWeDo.commodities.description'),
               video: '/assets/what-we-do/commodities.mp4',
             },
           ].map((card) => (
             <VStack
               key={card.id}
-              ref={cardRefs[card.id as keyof typeof cardRefs]}
+              ref={cardRefs[card.id]}
               id={`card-${card.id}`}
               className="what-we-do-card"
               align="flex-start"
@@ -133,14 +135,14 @@ export const WhatWeDo = () => {
               _hover={{ transform: 'scale(1.02)' }}
               onMouseEnter={() => {
                 setHoveredCard(card.id);
-                if (cardRefs[card.id as keyof typeof cardRefs].current) {
-                  cardRefs[card.id as keyof typeof cardRefs].current!.style.setProperty('--size', '200px');
+                if (cardRefs[card.id].current) {
+                  cardRefs[card.id].current!.style.setProperty('--size', '200px');
                 }
               }}
               onMouseLeave={() => {
                 setHoveredCard(null);
-                if (cardRefs[card.id as keyof typeof cardRefs].current) {
-                  cardRefs[card.id as keyof typeof cardRefs].current!.style.setProperty('--size', '0px');
+                if (cardRefs[card.id].current) {
+                  cardRefs[card.id].current!.style.setProperty('--size', '0px');
                 }
               }}
             >
@@ -157,25 +159,32 @@ export const WhatWeDo = () => {
               />
 
               <Box
-                as="video"
                 position="absolute"
                 top={0}
                 left={0}
                 w="100%"
                 h="100%"
-                // objectFit="cover"
-                objectPosition="top center"
                 zIndex={0}
-                autoPlay
-                muted
-                playsInline
-                loop
-                preload="metadata"
-                aria-hidden="true"
-                // filter="brightness(1) grayscale(1)"
-                // mixBlendMode="luminosity"
               >
-                <source src={card.video} type="video/mp4" />
+                <video
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'top center'
+                  }}
+                  autoPlay
+                  muted
+                  playsInline
+                  loop
+                  preload="metadata"
+                  aria-hidden="true"
+                >
+                  <source src={card.video} type="video/mp4" />
+                </video>
               </Box>
 
               <Box

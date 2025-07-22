@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom/client';
 
 import { BrowserRouter, Routes, Route } from 'react-router';
 import React from 'react';
+import './i18n';
 import { Home } from './pages/Home/Home.tsx';
 import { Provider as ChakraProvider } from '@/components/ui/provider';
 import { BaseLayout } from './components/Layout/Layout.tsx';

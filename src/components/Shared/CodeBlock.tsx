@@ -2,6 +2,7 @@ import { Box, Button, Code, HStack, Image, Text } from '@chakra-ui/react';
 import { NetworkIcon } from 'lucide-react';
 import { useState } from 'react';
 import { ClipboardIconButton, ClipboardRoot } from '@/components/ui/clipboard';
+import { useI18n } from '@/hooks/useI18n';
 
 const evmCode = `/// Oracle contract interface
     FOInterfaceV1 public _fOracle; 
@@ -55,6 +56,7 @@ mod consumer {
 
 export const CodeBlock = () => {
   const [tab, setTab] = useState<'solana' | 'evm'>('evm');
+  const { t } = useI18n();
 
   return (
     <Box
@@ -90,7 +92,7 @@ export const CodeBlock = () => {
               <Text color="gray.500" w="10">
                 &nbsp;&nbsp;1
               </Text>
-              <Text color="success.400">/// Oracle contract interface</Text>
+              <Text color="success.400">{t('codeBlock.evm.interfaceComment')}</Text>
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
@@ -111,7 +113,7 @@ export const CodeBlock = () => {
               <Text color="gray.500" w="10">
                 &nbsp;&nbsp;4
               </Text>
-              <Text color="success.400">/// Constructor to initialize the ConsumerFOracle contract</Text>
+              <Text color="success.400">{t('codeBlock.evm.constructorComment')}</Text>
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
@@ -148,7 +150,7 @@ export const CodeBlock = () => {
                 &nbsp;&nbsp;9
               </Text>
               <Text color="success.400">
-                /// Retrieves the latest data feed from the oracle and updates contract state variables
+                {t('codeBlock.evm.functionComment')}
               </Text>
             </HStack>
             <HStack gap={2} w="full">
@@ -201,26 +203,12 @@ export const CodeBlock = () => {
               <Text color="gray.500" w="10">
                 &nbsp;14
               </Text>
-              <Text color="success.400">/// @title Data Feed Struct</Text>
-            </HStack>
-            <HStack gap={2} w="full">
-              <Text color="gray.500" w="10">
-                &nbsp;15
-              </Text>
-              <Text color="success.400">
-                /// @notice This struct represents the data feed with a value and confidence level
-              </Text>
-            </HStack>
-            <HStack gap={2} w="full">
-              <Text color="gray.500" w="10">
-                &nbsp;16
-              </Text>
-              <Text color="success.400">/// @dev Used to store oracle data with an associated confidence score</Text>
+              <Text color="success.400">{t('codeBlock.evm.structComment')}</Text>
             </HStack>
            
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
-                &nbsp;17
+                &nbsp;15
               </Text>
               <Text>
                 <Text as="span" color="warning.400">
@@ -233,7 +221,7 @@ export const CodeBlock = () => {
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
-                &nbsp;18
+                &nbsp;16
               </Text>
               <Text>
                 <Text as="span" color="warning.400">
@@ -243,13 +231,13 @@ export const CodeBlock = () => {
                   &nbsp;value;
                 </Text>
                 <Text as="span" color="success.400">
-                  &nbsp;/// @dev Integer value of the data feed
+                  &nbsp;{t('codeBlock.evm.valueComment')}
                 </Text>
               </Text>
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
-                &nbsp;19
+                &nbsp;17
               </Text>
               <Text>
                 <Text as="span" color="warning.400">
@@ -259,13 +247,13 @@ export const CodeBlock = () => {
                   &nbsp;updatedAt;
                 </Text>
                 <Text as="span" color="success.400">
-                  &nbsp;/// @dev timestamp of backend data update
+                  &nbsp;{t('codeBlock.evm.updatedAtComment')}
                 </Text>
               </Text>
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
-                &nbsp;20
+                &nbsp;18
               </Text>
               <Text>
                 <Text as="span" color="warning.400">
@@ -275,13 +263,13 @@ export const CodeBlock = () => {
                   &nbsp;decimal;
                 </Text>
                 <Text as="span" color="success.400">
-                  &nbsp;/// @dev Number of decimal places for the data value
+                  &nbsp;{t('codeBlock.evm.decimalComment')}
                 </Text>
               </Text>
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
-                &nbsp;21
+                &nbsp;19
               </Text>
               <Text>
                 <Text as="span" color="warning.400">
@@ -291,26 +279,26 @@ export const CodeBlock = () => {
                   &nbsp;confidence;
                 </Text>
                 <Text as="span" color="success.400">
-                  &nbsp;/// @dev Confidence level of the data feed
+                  &nbsp;{t('codeBlock.evm.confidenceComment')}
                 </Text>
               </Text>
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
-                &nbsp;22
+                &nbsp;20
               </Text>
               <Text>
                 <Text as="span" color="white">
                   &nbsp;&nbsp;&nbsp;&nbsp;
                 </Text>
                 <Text as="span" color="success.400">
-                  /// @dev 0 outlier, 5 acceptable, 95 reliable
+                  {t('codeBlock.evm.confidenceRangeComment')}
                 </Text>
               </Text>
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
-                &nbsp;23
+                &nbsp;21
               </Text>
               <Text color="white">{`}`}</Text>
             </HStack>
@@ -365,7 +353,7 @@ export const CodeBlock = () => {
               <Text color="gray.500" w="10">
                 &nbsp;&nbsp;5
               </Text>
-              <Text color="success.400">&nbsp;&nbsp;&nbsp;&nbsp;// Function to pull data from the Oracle program</Text>
+              <Text color="success.400">&nbsp;&nbsp;&nbsp;&nbsp;{t('codeBlock.solana.functionComment')}</Text>
             </HStack>
             <HStack gap={2} w="full">
               <Text color="gray.500" w="10">
@@ -385,8 +373,7 @@ export const CodeBlock = () => {
                 &nbsp;&nbsp;7
               </Text>
               <Text color="success.400">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Calling the CPI method to get data from the Oracle
-                program
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{t('codeBlock.solana.cpiComment')}
               </Text>
             </HStack>
             <HStack gap={2} w="full">
@@ -507,7 +494,7 @@ export const CodeBlock = () => {
                 &nbsp;19
               </Text>
               <Text color="success.400">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Unpacking the result tuple
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{t('codeBlock.solana.unpackingComment')}
               </Text>
             </HStack>
             <HStack gap={2} w="full">
@@ -534,7 +521,7 @@ export const CodeBlock = () => {
                 &nbsp;22
               </Text>
               <Text color="success.400">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Logging the retrieved data
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{t('codeBlock.solana.loggingComment')}
               </Text>
             </HStack>
             <HStack gap={2} w="full">

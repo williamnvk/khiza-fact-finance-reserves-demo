@@ -1,14 +1,27 @@
-import { Box, Container, Heading, HStack, Image, Text, VStack, useBreakpointValue, Badge } from '@chakra-ui/react';
+import {
+  Box,
+  Container,
+  Heading,
+  HStack,
+  Image,
+  Text,
+  VStack,
+  useBreakpointValue,
+  Link as ChakraLink,
+} from '@chakra-ui/react';
 import { Button } from '@/components/ui/button';
 import MorganCreek from '@/components/Icons/MorganCreek';
 import KhizaIcon from '@/components/Icons/KhizaIcon';
 import LiqiLogo from '@/components/Icons/Liqi';
 import LogoIcon from '@/components/Icons/LogoIcon';
 import { FC } from 'react';
-import XDCLogo from '../Icons/XDCLogo';
 import { Link } from 'react-router';
+import TokenizaLogo from '../Icons/Tokeniza';
+import XDCLogo from '../Icons/XDCLogo';
+import { useI18n } from '@/hooks/useI18n';
 
 export const Hero: FC = () => {
+  const { t } = useI18n();
   const isMobile = useBreakpointValue({ base: true, md: false });
   const stackSpacing = useBreakpointValue({ base: 4, md: 4, lg: 4, xl: 8 });
   const logoSize = useBreakpointValue({ base: 24, md: 32 });
@@ -30,15 +43,16 @@ export const Hero: FC = () => {
           h="100%"
           objectFit="cover"
           zIndex={0}
+          // TypeScript fix: use proper video attributes
+          style={{
+            filter: 'brightness(0.2)',
+            mixBlendMode: 'luminosity',
+          }}
           autoPlay
           muted
           playsInline
-          filter="brightness(0.2)"
-          mixBlendMode="luminosity"
           loop
-          src={`/assets/hero.mp4`}
-          loading="lazy"
-          preload="none"
+          src="/assets/hero.mp4"
           aria-hidden="true"
         />
 
@@ -89,7 +103,7 @@ export const Hero: FC = () => {
       >
         <VStack
           align="center"
-          h={{ base: 'full', md: 'calc(100vh - 72px)' }}
+          h={{ base: 'full', md: 'calc(100vh - 172px)' }}
           justify="center"
           gap={stackSpacing}
           mt={{ base: '72px', md: '72px' }}
@@ -104,31 +118,33 @@ export const Hero: FC = () => {
               textAlign={{ base: 'left', md: 'center' }}
               px={{ base: 0, md: 2 }}
             >
-              Official data for the
+              {t('hero.mainTitle')}
               <br />
               <Text as="span" lineHeight={1.1} textAlign="center" fontWeight="600" color="brand.50">
-                tokenized economy
+                {t('hero.mainTitle2')}
               </Text>
             </Heading>
             <Text textStyle="subtitle" w="full" textAlign={{ base: 'left', md: 'center' }} px={{ base: 0, md: 4 }}>
-              Delivering accurate, verified, and official data to power{isMobile ? '' : <br />}
-              real-world asset tokenization.{' '}
+              {t('hero.mainSubtitle')}
             </Text>
 
             <HStack gap={4} flexDir={{ base: 'column', sm: 'row' }} w={{ base: 'full', sm: 'auto' }}>
-              <Button
-                size="xl"
-                w={{ base: 'full', sm: 'auto' }}
-                as="a"
+              <ChakraLink
                 href="mailto:fernanda@fact.finance"
                 target="_blank"
                 rel="noopener noreferrer"
+                w={{ base: 'full', sm: 'auto' }}
+                _hover={{ textDecoration: 'none' }}
               >
-                Talk to an expert
-              </Button>
-              <Button variant="ghost" size="xl" w={{ base: 'full', sm: 'auto' }} as={Link} to="/data-hub">
-                Data hub
-              </Button>
+                <Button size="xl" w="full">
+                  {t('hero.talkToExpert')}
+                </Button>
+              </ChakraLink>
+              <Link to="/data-hub" style={{ textDecoration: 'none', width: isMobile ? '100%' : 'auto' }}>
+                <Button variant="ghost" size="xl" w="full">
+                  {t('hero.dataHub')}
+                </Button>
+              </Link>
             </HStack>
           </VStack>
           <VStack
@@ -150,7 +166,7 @@ export const Hero: FC = () => {
               letterSpacing={2}
               fontWeight="600"
             >
-              Trusted by
+              {t('hero.trustedBy')}
             </Text>
             <HStack
               flex={1}
@@ -164,7 +180,7 @@ export const Hero: FC = () => {
               _hover={{ opacity: 1 }}
               flexWrap={{ base: 'wrap', md: 'nowrap' }}
             >
-              <VStack gap={0} align={{ base: 'center', md: 'flex-start' }} justify="center">
+              <VStack gap={0} align={{ base: 'center', md: 'center' }} justify="center">
                 <HStack justify="center" align="center" flexWrap="wrap" gap={{ base: 2, md: 4 }} flex={1}>
                   <MorganCreek {...partnerLogoSizes.morganCreek} />
                   <Image
@@ -179,6 +195,8 @@ export const Hero: FC = () => {
                     h={{ base: '16px', md: '22px' }}
                   />
                   <KhizaIcon {...partnerLogoSizes.khiza} />
+                </HStack>
+                <HStack justify="center" align="center" flexWrap="wrap" gap={{ base: 2, md: 4 }} flex={1}>
                   <LiqiLogo {...partnerLogoSizes.liqi} />
                   <Image
                     src="/assets/firmeza-token.avif"
@@ -187,7 +205,16 @@ export const Hero: FC = () => {
                     w={{ base: '84px', md: '122px' }}
                     h={{ base: '22px', md: '32px' }}
                   />
-                  <XDCLogo width={72} height={72} />
+                  <Image
+                    src="/assets/logos/scenium.png"
+                    alt="Scenium"
+                    width={122}
+                    height={22}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <TokenizaLogo width={122} height={44} />
+                  <XDCLogo width={62} height={62} />
                 </HStack>
               </VStack>
             </HStack>

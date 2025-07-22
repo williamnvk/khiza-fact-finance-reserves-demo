@@ -1,6 +1,8 @@
 import { Download, Shield, CheckCircle, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import { Box, HStack, VStack, Text, Button, NativeSelect, Icon, Grid, Heading, Stack } from '@chakra-ui/react';
+import { useI18n } from '@/hooks/useI18n';
+import { translatePeriod } from '@/lib/utils';
 
 export function AuditReport({
   reportsList,
@@ -8,6 +10,7 @@ export function AuditReport({
   reportsList: Array<{ date: string; file: string }>;
   companyName: string;
 }) {
+  const { t } = useI18n();
   const [selectedDate, setSelectedDate] = useState(reportsList[0].date);
   const [isDownloading, setIsDownloading] = useState(false);
 
@@ -68,7 +71,7 @@ export function AuditReport({
             <HStack gap={1}>
               <Icon as={CheckCircle} boxSize={4} color="green.500" />
               <Text fontSize="sm" fontWeight="medium" color="green.600" _dark={{ color: 'green.400' }}>
-                Verified
+                {t('reserves.components.auditReport.verified')}
               </Text>
             </HStack>
           </VStack>
@@ -83,7 +86,7 @@ export function AuditReport({
             _dark={{ color: 'white' }}
             className="omit-from-print"
           >
-            Download Report
+            {t('reserves.components.auditReport.downloadReport')}
           </Heading>
 
           {/* Features Grid */}
@@ -131,7 +134,7 @@ export function AuditReport({
             {/* Date Selector */}
             <Box w={{ base: 'full', md: 'auto' }} className="omit-from-print">
               <Text fontSize="sm" fontWeight="medium" mb={2} color="fg.muted">
-                Select Report Period
+                {t('reserves.components.auditReport.selectReportPeriod')}
               </Text>
               <NativeSelect.Root size="lg" w="full">
                 <NativeSelect.Field
@@ -157,7 +160,7 @@ export function AuditReport({
                 >
                   {reportsList.map((item) => (
                     <option key={item.date} value={item.date}>
-                      {item.date}
+                      {translatePeriod(item.date, t)}
                     </option>
                   ))}
                 </NativeSelect.Field>
@@ -179,7 +182,7 @@ export function AuditReport({
               }}
               color="white"
               loading={isDownloading}
-              loadingText="Downloading..."
+              loadingText={t('reserves.components.auditReport.downloading')}
               onClick={() => {
                 const selectedReport = reportsList.find((report) => report.date === selectedDate);
                 console.log(selectedReport);
@@ -195,7 +198,7 @@ export function AuditReport({
             >
               <HStack gap={2} className="omit-from-print">
                 <Icon as={Download} boxSize={5} />
-                <Text>Download Report</Text>
+                <Text>{t('reserves.components.auditReport.downloadReport')}</Text>
                 <Icon as={ArrowRight} boxSize={4} />
               </HStack>
             </Button>

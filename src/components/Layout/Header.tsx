@@ -8,16 +8,19 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { MenuIcon, XIcon as CloseIcon } from 'lucide-react';
 import LogoIcon from '../Icons/LogoIcon';
 import { Link, NavLink } from 'react-router';
 import LinkedinIcon from '../Icons/LinkedinIcon';
 import XIcon from '../Icons/XIcon';
+import LanguageSelector from '../LanguageSelector/LanguageSelector';
 
 export interface HeaderProps {}
 
 export const Header: FC<HeaderProps> = () => {
   const { open, onToggle } = useDisclosure();
+  const { t } = useTranslation();
 
   return (
     <>
@@ -60,39 +63,41 @@ export const Header: FC<HeaderProps> = () => {
 
           <HStack display={{ base: 'none', md: 'flex' }} justify="flex-start" align="center" flex={1} gap={4}>
             <Button as={NavLink} to="/" variant="navbar">
-              Home
+              {t('nav.home')}
             </Button>
             <Button as={NavLink} to="/features" variant="navbar">
-              Features
+              {t('nav.features')}
             </Button>
             <Button as={NavLink} to="/use-cases" variant="navbar">
-              Use Cases
+              {t('nav.useCases')}
             </Button>
             <Button as={NavLink} to="/data-hub" variant="navbar">
-              Data Hub
+              {t('nav.dataHub')}
             </Button>
             <Button as={NavLink} to="/about" variant="navbar">
-              About Us
+              {t('nav.about')}
             </Button>
             <Button as={NavLink} to="/reserves" variant="navbar">
-              Reserves
+              {t('nav.reserves')}
             </Button>
           </HStack>
 
-          <Button
-            variant="solid"
-            display={{ base: 'none', md: 'flex' }}
-            as="a"
-            href="https://docs.fact.finance/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Docs
-          </Button>
+          <HStack gap={2} display={{ base: 'none', md: 'flex' }}>
+            <LanguageSelector />
+            <Button
+              variant="solid"
+              as="a"
+              href="https://docs.fact.finance/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {t('nav.docs')}
+            </Button>
+          </HStack>
 
           <IconButton
             display={{ base: 'flex', md: 'none' }}
-            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-label={open ? t('common.closeMenu') : t('common.openMenu')}
             aria-expanded={open}
             aria-controls="mobile-menu"
             onClick={onToggle}
@@ -144,33 +149,34 @@ export const Header: FC<HeaderProps> = () => {
       >
         <VStack gap={2} align="flex-start" flex={1} mt={4} w="full">
           <Button as={NavLink} to="/" variant="navbar" onClick={onToggle}>
-            Home
+            {t('nav.home')}
           </Button>
-          <Button as={NavLink} to="/use-cases" variant="navbar">
-            Features
+          <Button as={NavLink} to="/features" variant="navbar" onClick={onToggle}>
+            {t('nav.features')}
           </Button>
-          <Button as={NavLink} to="/use-cases" variant="navbar">
-            Use Cases
+          <Button as={NavLink} to="/use-cases" variant="navbar" onClick={onToggle}>
+            {t('nav.useCases')}
           </Button>
-          <Button as={NavLink} to="/data-hub" variant="navbar">
-            Data Hub
+          <Button as={NavLink} to="/data-hub" variant="navbar" onClick={onToggle}>
+            {t('nav.dataHub')}
           </Button>
           <Button as={NavLink} to="/about" variant="navbar" onClick={onToggle}>
-            About Us
+            {t('nav.about')}
           </Button>
-          <Button as={NavLink} to="/reserves" variant="navbar">
-            Reserves
+          <Button as={NavLink} to="/reserves" variant="navbar" onClick={onToggle}>
+            {t('nav.reserves')}
           </Button>
           <Button as="a" href="https://docs.fact.finance/" target="_blank" rel="noopener noreferrer" variant="navbar">
-            Documentation
+            {t('nav.documentation')}
           </Button>
+          <LanguageSelector />
         </VStack>
         <HStack
           justify={{ base: 'center', md: 'center' }}
           gap={4}
           align="center"
           as="nav"
-          aria-label="Social Media Links"
+          aria-label={t('footer.socialMedia')}
           w="full"
           mb={4}
         >

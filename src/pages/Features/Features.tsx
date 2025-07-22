@@ -1,4 +1,4 @@
-import { Box, Container, Heading, Text, VStack, SimpleGrid, Flex, HStack, Link, Stack, Center } from '@chakra-ui/react';
+import { Box, Container, Heading, Text, VStack, SimpleGrid, Flex, HStack, Stack, Center, Link as ChakraLink } from '@chakra-ui/react';
 import {
   ShieldCheckIcon,
   CheckIcon,
@@ -11,31 +11,34 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ConfidenceIndexChart from './ConfidenceIndexChart';
-
-const benefits = [
-  {
-    icon: <WorkflowIcon />,
-    title: 'Automation',
-    description: 'Allows protocols to automate responses based on data classification.',
-  },
-  {
-    icon: <CheckIcon />,
-    title: 'Precision',
-    description: 'Uses statistical analysis and LOF for accurate anomaly detection.',
-  },
-  {
-    icon: <ShieldCheckIcon />,
-    title: 'Risk management',
-    description: 'Mitigates exposure to unreliable or manipulated data.',
-  },
-  {
-    icon: <ScalingIcon />,
-    title: 'Scalability',
-    description: 'Easily integrates with various protocols, optimizing risk management.',
-  },
-];
+import { useI18n } from '@/hooks/useI18n';
 
 export default function Features() {
+  const { t } = useI18n();
+
+  const benefits = [
+    {
+      icon: <WorkflowIcon />,
+      title: t('features.page.confidenceIndex.automation.title'),
+      description: t('features.page.confidenceIndex.automation.description'),
+    },
+    {
+      icon: <CheckIcon />,
+      title: t('features.page.confidenceIndex.precision.title'),
+      description: t('features.page.confidenceIndex.precision.description'),
+    },
+    {
+      icon: <ShieldCheckIcon />,
+      title: t('features.page.confidenceIndex.riskManagement.title'),
+      description: t('features.page.confidenceIndex.riskManagement.description'),
+    },
+    {
+      icon: <ScalingIcon />,
+      title: t('features.page.confidenceIndex.scalability.title'),
+      description: t('features.page.confidenceIndex.scalability.description'),
+    },
+  ];
+
   return (
     <Box pos="relative">
       <Box
@@ -60,7 +63,7 @@ export default function Features() {
       >
         <VStack gap={2} align={{ base: 'start', md: 'center' }}>
           <Text color="brand.300" fontWeight="600" letterSpacing={2} textAlign={{ base: 'left', md: 'center' }}>
-            FEATURES
+            {t('nav.features').toUpperCase()}
           </Text>
           <Heading
             as="h1"
@@ -69,7 +72,7 @@ export default function Features() {
             lineHeight="1.2"
             textAlign={{ base: 'left', md: 'center' }}
           >
-            A new standard for on-chain data
+            {t('features.page.title')}
           </Heading>
 
           {/* Subtitle */}
@@ -80,8 +83,7 @@ export default function Features() {
             lineHeight="tall"
             textAlign={{ base: 'left', md: 'center' }}
           >
-            Fact Finance provides secure and compliant data feeds, enabling precise and efficient asset tokenization on
-            blockchain rails
+            {t('features.page.subtitle')}
           </Text>
         </VStack>
       </Container>
@@ -107,7 +109,7 @@ export default function Features() {
           w="full"
           textAlign={{ base: 'left', md: 'center' }}
         >
-          Proof of authenticity
+          {t('features.page.proofOfAuthenticity.title')}
         </Heading>
 
         <Stack
@@ -134,11 +136,10 @@ export default function Features() {
           >
             <BadgeCheckIcon size={48} strokeWidth={1.25} />
             <Heading fontSize={{ base: '2xl', md: '3xl' }} fontWeight="bold" mt={{ base: 2, md: 4 }}>
-              Verified partnerships
+              {t('features.page.proofOfAuthenticity.verifiedPartnerships.title')}
             </Heading>
             <Text fontSize={{ base: 'sm', md: 'md' }}>
-              Commercial relationships with trusted data providers through licensing agreements with research
-              institutes, government agencies, specialized data companies.
+              {t('features.page.proofOfAuthenticity.verifiedPartnerships.description')}
             </Text>
           </VStack>
 
@@ -156,11 +157,10 @@ export default function Features() {
           >
             <ShieldCheckIcon size={48} strokeWidth={1.25} />
             <Heading fontSize={{ base: '2xl', md: '3xl' }} fontWeight="bold" mt={{ base: 2, md: 4 }}>
-              Cryptographic security
+              {t('features.page.proofOfAuthenticity.cryptographicSecurity.title')}
             </Heading>
             <Text fontSize={{ base: 'sm', md: 'md' }}>
-              Each provider receives a unique cryptographic key registered on-chain, acting as a tamper-proof signature
-              for all submitted data.
+              {t('features.page.proofOfAuthenticity.cryptographicSecurity.description')}
             </Text>
           </VStack>
 
@@ -178,84 +178,31 @@ export default function Features() {
           >
             <ReplaceAllIcon size={48} strokeWidth={1.25} />
             <Heading fontSize={{ base: '2xl', md: '3xl' }} fontWeight="bold" mt={{ base: 2, md: 4 }}>
-              On-Chain validation
+              {t('features.page.proofOfAuthenticity.onChainValidation.title')}
             </Heading>
             <Text fontSize={{ base: 'sm', md: 'md' }}>
-              Each data point is signed with a unique cryptographic key. After that, Fact Finance verifies authenticity
-              before publishing it on-chain.
+              {t('features.page.proofOfAuthenticity.onChainValidation.description')}
             </Text>
           </VStack>
         </Stack>
 
         <Flex w="full" align={{ base: 'start', md: 'center' }}>
-          <Button
-            as={Link}
-            variant="outline"
+          <ChakraLink
             href="https://docs.fact.finance/features/poa/"
             target="_blank"
-            size="lg"
             mx="auto"
             w={{ base: 'full', md: 'auto' }}
+            _hover={{ textDecoration: 'none' }}
           >
-            View full documentation
-          </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              w="full"
+            >
+              {t('features.page.viewFullDocumentation')}
+            </Button>
+          </ChakraLink>
         </Flex>
-
-        {/* <Stack
-          flexDir={{ base: 'column', md: 'row' }}
-          w="full"
-          justify="space-between"
-          align="center"
-          gap={{ base: 2, md: 32 }}
-        >
-          <Heading
-            fontSize={{ base: 'xl', md: '4xl' }}
-            fontWeight="bold"
-            lineHeight="shorter"
-            textAlign={{ base: 'left', md: 'center' }}
-          >
-            Why It Matters
-          </Heading>
-          <Flex flexWrap="wrap" gap={2} flex={1} align="end" justify="end">
-            <Text
-              fontSize="sm"
-              fontWeight="bold"
-              px={6}
-              py={3}
-              border="1px solid"
-              borderColor="whiteAlpha.50"
-              borderRadius="md"
-              color="white"
-            >
-              Eliminate rogue/unverified data sources
-            </Text>
-            <Text
-              fontSize="sm"
-              fontWeight="bold"
-              px={6}
-              py={3}
-              border="1px solid"
-              borderColor="whiteAlpha.50"
-              borderRadius="md"
-              color="white"
-            >
-              Trace every data point to its origin
-            </Text>
-            <Text
-              fontSize="sm"
-              fontWeight="bold"
-              px={6}
-              py={3}
-              bgGradient="to-br"
-              border="1px solid"
-              borderColor="whiteAlpha.50"
-              borderRadius="md"
-              color="white"
-            >
-              Build DApps with enterprise-grade reliability
-            </Text>
-          </Flex>
-        </Stack> */}
       </Container>
 
       <Container maxW="8xl" my={{ base: 16, md: 32 }} zIndex={2}>
@@ -266,7 +213,7 @@ export default function Features() {
           w="full"
           textAlign={{ base: 'left', md: 'center' }}
         >
-          Confidence Index
+          {t('features.page.confidenceIndex.title')}
         </Heading>
 
         <Stack
@@ -301,7 +248,7 @@ export default function Features() {
               fontWeight="normal"
               color="whiteAlpha.400"
             >
-              Benefits
+              {t('features.page.confidenceIndex.benefits')}
             </Heading>
 
             <SimpleGrid columns={{ base: 1, md: 2 }} gap={{ base: 4, md: 8 }}>
@@ -327,17 +274,21 @@ export default function Features() {
         </Stack>
 
         <Flex w="full" align={{ base: 'start', md: 'center' }}>
-          <Button
-            as={Link}
-            variant="outline"
+          <ChakraLink
             href="https://docs.fact.finance/features/ci/"
             target="_blank"
-            size="lg"
             mx="auto"
             w={{ base: 'full', md: 'auto' }}
+            _hover={{ textDecoration: 'none' }}
           >
-            View full documentation
-          </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              w="full"
+            >
+              {t('features.page.viewFullDocumentation')}
+            </Button>
+          </ChakraLink>
         </Flex>
       </Container>
 
@@ -349,19 +300,7 @@ export default function Features() {
           w="full"
           textAlign={{ base: 'left', md: 'center' }}
         >
-          External auditors
-          {/* <br />
-          <Heading
-            as="span"
-            fontWeight="bold"
-            fontSize={{ base: '3xl', md: '4xl' }}
-            bgGradient="to-r"
-            gradientFrom="brand.50"
-            gradientTo="brand.400"
-            bgClip="text"
-          >
-            Triple-Layer Data Integrity
-          </Heading> */}
+          {t('features.page.externalAuditors.title')}
         </Heading>
 
         <Stack
@@ -388,11 +327,10 @@ export default function Features() {
           >
             <ListCheckIcon size={48} strokeWidth={1.25} />
             <Heading fontSize={{ base: '2xl', md: '3xl' }} fontWeight="bold" mt={{ base: 2, md: 4 }}>
-              Consensus checks
+              {t('features.page.externalAuditors.consensusChecks.title')}
             </Heading>
             <Text fontSize={{ base: 'sm', md: 'md' }}>
-              Multiple participants, such as clients or nodes, collaboratively verify data accuracy, ensuring
-              reliability through decentralized validation.
+              {t('features.page.externalAuditors.consensusChecks.description')}
             </Text>
           </VStack>
 
@@ -410,11 +348,10 @@ export default function Features() {
           >
             <ShieldCheckIcon size={48} strokeWidth={1.25} />
             <Heading fontSize={{ base: '2xl', md: '3xl' }} fontWeight="bold" mt={{ base: 2, md: 4 }}>
-              Audit firms
+              {t('features.page.externalAuditors.auditFirms.title')}
             </Heading>
             <Text fontSize={{ base: 'sm', md: 'md' }}>
-              Independent audit firms assess data integrity, providing external oversight to enhance credibility and
-              compliance.
+              {t('features.page.externalAuditors.auditFirms.description')}
             </Text>
           </VStack>
 
@@ -432,76 +369,32 @@ export default function Features() {
           >
             <BrainCircuitIcon size={48} strokeWidth={1.25} />
             <Heading fontSize={{ base: '2xl', md: '3xl' }} fontWeight="bold" mt={{ base: 2, md: 4 }}>
-              AI analysis
+              {t('features.page.externalAuditors.aiAnalysis.title')}
             </Heading>
             <Text fontSize={{ base: 'sm', md: 'md' }}>
-              Machine learning and predictive models analyze data contextually, identifying anomalies and ensuring
-              accuracy.
+              {t('features.page.externalAuditors.aiAnalysis.description')}
             </Text>
           </VStack>
         </Stack>
 
         <Flex w="full" align={{ base: 'start', md: 'center' }} mt={{ base: 4, md: 8 }}>
-          <Button
-            as={Link}
-            variant="outline"
+          <ChakraLink
             href="https://docs.fact.finance/features/ea/"
             target="_blank"
-            size="lg"
             mx="auto"
             w={{ base: 'full', md: 'auto' }}
+            _hover={{ textDecoration: 'none' }}
           >
-            View full documentation
-          </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              w="full"
+            >
+              {t('features.page.viewFullDocumentation')}
+            </Button>
+          </ChakraLink>
         </Flex>
       </Container>
     </Box>
   );
 }
-
-// <VStack
-// w="220px"
-// h="220px"
-// zIndex={1}
-// transform={`rotate(40deg) skew(-20deg, -10deg)`}
-// border="2px solid"
-// borderColor="white"
-// transition="all 0.3s ease-in-out"
-// bg="transparent"
-// borderRadius="2xl"
-// gap={8}
-// className={`card-1`}
-// align="center"
-// backdropFilter="blur(2px)"
-// justify="center"
-// overflow="hidden"
-// role="button"
-// tabIndex={0}
-// aria-controls={`card-info-1`}
-// >
-// <Box
-//   position="absolute"
-//   top="0%"
-//   left="0%"
-//   transform="translate(-50%, -50%)"
-//   w="100%"
-//   h="100%"
-//   bg="radial-gradient(circle, {colors.brand.900} 0%, rgba(0,0,0,.5) 100%)"
-//   filter="blur(30px)"
-//   opacity={1}
-//   zIndex={1}
-// />
-// <Box
-//   position="absolute"
-//   bottom="-50%"
-//   left="0%"
-//   transform="translate(-50%, -50%)"
-//   w="100%"
-//   h="100%"
-//   bg={`radial-gradient(circle, {colors.brand.900} 0%, rgba(0,0,0,.5) 100%)`}
-//   filter="blur(60px)"
-//   opacity={0.25}
-//   zIndex={1}
-// />
-// {/* <Text color={hoveredIndex === index ? 'white' : card.borderColor}></Text> */}
-// </VStack>

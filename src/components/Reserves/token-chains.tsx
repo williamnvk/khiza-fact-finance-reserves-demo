@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { Tooltip } from '@/components/ui/tooltip';
 import { useColorModeValue } from '../ui/color-mode';
+import { useI18n } from '@/hooks/useI18n';
 
 export function TokenChainBreakdown({
   totalTokens,
@@ -27,6 +28,7 @@ export function TokenChainBreakdown({
   chainDistribution: any[];
   currency: string;
 }) {
+  const { t } = useI18n();
   const formatPercent = (value: number) => `${value.toFixed(2)}%`;
 
   // Enhanced chain colors with better accessibility and modern palette
@@ -78,11 +80,11 @@ export function TokenChainBreakdown({
             <VStack align="start" gap={2} flex={1}>
               <HStack gap={3}>
                 <Text fontSize={{ base: '2xl', md: '3xl' }} fontWeight="bold" color="fg">
-                  Blockchain Distribution
+                  {t('reserves.components.tokenChains.title')}
                 </Text>
               </HStack>
               <Text fontSize={{ base: 'sm', md: 'md' }} color="fg.muted" lineHeight="tall">
-                This section shows how the token supply is distributed across different blockchains
+                {t('reserves.components.tokenChains.subtitle')}
               </Text>
             </VStack>
           </Flex>
@@ -102,7 +104,7 @@ export function TokenChainBreakdown({
                 <Stat.Root>
                   <Stat.Label fontSize="xs" color="fg.muted">
                     <HStack gap={1}>
-                      <Text fontSize="lg">Active Networks</Text>
+                      <Text fontSize="lg">{t('reserves.components.tokenChains.activeNetworks')}</Text>
                     </HStack>
                   </Stat.Label>
                   <Stat.ValueText fontSize="2xl" fontWeight="bold">
@@ -125,7 +127,7 @@ export function TokenChainBreakdown({
                 <Stat.Root>
                   <Stat.Label fontSize="xs" color="fg.muted">
                     <HStack gap={1}>
-                      <Text fontSize="lg">Total Tokens</Text>
+                      <Text fontSize="lg">{t('reserves.components.tokenChains.totalTokens')}</Text>
                     </HStack>
                   </Stat.Label>
                   <Stat.ValueText fontSize="2xl" fontWeight="bold">
@@ -148,7 +150,7 @@ export function TokenChainBreakdown({
                 <Stat.Root>
                   <Stat.Label fontSize="xs" color="fg.muted">
                     <HStack gap={1}>
-                      <Text fontSize="lg">Total Value</Text>
+                      <Text fontSize="lg">{t('reserves.components.tokenChains.totalValue')}</Text>
                     </HStack>
                   </Stat.Label>
                   <Stat.ValueText fontSize="2xl" fontWeight="bold">
@@ -164,7 +166,7 @@ export function TokenChainBreakdown({
         <Card.Root size="sm" variant="outline" bg="transparent">
           <Card.Header>
             <Card.Title fontSize="lg" fontWeight="semibold">
-              Network Distribution
+              {t('reserves.components.tokenChains.networkDistribution')}
             </Card.Title>
           </Card.Header>
           <Card.Body>

@@ -1,8 +1,54 @@
 import { AccordionItem, AccordionItemContent, AccordionItemTrigger, AccordionRoot } from '@/components/ui/accordion';
 import { Icon, Text, VStack } from '@chakra-ui/react';
 import { BlocksIcon, CodeIcon, DatabaseIcon, HardDriveIcon, UsersRoundIcon } from 'lucide-react';
+import { useI18n } from '@/hooks/useI18n';
 
 export const Faq = () => {
+  const { t } = useI18n();
+
+  const items = [
+    {
+      value: 'what-is-an-oracle',
+      icon: <DatabaseIcon />,
+      title: t('faq.whatIsOracle.title'),
+      content: [
+        t('faq.whatIsOracle.content'),
+      ],
+    },
+    {
+      value: 'who-needs',
+      icon: <UsersRoundIcon />,
+      title: t('faq.whyTokenizedAssets.title'),
+      content: [
+        t('faq.whyTokenizedAssets.content'),
+      ],
+    },
+    {
+      value: 'responsibility',
+      icon: <HardDriveIcon />,
+      title: t('faq.whatDataTypes.title'),
+      content: [
+        t('faq.whatDataTypes.content'),
+      ],
+    },
+    {
+      value: 'availability',
+      icon: <BlocksIcon />,
+      title: t('faq.dataSource.title'),
+      content: [
+        t('faq.dataSource.content'),
+      ],
+    },
+    {
+      value: 'integration',
+      icon: <CodeIcon />,
+      title: t('faq.integration.title'),
+      content: [
+        t('faq.integration.content'),
+      ],
+    },
+  ];
+
   return (
     <AccordionRoot
       collapsible
@@ -36,46 +82,3 @@ export const Faq = () => {
     </AccordionRoot>
   );
 };
-
-const items = [
-  {
-    value: 'what-is-an-oracle',
-    icon: <DatabaseIcon />,
-    title: 'What is an oracle?',
-    content: [
-      'An oracle bridges real-world data to the blockchain, enabling smart contracts to execute based on real-world events.',
-    ],
-  },
-  {
-    value: 'who-needs',
-    icon: <UsersRoundIcon />,
-    title: 'Why do tokenized assets need oracles?',
-    content: [
-      'Oracles provide the real-world data that tokenized assets need to function accurately, such as property valuations for Real Estate tokens or interest rates  and inflation for private credit tokens. Without oracles, tokenized assets cannot reflect real-time changes or off-chain events.',
-    ],
-  },
-  {
-    value: 'responsibility',
-    icon: <HardDriveIcon />,
-    title: 'What types of data Fact Finance can provide?',
-    content: [
-      'We can provide various types of data, including market prices, economic indices, proof of reserves, square meter price for Real Estate, weather updates, and more, depending on the use case. Contact us if your project needs any other specifc data.',
-    ],
-  },
-  {
-    value: 'availability',
-    icon: <BlocksIcon />,
-    title: 'Where does Fact Finance source its data?',
-    content: [
-      'Our data feeds come directly from official sources, such as central banks, research institutes and financial institutions.',
-    ],
-  },
-  {
-    value: 'integration',
-    icon: <CodeIcon />,
-    title: 'How do I integrate Fact Finance’s APIs into my project?',
-    content: [
-      'Our documentation provides step-by-step guides, API references, and examples for integration with EVM-based blockchains and Solana.',
-    ],
-  },
-];

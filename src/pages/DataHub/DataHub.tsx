@@ -20,6 +20,7 @@ import { BotIcon, CheckIcon, FilterIcon, RocketIcon, SearchCodeIcon, SearchIcon,
 import { create } from 'zustand';
 import { DataCard } from './DataCard';
 import { DetailItem } from './DetailItem';
+import { useI18n } from '@/hooks/useI18n';
 
 interface DataHubStore {
   searchQuery: string;
@@ -75,6 +76,7 @@ interface Props {
 }
 
 export default function DataHubComponent({ data }: Props) {
+  const { t } = useI18n();
   const { searchQuery, filters, detailItem, setSearchQuery, setFilter, setDetailItem, resetFilters } =
     useDataHubStore();
   const [open, setOpen] = useState(false);
@@ -178,12 +180,12 @@ export default function DataHubComponent({ data }: Props) {
   const hasActiveFilters = Object.values(filters).some((value) => value && (!Array.isArray(value) || value.length > 0));
 
   const FiltersContent = () => (
-    <VStack gap={6} align="stretch" w="full" role="complementary" aria-label="Filter options">
+    <VStack gap={6} align="stretch" w="full" role="complementary" aria-label={t('dataHub.filters.title')}>
       <VStack align="start" justify="start" gap={2}>
         <Text as="h2" fontSize="xs" mb={2} letterSpacing={2} textTransform="uppercase" color="gray.400">
-          Interfaces
+          {t('dataHub.filters.interfaces')}
         </Text>
-        <Flex gap={1} align="center" justify="center" flexWrap="wrap" role="group" aria-label="Interface filters">
+        <Flex gap={1} align="center" justify="center" flexWrap="wrap" role="group" aria-label={t('dataHub.filters.interfaces')}>
           {filterOptions.interfaces.options.map((option) => (
             <Flex
               key={option}
@@ -215,17 +217,18 @@ export default function DataHubComponent({ data }: Props) {
         </Flex>
       </VStack>
       <FilterSection
-        title="Category"
+        title={t('dataHub.filters.category')}
         options={filterOptions.categories.options}
         selected={filters.Category}
         onSelect={(value) => setFilter('Category', value)}
         count={filterOptions.categories.counts}
         disabledOptions={['Commodities', 'Real Estate']}
         soonBadgeOptions={['Commodities', 'Real Estate']}
+        soonText={t('dataHub.filters.soon')}
       />
       {filterOptions.subCategories.options.length > 0 && (
         <MultiSelectFilterSection
-          title="SubCategory"
+          title={t('dataHub.filters.subCategory')}
           options={filterOptions.subCategories.options}
           selected={filters.SubCategory}
           onSelect={(value) => setFilter('SubCategory', value)}
@@ -233,7 +236,7 @@ export default function DataHubComponent({ data }: Props) {
         />
       )}
       <MultiSelectFilterSection
-        title="Region"
+        title={t('dataHub.filters.region')}
         options={filterOptions.countries.options}
         selected={filters.Country}
         onSelect={(value) => setFilter('Country', value)}
@@ -241,11 +244,12 @@ export default function DataHubComponent({ data }: Props) {
         disableCount
       />
       <FilterSection
-        title="Frequency"
+        title={t('dataHub.filters.frequency')}
         options={filterOptions.frequencies.options}
         selected={filters.Frequency}
         onSelect={(value) => setFilter('Frequency', value)}
         count={filterOptions.frequencies.counts}
+        soonText={t('dataHub.filters.soon')}
       />
     </VStack>
   );
@@ -295,7 +299,7 @@ export default function DataHubComponent({ data }: Props) {
           >
             <SearchIcon aria-hidden="true" />
             <Input
-              placeholder="Search indicators..."
+              placeholder={t('dataHub.search.placeholder')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               borderRadius="full"
@@ -304,11 +308,11 @@ export default function DataHubComponent({ data }: Props) {
               boxShadow="none"
               size={{ base: 'lg', md: '2xl' }}
               variant="outline"
-              aria-label="Search indicators"
+              aria-label={t('dataHub.search.placeholder')}
             />
             {searchQuery.length > 0 && (
               <IconButton
-                aria-label="Clear search"
+                aria-label={t('dataHub.search.clear')}
                 onClick={() => setSearchQuery('')}
                 variant="ghost"
                 borderRadius="full"
@@ -329,7 +333,7 @@ export default function DataHubComponent({ data }: Props) {
               aria-expanded={open}
             >
               <FilterIcon aria-hidden="true" />
-              Filters
+              {t('dataHub.filters.title')}
             </Button>
           )}
 
@@ -342,9 +346,9 @@ export default function DataHubComponent({ data }: Props) {
               cursor="pointer"
               onClick={resetFilters}
               _hover={{ color: 'blue.600' }}
-              aria-label="Clear all filters"
+              aria-label={t('dataHub.filters.clearAll')}
             >
-              Clear filters
+              {t('dataHub.filters.clear')}
             </Text>
           )}
         </HStack>
@@ -359,7 +363,7 @@ export default function DataHubComponent({ data }: Props) {
           <Box flex={1} key={`data-cards-${filteredData.length}`} role="main">
             {filteredData.length === 0 ? (
               <Box textAlign="center" py={12} borderRadius="xl">
-                <Text fontSize="lg">No results found. Try adjusting your search or filters.</Text>
+                <Text fontSize="lg">{t('dataHub.search.noResults')}</Text>
               </Box>
             ) : (
               <Grid
@@ -384,14 +388,14 @@ export default function DataHubComponent({ data }: Props) {
             <Drawer.Positioner>
               <Drawer.Content>
                 <Drawer.Header>
-                  <Drawer.Title>Filters</Drawer.Title>
+                  <Drawer.Title>{t('dataHub.filters.title')}</Drawer.Title>
                 </Drawer.Header>
                 <Drawer.Body>
                   <VStack gap={2} w="full">
                     <FiltersContent />
                     {hasActiveFilters && (
                       <Button colorScheme="blue" variant="ghost" onClick={resetFilters} w="full">
-                        Clear all filters
+                        {t('dataHub.filters.clearAll')}
                       </Button>
                     )}
                   </VStack>
@@ -429,6 +433,7 @@ const FilterSection = ({
   count,
   disabledOptions = [],
   soonBadgeOptions = [],
+  soonText = 'SOON',
 }: {
   title: string;
   options: string[];
@@ -437,6 +442,7 @@ const FilterSection = ({
   count: number;
   disabledOptions?: string[];
   soonBadgeOptions?: string[];
+  soonText?: string;
 }) => (
   <VStack w="full" align="stretch" role="region" aria-label={`${title} filter section`}>
     <Flex justify="space-between" align="center">
@@ -473,7 +479,7 @@ const FilterSection = ({
           {selected === option && <CheckIcon size={16} aria-hidden="true" />}
           {soonBadgeOptions.includes(option) && (
             <Text ml={2} fontSize="xs" color="gray.500" bg="whiteAlpha.50" px={2} py={1} borderRadius="full">
-              SOON
+              {soonText}
             </Text>
           )}
         </Flex>

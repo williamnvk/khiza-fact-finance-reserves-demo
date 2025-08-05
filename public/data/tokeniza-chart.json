@@ -1,86 +1,270 @@
 {
   "historical": [
     {
-      "date": "30 May 2025",
-      "circulation": 0,
-      "reserves": 35622,
-      "totalTransfer": 0,
-      "transactions": 0,
-      "totalBurned": 0
+      "date": "16 Jun 2025",
+      "circulation": 103000.6,
+      "reserves": 116210.32,
+      "totalTransfer": 101,
+      "transactions": 3,
+      "totalBurned": 20.174023407389246
     },
     {
-      "date": "02 Jun 2025",
-      "circulation": 125397,
-      "reserves": 135420.74,
-      "totalTransfer": 0,
-      "transactions": 0,
-      "totalBurned": 0
-    },
-    {
-      "date": "03 Jun 2025",
-      "circulation": 115828.67,
-      "reserves": 123778.01,
-      "totalTransfer": 0,
-      "transactions": 0,
-      "totalBurned": 0
-    },
-    {
-      "date": "04 Jun 2025",
-      "circulation": 93979,
-      "reserves": 105397.71,
-      "totalTransfer": 0,
-      "transactions": 0,
-      "totalBurned": 0
-    },
-    {
-      "date": "05 Jun 2025",
-      "circulation": 92483.04,
-      "reserves": 103266.79,
-      "totalTransfer": 0,
-      "transactions": 0,
-      "totalBurned": 0
-    },
-    {
-      "date": "06 Jun 2025",
-      "circulation": 93700.21,
-      "reserves": 104909.42,
-      "totalTransfer": 223,
+      "date": "17 Jun 2025",
+      "circulation": 102478,
+      "reserves": 103072.56,
+      "totalTransfer": 2743,
       "transactions": 5,
-      "totalBurned": 299.99999997
+      "totalBurned": 1360
     },
     {
-      "date": "07 Jun 2025",
-      "circulation": 91950.13,
-      "reserves": 103161,
+      "date": "18 Jun 2025",
+      "circulation": 101218.17,
+      "reserves": 105100.15,
+      "totalTransfer": 1872,
+      "transactions": 3,
+      "totalBurned": 2518.698217329133
+    },
+    {
+      "date": "19 Jun 2025",
+      "circulation": 99110,
+      "reserves": 100671.21,
+      "totalTransfer": 750,
+      "transactions": 4,
+      "totalBurned": 0
+    },
+    {
+      "date": "20 Jun 2025",
+      "circulation": 98149.5,
+      "reserves": 97745.71,
+      "totalTransfer": 4067,
+      "transactions": 5,
+      "totalBurned": 3420.9641984930595
+    },
+    {
+      "date": "21 Jun 2025",
+      "circulation": 95549.63,
+      "reserves": 94407.4,
+      "totalTransfer": 10712,
+      "transactions": 7,
+      "totalBurned": 222.79565188112932
+    },
+    {
+      "date": "22 Jun 2025",
+      "circulation": 95466,
+      "reserves": 95620.44,
+      "totalTransfer": 866,
+      "transactions": 7,
+      "totalBurned": 0
+    },
+    {
+      "date": "23 Jun 2025",
+      "circulation": 95463.25,
+      "reserves": 95628.04,
+      "totalTransfer": 654,
+      "transactions": 3,
+      "totalBurned": 11.527365867372222
+    },
+    {
+      "date": "24 Jun 2025",
+      "circulation": 95148.54,
+      "reserves": 97894.6,
+      "totalTransfer": 20719,
+      "transactions": 11,
+      "totalBurned": 1650.9984762848296
+    },
+    {
+      "date": "25 Jun 2025",
+      "circulation": 93496.5,
+      "reserves": 98385.19,
       "totalTransfer": 0,
-      "transactions": 1,
-      "totalBurned": 199.99999998
+      "transactions": 0,
+      "totalBurned": 10599.92
     },
     {
-      "date": "08 Jun 2025",
-      "circulation": 90282.42,
-      "reserves": 101494.16,
-      "totalTransfer": 36,
+      "date": "26 Jun 2025",
+      "circulation": 89168.36,
+      "reserves": 99237.06,
+      "totalTransfer": 453,
+      "transactions": 5,
+      "totalBurned": 162
+    },
+    {
+      "date": "27 Jun 2025",
+      "circulation": 96046.25,
+      "reserves": 105485.46,
+      "totalTransfer": 28476,
       "transactions": 2,
-      "totalBurned": 22
+      "totalBurned": 0
     },
     {
-      "date": "09 Jun 2025",
-      "circulation": 105853.38,
-      "reserves": 101426.44,
-      "totalTransfer": 347,
+      "date": "28 Jun 2025",
+      "circulation": 121245.17,
+      "reserves": 124625.8,
+      "totalTransfer": 27541,
+      "transactions": 26,
+      "totalBurned": 0
+    },
+    {
+      "date": "29 Jun 2025",
+      "circulation": 129916,
+      "reserves": 141322.8,
+      "totalTransfer": 0,
+      "transactions": 0,
+      "totalBurned": 0
+    },
+    {
+      "date": "30 Jun 2025",
+      "circulation": 152470,
+      "reserves": 170260.73,
+      "totalTransfer": 113011,
+      "transactions": 10,
+      "totalBurned": 20618.701170369462
+    },
+    {
+      "date": "01 Jul 2025",
+      "circulation": 187835,
+      "reserves": 180735.69,
+      "totalTransfer": 151792,
+      "transactions": 154,
+      "totalBurned": 42701.97505298228
+    },
+    {
+      "date": "02 Jul 2025",
+      "circulation": 176411.29,
+      "reserves": 169905.03,
+      "totalTransfer": 19847,
       "transactions": 12,
-      "totalBurned": 229.49999999
+      "totalBurned": 431.8454146577674
+    },
+    {
+      "date": "03 Jul 2025",
+      "circulation": 169365.08,
+      "reserves": 150082.59,
+      "totalTransfer": 66415,
+      "transactions": 520,
+      "totalBurned": 52612.42387207146
+    },
+    {
+      "date": "04 Jul 2025",
+      "circulation": 146533.08,
+      "reserves": 157015.31,
+      "totalTransfer": 41388,
+      "transactions": 144,
+      "totalBurned": 12497.999356876631
+    },
+    {
+      "date": "05 Jul 2025",
+      "circulation": 150358.75,
+      "reserves": 153096.53,
+      "totalTransfer": 4237,
+      "transactions": 5,
+      "totalBurned": 154.22494392281092
+    },
+    {
+      "date": "06 Jul 2025",
+      "circulation": 153326,
+      "reserves": 156269.47,
+      "totalTransfer": 9675,
+      "transactions": 23,
+      "totalBurned": 1449.3651176037733
+    },
+    {
+      "date": "07 Jul 2025",
+      "circulation": 164043.71,
+      "reserves": 172448.93,
+      "totalTransfer": 115238,
+      "transactions": 93,
+      "totalBurned": 18801.713823137175
+    },
+    {
+      "date": "08 Jul 2025",
+      "circulation": 179985.83,
+      "reserves": 201456.53,
+      "totalTransfer": 61563,
+      "transactions": 34,
+      "totalBurned": 41998.7
+    },
+    {
+      "date": "09 Jul 2025",
+      "circulation": 146782.33,
+      "reserves": 161350.15,
+      "totalTransfer": 9489,
+      "transactions": 8,
+      "totalBurned": 1500
+    },
+    {
+      "date": "10 Jul 2025",
+      "circulation": 151079.75,
+      "reserves": 170939.78,
+      "totalTransfer": 16637,
+      "transactions": 15,
+      "totalBurned": 1665.8966298460941
+    },
+    {
+      "date": "11 Jul 2025",
+      "circulation": 158683,
+      "reserves": 192724.12,
+      "totalTransfer": 512,
+      "transactions": 3,
+      "totalBurned": 0
+    },
+    {
+      "date": "12 Jul 2025",
+      "circulation": 158763.58,
+      "reserves": 211551.73,
+      "totalTransfer": 1325,
+      "transactions": 4,
+      "totalBurned": 947.2751836020923
+    },
+    {
+      "date": "13 Jul 2025",
+      "circulation": 149965.58,
+      "reserves": 199604.76,
+      "totalTransfer": 20718,
+      "transactions": 17,
+      "totalBurned": 10500
+    },
+    {
+      "date": "14 Jul 2025",
+      "circulation": 339370.04,
+      "reserves": 406587.53,
+      "totalTransfer": 1057202,
+      "transactions": 359,
+      "totalBurned": 109444.35086946806
+    },
+    {
+      "date": "15 Jul 2025",
+      "circulation": 455237.63,
+      "reserves": 571774.52,
+      "totalTransfer": 114498,
+      "transactions": 86,
+      "totalBurned": 7079.701366642098
+    },
+    {
+      "date": "16 Jul 2025",
+      "circulation": 452898.42,
+      "reserves": 644913.35,
+      "totalTransfer": 26785,
+      "transactions": 13,
+      "totalBurned": 3391.3519866683414
     }
   ],
   "total": {
-    "periodTotalTransfer": 606,
-    "periodTransactions": 20,
-    "periodTotalBurned": 751.49999994
+    "periodTotalTransfer": 1929286,
+    "periodTransactions": 1581,
+    "periodTotalBurned": 345762.602721111
   },
-  "average": {
-    "circulation": 103904.8333,
-    "reserves": 106321.69846153846,
-    "avgcolateral": "100%"
-  }
+  "avgColateral": "134%",
+  "assetDistribution": [
+    {
+      "type": "Cash",
+      "name": "Cash and equivalents",
+      "value": 482166.77
+    },
+    {
+      "type": "Crypto",
+      "name": "Stablecoin - BSC",
+      "value": 152546.8401
+    }
+  ]
 }

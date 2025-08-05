@@ -3,9 +3,12 @@
   "companyName": "Tokeniza",
   "companyFullName": "tBRL - Tokenized Brazilian Real",
   "logo": "tokeniza",
-  "description":"O tBRL é uma stablecoin pareada 1:1 com o real brasileiro (BRL), emitida pela Tokeniza, com lastro integral em contas bancárias segregadas e integração total ao sistema financeiro nacional via Pix. Sua proposta é criar uma ponte segura, transparente e automatizada entre o real e o ecossistema blockchain, promovendo liquidez, rastreabilidade e usabilidade on-chain.",
+  "description":"tBRL is a stablecoin pegged 1:1 to the Brazilian real (BRL), issued by Tokeniza, fully backed by segregated bank accounts and with full integration into the national financial system via Pix. Its purpose is to create a secure, transparent, and automated bridge between the real and the blockchain ecosystem, promoting on-chain liquidity, traceability, and usability.", 
+  "descriptionPT":"O tBRL é uma stablecoin pareada 1:1 com o real brasileiro (BRL), emitida pela Tokeniza, com lastro integral em contas bancárias segregadas e integração total ao sistema financeiro nacional via Pix. Sua proposta é criar uma ponte segura, transparente e automatizada entre o real e o ecossistema blockchain, promovendo liquidez, rastreabilidade e usabilidade on-chain.",
+  "descriptionES":"tBRL es una stablecoin pareada 1:1 con el real brasileño (BRL), emitida por Tokeniza, con respaldo total en cuentas bancarias segregadas y total integración con el sistema financiero nacional a través de Pix. Su propósito es crear un puente seguro, transparente y automatizado entre el real y el ecosistema blockchain, promoviendo liquidez, trazabilidad y usabilidad on-chain.", 
   "heartbeat": "1 hour",
   "dapp": "https://tokeniza.com.br",
+  "contractLink": "https://sepolia.etherscan.io/address/0xe6784214c5691c4c56d0b866f886394bda9b50af#events",
   "threshold": "",
   "historicalData": [
     {
@@ -173,7 +176,7 @@
   "assetDistribution": [
     {
       "type": "cash",
-      "name": " Cash and equivalents",
+      "name": "Cash and equivalents",
       "value": 135420.74
     }
   ],
@@ -188,6 +191,17 @@
       "date": "May, 30 2025",
       "file": "/reports/tokeniza/report_may_2025.pdf"
     }
-  ]
- 
+  ],
+  "footnote" : {
+    "id": 7,
+    "text": "A portion of the reserves is held in USD stablecoins and converted to BRL using the onchain rate from Binance. These converted values are included in the total shown on this report." 
+  },
+    "footnotePT" : {
+    "id": 7,
+    "text": "Uma parte das reservas é mantida em stablecoins de USD e convertida para BRL utilizando a taxa onchain da Binance. Esses valores convertidos estão incluídos no total apresentado neste relatório." 
+  },
+    "footnoteES" : {
+    "id": 7,
+    "text": "Una parte de las reservas se mantiene en stablecoins de USD y se convierte a BRL utilizando la tasa onchain de Binance. Estos valores convertidos están incluidos en el total mostrado en este informe." 
+  }
 }

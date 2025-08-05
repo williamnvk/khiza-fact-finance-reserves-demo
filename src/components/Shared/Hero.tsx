@@ -19,6 +19,7 @@ import { Link } from 'react-router';
 import TokenizaLogo from '../Icons/Tokeniza';
 import XDCLogo from '../Icons/XDCLogo';
 import { useI18n } from '@/hooks/useI18n';
+import ABToken from '../Icons/ABToken';
 
 export const Hero: FC = () => {
   const { t } = useI18n();
@@ -195,6 +196,7 @@ export const Hero: FC = () => {
                     h={{ base: '16px', md: '22px' }}
                   />
                   <KhizaIcon {...partnerLogoSizes.khiza} />
+                  <ABToken width={102} height={24} />
                 </HStack>
                 <HStack justify="center" align="center" flexWrap="wrap" gap={{ base: 2, md: 4 }} flex={1}>
                   <LiqiLogo {...partnerLogoSizes.liqi} />

@@ -3,12 +3,15 @@ import DuckUniversityIcon from '@/components/Icons/DuckUniversityIcon';
 import LiqiLogo from '@/components/Icons/Liqi';
 import NaveggIcon from '@/components/Icons/Navegg';
 
-export const teamMembers = [
+export const getTeamMembers = (t: any) => [
   {
-    name: 'Luciano Juvinski',
-    role: 'Founder & CEO',
+    nameKey: 'about.team.members.lucianoJuvinski.name',
+    name: t('about.team.members.lucianoJuvinski.name'),
+    roleKey: 'about.team.members.lucianoJuvinski.role',
+    role: t('about.team.members.lucianoJuvinski.role'),
     image: 'lucianojuvinski.jpeg',
-    bio: "Luciano Juvinski brings over a decade of expertise in the data industry. He is the founder of Navegg, Brazil’s first Data Management Platform, which was later acquired by Dentsu Aegis and served global clients like Google, Salesforce, and Adobe. He is currently pursuing a Master's degree in Blockchain and Fintech from Duke University.",
+    bioKey: 'about.team.members.lucianoJuvinski.bio',
+    bio: t('about.team.members.lucianoJuvinski.bio'),
     social: {
       linkedin: 'juvinski',
       x: 'juvinski',
@@ -29,10 +32,13 @@ export const teamMembers = [
     ],
   },
   {
-    name: 'Fernanda Garanhani',
-    role: 'Co-Founder & COO',
+    nameKey: 'about.team.members.fernandaGaranhani.name',
+    name: t('about.team.members.fernandaGaranhani.name'),
+    roleKey: 'about.team.members.fernandaGaranhani.role',
+    role: t('about.team.members.fernandaGaranhani.role'),
     image: 'fernandagaranhani.jpeg',
-    bio: 'Fernanda Garanhani has over four years of experience in blockchain and Web3. She started her career as a blockchain analyst at Honey Island Capital, a venture capital firm, and later as Head of New Business at Liqi Digital Assets, a leading asset tokenization platform. She is certified as a blockchain professional by the DEC Institute.',
+    bioKey: 'about.team.members.fernandaGaranhani.bio',
+    bio: t('about.team.members.fernandaGaranhani.bio'),
     social: {
       linkedin: 'fernandagaranhan',
       x: '0xFGB',

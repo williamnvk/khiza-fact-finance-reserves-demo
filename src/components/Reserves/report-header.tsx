@@ -14,10 +14,8 @@ import {
   Image,
 } from '@chakra-ui/react';
 import AveniaLogo from '../Icons/Avenia';
-import { ArrowUpRightIcon, ChartLineIcon, CheckIcon, CoinsIcon, DatabaseBackupIcon, InfoIcon } from 'lucide-react';
+import { ArrowUpRightIcon, ChartLineIcon, CheckIcon, CoinsIcon, DatabaseBackupIcon } from 'lucide-react';
 import { ColorModeButton, useColorMode } from '../ui/color-mode';
-import TokenizaLogo from '../Icons/Tokeniza';
-import { Tooltip } from '../ui/tooltip';
 import { useI18n } from '@/hooks/useI18n';
 
 interface ReportHeaderProps {
@@ -86,6 +84,7 @@ export function ReportHeader({
             )}
             {client === 'tokeniza' && <Image src="/assets/logos/tbrl.png" alt="tBRl" width={120} height={120} />}
             {client === 'scenium' && <Image src="/assets/logos/scenium.png" alt="Scenium" width={180} height={45} />}
+            {client === 'crown' && <Image src="/assets/logos/crown.png" alt="Scenium" width={120} height={120} />}
           </Box>
 
           <VStack align="start" gap={4} flex={1}>

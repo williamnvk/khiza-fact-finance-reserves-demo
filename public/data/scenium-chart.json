@@ -29,6 +29,21 @@
             "date": "31 Mar 2025",
             "circulation": 515445,
             "reserves": 631254
+        },
+        {
+            "date": "30 Apr 2025",
+            "circulation": 515389,
+            "reserves": 632867
+        },
+        {
+            "date": "31 May 2025",
+            "circulation": 510213,
+            "reserves": 626708
+        },
+        {
+            "date": "30 Jun 2025",
+            "circulation": 520538,
+            "reserves": 642404
         }
     ],
   "total": {

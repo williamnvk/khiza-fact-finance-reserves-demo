@@ -1,0 +1,67 @@
+{
+  "currency": "BRL",
+  "companyName": "Crown",
+  "companyFullName": "Yield Bearing BRL",
+  "logo": "crown",
+  "description":"Traditional fiat-pegged stablecoins yield no return, incurring significant opportunity costs in high-interest economies like Brazil. High Selic rates historically discourage stablecoin adoption due to lost potential earnings. Previous yield-bearing solutions faced tax and securities classification complexities, prompting this novel dual-token (BRLY/BRLV) and accumulating-token (wBRLY) architecture.", 
+  "descriptionPT":"Traditional fiat-pegged stablecoins yield no return, incurring significant opportunity costs in high-interest economies like Brazil. High Selic rates historically discourage stablecoin adoption due to lost potential earnings. Previous yield-bearing solutions faced tax and securities classification complexities, prompting this novel dual-token (BRLY/BRLV) and accumulating-token (wBRLY) architecture.",
+  "descriptionES":"Traditional fiat-pegged stablecoins yield no return, incurring significant opportunity costs in high-interest economies like Brazil. High Selic rates historically discourage stablecoin adoption due to lost potential earnings. Previous yield-bearing solutions faced tax and securities classification complexities, prompting this novel dual-token (BRLY/BRLV) and accumulating-token (wBRLY) architecture.", 
+  "heartbeat": "1 hour",
+  "dapp": "https://crowndigital.xyz",
+  "contractLink": "https://basescan.org/token/0x57323Db6d883811C17877d075e05AD9E2ED41519",
+  "threshold": "",
+  "historicalData": [
+    { "date": "31 Jul 2025", "circulation": 20035.01, "reserves": 20035.01 }
+  ],
+  
+  "tokens": [
+    {
+      "id": "1",
+      "logo": "/logos/crown.png",
+      "symbol": "BRLY",
+      "name": "Yield Bearing BRL",
+      "chains": [
+        "base"
+      ],
+      "circulation24h": 1,
+      "tokenPrice": 1,
+      "marketcap": 1,
+      "oracleContract": "",
+      "share": 1
+    }
+  ],
+  "assetDistribution": [
+    {
+      "type": "cash",
+      "name": "Cash and equivalents",
+      "value": 1
+    }
+  ],
+  "chainDistribution": [
+    {
+      "name": "moonbeam",
+      "value": 100
+    }
+  ],
+  "reportList": [
+    {
+      "date": "Jul, 31 2025",
+      "file": "/reports/crown/report_jul_2025.pdf"
+    }
+  ],
+
+
+  "footnote" : {
+    "id": 7,
+    "text": "A portion of the reserves is held in USD stablecoins and converted to BRL using the onchain rate from Binance. These converted values are included in the total shown on this report." 
+  },
+    "footnotePT" : {
+    "id": 7,
+    "text": "Uma parte das reservas é mantida em stablecoins de USD e convertida para BRL utilizando a taxa onchain da Binance. Esses valores convertidos estão incluídos no total apresentado neste relatório." 
+  },
+    "footnoteES" : {
+    "id": 7,
+    "text": "Una parte de las reservas se mantiene en stablecoins de USD y se convierte a BRL utilizando la tasa onchain de Binance. Estos valores convertidos están incluidos en el total mostrado en este informe." 
+  }
+ 
+}

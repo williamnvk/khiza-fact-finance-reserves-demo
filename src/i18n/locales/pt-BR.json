@@ -1,9 +1,9 @@
 {
   "nav": {
     "home": "Início",
-    "features": "Recursos",
+    "features": "Features",
     "useCases": "Casos de Uso",
-    "dataHub": "Central de Dados",
+    "dataHub": "Data Hub",
     "about": "Sobre Nós",
     "reserves": "Reservas",
     "docs": "Documentação",
@@ -50,7 +50,7 @@
     "mainSubtitle": "Fornecendo dados precisos, verificados e oficiais para impulsionar a tokenização de ativos do mundo real.",
     "talkToExpert": "Falar com especialista",
     "dataHub": "Central de dados",
-    "trustedBy": "Confiança de"
+    "trustedBy": "Parceiros e clientes"
   },
   "footer": {
     "socialMedia": "Links de Redes Sociais",
@@ -58,7 +58,7 @@
     "tagline": "Impulsionando a tokenização de ativos com dados confiáveis do mundo real."
   },
   "features": {
-    "title": "Recursos",
+    "title": "Features",
     "description": "Descubra o poder da nossa plataforma",
     "sectionTitle": "Nossos principais recursos",
     "sectionSubtitle": "Soluções confiáveis para entrega de dados segura e precisa",
@@ -72,7 +72,7 @@
     },
     "externalAuditors": {
       "title": "Auditores Externos",
-      "subtitle": "Um grupo de auditores independentes valida a integridade e precisão dos dados fornecidos"
+      "subtitle": "Um grupo de auditores independentes valida a integridade e precisão dos dados fornecidos."
     },
     "page": {
       "title": "Um novo padrão para dados on-chain",
@@ -131,7 +131,7 @@
     }
   },
   "dataHub": {
-    "title": "Central de Dados",
+    "title": "Data Hub",
     "description": "Acesse insights abrangentes de dados",
     "search": {
       "placeholder": "Buscar indicadores...",
@@ -186,7 +186,7 @@
     "hero": {
       "title": "Prova de Reservas para",
       "titleHighlight": "Ativos Tokenizados",
-      "subtitle": "Conectamos colateral offchain e rastreamos suprimento de tokens onchain, trazendo ambos para um painel dinâmico que permite transparência e confiança para ativos tokenizados.",
+      "subtitle": "Conectamos o colateral offchain ao total de tokens onchain, em um painel dinâmico que entrega transparência e confiança para ativos tokenizados.",
       "stats": {
         "totalReserves": "Total de Reservas Verificadas",
         "activeIntegrations": "Integrações Ativas",
@@ -194,20 +194,20 @@
       },
       "features": {
         "directConnection": {
-          "title": "Conexão direta com reservas off-chain",
-          "description": "Conectamos a custodiantes, bancos ou sistemas financeiros via APIs seguras ou arquivos validados para extrair dados de colateral do mundo real."
+          "title": "Conexão direta com as reservas off-chain",
+          "description": "Conectamos aos custodiantes via APIs seguras ou arquivos auditáveis para extrair dados de lastro do mundo real."
         },
         "liveTracking": {
-          "title": "Rastreamento ao vivo da emissão de tokens",
-          "description": "Monitoramos o smart contract do token para rastrear o suprimento em circulação e compará-lo com os dados de reserva verificados."
+          "title": "Rastreamento dos tokens",
+          "description": "Conectamos custodiante, bancos ou sistemas financeiros via APIs seguras ou arquivos auditáveis para extrair dados de lastro do mundo real."
         },
         "oracles": {
           "title": "Oráculos que publicam dados onchain",
-          "description": "Usando três modelos de oráculo (Push, Pull, Signature), publicamos dados de reserva para smart contracts — com gatilhos como heartbeat ou desvio."
+          "description": "Utilizamos três modelos de oráculo (Push, Pull e Assinatura) para publicar os dados de reserva diretamente na blockchain."
         },
         "dashboard": {
-          "title": "Painel em tempo real para transparência",
-          "description": "Nossos painéis públicos exibem saldos, histórico de atualizações, suprimento de tokens e links de contratos onchain — permitindo total visibilidade e confiança."
+          "title": "Dashboard em tempo real pra transparência",
+          "description": "Relatório dinâmico mostrando os saldos de reserva, histórico de atualizações, total de tokens emitidos e links dos contratos onchain, permitindo total visibilidade ao usuário."
         }
       }
     },
@@ -232,11 +232,11 @@
         },
         "collateralizationStatus": {
           "question": "O que significa o status de colateralização?",
-          "answer": "Se o status é super-colateralizado, significa que as reservas verificadas excedem o suprimento de tokens em circulação — indicando um buffer de segurança e espaço para nova emissão. Se está sub-colateralizado, significa que as reservas não são suficientes para respaldar totalmente os tokens emitidos — sinalizando um risco potencial e necessidade de ação corretiva."
+          "answer": "Se o status é super-colateralizado, significa que as reservas verificadas excedem o supply de tokens em circulação — indicando um buffer de segurança e espaço para nova emissão. Se está sub-colateralizado, significa que as reservas não são suficientes para respaldar totalmente os tokens emitidos — sinalizando um risco potencial e necessidade de ação corretiva."
         },
         "tokenTracking": {
           "question": "Como a Fact Finance rastreia a emissão de tokens?",
-          "answer": "Monitoramos o suprimento de tokens onchain rastreando o smart contract do token. Esses dados são comparados com as reservas verificadas para garantir cobertura colateral contínua, e o resultado é exibido em um painel público."
+          "answer": "Monitoramos o supply de tokens onchain rastreando o smart contract do token. Esses dados são comparados com as reservas verificadas para garantir cobertura colateral contínua, e o resultado é exibido em um painel público."
         },
         "traditionalAudit": {
           "question": "Como isso é diferente de uma auditoria tradicional?",
@@ -259,7 +259,7 @@
       },
       "balancesChart": {
         "title": "Status de cobertura de reservas",
-        "subtitle": "Último suprimento de tokens verificado e reservas colaterais correspondentes, incluindo o status de super ou sub-colateralização.",
+        "subtitle": "Total de tokens em circulação e saldo de reservas verificado, incluindo a informação se o ativo está sobrecolateralizado ou subcolateralizado.",
         "totalInCirculation": "Total em circulação",
         "totalCollateral": "Colateral total",
         "overCollateral": "Super colateral",
@@ -281,7 +281,7 @@
         }
       },
       "reportHeader": {
-        "circulatingTokenSupply": "Suprimento de tokens em circulação",
+        "circulatingTokenSupply": "Total de Tokens em Circulação",
         "totalReserves": "Total de reservas",
         "collateralRatio": "Proporção de colateral",
         "lastUpdate": "Última atualização",
@@ -296,8 +296,8 @@
         "collateralRatio": "Proporção de colateral"
       },
       "historyChart": {
-        "title": "Cobertura histórica de reservas",
-        "subtitle": "Acompanhe saldos cumulativos versus tokens emitidos ao longo do tempo. Use filtros para explorar dados por período diferente.",
+        "title": "Histórico da cobertura de reservas",
+        "subtitle": "Acompanhe a relação entre saldos em reserva e tokens emitidos ao longo do tempo. Use os filtros para visualizar os dados por diferentes períodos.",
         "numberOfTransactions": "Número de transações",
         "transactionVolume": "Volume de transações",
         "averageCollateral": "Colateral médio",
@@ -309,7 +309,7 @@
           "totalBurned": "Total Queimado"
         },
         "legend": {
-          "circulatingTokenSupply": "Suprimento de tokens em circulação",
+          "circulatingTokenSupply": "Total de tokens em circulação",
           "totalReserves": "Total de reservas"
         },
         "periods": {
@@ -326,7 +326,7 @@
         "tokenContracts": "Contratos de token",
         "onchainReservesData": "Dados de reservas onchain",
         "tokenMetrics": "Métricas de token",
-        "tokenCirculatingSupply": "Suprimento de tokens em circulação",
+        "tokenCirculatingSupply": "Supply de tokens em circulação",
         "currentPrice": "Preço atual",
         "reservesUtilization": "Utilização de reservas",
         "thirtyDayTransferVolume": "Volume de transferências de 30 dias",
@@ -334,7 +334,7 @@
       },
       "tokenChains": {
         "title": "Distribuição blockchain",
-        "subtitle": "Esta seção mostra como o suprimento de tokens é distribuído entre diferentes blockchains",
+        "subtitle": "Esta seção mostra como o total de tokens é distribuído entre diferentes blockchains",
         "activeNetworks": "Redes ativas",
         "totalTokens": "Total de tokens",
         "totalValue": "Valor total",
@@ -354,7 +354,7 @@
       "headingSubtext": "tokenizados verificados",
       "cards": {
         "totalReserves": "Total de reservas",
-        "tokenSupply": "Suprimento de tokens",
+        "tokenSupply": "Supply de tokens",
         "collateralRatio": "Proporção de colateral",
         "lastUpdate": "Última Atualização:",
         "frequency": "Frequência:",
@@ -389,15 +389,15 @@
   },
   "whatWeDo": {
     "title": "O QUE FAZEMOS",
-    "heading": "Impulsionando a tokenização de ativos com dados confiáveis do mundo real",
-    "description": "A camada de dados conectando fontes de dados oficiais a ativos tokenizados, desbloqueando soluções financeiras inovadoras",
+    "heading": "Impulsionando a tokenização de ativos com dados do mundo real",
+    "description": "A infraestrutura de dados que conecta fontes oficiais a ativos tokenizados, desbloqueando soluções financeiras inovadoras",
     "capitalMarkets": {
       "title": "Mercados de capitais",
-      "description": "Acesse índices econômicos oficiais diretamente da fonte oficial"
+      "description": "Indicadores econômicos atualizados direto da fonte oficial"
     },
     "realEstate": {
       "title": "Imóveis",
-      "description": "Preço por metro quadrado e prova de reserva para propriedades tokenizadas"
+      "description": "Preço por metro quadrado e verificação de titularidade em propriedades tokenizadas"
     },
     "commodities": {
       "title": "Commodities",
@@ -503,11 +503,11 @@
       "description": "Integração perfeita de dados blockchain para desenvolvedores. Conecte smart contracts a dados do mundo real com nossas APIs poderosas e ferramentas para desenvolvedores."
     },
     "sections": {
-      "supportedChains": "Redes Suportadas",
-      "callingDevs": "CHAMANDO OS DEVS",
-      "dataIntegrationTitle": "Integração perfeita de dados para desenvolvedores blockchain",
-      "dataIntegrationDescription1": "Integre facilmente dados confiáveis e verificados em seus projetos blockchain com nossa central de dados que economiza tempo. A Fact Finance fornece APIs poderosas para conectar smart contracts a fontes de dados do mundo real.",
-      "dataIntegrationDescription2": "Sem integração complexa, apenas documentação clara, guias passo a passo e exemplos prontos para uso para EVMs e Solana.",
+      "supportedChains": "Redes compatíveis",
+      "callingDevs": "PENSADO PARA DEVS",
+      "dataIntegrationTitle": "Fácil integração de dados para desenvolvedores blockchain",
+      "dataIntegrationDescription1": "Conecte contratos inteligentes a dados confiáveis do mundo real com as APIs da Fact Finance. Integração simples, sem fricção, com documentação clara e exemplos prontos para EVMs e Solana.",
+      "dataIntegrationDescription2": "A forma mais rápida e segura de levar dados verificados para seu projeto.",
       "exploreDocumentation": "Explorar documentação",
       "contactSupport": "Entrar em contato",
       "faqTitle": "Perguntas Frequentes",
@@ -561,7 +561,19 @@
     "team": {
       "sectionTitle": "Conheça os inovadores",
       "sectionHeading": "A equipe por trás da Fact Finance",
-      "sectionDescription": "Profissionais dedicados com profunda expertise em blockchain, infraestrutura de dados e sistemas econômicos, comprometidos em entregar soluções de dados seguras e precisas para web3 e tokenização de ativos do mundo real."
+      "sectionDescription": "Profissionais dedicados com profunda expertise em blockchain, infraestrutura de dados e sistemas econômicos, comprometidos em entregar soluções de dados seguras e precisas para web3 e tokenização de ativos do mundo real.",
+      "members": {
+        "lucianoJuvinski": {
+          "name": "Luciano Juvinski",
+          "role": "Fundador & CEO",
+          "bio": "Luciano Juvinski traz mais de uma década de expertise na indústria de dados. Ele é o fundador da Navegg, a primeira Data Management Platform do Brasil, que foi posteriormente adquirida pela Dentsu Aegis e atendeu clientes globais como Google, Salesforce e Adobe. Atualmente está cursando um Mestrado em Blockchain e Fintech na Duke University."
+        },
+        "fernandaGaranhani": {
+          "name": "Fernanda Garanhani",
+          "role": "Co-Fundadora & COO",
+          "bio": "Fernanda Garanhani tem mais de quatro anos de experiência em blockchain e Web3. Ela iniciou sua carreira como analista blockchain na Honey Island Capital, uma empresa de venture capital, e posteriormente como Head de Novos Negócios na Liqi Digital Assets, uma plataforma líder em tokenização de ativos. É certificada como profissional blockchain pelo DEC Institute."
+        }
+      }
     },
     "media": {
       "sectionTitle": "Mídia e Imprensa",

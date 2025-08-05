@@ -12,6 +12,8 @@ import bscIcon from '@/assets/chains/bsc.svg';
 import xdcIcon from '@/assets/chains/xdc.svg';
 import solanaIcon from '@/assets/chains/solana.svg';
 import optimismIcon from '@/assets/chains/optimism.svg';
+import HederaIcon from '@/assets/chains/hedera.svg';
+import BaseIcon from '@/assets/chains/base.svg';
 
 export type ChainDef = {
   name: string;
@@ -20,7 +22,7 @@ export type ChainDef = {
 };
 
 export const chains: ChainDef[] = [
-  // { name: 'Base', value: 'Base', icon: baseIcon },
+  { name: 'Base', value: 'Base', icon: BaseIcon },
   { name: 'XDC Network', value: 'XDC Network', icon: xdcIcon },
   { name: 'Ethereum', value: 'Ethereum', icon: ethereumIcon },
   // { name: 'BSC', value: 'bscTestnet', icon: bscIcon },
@@ -32,6 +34,7 @@ export const chains: ChainDef[] = [
   // { name: 'Optimism', value: 'optimismSepolia', icon: optimismIcon },
   { name: 'Gnosis', value: 'Gnosis', icon: gnosisIcon },
   { name: 'Moonbeam', value: 'Moonbeam', icon: moonbeamIcon },
+  { name: 'Hedera', value: 'Hedera', icon: HederaIcon },
   // { name: 'Aurora', value: 'auroraTestnet', icon: auroraIcon },
   // { name: "ZkSync", value: "zkSyncSepoliaTestnet", icon: "" },
   // { name: 'Cronos', value: 'cronosTestnet', icon: cronosIcon },

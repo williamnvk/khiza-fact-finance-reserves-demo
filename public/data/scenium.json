@@ -3,8 +3,10 @@
   "companyName": "Scenium",
   "companyFullName": "Scenium Global Inc ",
   "logo": "scenium",
-  "description":"Scenium is a digital asset platform offering tokenized stocks, private funds, and cryptocurrencies. It is incorporated in Ontario, Canada.",
-  "heartbeat":"1 month",
+  "description": "Scenium is a digital asset platform incorporated in Ontario, Canada, offering a unified marketplace for tokenized stocks, private funds, and cryptocurrencies, including an integrated DEX. Its mission is to create a secure, accessible, and efficient bridge connecting global investors to high-value asset classes like private equity and real estate. The platform democratizes access to investments by promoting superior tax efficiency, reduced transactional costs, and 24/7 market access for all.",
+  "descriptionPT": "A Scenium é uma plataforma de ativos digitais com sede em Ontário, no Canadá, que oferece um marketplace unificado para ações tokenizadas, fundos privados e criptomoedas, incluindo uma DEX integrada. Sua missão é criar uma ponte segura, acessível e eficiente, conectando investidores globais a classes de ativos de alto valor, como private equity e fundos imobiliários. A plataforma democratiza o acesso a investimentos ao promover maior eficiência fiscal, redução de custos transacionais e acesso ao mercado 24/7 para todos.",
+  "descriptionES": "Scenium es una plataforma de activos digitales con sede en Ontario, Canadá, que ofrece un mercado unificado para acciones tokenizadas, fondos privados y criptomonedas, incluyendo un DEX integrado. Su misión es crear un puente seguro, accesible y eficiente que conecte a inversores globales con clases de activos de alto valor, como el capital privado (private equity) y los bienes raíces. La plataforma democratiza el acceso a las inversiones al promover una eficiencia fiscal superior, costos transaccionales reducidos y acceso al mercado 24/7 para todos.",
+  "heartbeat": "1 month",
   "dapp": "https://scenium.io",
   "threshold": "",
   "assetDistribution": [
@@ -25,7 +27,9 @@
       "logo": "/tokens/none.png",
       "symbol": "BRAM1",
       "name": "Brabull Mortgage I",
-      "chains": ["ethereum"],
+      "chains": [
+        "ethereum"
+      ],
       "circulation24h": 1332,
       "tokenPrice": 1,
       "marketcap": 1332,
@@ -37,7 +41,9 @@
       "logo": "/tokens/none.png",
       "symbol": "BRAM2",
       "name": " Brabull Mortgage II",
-      "chains": ["ethereum"],
+      "chains": [
+        "ethereum"
+      ],
       "circulation24h": 5502,
       "tokenPrice": 1,
       "marketcap": 5502,
@@ -56,6 +62,17 @@
       "date": "May, 29 2025",
       "file": "/reports/scenium/report_may_2025.pdf"
     }
-  ]
- 
+  ],
+  "footnote": {
+    "id": 7,
+    "text": "A portion of the reserves is held in BRL and converted to USD using the PTAX rate. These converted values are included in the total shown on this report. "
+  },
+  "footnotePT": {
+    "id": 7,
+    "text": "Uma parte das reservas é mantida em BRL e convertida para USD utilizando a taxa PTAX. Esses valores convertidos estão incluídos no total apresentado neste relatório."
+  },
+  "footnoteES": {
+    "id": 7,
+    "text": "Una parte de las reservas se mantiene en BRL y se convierte a USD utilizando la tasa PTAX. Estos valores convertidos están incluidos en el total mostrado en este informe."
+  }
 }

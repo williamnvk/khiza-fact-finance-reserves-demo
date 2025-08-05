@@ -15,7 +15,7 @@ import {
   Link,
 } from '@chakra-ui/react';
 import LinkedinIcon from '@/components/Icons/LinkedinIcon';
-import { teamMembers } from '@/data/team';
+import { getTeamMembers } from '@/data/team';
 import { SEO } from '@/components/Common/SEO';
 import { Image } from '@chakra-ui/react';
 import XIcon from '@/components/Icons/XIcon';
@@ -27,6 +27,7 @@ export default function AboutUs() {
   const cardBg = 'blackAlpha.500';
   const cardHoverBg = 'whiteAlpha.100';
   const [hoveredAward, setHoveredAward] = useState<string | null>(null);
+  const teamMembers = getTeamMembers(t);
 
   const handleAwardMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
     const card = e.currentTarget;

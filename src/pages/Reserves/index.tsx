@@ -45,7 +45,7 @@ const Home = () => {
   const [clients, setClients] = useState<Client[]>([]);
 
   const loadData = async () => {
-    const list = ['tokeniza', 'scenium', 'avenia'];
+    const list = ['tokeniza', 'scenium'];
 
     const fetchedClients: Client[] = [];
     for (const item of list) {
@@ -169,6 +169,7 @@ const Home = () => {
                   <Card.Header>
                     <Flex justify="space-between" align="flex-start">
                       {client.logo === 'avenia' && <AveniaLogo width={100} height={80} />}
+                      {client.logo === 'crown' && <Image src="/assets/logos/crown.png" alt="Crown" h="80px" />}
                       {client.logo === 'tokeniza' && <Image src="/assets/logos/tbrl.png" alt="TBRL" h="80px" />}
                       {client.logo === 'scenium' && (
                         <Box h="80px">

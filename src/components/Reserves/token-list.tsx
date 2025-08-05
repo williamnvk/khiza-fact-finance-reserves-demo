@@ -74,8 +74,9 @@ export function TokenList({
             const totalTransferVolume = tokenTransfers * 12;
 
             return (
-              <>
+            
                 <Grid
+                  key={Math.random()}
                   templateColumns={{ base: '1fr', lg: '300px 1fr' }}
                   gap={{ base: 2, md: 6}}
                   borderTopWidth={index === 0 ? '0px' : '1px'}
@@ -342,7 +343,7 @@ export function TokenList({
                     </VStack>
                   </GridItem>
                 </Grid>
-              </>
+              
             );
           })}
         </VStack>

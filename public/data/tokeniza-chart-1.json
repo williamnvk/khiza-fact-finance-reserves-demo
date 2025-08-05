@@ -1,206 +1,203 @@
 {
   "historical": [
     {
-      "date": "08 Jun 21h",
-      "circulation": 90265,
-      "reserves": 101477.14,
-      "totalTransfer": 0,
-      "transactions": 0,
-      "totalBurned": 0
-    },
-    {
-      "date": "08 Jun 22h",
-      "circulation": 90265,
-      "reserves": 101477.14,
-      "totalTransfer": 0,
-      "transactions": 0,
-      "totalBurned": 0
-    },
-    {
-      "date": "08 Jun 23h",
-      "circulation": 90265,
-      "reserves": 101477.14,
-      "totalTransfer": 0,
-      "transactions": 0,
-      "totalBurned": 0
-    },
-    {
-      "date": "09 Jun 00h",
-      "circulation": 90265,
-      "reserves": 101477.14,
-      "totalTransfer": 0,
-      "transactions": 0,
-      "totalBurned": 0
-    },
-    {
-      "date": "09 Jun 01h",
-      "circulation": 90265,
-      "reserves": 101477.14,
-      "totalTransfer": 0,
-      "transactions": 0,
-      "totalBurned": 0
-    },
-    {
-      "date": "09 Jun 02h",
-      "circulation": 90265,
-      "reserves": 101477.14,
-      "totalTransfer": 0,
-      "transactions": 0,
-      "totalBurned": 0
-    },
-    {
-      "date": "09 Jun 03h",
-      "circulation": 90265,
-      "reserves": 101477.14,
-      "totalTransfer": 0,
-      "transactions": 0,
-      "totalBurned": 0
-    },
-    {
-      "date": "09 Jun 04h",
-      "circulation": 90265,
-      "reserves": 101477.14,
-      "totalTransfer": 0,
-      "transactions": 0,
-      "totalBurned": 0
-    },
-    {
-      "date": "09 Jun 05h",
-      "circulation": 90265,
-      "reserves": 101477.14,
-      "totalTransfer": 0,
-      "transactions": 0,
-      "totalBurned": 0
-    },
-    {
-      "date": "09 Jun 06h",
-      "circulation": 90265,
-      "reserves": 101477.14,
-      "totalTransfer": 0,
-      "transactions": 0,
-      "totalBurned": 0
-    },
-    {
-      "date": "09 Jun 07h",
-      "circulation": 90265,
-      "reserves": 101477.14,
-      "totalTransfer": 0,
-      "transactions": 0,
-      "totalBurned": 0
-    },
-    {
-      "date": "09 Jun 08h",
-      "circulation": 90265,
-      "reserves": 101477.14,
-      "totalTransfer": 0,
-      "transactions": 0,
-      "totalBurned": 0
-    },
-    {
-      "date": "09 Jun 09h",
-      "circulation": 90265,
-      "reserves": 101477.14,
-      "totalTransfer": 0,
-      "transactions": 0,
-      "totalBurned": 0
-    },
-    {
-      "date": "09 Jun 10h",
-      "circulation": 90265,
-      "reserves": 101477.14,
-      "totalTransfer": 0,
-      "transactions": 0,
-      "totalBurned": 0
-    },
-    {
-      "date": "09 Jun 11h",
-      "circulation": 90226,
-      "reserves": 101438.14,
-      "totalTransfer": 0,
-      "transactions": 0,
-      "totalBurned": 39.5
-    },
-    {
-      "date": "09 Jun 12h",
-      "circulation": 90226,
-      "reserves": 101438.14,
-      "totalTransfer": 0,
-      "transactions": 0,
-      "totalBurned": 0
-    },
-    {
-      "date": "09 Jun 13h",
-      "circulation": 90226,
-      "reserves": 101438.14,
-      "totalTransfer": 0,
-      "transactions": 0,
-      "totalBurned": 0
-    },
-    {
-      "date": "09 Jun 14h",
-      "circulation": 89904,
-      "reserves": 101418.47,
-      "totalTransfer": 0,
-      "transactions": 0,
-      "totalBurned": 100
-    },
-    {
-      "date": "09 Jun 15h",
-      "circulation": 144904,
-      "reserves": 101328.97,
-      "totalTransfer": 100,
+      "date": "15 Jul 19h",
+      "circulation": 451856,
+      "reserves": 647396.87,
+      "totalTransfer": 420,
       "transactions": 2,
-      "totalBurned": 90
+      "totalBurned": 0
     },
     {
-      "date": "09 Jun 16h",
-      "circulation": 144904,
-      "reserves": 101328.97,
+      "date": "15 Jul 20h",
+      "circulation": 454856,
+      "reserves": 650956.6,
+      "totalTransfer": 3230,
+      "transactions": 2,
+      "totalBurned": 0
+    },
+    {
+      "date": "15 Jul 21h",
+      "circulation": 454617,
+      "reserves": 650767.95,
+      "totalTransfer": 15314,
+      "transactions": 7,
+      "totalBurned": 239.37
+    },
+    {
+      "date": "15 Jul 22h",
+      "circulation": 453611,
+      "reserves": 649766.2,
+      "totalTransfer": 431,
+      "transactions": 2,
+      "totalBurned": 1005.2
+    },
+    {
+      "date": "15 Jul 23h",
+      "circulation": 453611,
+      "reserves": 649710.07,
       "totalTransfer": 0,
       "transactions": 0,
       "totalBurned": 0
     },
     {
-      "date": "09 Jun 17h",
-      "circulation": 144904,
-      "reserves": 101328.97,
-      "totalTransfer": 100,
-      "transactions": 3,
+      "date": "16 Jul 00h",
+      "circulation": 453611,
+      "reserves": 649837.1,
+      "totalTransfer": 0,
+      "transactions": 0,
       "totalBurned": 0
     },
     {
-      "date": "09 Jun 18h",
-      "circulation": 144904,
-      "reserves": 101328.97,
-      "totalTransfer": 100,
-      "transactions": 6,
+      "date": "16 Jul 01h",
+      "circulation": 453611,
+      "reserves": 649857.77,
+      "totalTransfer": 0,
+      "transactions": 0,
       "totalBurned": 0
     },
     {
-      "date": "09 Jun 19h",
-      "circulation": 144904,
-      "reserves": 101328.97,
-      "totalTransfer": 47,
+      "date": "16 Jul 02h",
+      "circulation": 453611,
+      "reserves": 649899.13,
+      "totalTransfer": 0,
+      "transactions": 0,
+      "totalBurned": 0
+    },
+    {
+      "date": "16 Jul 03h",
+      "circulation": 453611,
+      "reserves": 649857.77,
+      "totalTransfer": 0,
+      "transactions": 0,
+      "totalBurned": 0
+    },
+    {
+      "date": "16 Jul 04h",
+      "circulation": 453391,
+      "reserves": 649573.03,
+      "totalTransfer": 0,
+      "transactions": 0,
+      "totalBurned": 220.26
+    },
+    {
+      "date": "16 Jul 05h",
+      "circulation": 453391,
+      "reserves": 649570.07,
+      "totalTransfer": 0,
+      "transactions": 0,
+      "totalBurned": 0
+    },
+    {
+      "date": "16 Jul 06h",
+      "circulation": 453391,
+      "reserves": 649443.05,
+      "totalTransfer": 0,
+      "transactions": 0,
+      "totalBurned": 0
+    },
+    {
+      "date": "16 Jul 07h",
+      "circulation": 453391,
+      "reserves": 649148.05,
+      "totalTransfer": 251,
       "transactions": 1,
       "totalBurned": 0
     },
     {
-      "date": "09 Jun 20h",
-      "circulation": 144904,
-      "reserves": 101328.97,
+      "date": "16 Jul 08h",
+      "circulation": 453391,
+      "reserves": 646331.42,
+      "totalTransfer": 9820,
+      "transactions": 3,
+      "totalBurned": 0
+    },
+    {
+      "date": "16 Jul 09h",
+      "circulation": 453391,
+      "reserves": 646282.13,
       "totalTransfer": 0,
       "transactions": 0,
+      "totalBurned": 0
+    },
+    {
+      "date": "16 Jul 10h",
+      "circulation": 453113,
+      "reserves": 642879.28,
+      "totalTransfer": 11065,
+      "transactions": 3,
+      "totalBurned": 277.99
+    },
+    {
+      "date": "16 Jul 11h",
+      "circulation": 453113,
+      "reserves": 642632.18,
+      "totalTransfer": 2981,
+      "transactions": 2,
+      "totalBurned": 0
+    },
+    {
+      "date": "16 Jul 12h",
+      "circulation": 453113,
+      "reserves": 642180.05,
+      "totalTransfer": 0,
+      "transactions": 0,
+      "totalBurned": 0
+    },
+    {
+      "date": "16 Jul 13h",
+      "circulation": 453113,
+      "reserves": 642144.65,
+      "totalTransfer": 0,
+      "transactions": 0,
+      "totalBurned": 0
+    },
+    {
+      "date": "16 Jul 14h",
+      "circulation": 452639,
+      "reserves": 641873.83,
+      "totalTransfer": 0,
+      "transactions": 0,
+      "totalBurned": 474.15
+    },
+    {
+      "date": "16 Jul 15h",
+      "circulation": 452639,
+      "reserves": 641664.05,
+      "totalTransfer": 135,
+      "transactions": 1,
+      "totalBurned": 0
+    },
+    {
+      "date": "16 Jul 16h",
+      "circulation": 451610,
+      "reserves": 640904.87,
+      "totalTransfer": 1030,
+      "transactions": 1,
+      "totalBurned": 1029
+    },
+    {
+      "date": "16 Jul 17h",
+      "circulation": 450220,
+      "reserves": 634561.66,
+      "totalTransfer": 1003,
+      "transactions": 1,
+      "totalBurned": 1389.95
+    },
+    {
+      "date": "16 Jul 18h",
+      "circulation": 450720,
+      "reserves": 634713.61,
+      "totalTransfer": 500,
+      "transactions": 1,
       "totalBurned": 0
     }
   ],
   "total": {
-    "periodTotalTransfer": 347,
-    "periodTransactions": 12,
-    "periodTotalBurned": 229.49999999
+    "periodTotalTransfer": 46180,
+    "periodTransactions": 26,
+    "periodTotalBurned": 4635.923146656091
   },
-  "average": {
-    "circulation": 103904.8333,
-    "reserves": 101432.77791666667,
-    "avgcolateral": "100%"
-  }
+  "avgColateral": "141%",
+  "assetDistribution": []
 }

@@ -2,10 +2,13 @@ import { Avatar } from '@/components/ui/avatar';
 import { TitleSection } from '@/components/ui/title-sectiont';
 import { Box, Container, Heading, Text, VStack, SimpleGrid, Flex, HStack, AspectRatio } from '@chakra-ui/react';
 import LinkedinIcon from '@/components/Icons/LinkedinIcon';
-import { teamMembers } from '@/data/team';
+import { getTeamMembers } from '@/data/team';
 import { SEO } from '@/components/Common/SEO';
+import { useI18n } from '@/hooks/useI18n';
 
 export default function Team() {
+  const { t } = useI18n();
+  const teamMembers = getTeamMembers(t);
   const cardBg = 'blackAlpha.500';
   const cardHoverBg = 'whiteAlpha.100';
 
@@ -29,14 +32,13 @@ export default function Team() {
               letterSpacing={2}
               fontWeight="600"
             >
-              Meet the innovators
+              {t('about.team.sectionTitle')}
             </Text>
             <Heading as="h1" textStyle="title">
-              The team behind Fact Finance
+              {t('about.team.sectionHeading')}
             </Heading>
             <Text fontSize={{ base: 'md', md: 'lg' }} maxW="3xl" mx="auto" textAlign="center" color="whiteAlpha.800">
-              Dedicated professionals with deep expertise in blockchain, data infrastructure, and economic systems,
-              committed to delivering secure and precise data solutions for web3 and real-world asset tokenization.
+              {t('about.team.sectionDescription')}
             </Text>
           </TitleSection>
 
@@ -104,35 +106,27 @@ export default function Team() {
                     </Text>
                   </VStack>
                   <Flex gap={3} flexWrap="wrap" justify="center">
-                    {member.icons.map((icon, index) => (
+                    {member.brands.map((brand, brandIndex) => (
                       <Box
                         w="auto"
-                        key={index}
+                        key={brandIndex}
                         bg="whiteAlpha.100"
                         borderRadius="xl"
                         p={3}
                         _hover={{ bg: 'whiteAlpha.200' }}
                         transition="background 0.2s"
                         role="img"
-                        aria-label={`Icon`}
+                        aria-label={`${member.name}'s ${brand.type === 'icon' ? 'technology expertise' : 'brand'}`}
                       >
-                        {icon}
-                      </Box>
-                    ))}
-                    {member.images.map((image, index) => (
-                      <Box
-                        key={index}
-                        bg="whiteAlpha.100"
-                        borderRadius="xl"
-                        p={3}
-                        _hover={{ bg: 'whiteAlpha.200' }}
-                        transition="background 0.2s"
-                      >
-                        <img
-                          src={image}
-                          alt={`${member.name}'s technology expertise icon`}
-                          style={{ width: 'auto', height: '24px' }}
-                        />
+                        {brand.type === 'icon' ? (
+                          brand.asset
+                        ) : (
+                          <img
+                            src={brand.asset}
+                            alt={`${member.name}'s technology expertise icon`}
+                            style={{ width: 'auto', height: '24px' }}
+                          />
+                        )}
                       </Box>
                     ))}
                   </Flex>
@@ -144,17 +138,17 @@ export default function Team() {
           <Box as="section" aria-label="Media Appearances">
             <TitleSection>
               <Heading as="h2" textStyle="title">
-                Learn More About Us
+                {t('about.media.sectionHeading')}
               </Heading>
               <Text fontSize={{ base: 'md', md: 'lg' }} maxW="2xl" mx="auto" textAlign="center" color="whiteAlpha.800">
-                Watch our recent podcast appearances to learn more about our vision and mission
+                {t('about.media.sectionDescription')}
               </Text>
             </TitleSection>
 
             <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} mt={12}>
               {[
-                { url: 'https://www.youtube.com/embed/V2JulIYOQ6A', title: 'Fact Finance Podcast 2' },
-                { url: 'https://www.youtube.com/embed/MT6ZBBPVpNM', title: 'Fact Finance Podcast 1' },
+                { url: 'https://www.youtube.com/embed/V2JulIYOQ6A', title: t('about.media.videos.video2') },
+                { url: 'https://www.youtube.com/embed/MT6ZBBPVpNM', title: t('about.media.videos.video1') },
               ].map((video, index) => (
                 <Box key={index}>
                   <AspectRatio ratio={16 / 9}>
